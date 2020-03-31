@@ -1,38 +1,28 @@
-
-<form class="text-center border border-light p-5" routerLink="/sing-in">
-  <p class="h4 mb-4">Sign in</p>
-  <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
-  <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
-
-  <div class="d-flex justify-content-around">
-    <div>
-      <a href="">Remember me</a>
-    </div>
-    <div>
-      <a href="">Forgot password?</a>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <a class="navbar-brand" routerLink="">Clover</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="sing-in">Sing In</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="">Flights</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="">Cars</a>
+      </li>
+    </ul>
+    <form class="form-inline">
+      <div class="md-form my-0" style="margin-left: 750px;">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      </div>
+    </form>
   </div>
-
-  <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
-
-  <p>Not a member?
-    <a href="">Register</a>
-  </p>
-
-  <p>or sign in with:</p>
-  <a type="button" class="light-blue-text mx-2">
-    <!--<mdb-icon fab icon="facebook"></mdb-icon>-->
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <!--<mdb-icon fab icon="twitter"></mdb-icon>-->
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <!--<mdb-icon fab icon="linkedin"></mdb-icon>-->
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <!--<mdb-icon fab icon="github"></mdb-icon>-->
-  </a>
-
-</form>
-
+</nav>
 <router-outlet></router-outlet>
