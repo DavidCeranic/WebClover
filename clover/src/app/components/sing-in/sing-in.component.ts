@@ -12,4 +12,8 @@ export class SingInComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  becomeAUser(): void {
+    localStorage.setItem('sessionUserRole', JSON.stringify('USER'));
+  }
+
 }
