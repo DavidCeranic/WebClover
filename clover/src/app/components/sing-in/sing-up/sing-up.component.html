@@ -1,43 +1,62 @@
-<form class="text-center" style="color: #757575;" style="margin-left: 550px; margin-right: 550px; margin-top: 200px;">
+<form [formGroup]="singUpForm" (ngSubmit)="onSubmit()" class="text-center" style="color: #757575;" style="margin-left: 550px; margin-right: 550px; margin-top: 50px;">
   
         <div class="form-row">
           <div class="col">
             <div class="md-form">
-              <input type="text" id="materialRegisterFormFirstName" class="form-control" mdbInput>
-              <label for="materialRegisterFormFirstName">First name</label>
+              <input type="text" id="FirstName" class="form-control" formControlName="FirstName">
+              <label for="FirstName">First name</label>
+              <div *ngIf="singUpForm.controls.FirstName.invalid">
+                Please enter First name
+            </div>
             </div>
           </div>
 
           <div class="col">
             <div class="md-form">
-              <input type="email" id="materialRegisterFormLastName" class="form-control" mdbInput>
-              <label for="materialRegisterFormLastName">Last name</label>
+              <input type="email" id="LastName" class="form-control" formControlName="LastName">
+              <label for="LastName">Last name</label>
+              <div *ngIf="singUpForm.controls.LastName.invalid">
+                Please enter Last name
+            </div>
             </div>
           </div>
         </div>
   
         <div class="md-form mt-0">
-          <input type="email" id="materialRegisterFormEmail" class="form-control" mdbInput>
-          <label for="materialRegisterFormEmail">E-mail</label>
+          <input type="email" id="Email" class="form-control" formControlName="Email">
+          <label for="Email">E-mail</label>
+          <div *ngIf="singUpForm.controls.Email.invalid">
+            Please enter Email
+        </div>
         </div>
   
         <div class="md-form">
-          <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
-            mdbInput>
-          <label for="materialRegisterFormPassword">Password</label>
-          <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-            At least 8 characters and 1 digit
-          </small>
+          <input type="password" id="Password" class="form-control" formControlName="Password">
+          <label for="Password">Password</label>
+          <div *ngIf="singUpForm.controls.Password.invalid">
+            Please enter Password
         </div>
-  
+        </div>
+
         <div class="md-form">
-          <input type="text" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
-            mdbInput>
-          <label for="materialRegisterFormPhone">Phone number</label>
-          <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-            Optional - for two-step authentication
-          </small>
+          <input type="password" id="ReenterPassword" class="form-control" formControlName="Password">
+          <label for="ReenterPassword">Re-enter Password</label>
+          <div *ngIf="singUpForm.controls.Password.invalid">
+            Please enter Password
         </div>
+        </div>
+      
+      <div class="md-form">
+        <select id="Gener" formControlName="state" class="form-control" formControlName="Gener">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <label for="Gener">Gener</label>
+        <div *ngIf="singUpForm.controls.Gener.invalid">
+          Please enter Gener
+      </div>
+    </div>
   
         <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
           type="submit">Sign in</button>

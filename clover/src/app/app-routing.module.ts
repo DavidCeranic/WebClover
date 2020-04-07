@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SingInComponent } from './components/sing-in/sing-in.component';
 import { SingUpComponent } from './components/sing-in/sing-up/sing-up.component';
 import { CarComponent } from './components/car/car.component';
+import { UserGuard } from './guards/user.guard';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   },
   {
     path: "car",
-    component: CarComponent
+    component: CarComponent,
+    canActivate: [UserGuard]
   }
 ];
 

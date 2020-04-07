@@ -7,6 +7,8 @@ import { SingInComponent } from './components/sing-in/sing-in.component';
 import { SingUpComponent } from './components/sing-in/sing-up/sing-up.component';
 import { CarComponent } from './components/car/car.component';
 
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,9 @@ import { CarComponent } from './components/car/car.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
