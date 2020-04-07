@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SingUpComponent } from './sing-up/sing-up.component';
 
 @Component({
   selector: 'app-sing-in',
@@ -9,11 +10,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class SingInComponent implements OnInit {
 
   singInForm: FormGroup;
+  @ViewChild(SingUpComponent) sing_up: SingUpComponent;
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.initForm();
+  ngOnInit(): void 
+  {
+      this.initForm();
   }
 
   becomeAUser(): void {
@@ -28,12 +31,18 @@ export class SingInComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.singInForm.value);
-    console.log(this.singInForm);
+    if (this.sing_up.registerUser.some(e => e.email === this.getValue("Email"))) 
+    {
+      this.initForm();
+    }
+    alert("Morate se prvo registrovati");
   }
 
   onClear() {
     this.singInForm.reset();
   }
 
+  getValue(Id: string) {
+    return (<HTMLInputElement> document.getElementById(Id)).value;
+  }
 }

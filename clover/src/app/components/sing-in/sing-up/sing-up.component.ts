@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { User } from 'src/app/entities/user';
 
 @Component({
   selector: 'app-sing-up',
@@ -9,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class SingUpComponent implements OnInit {
 
   singUpForm: FormGroup;
+  registerUser: Array<User>;
 
   constructor() { }
 
@@ -26,13 +28,19 @@ export class SingUpComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.singUpForm.value);
-    console.log(this.singUpForm);
+  onSubmit(): void {
+    const user = new User(this.getValue("FirstName"),this.getValue("LastName"),this.getValue("Email"),
+                 this.getValue("Password"),this.getValue("Gener"));
+    
+    this.registerUser.push(user);
   }
 
   onClear() {
     this.singUpForm.reset();
+  }
+
+  getValue(Id: string) {
+    return (<HTMLInputElement> document.getElementById(Id)).value;
   }
 
 }
