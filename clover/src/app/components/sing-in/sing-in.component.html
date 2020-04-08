@@ -1,33 +1,41 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <body>
     <div class="bg">
-        <div class="mask d-flex .justify-content-center">
-            <div class="container">
+  <div class="main">
 
-                <div class="row mt-5">
-                    <div class="white-text text-md-left" style="width: 500px; margin-top: 100px;"> 
-                        <h1 class="text h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Sign up right now! </h1>
-                        <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-                        <h6 class="text mb-3 wow fadeInLeft" data-wow-delay="0.3s">Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-                            Text Text Text Text Text Text Text Text Text Text Text Text </h6>
-                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>
+    <div class="row mt-5" style="margin-left: 100px;">
+        <div class="white-text text-md-left" style="width: 500px; margin-top: 100px;"> 
+            <h1 class="text h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Sign up right now! </h1>
+            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+            <h6 class="text mb-3 wow fadeInLeft" data-wow-delay="0.3s">Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
+                Text Text Text Text Text Text Text Text Text Text Text Text </h6>
+            <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>
+        </div>
+    </div>
+  
+    <section class="signup">
+        <div class="container">
+            <div class="signup-content">
+                <form [formGroup]="singInForm" (ngSubmit)="onSubmit()" method="POST" id="signup-form" class="signup-form">
+                  <h2 class="form-title">Sing in</h2>
+  
+                    <div class="form-group">
+                      <input type="mail" id="Email" class="form-input" formControlName="Email" placeholder="Mail"/>
+                      <div *ngIf="singInForm.controls.Email.invalid">
+                        <!--Please enter Email-->
                     </div>
-                </div>
-                
-                <form [formGroup]="singInForm" (ngSubmit)="onSubmit()" class="fixed-top" style="color: #757575;" style="margin-left: 800px; margin-right: 300px; margin-top: 150px;">
-                    <div class="md-form">
-                        <input type="email" id="Email" class="form-control" formControlName="FirstName">
-                        <label for="Email">E-mail</label>
-                        <div *ngIf="singInForm.controls.FirstName.invalid"> 
-                              Please enter E-mail
-                        </div>
                     </div>
 
-                    <div class="md-form">
-                        <input type="password" id="Password" class="form-control" formControlName="Password">
-                        <label for="Password">Password</label>
-                        <div *ngIf="singInForm.controls.FirstName.invalid">
-                              Please enter Password
-                        </div>
+                    <div class="form-group">
+                        <input type="password" id="Password" class="form-input" formControlName="Password" placeholder="Password"/>
+                        <div *ngIf="singInForm.controls.Password.invalid">
+                          <!--Please enter Password-->
+                      </div>
+                      </div>
+  
+                    <div class="form-group">
+                        <input type="submit" routerLink="/register-user" (click)=becomeAUser() name="submit" id="submit" class="form-submit" value="Sign in"/>
                     </div>
 
                     <div class="d-flex justify-content-around">
@@ -38,32 +46,23 @@
                             <a href="">Forgot password?</a>
                         </div>
                     </div>
-
-                    <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
-                       type="submit" (click)=becomeAUser()>Sign in</button>
                         
                     <div class="d-flex justify-content-around">
-                        <a class="text" routerLink="/sing-up">Register</a>
+                        <a routerLink="/sing-up">Register</a>
                     </div>
 
-                    <div>
-                        <p class="text">or sign in with:</p>
-                        <a type="button" mdbBtn floating="true" color="fb" size="sm">
-                        <!--<mdb-icon fab icon="facebook"></mdb-icon>-->
-                        </a>
-                        <a type="button" mdbBtn floating="true" color="tw" size="sm">
-                        <!--<mdb-icon fab icon="twitter"></mdb-icon>-->
-                        </a>
-                        <a type="button" mdbBtn floating="true" color="li" size="sm">
-                        <!--<mdb-icon fab icon="linkedin"></mdb-icon>-->
-                        </a>
-                        <a type="button" mdbBtn floating="true" color="git" size="sm">
-                        <!--<mdb-icon fab icon="github"></mdb-icon>-->
-                        </a>
+                    <p>or sign in with:</p>
+                    <div style="text-align: center;">
+                        <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+                        <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
+                        <a href="https://twitter.com/" class="fa fa-twitter"></a>
+                        <a href="https://mail.google.com/" class="fa fa-google"></a>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-
-</body>
+    </section>
+  
+  </div>
+  </div>
+  </body>

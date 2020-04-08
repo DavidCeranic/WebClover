@@ -31,11 +31,17 @@ export class SingInComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.sing_up.registerUser.some(e => e.email === this.getValue("Email"))) 
+    debugger
+    if (this.sing_up.registerUser.filter(function(e) {return e.email === 'd';}).length>0) 
     {
+    debugger
+
+      alert("Sve okej Gari");
       this.initForm();
+     
     }
-    alert("Morate se prvo registrovati");
+      debugger
+      alert("Morate se prvo registrovati");
   }
 
   onClear() {

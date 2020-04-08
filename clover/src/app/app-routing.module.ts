@@ -4,6 +4,7 @@ import { SingInComponent } from './components/sing-in/sing-in.component';
 import { SingUpComponent } from './components/sing-in/sing-up/sing-up.component';
 import { CarComponent } from './components/car/car.component';
 import { UserGuard } from './guards/user.guard';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
     path: "car",
     component: CarComponent,
     canActivate: [UserGuard]
+  },
+  {
+    path: "register-user",
+    component: RegisterUserComponent
   }
 ];
 

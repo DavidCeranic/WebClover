@@ -10,9 +10,9 @@ import { User } from 'src/app/entities/user';
 export class SingUpComponent implements OnInit {
 
   singUpForm: FormGroup;
-  registerUser: Array<User>;
+  registerUser = new Array<User>();
 
-  constructor() { }
+  constructor() { debugger}
 
   ngOnInit(): void {
     this.initForm();
@@ -24,14 +24,14 @@ export class SingUpComponent implements OnInit {
       'LastName': new FormControl('', [Validators.required, Validators.maxLength(100)]),
       'Email': new FormControl(''),
       'Password': new FormControl(''),
-      'Gener': new FormControl('')
+      'City': new FormControl(''),
+      'PhoneNumber': new FormControl('')
     });
   }
 
   onSubmit(): void {
     const user = new User(this.getValue("FirstName"),this.getValue("LastName"),this.getValue("Email"),
-                 this.getValue("Password"),this.getValue("Gener"));
-    
+                 this.getValue("Password"),this.getValue("City"), this.getValue("PhoneNumber"));
     this.registerUser.push(user);
   }
 
