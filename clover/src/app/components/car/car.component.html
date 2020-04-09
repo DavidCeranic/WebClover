@@ -1,1 +1,44 @@
-<p>DA LI OVO RADI BAR MOLIM TE:!</p>
+<body>
+	<div class="bg">
+		<div class="main-agileinfo">
+			<p class="resp-tabs-list"> Find car for you </p>
+				<form [formGroup]="SearchCarForm" (ngSubmit)="onSubmit()" method="POST" id="signup-form" class="signup-form">	
+					<div class="from">
+						<h3>Rent a Car Service</h3>
+
+						<input type="text" id="Place" class="form-input" formControlName="Place" placeholder="Location or Name"/>
+                      <div *ngIf="SearchCarForm.controls.Place.invalid">
+                        <!--Please enter Email-->
+                    </div>
+                    </div>
+                            
+                    <div class="clear"></div>        
+						<div class="date">
+								<h3>Start Date</h3>
+								<input type="date" id="datepicker" class="form-input" formControlName="StartDate" placeholder="mm/dd/yyyy"/>
+									<div *ngIf="SearchCarForm.controls.StartDate.invalid">
+										<!--Please enter Email-->
+									</div>
+                                
+								<h3>End Date</h3>
+								<input type="date" id="datepicker" class="form-input" formControlName="EndDate" placeholder="mm/dd/yyyy"/>
+									<div *ngIf="SearchCarForm.controls.EndDate.invalid">
+										<!--Please enter Email-->
+									</div>
+						</div>
+
+						<div class="clear"></div>
+						<div class="clear"></div>
+						<div class="form-group">
+							<input type="submit" routerLink="/car" name="submit" id="submit" class="form-submit" value="Search"/>
+						</div>
+				</form>	
+			</div>	
+			
+			<div class="conteiner">
+				<p>EEEEEEEEE</p>
+			</div>
+
+
+		</div>
+</body>
