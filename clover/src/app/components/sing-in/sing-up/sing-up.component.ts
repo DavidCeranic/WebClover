@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from 'src/app/entities/user';
+import { User } from 'src/app/entities/User/user';
 
 @Component({
   selector: 'app-sing-up',

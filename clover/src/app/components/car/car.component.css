@@ -128,4 +128,12 @@ margin-bottom:10px;
     padding: 25px;
     border-radius: 10px;
 }
+
+.table{
+    background-image: -moz-linear-gradient(to left, #74ebd5, #9face6);
+    background-image: -ms-linear-gradient(to left, #74ebd5, #9face6);
+    background-image: -o-linear-gradient(to left, #74ebd5, #9face6);
+    background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
+    background-image: linear-gradient(to left, #74ebd5, #9face6);
+}
   

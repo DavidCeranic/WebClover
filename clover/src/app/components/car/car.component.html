@@ -36,7 +36,25 @@
 			</div>	
 			
 			<div class="conteiner">
-				<p>EEEEEEEEE</p>
+				<table class="table table-hover">
+					<thead class="table">
+						<tr>
+							<th scope="col">MARKA</th>
+							<th scope="col">MODEL</th>
+							<th scope="col">GODINA</th>
+							<th scope="col">CENA ZA JEDAN DAN</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let car of allCars">
+							<td>{{car.brand}}</td>
+							<td>{{car.model}}</td>
+							<td>{{car.year}}</td>
+							<td>{{car.pricePerDay}}$</td>
+						</tr>
+					</tbody>
+					
+				</table>
 			</div>
 
 
