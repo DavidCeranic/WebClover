@@ -46,8 +46,9 @@ margin-top:50px;
 text-align:center;
 }
 .main-agileinfo{
-margin:50px auto;
+margin:50px ;
 width:50%;
+
 }
 /*--SAP--*/
 .sap_tabs{
@@ -64,12 +65,14 @@ margin-top: 2%;
 .resp-tabs-list {
 list-style: none;
 padding: 15px 0px;
-margin: 0 auto;
+width: 15cm;
+margin: 0 ;
 text-align: center;
 background: #FFC107;
 }
 .resp-tab-item {
 font-size: 1.1em;
+
 font-weight: 500;
 cursor: pointer;
 display: inline-block;
@@ -93,6 +96,7 @@ color:#fff;
 }
 .resp-tabs-container {
 padding: 0px;
+width: 15cm;
 clear: left;	
 }
 h2.resp-accordion {
@@ -107,7 +111,7 @@ display: none;
 display: block;
 }
 form {
-background:rgba(3, 3, 3, 0.57);
+    background:rgba(137, 153, 158, 0.8);
 padding: 25px;
 }
 h3 {
@@ -561,5 +565,45 @@ form{
 .adults{
     margin-bottom:25px;
 }
+}
+.form-submit {
+    width: 100%;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    padding: 17px 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    border: none;
+    background-image: -moz-linear-gradient(to left, #74ebd5, #9face6);
+    background-image: -ms-linear-gradient(to left, #74ebd5, #9face6);
+    background-image: -o-linear-gradient(to left, #74ebd5, #9face6);
+    background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
+    background-image: linear-gradient(to left, #74ebd5, #9face6); 
+}
+.bg {
+    background-image: url('../flights/DSC_1448.jpg');
+    height: 100%;
+    width: 100%;
+  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .conteiner{
+    margin-left: 60%;
+    margin-right: 5%;
+    margin-top: -30%;
+    height: 80%;
+    padding: 20px;
+    background: #fff;
+    background:rgba(137, 153, 158, 0.8);
+    padding: 235px;
+    border-radius: 10px;
 }
 /*-- //responsive--*/
