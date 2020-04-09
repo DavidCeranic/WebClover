@@ -9,6 +9,7 @@ import { CarComponent } from './components/car/car.component';
 
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { FlightsComponent } from './components/flights/flights.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RegisterUserComponent } from './components/register-user/register-user.
     SingInComponent,
     SingUpComponent,
     CarComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    FlightsComponent
   ],
   imports: [
     BrowserModule,
