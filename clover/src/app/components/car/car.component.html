@@ -8,7 +8,7 @@
 
 						<input type="text" id="Place" class="form-input" formControlName="Place" placeholder="Location or Name"/>
                       <div *ngIf="SearchCarForm.controls.Place.invalid">
-                        <!--Please enter Email-->
+                       
                     </div>
                     </div>
                             
@@ -17,13 +17,13 @@
 								<h3>Start Date</h3>
 								<input type="date" id="datepicker" class="form-input" formControlName="StartDate" placeholder="mm/dd/yyyy"/>
 									<div *ngIf="SearchCarForm.controls.StartDate.invalid">
-										<!--Please enter Email-->
+										
 									</div>
                                 
 								<h3>End Date</h3>
 								<input type="date" id="datepicker" class="form-input" formControlName="EndDate" placeholder="mm/dd/yyyy"/>
 									<div *ngIf="SearchCarForm.controls.EndDate.invalid">
-										<!--Please enter Email-->
+										
 									</div>
 						</div>
 
@@ -35,7 +35,7 @@
 				</form>	
 			</div>	
 			
-			<div class="conteiner">
+			<div class="conteiner" >
 				<table class="table table-hover">
 					<thead class="table">
 						<tr>
@@ -52,6 +52,7 @@
 							<td>{{car.year}}</td>
 							<td>{{car.pricePerDay}}$</td>
 						</tr>
+						
 					</tbody>
 					
 				</table>
