@@ -13,11 +13,9 @@ import { CarService } from 'src/app/services/car/car.service';
 export class CarComponent implements OnInit {
 
   SearchCarForm: FormGroup;
-  allCars: Array<Car>;
+  
 
-  constructor(private carService: CarService) { 
-    this.allCars = this.carService.loadCars();
-  }
+  constructor() { }
 
   ngOnInit(): void {
     this.initForm();
