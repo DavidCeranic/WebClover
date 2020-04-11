@@ -13,7 +13,7 @@ import { CarService } from 'src/app/services/car/car.service';
 export class CarComponent implements OnInit {
 
   SearchCarForm: FormGroup;
-  
+  click = false;
 
   constructor() { }
 
@@ -30,6 +30,9 @@ export class CarComponent implements OnInit {
   }
 
   onSubmit() {
-    
+  }
+
+  onClick() {
+    this.click=true;
   }
 }

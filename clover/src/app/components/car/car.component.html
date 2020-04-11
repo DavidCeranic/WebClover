@@ -36,10 +36,10 @@
 			</div>	
 			
 			<div class="conteiner" >
-			<div class="wrapper">
-				<p class="resp-tabs-list"> Rent a Car Services </p>
-				<div class="cols">
-						  <div routerLink="/rent-a-car" class="col" ontouchstart="this.classList.toggle('hover');">
+				<div [hidden]="this.click !== false" class="wrapper">
+					<p class="resp-tabs-list"> Rent a Car Services </p>
+					<div class="cols">
+						  <div routerLink="/car/rent-a-car" onclick="onClick()" class="col" ontouchstart="this.classList.toggle('hover');">
 							  <div class="container">
 								  <div class="front" style="background-image: url(https://unsplash.it/500/500/)">
 									  <div class="inner">
@@ -55,7 +55,7 @@
 							  </div>
 						  </div>
 
-						  <div routerLink="/rent-a-car" class="col" ontouchstart="this.classList.toggle('hover');">
+						  <div routerLink="/car/rent-a-car" onclick="onClick()" class="col" ontouchstart="this.classList.toggle('hover');">
 							  <div class="container">
 								  <div class="front" style="background-image: url(https://unsplash.it/502/502/)">
 									  <div class="inner">
@@ -71,7 +71,7 @@
 							  </div>
 						  </div>
 
-						  <div routerLink="/rent-a-car" class="col" ontouchstart="this.classList.toggle('hover');">
+						  <div routerLink="/car/rent-a-car" onclick="onClick()" class="col" ontouchstart="this.classList.toggle('hover');">
 							<div class="container">
 								<div class="front" style="background-image: url(https://unsplash.it/502/502/)">
 									<div class="inner">
@@ -86,9 +86,13 @@
 								</div>
 							</div>
 						</div>
-
 				</div>
 			</div>
+		
+			<div>
+				
+			</div>
+
 		</div>
 	</div>
 </body>
