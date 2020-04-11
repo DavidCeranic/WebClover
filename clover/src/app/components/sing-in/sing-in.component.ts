@@ -13,10 +13,15 @@ export class SingInComponent implements OnInit {
   @ViewChild(SingUpComponent) sing_up: SingUpComponent;
 
   constructor() { }
+  displayStr = "SingIn";
 
   ngOnInit(): void 
   {
       this.initForm();
+  }
+
+  reciveMessage($event){
+    this.displayStr="SingIn";
   }
 
   becomeAUser(): void {
@@ -34,14 +39,15 @@ export class SingInComponent implements OnInit {
     debugger
     if (this.sing_up.registerUser.filter(function(e) {return e.email === 'd';}).length>0) 
     {
-    debugger
-
       alert("Sve okej Gari");
       this.initForm();
      
     }
-      debugger
       alert("Morate se prvo registrovati");
+  }
+
+  showRegister(){
+    this.displayStr = "SingUp"
   }
 
   onClear() {

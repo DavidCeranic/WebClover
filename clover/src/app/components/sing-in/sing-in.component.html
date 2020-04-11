@@ -16,11 +16,14 @@
   
     <section class="signup">
         <div class="container">
-            <div class="signup-content">
+            <div *ngIf="displayStr == 'SingIn'" class="signup-content">
+                <div>
+                    <button class="btn"><span>Sing in</span></button>
+                    <button class="btn" (click)="showRegister()"><span>Register</span></button>
+                  </div>
+
                 <form [formGroup]="singInForm" (ngSubmit)="onSubmit()" method="POST" id="signup-form" class="signup-form">
-                  <h2 class="form-title">Sing in</h2>
-  
-                    <div class="form-group">
+                  <div class="form-group">
                       <input type="mail" id="Email" class="form-input" formControlName="Email" placeholder="Mail"/>
                       <div *ngIf="singInForm.controls.Email.invalid">
                         <!--Please enter Email-->
@@ -46,10 +49,6 @@
                             <a href="">Forgot password?</a>
                         </div>
                     </div>
-                        
-                    <div class="d-flex justify-content-around">
-                        <a routerLink="/sing-up">Register</a>
-                    </div>
 
                     <p>or sign in with:</p>
                     <div style="text-align: center;">
@@ -59,6 +58,12 @@
                         <a href="https://mail.google.com/" class="fa fa-google"></a>
                     </div>
                 </form>
+            </div>
+
+            
+
+            <div *ngIf="displayStr == 'SingUp'" class="signup-content">
+                <app-sing-up (messageEvent)="reciveMessage($event)"></app-sing-up>
             </div>
         </div>
     </section>

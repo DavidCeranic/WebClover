@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/entities/User/user';
+import { SingInComponent } from '../sing-in.component';
 
 @Component({
   selector: 'app-sing-up',
@@ -11,8 +12,11 @@ export class SingUpComponent implements OnInit {
 
   singUpForm: FormGroup;
   registerUser = new Array<User>();
+  message: string = "SingIn";
 
-  constructor() { debugger}
+  @Output() messageEvent = new EventEmitter<string>();
+
+  constructor() { }
 
   ngOnInit(): void {
     this.initForm();
@@ -33,6 +37,10 @@ export class SingUpComponent implements OnInit {
     const user = new User(this.getValue("FirstName"),this.getValue("LastName"),this.getValue("Email"),
                  this.getValue("Password"),this.getValue("City"), this.getValue("PhoneNumber"));
     this.registerUser.push(user);
+  }
+
+  sendMessage(){
+    this.messageEvent.emit(this.message);
   }
 
   onClear() {

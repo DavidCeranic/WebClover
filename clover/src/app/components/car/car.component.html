@@ -36,15 +36,15 @@
 			</div>	
 			
 			<div class="conteiner" >
-				<div [hidden]="this.click !== false" class="wrapper">
+				<div class="wrapper">
 					<p class="resp-tabs-list"> Rent a Car Services </p>
 					<div class="cols">
-						  <div class="col" ontouchstart="this.classList.toggle('hover');">
+						  <div routerLink="/car/rent-a-car" class="col" ontouchstart="this.classList.toggle('hover');">
 							  <div class="container">
 								  <div class="front" style="background-image: url(https://unsplash.it/500/500/)">
 									  <div class="inner">
-										  <p>Diligord</p>
-							<span>Lorem ipsum</span>
+										  <p>Hertz Car Rental</p>
+							<span>Novi Sad</span>
 									  </div>
 								  </div>
 								  <div class="back">
@@ -53,15 +53,14 @@
 									  </div>
 								  </div>
 							  </div>
-							  <button vale="Click" id="bb" type="button" class="btn btn-success btn-sm">Points</button>
 						  </div>
 
-						  <div  class="col" ontouchstart="this.classList.toggle('hover');">
+						  <div routerLink="/car/rent-a-car" class="col" ontouchstart="this.classList.toggle('hover');">
 							  <div class="container">
 								  <div class="front" style="background-image: url(https://unsplash.it/502/502/)">
 									  <div class="inner">
-										  <p>Rocogged</p>
-							<span>Lorem ipsum</span>
+										  <p>Dollar Car Rental</p>
+							<span>Beograd</span>
 									  </div>
 								  </div>
 								  <div class="back">
@@ -70,15 +69,14 @@
 									  </div>
 								  </div>
 							  </div>
-							  <button vale="Click" id="bb" routerLink="/car/rent-a-car" type="button" class="btn btn-success btn-sm">Points</button>
 						  </div>
 
-						  <div class="col" ontouchstart="this.classList.toggle('hover');">
+						  <div routerLink="/car/rent-a-car" class="col" ontouchstart="this.classList.toggle('hover');">
 							<div class="container">
 								<div class="front" style="background-image: url(https://unsplash.it/502/502/)">
 									<div class="inner">
-										<p>Rocogged</p>
-						  <span>Lorem ipsum</span>
+										<p>Avis Car Rental</p>
+						  <span>Niš</span>
 									</div>
 								</div>
 								<div class="back">
@@ -87,20 +85,9 @@
 									</div>
 								</div>
 							</div>
-							<button vale="Click" id="bb" type="button" class="btn btn-success btn-sm">Points</button>
 						</div>
-						
 				</div>
-				
 			</div>
-		
-			
-
-
-			<div>
-				<app-rent-a-car [hidden]="this.click === false"></app-rent-a-car>
-			</div>
-
 		</div>
 	</div>
 </body>

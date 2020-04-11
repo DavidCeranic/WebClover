@@ -14,14 +14,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CarComponent implements OnInit {
 
   SearchCarForm: FormGroup;
-  click = false;
+  rentService: string;
+  display = false;
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initForm();
-    let btn = document.getElementById("bb");
-    btn.addEventListener("click", (e:Event) => this.onClick());
   }
 
   private initForm() {
@@ -35,8 +34,13 @@ export class CarComponent implements OnInit {
   onSubmit() {
   }
 
-  onClick() {
-    this.click=true;
+  onClick(ServiceName: string) {
+    this.rentService = ServiceName;
+    this.display = true;
     //this.router.navigate(['/car/rent-a-car'], { relativeTo: this.route});
+  }
+
+  Prikaz() : boolean{
+    return this.display;
   }
 }

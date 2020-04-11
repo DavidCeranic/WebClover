@@ -21,9 +21,6 @@
     background-size: cover;
   }
   
-  
-  
-  
   p {
     margin-bottom: 0px;
     font-size: 15px;
@@ -39,13 +36,26 @@
     text-transform: uppercase;
     text-align: center;}
   
-  
+  .buttons{
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    width: 50%;
+    padding: 17px 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    border: none;
+    margin-bottom: 4%;
+  }
+
   
   .container {
     width: 550px;
     position: relative;
-    margin-top: -250px;
-    margin-right: 100px;}
+    margin-top: -22%;
+    margin-right: 5%;}
   
   
   .position-center {
@@ -172,3 +182,77 @@
       background: #55ACEE;
       color: white;
     }
+
+
+    .button_container {
+	position: absolute;
+  left: 0;
+  right: 0;
+  top: 30%;
+}
+
+.description, .link {
+  font-family: 'Amatic SC', cursive;
+  text-align: center;
+}
+
+.description {
+	font-size: 35px;
+}
+
+.btn {
+  width: 50%;
+  margin-bottom: 4%;
+  border: none;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  background-image: -moz-linear-gradient(to left, #74ebd5, #9face6);
+  background-image: -ms-linear-gradient(to left, #74ebd5, #9face6);
+  background-image: -o-linear-gradient(to left, #74ebd5, #9face6);
+  background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
+  background-image: linear-gradient(to left, #74ebd5, #9face6); 
+  padding: 17px 60px;
+  box-shadow: 0 5px 15px #78c7d2;
+}
+
+.btn span {
+  position: relative; 
+  z-index: 1;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: rgb(179, 226, 228);
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.link {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.link a {
+  background: #78c7d2;
+  font-size: 25px; 
+}
