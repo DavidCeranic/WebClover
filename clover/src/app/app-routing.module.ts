@@ -7,6 +7,7 @@ import { UserGuard } from './guards/user.guard';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { FlightsComponent } from './components/flights/flights.component';
 import { RentACarComponent } from './components/rent-a-car/rent-a-car.component';
+import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: "rent-a-car",
     component: RentACarComponent
+  },
+  {
+    path:"company-profile",
+    component: CompanyProfileComponent
   }
 ];
 
