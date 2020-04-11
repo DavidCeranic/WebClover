@@ -10,7 +10,11 @@ import { CarComponent } from './components/car/car.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { FlightsComponent } from './components/flights/flights.component';
+
+import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
+
 import { RentACarComponent } from './components/car/rent-a-car/rent-a-car.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,8 @@ import { RentACarComponent } from './components/car/rent-a-car/rent-a-car.compon
     CarComponent,
     RegisterUserComponent,
     FlightsComponent,
-    RentACarComponent
+    RentACarComponent,
+    CompanyProfileComponent
   ],
   imports: [
     BrowserModule,
