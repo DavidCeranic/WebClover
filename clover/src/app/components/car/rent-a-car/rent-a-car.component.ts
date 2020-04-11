@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Car } from 'src/app/entities/Car/car'
 import { CarService } from 'src/app/services/car/car.service';
 
@@ -8,7 +8,6 @@ import { CarService } from 'src/app/services/car/car.service';
   styleUrls: ['./rent-a-car.component.css']
 })
 export class RentACarComponent implements OnInit {
-
   allCars: Array<Car>;
 
   

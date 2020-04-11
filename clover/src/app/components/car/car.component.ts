@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Car } from 'src/app/entities/Car/car'
 import { CarService } from 'src/app/services/car/car.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -13,12 +14,14 @@ import { CarService } from 'src/app/services/car/car.service';
 export class CarComponent implements OnInit {
 
   SearchCarForm: FormGroup;
-  
+  click = false;
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initForm();
+    let btn = document.getElementById("bb");
+    btn.addEventListener("click", (e:Event) => this.onClick());
   }
 
   private initForm() {
@@ -30,6 +33,10 @@ export class CarComponent implements OnInit {
   }
 
   onSubmit() {
-    
+  }
+
+  onClick() {
+    this.click=true;
+    //this.router.navigate(['/car/rent-a-car'], { relativeTo: this.route});
   }
 }

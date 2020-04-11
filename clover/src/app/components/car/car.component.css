@@ -32,8 +32,8 @@ background-position: center;
 }
 
 .main-agileinfo{
-margin-left:50px;
-margin-top: 50px;
+margin-left:6%;
+margin-top: 5%;
 width: 300px;
 }
 
@@ -127,6 +127,7 @@ margin-bottom:10px;
     background:rgba(137, 153, 158, 0.8);
     padding: 25px;
     border-radius: 10px;
+    position: relative;
 }
 
 .table{

@@ -15,13 +15,13 @@
                     <div class="clear"></div>        
 						<div class="date">
 								<h3>Start Date</h3>
-								<input type="date" id="datepicker" class="form-input" formControlName="StartDate" placeholder="mm/dd/yyyy"/>
+								<input type="date" class="datepicker" class="form-input" formControlName="StartDate" placeholder="mm/dd/yyyy"/>
 									<div *ngIf="SearchCarForm.controls.StartDate.invalid">
 										
 									</div>
                                 
 								<h3>End Date</h3>
-								<input type="date" id="datepicker" class="form-input" formControlName="EndDate" placeholder="mm/dd/yyyy"/>
+								<input type="date" class="datepicker" class="form-input" formControlName="EndDate" placeholder="mm/dd/yyyy"/>
 									<div *ngIf="SearchCarForm.controls.EndDate.invalid">
 										
 									</div>
@@ -36,10 +36,10 @@
 			</div>	
 			
 			<div class="conteiner" >
-			<div class="wrapper">
-				<p class="resp-tabs-list"> Rent a Car Services </p>
-				<div class="cols">
-						  <div routerLink="/rent-a-car" class="col" ontouchstart="this.classList.toggle('hover');">
+				<div [hidden]="this.click !== false" class="wrapper">
+					<p class="resp-tabs-list"> Rent a Car Services </p>
+					<div class="cols">
+						  <div class="col" ontouchstart="this.classList.toggle('hover');">
 							  <div class="container">
 								  <div class="front" style="background-image: url(https://unsplash.it/500/500/)">
 									  <div class="inner">
@@ -53,9 +53,10 @@
 									  </div>
 								  </div>
 							  </div>
+							  <button vale="Click" id="bb" type="button" class="btn btn-success btn-sm">Points</button>
 						  </div>
 
-						  <div routerLink="/rent-a-car" class="col" ontouchstart="this.classList.toggle('hover');">
+						  <div  class="col" ontouchstart="this.classList.toggle('hover');">
 							  <div class="container">
 								  <div class="front" style="background-image: url(https://unsplash.it/502/502/)">
 									  <div class="inner">
@@ -69,9 +70,10 @@
 									  </div>
 								  </div>
 							  </div>
+							  <button vale="Click" id="bb" routerLink="/car/rent-a-car" type="button" class="btn btn-success btn-sm">Points</button>
 						  </div>
 
-						  <div routerLink="/rent-a-car" class="col" ontouchstart="this.classList.toggle('hover');">
+						  <div class="col" ontouchstart="this.classList.toggle('hover');">
 							<div class="container">
 								<div class="front" style="background-image: url(https://unsplash.it/502/502/)">
 									<div class="inner">
@@ -85,10 +87,20 @@
 									</div>
 								</div>
 							</div>
+							<button vale="Click" id="bb" type="button" class="btn btn-success btn-sm">Points</button>
 						</div>
-
+						
 				</div>
+				
 			</div>
+		
+			
+
+
+			<div>
+				<app-rent-a-car [hidden]="this.click === false"></app-rent-a-car>
+			</div>
+
 		</div>
 	</div>
 </body>

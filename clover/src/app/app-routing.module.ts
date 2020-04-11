@@ -6,8 +6,9 @@ import { CarComponent } from './components/car/car.component';
 import { UserGuard } from './guards/user.guard';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { FlightsComponent } from './components/flights/flights.component';
-import { RentACarComponent } from './components/rent-a-car/rent-a-car.component';
 import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
+import { RentACarComponent } from './components/car/rent-a-car/rent-a-car.component';
+
 
 
 const routes: Routes = [
@@ -29,20 +30,22 @@ const routes: Routes = [
   },
   {
     path: "car",
-    component: CarComponent,
-    canActivate: [UserGuard]
+    children: [
+      {path: "", component: CarComponent, canActivate: [UserGuard]},
+      {path: "rent-a-car", component: RentACarComponent}
+    ]
   },
   {
     path: "register-user",
     component: RegisterUserComponent
+
   },
-  {
-    path: "rent-a-car",
-    component: RentACarComponent
-  },
+  
   {
     path:"company-profile",
     component: CompanyProfileComponent
+
+
   }
 ];
 
