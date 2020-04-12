@@ -1,121 +1,163 @@
 <body>
-	<div class="bg">
-        <div class="table-users">
-            <div class="header">Users</div>
-            
-            <table cellspacing="0">
-               <tr>
-                  <th>Picture</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th width="230">Comments</th>
-               </tr>
-         
-               <tr *ngFor="let car of allCars">
-                <td>{{car.brand}}</td>
-                <td>{{car.model}}</td>
-                <td>{{car.year}}</td>
-                <td>{{car.pricePerDay}}$</td>
-               </tr>
-            </table>
-         </div>
-
-
-
-
-
-        <!--<div class="container">
-            <div class="card">
-                <table class="table table-hover shopping-cart-wrap">
-                    <thead class="text-muted">
-                        <tr>
-                        <th scope="col">MARKA</th>
-                        <th scope="col" width="120">MODEL</th>
-                        <th scope="col" width="120">GODINA</th>
-                        <th scope="col" width="200" class="text-right">CENA ZA JEDAN DAN</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let car of allCars">
-                            <td>
-                        <figure class="media">
-                            <div class="img-wrap"><img src="http://bootstrap-ecommerce.com/main/images/items/2.jpg" class="img-thumbnail img-sm"></div>
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{car.brand}}</h6>
-                                <dl class="param param-inline small">
-                                <dt> Model: </dt>
-                                <dd>{{car.model}}</dd>
-                                </dl>
-                                <dl class="param param-inline small">
-                                <dt>Godina: </dt>
-                                <dd>{{car.year}}</dd>
-                                </dl>
-                            </figcaption>
-                        </figure> 
-                            </td>
-                            <td> 
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>	
-                                    <option>3</option>	
-                                    <option>4</option>	
-                                </select> 
-                            </td>
-                            <td> 
-                                <div class="price-wrap"> 
-                                    <var class="price">{{car.pricePerDay}}</var> 
-                                    <small class="text-muted">(USD5 each)</small> 
+	<div class="bg"> 
+        <div>
+            <div class="about">
+                <div class="row user-menu-about square">
+                    <div class="col-md-7 user-details">
+                         <div class="row coralbg white" style="border-radius: 10px;">
+                            
+                            <div class="col-md-6 no-pad">
+                                 <div class="user-pad"style="border-radius: 10px;">
+                                    <h3>Welcome back, Jessica</h3>
+                                    <h4 class="white"><i class="fa fa-check-circle-o"></i> San Antonio, TX</h4>
+                                    <h4 class="white"><i class="fa fa-twitter"></i> CoolesOCool</h4>
                                 </div>
-                            </td>
-                            <td class="text-right"> 
-                                <a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i class="fa fa-heart"></i></a> 
-                                <a href="" class="btn btn-outline-danger"> × Remove</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                        <figure class="media">
-                            <div class="img-wrap"><img src="http://bootstrap-ecommerce.com/main/images/items/1.jpg" class="img-thumbnail img-sm"></div>
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">Product name goes here </h6>
-                                <dl class="param param-inline small">
-                                    <dt>Size: </dt>
-                                    <dd>XXL</dd>
-                                </dl>
-                                <dl class="param param-inline small">
-                                    <dt>Color: </dt>
-                                    <dd>Orange color</dd>
-                                </dl>
-                            </figcaption>
-                        </figure> 
-                            </td>
-                            <td> 
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>	
-                                    <option>3</option>	
-                                    <option>4</option>	
-                                </select> 
-                            </td>
-                            <td> 
-                                <div class="price-wrap"> 
-                                    <var class="price">USD 35</var> 
-                                    <small class="text-muted">(USD10 each)</small> 
+                            </div>
+
+                            <div class="col-md-6 no-pad">
+                                <div class="user-image">
+                                    <img src="https://farm7.staticflickr.com/6163/6195546981_200e87ddaf_b.jpg" class="img-responsive thumbnail">
                                 </div>
-                            </td>
-                            <td class="text-right"> 
-                                <a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i class="fa fa-heart"></i></a> 
-                                <a href="" class="btn btn-outline-danger btn-round"> × Remove</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 user-menu-btns">
+                        <div class="btn-group-vertical square" id="responsive">
+                            <button (click)="showLocations()" class="btn1"><span>Location</span></button>
+                            <button (click)="showRates()" class="btn1" ><span>Rate</span></button>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-4 user-menu user-pad">
+                        <div class="user-menu-content active"><div *ngIf="showStr == 'Locations'" class="user-menu-content active">
+                                <p>LOCATIONS</p>
+                            </div>
+
+                            <div *ngIf="showStr == 'Rates'" class="user-menu-content">
+                                <p> RATES</p>
+                            </div>
+                         </div>
+                    </div>
+                </div>
             </div>
-        </div> -->
 
-        
+            <div class="main-agileinfo">
+			    <p class="resp-tabs-list"> Find car for you </p>
+				    <form [formGroup]="SearchCarForm" (ngSubmit)="onSubmit()" method="POST" id="signup-form" class="signup-form">	
 
+					    <div class="from">
+						    <h3>Rent a Car Service</h3>
+						    <input type="text" id="Place" class="form-input" formControlName="Place" placeholder="Location or Name"/>
+                            <div *ngIf="SearchCarForm.controls.Place.invalid"></div>
+                        </div>
+                            
+                        <div class="clear"></div>        
+						    <div class="date">
+								<h3>Start Date</h3>
+								<input type="date" class="datepicker" class="form-input" formControlName="StartDate" placeholder="mm/dd/yyyy"/>
+                                    <div *ngIf="SearchCarForm.controls.StartDate.invalid"></div>
+                                    
+                                <h3>End Date</h3>
+								<input type="date" class="datepicker" class="form-input" formControlName="EndDate" placeholder="mm/dd/yyyy"/>
+									<div *ngIf="SearchCarForm.controls.EndDate.invalid"></div>
+						    </div>
 
+						<div class="clear"></div>
+						<div class="clear"></div>
+						<div class="form-group">
+							<input type="submit" routerLink="/car" name="submit" id="submit" class="form-submit" value="Search"/>
+						</div>
+				    </form>	
+			</div>	
+
+            <div class="conteiner">
+                <div>
+                    <table class="table table-hover shopping-cart-wrap">
+                        <thead class="text-muted">
+                            <tr>
+                                <th scope="col">Brand</th>
+                                <th scope="col" width="120">Model</th>
+                                <th scope="col" width="120">Year</th>
+                                <th scope="col" width="200" class="text-right">Price</th>
+                            </tr>
+                         </thead>
+                        <tbody>
+                            <tr *ngFor="let car of allCars">
+                                <td>
+                                    <figure class="media">
+                                        <figcaption class="media-body">
+                                            <h6 class="title text-truncate">Rent a Car</h6>
+                                            <dl class="param param-inline small">
+                                                <dt> Brand: </dt>
+                                                <dd>{{car.brand}}</dd>
+                                            </dl>
+
+                                            <dl class="param param-inline small">
+                                                <dt>Model: </dt>
+                                                <dd>{{car.model}}</dd> 
+                                            </dl>
+                                        </figcaption>
+                                    </figure> 
+                                </td>
+
+                                <td> 
+                                    <div class="price-wrap"> 
+                                        <var class="price">{{car.pricePerDay}}</var> 
+                                        <small class="text-muted">($)</small> 
+                                    </div>
+                                </td>
+
+                                <td class="text-right"> 
+                                    <a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i class="fa fa-heart"></i></a> 
+                                    <a href="" class="btn btn-outline-danger"> × Remove</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <figure class="media">
+                                        <div class="img-wrap"><img src="http://bootstrap-ecommerce.com/main/images/items/1.jpg" class="img-thumbnail img-sm"></div>
+                                        <figcaption class="media-body">
+                                            <h6 class="title text-truncate">Product name goes here </h6>
+                                            <dl class="param param-inline small">
+                                                <dt>Size: </dt>
+                                                <dd>XXL</dd>
+                                            </dl>
+                                            <dl class="param param-inline small">
+                                                <dt>Color: </dt>
+                                                <dd>Orange color</dd>
+                                            </dl>
+                                        </figcaption>
+                                    </figure> 
+                                </td>
+
+                                <td> 
+                                    <select class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>	
+                                        <option>3</option>	
+                                        <option>4</option>	
+                                    </select> 
+                                </td>
+
+                                <td> 
+                                    <div class="price-wrap"> 
+                                        <var class="price">USD 35</var> 
+                                        <small class="text-muted">(USD10 each)</small> 
+                                    </div>
+                                </td>
+
+                                <td class="text-right"> 
+                                    <a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i class="fa fa-heart"></i></a> 
+                                    <a href="" class="btn btn-outline-danger btn-round"> × Remove</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> 
     </div>
 </body>

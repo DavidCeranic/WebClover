@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Car } from 'src/app/entities/Car/car'
 import { CarService } from 'src/app/services/car/car.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-rent-a-car',
@@ -9,13 +10,25 @@ import { CarService } from 'src/app/services/car/car.service';
 })
 export class RentACarComponent implements OnInit {
   allCars: Array<Car>;
-
+  showStr = "Locations";
+  SearchCarForm: FormGroup;
   
   constructor(private carService: CarService) { 
     this.allCars = this.carService.loadCars();
   }
 
   ngOnInit(): void {
+  }
+
+  showLocations(){
+    this.showStr="Locations";
+  }
+
+  showRates(){
+    this.showStr="Rates";
+  }
+
+  onSubmit() {
   }
 
 }
