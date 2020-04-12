@@ -20,15 +20,9 @@ export class RentACarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showLocations(){
-    this.showStr="Locations";
-  }
-
-  showRates(){
-    this.showStr="Rates";
-  }
-
-  onSubmit() {
+  navigateTo(section: string){
+    window.location.hash='';
+    window.location.hash = section;
   }
 
 }
