@@ -14,6 +14,8 @@ import { FlightsComponent } from './components/flights/flights.component';
 import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
 
 import { RentACarComponent } from './components/car/rent-a-car/rent-a-car.component';
+import { BookAFlightComponent } from './components/book-a-flight/book-a-flight.component';
+
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { RentACarComponent } from './components/car/rent-a-car/rent-a-car.compon
     RegisterUserComponent,
     FlightsComponent,
     RentACarComponent,
-    CompanyProfileComponent
+    CompanyProfileComponent,
+    BookAFlightComponent,
+    
   ],
   imports: [
     BrowserModule,
