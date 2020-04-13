@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Car } from 'src/app/entities/Car/car'
 import { CarService } from 'src/app/services/car/car.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-rent-a-car',
@@ -17,7 +17,16 @@ export class RentACarComponent implements OnInit {
     this.allCars = this.carService.loadCars();
   }
 
+  private initForm() {
+    this.SearchCarForm = new FormGroup({
+      'Place': new FormControl('', Validators.required),
+      'StartDate': new FormControl('', Validators.required),
+      'EndDate': new FormControl('', Validators.required)
+    });
+  }
+
   ngOnInit(): void {
+    this.initForm();
   }
 
   navigateTo(section: string){
@@ -25,4 +34,7 @@ export class RentACarComponent implements OnInit {
     window.location.hash = section;
   }
 
+  onSubmit(){
+    
+  }
 }

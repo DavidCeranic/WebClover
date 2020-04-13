@@ -1,8 +1,11 @@
 <body>
 	<div class="bg">
+    <div class="whiteBg">
 		<div class="main-agileinfo">
-			<p class="resp-tabs-list"> Find car for you </p>
-				<form [formGroup]="SearchCarForm" (ngSubmit)="onSubmit()" method="POST" id="signup-form" class="signup-form">	
+        <p style="color: rgba(255, 255, 255, 1);">.</p>
+        <p class="resp-tabs-list" style="margin-top: 25%;"> Find car for you </p>	
+        <form [formGroup]="SearchCarForm" (ngSubmit)="onSubmit()"  method="POST" id="signup-form" class="signup-form">
+          
 					<div class="from">
 						<h3>Rent a Car Service</h3>
 
@@ -35,79 +38,40 @@
 				</form>	
 			</div>	
 			
-			<div class="conteiner" >
-				<section>
-            <div class="container-fluid">
-              <div class="container">
-                <div class="row">
-
-                  <div class="col-sm-4">
-                    <div class="card text-center">
-                      <div class="title">
-                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                        <h2>Hertz Car Rental</h2>
-                      </div>
-                      <div class="price">
-                        <h4><sup>$</sup>25</h4>
-                      </div>
-                      <div class="option">
-                        <ul>
-                        <li> <i class="fa fa-check" aria-hidden="true"></i> 10 GB Space </li>
-                        <li> <i class="fa fa-check" aria-hidden="true"></i> 3 Domain Names </li>
-                        <li> <i class="fa fa-check" aria-hidden="true"></i> 20 Email Address </li>
-                        <li> <i class="fa fa-times" aria-hidden="true"></i> Live Support </li>
-                        </ul>
-                      </div>
-                      <a routerLink="/car/rent-a-car">Order Now </a>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-4">
-                    <div class="card text-center">
-                      <div class="title">
-                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                        <h2>Dollar Car Rental</h2>
-                      </div>
-                      <div class="price">
-                        <h4><sup>$</sup>25</h4>
-                      </div>
-                      <div class="option">
-                        <ul>
-                        <li> <i class="fa fa-check" aria-hidden="true"></i> 10 GB Space </li>
-                        <li> <i class="fa fa-check" aria-hidden="true"></i> 3 Domain Names </li>
-                        <li> <i class="fa fa-check" aria-hidden="true"></i> 20 Email Address </li>
-                        <li> <i class="fa fa-times" aria-hidden="true"></i> Live Support </li>
-                        </ul>
-                      </div>
-                      <a routerLink="/car/rent-a-car">Order Now </a>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-4">
-                    <div class="card text-center">
-                      <div class="title">
-                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                        <h2>Avis Car Rental</h2>
-                      </div>
-                      <div class="price">
-                        <h4><sup>$</sup>25</h4>
-                      </div>
-                      <div class="option">
-                        <ul>
-                        <li> <i class="fa fa-check" aria-hidden="true"></i> 10 GB Space </li>
-                        <li> <i class="fa fa-check" aria-hidden="true"></i> 3 Domain Names </li>
-                        <li> <i class="fa fa-check" aria-hidden="true"></i> 20 Email Address </li>
-                        <li> <i class="fa fa-times" aria-hidden="true"></i> Live Support </li>
-                        </ul>
-                      </div>
-                      <a routerLink="/car/rent-a-car">Order Now </a>
-                    </div>
-                  </div>
-                 
+			<div class="conteiner">
+				<section id="services" class="services">
+          <div class="container">
+    
+            <div class="row">
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div routerLink="/car/rent-a-car" class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                  <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                  <h4 class="title"><a href="">Hartz Car Rental</a></h4>
+                  <p class="description">Automobile za sve potrebe i želje možete naći kod nas.</p>
                 </div>
               </div>
+    
+              <div routerLink="/car/rent-a-car" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                  <div class="icon"><i class="bx bx-file"></i></div>
+                  <h4 class="title"><a href="">Dollar Car Rental</a></h4>
+                  <p class="description">Za vas na puno lokacija širom vašeg grada.</p>
+                </div>
+              </div>
+    
+              <div routerLink="/car/rent-a-car" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                  <div class="icon"><i class="bx bx-tachometer"></i></div>
+                  <h4 class="title"><a href="">Avis Car Rental</a></h4>
+                  <p class="description">Ekskluzivna vozila za duga i kratka putovanja.</p>
+                </div>
+              </div>
+    
             </div>
-          </section>
-		</div>
+    
+          </div>
+        </section>
+    </div>
+  </div>
 	</div>
 </body>
