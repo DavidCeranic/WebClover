@@ -1,11 +1,193 @@
-<html>
-
 <body>
+                <div class="bg"> 
+                <div>
+                    <div class="about">
+                        <div class="row user-menu-about square">
+                            <div class="col-md-7 user-details">
+                                 <div class="row coralbg white" style="border-radius: 10px;">
+                                    
+                                    <div class="col-md-6 no-pad">
+                                         <div class="user-pad"style="border-radius: 10px;">
+                                            <h3>Welcome back, Jessica</h3>
+                                            <h4 class="white"><i class="fa fa-check-circle-o"></i> San Antonio, TX</h4>
+                                            <h4 class="white"><i class="fa fa-twitter"></i> CoolesOCool</h4>
+                                        </div>
+                                    </div>
+        
+                                    <div class="col-md-6 no-pad">
+                                        <div class="user-image">
+                                            <img src="https://farm7.staticflickr.com/6163/6195546981_200e87ddaf_b.jpg" class="img-responsive thumbnail">
+                                        </div>
+                                    </div>
+        
+                                </div>
+                            </div>
+        
+                            <div class="col-md-1 user-menu-btns">
+                                <div class="btn-group-vertical square" id="responsive">
+                                    <button  class="btn1"><span>Location</span></button>
+                                    <button  class="btn1" ><span>Rate</span></button>
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-4 user-menu user-pad">
+                                <div class="user-menu-content active"><div class="user-menu-content active">
+                                        <p>LOCATIONS</p>
+                                    </div>
+        
+                                    <div class="user-menu-content">
+                                        <p> RATES</p>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    
+        
+                    
+                </div> 
+                <div class="booking-form">
+                                <form>
+                                        <div class="form-group">
+                                                <div class="form-checkbox">
+                                                        <label for="roundtrip">
+                                                                <input type="radio" id="roundtrip" name="flight-type">
+                                                                <span></span>Roundtrip
+                                                        </label>
+                                                        <label for="one-way">
+                                                                <input type="radio" id="one-way" name="flight-type">
+                                                                <span></span>One way
+                                                        </label>
+                                                        <label for="multi-city">
+                                                                <input type="radio" id="multi-city" name="flight-type">
+                                                                <span></span>Multi-City
+                                                        </label>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-md-6">
+                                                        <div class="form-group">
+                                                                <span class="form-label">Flying from</span>
+                                                                <input class="form-control" type="text" placeholder="City or airport">
+                                                        </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                        <div class="form-group">
+                                                                <span class="form-label">Flyning to</span>
+                                                                <input class="form-control" type="text" placeholder="City or airport">
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-md-3">
+                                                        <div class="form-group">
+                                                                <span class="form-label">Departing</span>
+                                                                <input class="form-control" type="date" required>
+                                                        </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                        <div class="form-group">
+                                                                <span class="form-label">Returning</span>
+                                                                <input class="form-control" type="date" required>
+                                                        </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                        <div class="form-group">
+                                                                <span class="form-label">Adults (18+)</span>
+                                                                <select class="form-control">
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                        <option>3</option>
+                                                                </select>
+                                                                <span class="select-arrow"></span>
+                                                        </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                        <div class="form-group">
+                                                                <span class="form-label">Children (0-17)</span>
+                                                                <select class="form-control">
+                                                                        <option>0</option>
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                </select>
+                                                                <span class="select-arrow"></span>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-md-3">
+                                                        <div class="form-group">
+                                                                <span class="form-label">Travel class</span>
+                                                                <select class="form-control">
+                                                                        <option>Economy class</option>
+                                                                        <option>Business class</option>
+                                                                        <option>First class</option>
+                                                                </select>
+                                                                <span class="select-arrow"></span>
+                                                        </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                        <div class="form-btn">
+                                                                <button routerLink="/book-a-flight" class="submit-btn">Show flights</button>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </form>
+                        </div>
+                        
+                        <div >
 
-
-
-
-</body>
-
-
-</html>
+                                        <table class="table ">
+                                            <thead class="text-muted">
+                                                <tr class="white">
+                                                <th scope="col" class="white">From</th>
+                                                <th scope="col" width="120">To</th>
+                                                <th scope="col" width="120">Class</th>
+                                                <th scope="col" width="200" class="text-right">Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let f of allFlightss" class="white">
+                                                    <td>
+                                                <figure class="media">
+                                                    <div ></div>
+                                                    <figcaption class="media-body">
+                                                        <h6 class="title text-truncate">{{f.companyName}}</h6>
+                                                        <dl class="param param-inline small">
+                                                        <dt> From: </dt>
+                                                        <dd>{{f.from}}</dd>
+                                                        <dd>{{f.time1}}</dd>
+                        
+                                                        </dl>
+                                                        <dl class="param param-inline small">
+                                                        <dt>To: </dt>
+                                                        <dd>{{f.to}}</dd> 
+                                                        
+                                                        <dd>{{f.time2}}</dd>
+                                                        
+                                                        </dl>
+                                                    </figcaption>
+                                                </figure> 
+                                                    </td>
+                                                    <td> 
+                                                        
+                                                    </td>
+                                                    <td> 
+                                                        <div class="price-wrap"> 
+                                                            <var class="price">{{f.price}}</var> 
+                                                            <small class="text-muted">($)</small> 
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-right"> 
+                                                        <a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i class="fa fa-heart"></i></a> 
+                                                        <a href="" class="btn btn-outline-danger"> BOOK FLIGHT</a>
+                                                    </td>
+                                                </tr>
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+            </div>
+        </body>

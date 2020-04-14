@@ -9,6 +9,7 @@ import { FlightsComponent } from './components/flights/flights.component';
 import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
 import { RentACarComponent } from './components/car/rent-a-car/rent-a-car.component';
 import { BookAFlightComponent } from './components/book-a-flight/book-a-flight.component';
+import { PomocnaComponent } from './components/pomocna/pomocna.component';
 
 
 
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path:"book-a-flight",
     component: BookAFlightComponent
+  },
+  {
+    path:"pomocna",
+    component:PomocnaComponent
   }
 ];
 
