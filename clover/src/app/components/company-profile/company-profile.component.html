@@ -1,49 +1,13 @@
 <body>
                 <div class="bg"> 
-                <div>
-                    <div class="about">
-                        <div class="row user-menu-about square">
-                            <div class="col-md-7 user-details">
-                                 <div class="row coralbg white" style="border-radius: 10px;">
-                                    
-                                    <div class="col-md-6 no-pad">
-                                         <div class="user-pad"style="border-radius: 10px;">
-                                            <h3>Welcome back, Jessica</h3>
-                                            <h4 class="white"><i class="fa fa-check-circle-o"></i> San Antonio, TX</h4>
-                                            <h4 class="white"><i class="fa fa-twitter"></i> CoolesOCool</h4>
-                                        </div>
-                                    </div>
-        
-                                    <div class="col-md-6 no-pad">
-                                        <div class="user-image">
-                                            <img src="https://farm7.staticflickr.com/6163/6195546981_200e87ddaf_b.jpg" class="img-responsive thumbnail">
-                                        </div>
-                                    </div>
-        
-                                </div>
-                            </div>
-        
-                            <div class="col-md-1 user-menu-btns">
-                                <div class="btn-group-vertical square" id="responsive">
-                                    <button  class="btn1"><span>Location</span></button>
-                                    <button  class="btn1" ><span>Rate</span></button>
-                                </div>
-                            </div>
-                        
-                            <div class="col-md-4 user-menu user-pad">
-                                <div class="user-menu-content active"><div class="user-menu-content active">
-                                        <p>LOCATIONS</p>
-                                    </div>
-        
-                                    <div class="user-menu-content">
-                                        <p> RATES</p>
-                                    </div>
-                                 </div>
-                            </div>
-                        </div>
-                    </div>
-        
-                    
+                <div class="conteinter4">
+                <div class="image2"></div>
+                <div class="about"><p style="color:whitesmoke">Wizz Air, legally incorporated as Wizz Air Hungary Ltd. (Hungarian: Wizz Air Hungary Légiközlekedési Kft.) and stylised as W!ZZ Air,
+                         is a Hungarian[3] low-cost airline with its head office in Budapest. The airline serves many cities across Europe, as well as some destinations
+                          in North Africa and the Middle East.[4] It has the largest fleet of any Hungarian airline, although it is not a flag carrier, and currently serves
+                           44 countries.[4][5] Its Jersey-based parent company, Wizz Air Holdings plc, is listed on the London Stock Exchange and is a constituent of the
+                            FTSE 250 Index. As of 2018,
+                         the airline has its largest base at Budapest Airport with over 60 destinations. In 2019 the airline transported 39.8 million passengers</p></div>
         
                     
                 </div> 
@@ -137,6 +101,30 @@
                         </div>
                         
                        
+                        <div class="conteiner3" id="style-22" >
+                                        <div class="inp1"><input type="text" class="inp" name="min" placeholder="lowest price.."></div>
+                                        <div class="inp2"><input type="text" class="inp" name="max" placeholder="higest price.."></div>
+                                        <div class="inp3"><input type="text" class="inp" name="cnm" placeholder="company name.."></div>
+                                        <div class="btn11"><button class="button1">filter</button></div>
+                                        <!--<div class="slctComp"> <select class="inp" name="country">
+                                                        <option value="australia">Wizzair</option>
+                                                        <option value="canada">Rayanair</option>
+                                                        <option value="usa">USA</option>
+                                                  </select></div>-->
+                                                
+                                        <div *ngFor="let f of allFlightss" class="div1">
+                                                        <div class="div2">{{f.departing.toLocaleString()}}</div>
+                                                        <div class="div3From">{{f.from}}</div>
+                                                        <div class="image"></div>
+                                                        <div class="div4">{{f.returning.toLocaleString()}}</div>
+                                                        <div class="div5To">{{f.to}}</div>
+                                                        <div class="divName">{{f.companyName}}</div>
+                                                        <div class="btn2">
+                                                        <button routerLink="/payment" class="myButton2">BOOK {{f.price}}$</button>
+                                                </div>
+                                                </div>
+
+                        </div>
                                     
             </div>
         </body>
