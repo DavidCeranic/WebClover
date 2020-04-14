@@ -26,21 +26,31 @@ body, html {
 	left: 10px  ;
   right: 36%;
   width: 600px;
+  height: 300px;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
 
-
+.pretrazi{
+  position:absolute;
+  width:720px;
+  height: 800px;
+  left: 20px;
+  top:87px;
+}
 
 .booking-form {
-	background: rgba(0, 0, 0, 0.7);
+	background: rgba(0, 0, 0, 0.4);
 	padding: 20px;
-	border-radius: 10px;
+  border-radius: 10px;
+  
+  
 }
 
 .booking-form .form-group {
 	position: relative;
-	margin-bottom: 20px;
+  margin-bottom: 20px;
+ 
 }
 
 .booking-form .form-control {
@@ -212,6 +222,7 @@ top:500px;
   background-color: rgba(255, 255, 255, 0.808);
   width: 1000px;
   height: 145px;
+  top:10px;
   border-radius: 10px;
   position: relative;
 
@@ -500,4 +511,43 @@ background-color: transparent;
       width: 100%;
       margin: 0 0 2rem 0;
     }
+  }
+
+  .inp{
+   
+    border-radius: 10px;
+    background: #ffffffce;
+  }
+  .inp1{
+    position: absolute;;
+    top: 0;
+  }
+  .inp2{
+    position: absolute;;
+    top: 0;
+    left:220px;
+  }
+  .inp3{
+    position: absolute;;
+    top: 0;
+    left:420px;
+  }
+  .slctComp{
+    position: absolute;;
+    top: 0;
+    height: 20%;
+    left:420px;
+  }
+  .button1 {
+    background-color: rgba(255, 255, 255, 0.774);
+    color: black;
+    border: 3px solid rgba(87, 142, 224, 0.938); /* Green */
+    border-radius: 10px;
+  }
+  .btn11{
+    position: absolute;;
+    top: 0;
+    height: 100px;
+    
+    right: 100px;
   }

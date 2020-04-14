@@ -136,58 +136,7 @@
                                 </form>
                         </div>
                         
-                        <div >
-
-                                        <table class="table ">
-                                            <thead class="text-muted">
-                                                <tr class="white">
-                                                <th scope="col" class="white">From</th>
-                                                <th scope="col" width="120">To</th>
-                                                <th scope="col" width="120">Class</th>
-                                                <th scope="col" width="200" class="text-right">Price</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let f of allFlightss" class="white">
-                                                    <td>
-                                                <figure class="media">
-                                                    <div ></div>
-                                                    <figcaption class="media-body">
-                                                        <h6 class="title text-truncate">{{f.companyName}}</h6>
-                                                        <dl class="param param-inline small">
-                                                        <dt> From: </dt>
-                                                        <dd>{{f.from}}</dd>
-                                                        <dd>{{f.time1}}</dd>
-                        
-                                                        </dl>
-                                                        <dl class="param param-inline small">
-                                                        <dt>To: </dt>
-                                                        <dd>{{f.to}}</dd> 
-                                                        
-                                                        <dd>{{f.time2}}</dd>
-                                                        
-                                                        </dl>
-                                                    </figcaption>
-                                                </figure> 
-                                                    </td>
-                                                    <td> 
-                                                        
-                                                    </td>
-                                                    <td> 
-                                                        <div class="price-wrap"> 
-                                                            <var class="price">{{f.price}}</var> 
-                                                            <small class="text-muted">($)</small> 
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-right"> 
-                                                        <a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i class="fa fa-heart"></i></a> 
-                                                        <a href="" class="btn btn-outline-danger"> BOOK FLIGHT</a>
-                                                    </td>
-                                                </tr>
-                                               
-                                            </tbody>
-                                        </table>
-                                    </div>
+                       
                                     
             </div>
         </body>
