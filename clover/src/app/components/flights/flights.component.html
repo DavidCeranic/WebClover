@@ -1,9 +1,9 @@
 <body>
 	<div class="bg">
-			<div id="booking" class="section">
-			<div class="section-center">
-					<div class="container">
-						<div class="row">
+			
+			
+					
+						<div class="pretrazi">
 							<div class="booking-form">
 								<form>
 									<div class="form-group">
@@ -93,8 +93,8 @@
 								</form>
 							</div>
 						</div>
-					</div>
-				</div>
+					
+				
 
 				<div class="conteiner2" id="style-2">
 						<div class="wrapper">
@@ -155,15 +155,25 @@
 					</div>
 
 					<div class="conteiner3" id="style-22">
+							<div class="inp1"><input type="text" class="inp" name="min" placeholder="lowest price.."></div>
+							<div class="inp2"><input type="text" class="inp" name="max" placeholder="higest price.."></div>
+							<div class="inp3"><input type="text" class="inp" name="cnm" placeholder="company name.."></div>
+							<div class="btn11"><button class="button1">filter</button></div>
+							<!--<div class="slctComp"> <select class="inp" name="country">
+									<option value="australia">Wizzair</option>
+									<option value="canada">Rayanair</option>
+									<option value="usa">USA</option>
+								  </select></div>-->
+								
 							<div *ngFor="let f of allFlightss" class="div1">
-									<div class="div2">{{f.departing}}</div>
+									<div class="div2">{{f.departing.toLocaleString()}}</div>
 									<div class="div3From">{{f.from}}</div>
 									<div class="image"></div>
-									<div class="div4">{{f.returning}}</div>
+									<div class="div4">{{f.returning.toLocaleString()}}</div>
 									<div class="div5To">{{f.to}}</div>
 									<div class="divName">{{f.companyName}}</div>
 									<div class="btn">
-									<button class="myButton">BOOK {{f.price}}$</button>
+									<button routerLink="/payment" class="myButton">BOOK {{f.price}}$</button>
 								</div>
 								</div>
 
@@ -171,7 +181,7 @@
 
 
 
-				</div>
+				
 				
 
 		</div>

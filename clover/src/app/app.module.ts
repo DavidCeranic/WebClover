@@ -16,6 +16,7 @@ import { CompanyProfileComponent } from './components/company-profile/company-pr
 import { RentACarComponent } from './components/car/rent-a-car/rent-a-car.component';
 import { BookAFlightComponent } from './components/book-a-flight/book-a-flight.component';
 import { PomocnaComponent } from './components/pomocna/pomocna.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 
 
@@ -31,6 +32,7 @@ import { PomocnaComponent } from './components/pomocna/pomocna.component';
     CompanyProfileComponent,
     BookAFlightComponent,
     PomocnaComponent,
+    PaymentComponent,
     
   ],
   imports: [
