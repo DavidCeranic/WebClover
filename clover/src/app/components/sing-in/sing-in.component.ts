@@ -1,18 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SingUpComponent } from './sing-up/sing-up.component';
-
+import {AllFlightsService} from 'src/app/services/allFligts/all-flights.service';
+import {FlightInfo} from 'src/app/entities/flightInfo/flight-info';
 @Component({
   selector: 'app-sing-in',
   templateUrl: './sing-in.component.html',
   styleUrls: ['./sing-in.component.css']
 })
 export class SingInComponent implements OnInit {
-
+  allFlightss:Array<FlightInfo>;
   singInForm: FormGroup;
   @ViewChild(SingUpComponent) sing_up: SingUpComponent;
 
-  constructor() { }
+  constructor(private flightService: AllFlightsService)
+   {  this.allFlightss=this.flightService.getFlights();}
   displayStr = "SingIn";
 
   ngOnInit(): void 

@@ -95,8 +95,8 @@
 						</div>
 					</div>
 				</div>
-				</div>
-				<div class="conteiner" >
+
+				<div class="conteiner2" id="style-2">
 						<div class="wrapper">
 							<p class="resp-tabs-list">  </p>
 							<div class="cols">
@@ -149,8 +149,30 @@
 									</div>
 			
 							</div>
+							
 						</div>
+						
 					</div>
+
+					<div class="conteiner3" id="style-22">
+							<div *ngFor="let f of allFlightss" class="div1">
+									<div class="div2">{{f.departing}}</div>
+									<div class="div3From">{{f.from}}</div>
+									<div class="image"></div>
+									<div class="div4">{{f.returning}}</div>
+									<div class="div5To">{{f.to}}</div>
+									<div class="divName">{{f.companyName}}</div>
+									<div class="btn">
+									<button class="myButton">BOOK {{f.price}}$</button>
+								</div>
+								</div>
+
+					</div>
+
+
+
+				</div>
+				
 
 		</div>
 		</body>

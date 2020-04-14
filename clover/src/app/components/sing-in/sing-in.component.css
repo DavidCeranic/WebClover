@@ -20,7 +20,11 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
-  
+  #table-scroll {
+    height: 50px;
+    overflow:auto;  
+    margin-top:20px;
+  }
   p {
     margin-bottom: 0px;
     font-size: 15px;
@@ -50,7 +54,16 @@
     margin-bottom: 4%;
   }
 
-  
+  .table{
+
+    background: rgba(0, 0, 0, 0.3);
+    width: 30%;
+    float: right;
+    margin-top: -20.2%;
+    margin-right: 0%;
+    overflow: auto;
+   
+  }
   .container {
     width: 550px;
     position: relative;
