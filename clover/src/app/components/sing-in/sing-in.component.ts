@@ -22,6 +22,11 @@ export class SingInComponent implements OnInit {
       this.initForm();
   }
 
+  navigateTo(section: string){
+    window.location.hash='';
+    window.location.hash = section;
+  }
+
   reciveMessage($event){
     this.displayStr="SingIn";
   }

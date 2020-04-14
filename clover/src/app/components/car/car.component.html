@@ -1,77 +1,90 @@
 <body>
 	<div class="bg">
-    <div class="whiteBg">
-		<div class="main-agileinfo">
-        <p style="color: rgba(255, 255, 255, 1);">.</p>
-        <p class="resp-tabs-list" style="margin-top: 25%;"> Find car for you </p>	
-        <form [formGroup]="SearchCarForm" (ngSubmit)="onSubmit()"  method="POST" id="signup-form" class="signup-form">
-          
-					<div class="from">
-						<h3>Rent a Car Service</h3>
-
-						<input type="text" id="Place" class="form-input" formControlName="Place" placeholder="Location or Name"/>
-                      <div *ngIf="SearchCarForm.controls.Place.invalid">
-                       
-                    </div>
-                    </div>
-                            
-                    <div class="clear"></div>        
-						<div class="date">
-								<h3>Start Date</h3>
-								<input type="date" class="datepicker" class="form-input" formControlName="StartDate" placeholder="mm/dd/yyyy"/>
-									<div *ngIf="SearchCarForm.controls.StartDate.invalid">
-										
-									</div>
-                                
-								<h3>End Date</h3>
-								<input type="date" class="datepicker" class="form-input" formControlName="EndDate" placeholder="mm/dd/yyyy"/>
-									<div *ngIf="SearchCarForm.controls.EndDate.invalid">
-										
-									</div>
-						</div>
-
-						<div class="clear"></div>
-						<div class="clear"></div>
-						<div class="form-group">
-							<input type="submit" routerLink="/car" name="submit" id="submit" class="form-submit" value="Search"/>
-						</div>
-				</form>	
-			</div>	
-			
-			<div class="conteiner">
-				<section id="services" class="services">
-          <div class="container">
-    
-            <div class="row">
-              <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                <div routerLink="/car/rent-a-car" class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                  <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                  <h4 class="title"><a href="">Hartz Car Rental</a></h4>
-                  <p class="description">Automobile za sve potrebe i želje možete naći kod nas.</p>
-                </div>
+      <div class="s002">
+        <form>
+          <div class="inner-form">
+            <div class="input-field first-wrap">
+              <div class="icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                </svg>
               </div>
-    
-              <div routerLink="/car/rent-a-car" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                  <div class="icon"><i class="bx bx-file"></i></div>
-                  <h4 class="title"><a href="">Dollar Car Rental</a></h4>
-                  <p class="description">Za vas na puno lokacija širom vašeg grada.</p>
-                </div>
-              </div>
-    
-              <div routerLink="/car/rent-a-car" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                  <div class="icon"><i class="bx bx-tachometer"></i></div>
-                  <h4 class="title"><a href="">Avis Car Rental</a></h4>
-                  <p class="description">Ekskluzivna vozila za duga i kratka putovanja.</p>
-                </div>
-              </div>
-    
+              <input id="search" type="text" placeholder="Renta car service or Location" />
             </div>
-    
+            <div class="input-field second-wrap">
+              <div class="icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
+                </svg>
+              </div>
+              <input class="datepicker" id="depart" type="text" placeholder="01 Jan 2020" />
+            </div>
+            <div class="input-field third-wrap">
+              <div class="icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
+                </svg>
+              </div>
+              <input class="datepicker" id="return" type="text" placeholder="31 Jan 2020" />
+            </div>
+            <div class="input-field fifth-wrap">
+              <button class="btn-search" type="button">SEARCH</button>
+            </div>
           </div>
-        </section>
-    </div>
+        </form>
+      </div>	
+
+      <div class="main">
+        <div class="main-agileinfo"> 
+          <div id="owl-demo" class="owl-carousel owl-theme"><!-- owl-carousel -->
+
+            <div class="item">
+              <div class="pricing pricing-two">
+                <div class="pricing-top top-two">
+                  <h3>Hartz Rental Car</h3>
+                  <p>Novi Sad</p>
+                </div>
+                <div class="pricing-bottom"> 
+                <div class="img1" ></div>
+                <div class="agileits-buy">
+                  <a class="popup-with-zoom-anim" routerLink="/car/rent-a-car">More</a>
+                </div>
+                </div>
+              </div> 
+            </div> 
+
+            <div class="item">
+              <div class="pricing pricing-two">
+                <div class="pricing-top top-two">
+                  <h3>Dollar Rental Car</h3>
+                  <p>Beograd</p>
+                </div>
+                <div class="pricing-bottom"> 
+                <div class="img2" ></div>
+                <div class="agileits-buy">
+                  <a class="popup-with-zoom-anim" routerLink="/car/rent-a-car">More</a>
+                </div>
+                </div>
+              </div> 
+            </div>  
+
+            <div class="item">
+              <div class="pricing pricing-two">
+                <div class="pricing-top top-two">
+                  <h3>Avis Rental Car</h3>
+                  <p>Niš</p>
+                </div>
+                <div class="pricing-bottom"> 
+                <div class="img3" ></div>
+                <div class="agileits-buy">
+                  <a class="popup-with-zoom-anim" routerLink="/car/rent-a-car">More</a>
+                </div>
+                </div>
+              </div> 
+            </div>    
+
+          </div>	
+        </div>	
+      </div>
   </div>
-	</div>
 </body>

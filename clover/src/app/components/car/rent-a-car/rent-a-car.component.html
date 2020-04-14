@@ -1,4 +1,4 @@
-<header id="header" class="fixed-top d-flex align-items-center">
+<header id="header" class="fixed-left">
     <div class="container d-flex align-items-center">
       <nav class="nav-menu d-none d-lg-block">
         <ul>
@@ -10,15 +10,9 @@
         </ul>
       </nav>
     </div>
-  </header>
+</header>
 
-
-
-
-
-
-  <section id="hero" class="d-flex align-items-center">
-
+<section id="hero" >
     <div class="container">
       <div class="row">
         <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
@@ -33,16 +27,9 @@
         </div>
       </div>
     </div>
+</section>
 
-  </section><!-- End Hero -->
-
-
-
-
-
-
-
-  <section id="about" class="about">
+<section id="about" class="about">
     <div class="container">
 
       <div class="section-title" data-aos="fade-up">
@@ -75,105 +62,103 @@
       </div>
 
     </div>
-  </section><!-- End About Us Section -->
+</section>
 
 
+<section id="cars" >
+        <div class="booking-form">
+          <form>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">Start Location</span>
+                  <input class="form-control" type="text" placeholder="Start Location">
+                </div>
+              </div>
 
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">Start Date</span>
+                  <input class="form-control" type="date" required>
+                </div>
+              </div>
 
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">Type of Vehicle</span>
+                  <select class="form-control">
+                    <option>Putnicko</option>
+                    <option>Teretno</option>
+                    <option>Kabriolet</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
 
-
-
-
-  <section id="cars" class="services">
-    <div class="container">
-
-      <div class="main-agileinfo">
-        
-        <form [formGroup]="SearchCarForm" (ngSubmit)="onSubmit()" method="POST" id="signup-form" class="signup-form">	
-          <p class="resp-tabs-list"> Find car for you </p>
-          <div class="from">
-            <h3>Rent a Car Service</h3>
-
-            <input type="text" id="Place" class="form-input" formControlName="Place" placeholder="Location or Name"/>
-                      <div *ngIf="SearchCarForm.controls.Place.invalid">
-                       
-                    </div>
-                    </div>
-                            
-                    <div class="clear"></div>        
-            <div class="date">
-                <h3>Start Date</h3>
-                <input type="date" class="datepicker" class="form-input" formControlName="StartDate" placeholder="mm/dd/yyyy"/>
-                  <div *ngIf="SearchCarForm.controls.StartDate.invalid">
-                    
-                  </div>
-                                
-                <h3>End Date</h3>
-                <input type="date" class="datepicker" class="form-input" formControlName="EndDate" placeholder="mm/dd/yyyy"/>
-                  <div *ngIf="SearchCarForm.controls.EndDate.invalid">
-                    
-                  </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">Passengers</span>
+                  <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
             </div>
+            
+            <div class="row">
+              
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">End Date</span>
+                  <input class="form-control" type="text" placeholder="End Location">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">Start Location</span>
+                  <input class="form-control" type="date" required>
+                </div>
+              </div>
 
-            <div class="clear"></div>
-            <div class="clear"></div>
-            <div class="form-group">
-              <input type="submit" routerLink="/car" name="submit" id="submit" class="form-submit" value="Search"/>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <span class="form-label">Price</span>
+                  <input class="form-control" style="width: 35%;" type="text" placeholder="Price">
+                </div>
+              </div>
+              
+              <div class="col-md-2">
+                <div class="form-btn">
+                  <button routerLink="/book-a-flight" class="submit-btn">Show Cars</button>
+                </div>
+              </div>
             </div>
-        </form>	
-      </div>	
+          </form>
+        </div>
 
-      
-
-      <div class="table" style="margin-top: -37.3%;">
-        <table class="table table-hover shopping-cart-wrap">
-            <thead class="text-muted">
-              <tr>
-                <th scope="col" width="60%">Car</th>
-                <th scope="col" width="120">Price</th>
-                <th scope="col" width="200" class="text-right">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let car of allCars">
-                  <td>
-                    <div class="imageCar"></div>
-                  </td>
-
-                  <td>
-                    <figure class="media">
-                      <figcaption class="media-body">
-                          <h6 class="title text-truncate">{{car.brand}}</h6>
-                          <dl class="param param-inline small">
-                            <dt> Model: </dt>
-                            <dd>{{car.model}}</dd>
-                          </dl>
-
-                          <dl class="param param-inline small">
-                            <dt>Year: </dt>
-                            <dd>{{car.year}}</dd> 
-                          </dl>
-                      </figcaption>
-                    </figure> 
-                  </td>
-
-                  <td> 
-                      <div class="price-wrap"> 
-                          <var class="price">{{car.pricePerDay}}</var> 
-                          <small class="text-muted">($)</small> 
-                      </div>
-                  </td>
-
-                  <td class="text-right"> 
-                      <a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i class="fa fa-heart"></i></a> 
-                      <a href="" class="btn btn-outline-danger"> × Remove</a>
-                  </td>
-                </tr>
-          </tbody>
-      </table>
-    </div>
-   </div>
-</section><!-- End Services Section -->
+  
+    
+          <div class="conteiner3" id="style-22">
+            <div *ngFor="let car of allCars" class="div1">
+                <div class="image" style="content:url({{car.imageUrl}})"></div>
+                <div class="divName">{{car.serviceName}}</div>
+                <div class="div5To">Brand: {{car.brand}}</div>
+                <div class="div6To">Model: {{car.model}}</div>
+                <div class="div3From">{{car.location}}</div>
+                
+                
+                
+                <div class="btn">
+                <button class="myButton">Rent {{car.pricePerDay}}$</button>
+              </div>
+              </div>
+          </div>
+</section>
 
 
 
@@ -195,8 +180,8 @@
 
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="contact-about">
-          <h3>Vesperr</h3>
-          <p>Cras fermentum odio eu feugiat. Justo eget magna fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+          <h3>Hertz Car Rental</h3>
+          <p>Za sve nedoumice koje imate možete nas pozvati, kontaktirati putem maila ili nas posetiti na jednoj od mnogobrojnih lokacija. </p>
           <div class="social-links">
             <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
             <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
@@ -210,17 +195,17 @@
         <div class="info">
           <div>
             <i class="ri-map-pin-line"></i>
-            <p>A108 Adam Street<br>New York, NY 535022</p>
+            <p>3. Oktobar 20/10<br>Novi Sad, 21000</p>
           </div>
 
           <div>
             <i class="ri-mail-send-line"></i>
-            <p>info@example.com</p>
+            <p>hertzrentalcar@gmail.com</p>
           </div>
 
           <div>
             <i class="ri-phone-line"></i>
-            <p>+1 5589 55488 55s</p>
+            <p>+381 21 555 555</p>
           </div>
 
         </div>
@@ -256,5 +241,5 @@
     </div>
 
   </div>
-</section><!-- End Contact Section -->
+</section>
 

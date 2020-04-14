@@ -2,7 +2,7 @@
   <section class="signup">
               <form [formGroup]="singUpForm" (ngSubmit)="onSubmit()" method="POST" id="signup-form" class="signup-form">
                 <div>
-                  <button class="btn" (click)="sendMessage()"><span>Sing in</span></button>
+                  <button class="btn" (click)="navigateTo('sing-in')" (click)="sendMessage()"><span>Sing in</span></button>
                   <button class="btn"><span>Register</span></button>
                 </div>
 

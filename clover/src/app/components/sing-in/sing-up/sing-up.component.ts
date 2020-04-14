@@ -33,6 +33,11 @@ export class SingUpComponent implements OnInit {
     });
   }
 
+  navigateTo(section: string){
+    window.location.hash='';
+    window.location.hash = section;
+  }
+
   onSubmit(): void {
     const user = new User(this.getValue("FirstName"),this.getValue("LastName"),this.getValue("Email"),
                  this.getValue("Password"),this.getValue("City"), this.getValue("PhoneNumber"));
