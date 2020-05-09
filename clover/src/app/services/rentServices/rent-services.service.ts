@@ -16,15 +16,20 @@ export class RentServicesService {
     return this.mockedRentSer();
   }
 
-  filterCars(allCars: RentService[], filterParams: AbstractFilterParam[]): RentService[] {
+  filterServices(allCars: RentService[], filterParams: AbstractFilterParam[]): RentService[] {
     let filteredCars = new Array<RentService>();
     for (const car of allCars) {
       let addCar = true;
       for (const filterParam of filterParams) {
-        if (this.checkCarBrandFilter(car, filterParam)) {
+        if (this.checkServiceName(car, filterParam)) {
             addCar = false;
             break;
         }
+
+        //if (this.checkLocation(car, filterParam)) {
+        //addCar = false;
+        //break;
+        //}
       }
 
       if (addCar)
@@ -34,7 +39,11 @@ export class RentServicesService {
     return filteredCars;
   }
 
-  checkCarBrandFilter(car: RentService, filterParam: AbstractFilterParam): boolean {
+  checkServiceName(car: RentService, filterParam: AbstractFilterParam): boolean {
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'rentServiceFilter' && !car.serviceName.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+  }
+
+  checkLocation(car: RentService, filterParam: AbstractFilterParam): boolean {
     return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'rentServiceFilter' && !car.location.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
   }
 

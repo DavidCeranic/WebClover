@@ -430,61 +430,23 @@ body {
   left: 0;
 }
 
-.div1{
-  background-color: rgba(234, 247, 246, 0.808);
-  width: 530px;
-  height: 145px;
-  border-radius: 10px;
-  position: relative;
-  display: inline-block;
-}
+
 .div2{
   position: absolute;
   left: 14px;
   top: 14px;
 }
-.div3From{
-  font-family: "Lucida sole";
-  font-size: 150%;
-  position: absolute;
-  left: 210px;
-  top: 75px;
-}
-div.image {
-  position: absolute;
-  width: 200px;
-  height: 100px;
-  left: 0;
-  top: 12px;
- 
-}
+
+
 .div4{
   position: absolute;
   right: 14px;
   top: 14px;
 }
-.div5To{
-  font-family: "Lucida sole";
-  font-size: 150%;
-  position: absolute;
-  left: 210px;
-  top: 25px;
-}
 
-.div6To{
-  font-family: "Lucida sole";
-  font-size: 150%;
-  position: absolute;
-  left: 210px;
-  top: 51px;
-}
-.divName{
-  font-family: "Impact";
-  font-size: 130%;
-  position: absolute;
-  left: 210px;
-  
-}
+
+
+
 .btn{
   position: absolute;
   right: 10px;
@@ -513,6 +475,21 @@ background-color:#019ad2b6;
 .myButton:active {
 position:relative;
 top:1px;
+}
+
+.conteiner3{
+  position: absolute;
+  right: 15px;
+  top:327.5%;
+  height: 80%;
+  width: 80%;
+  margin-right: 8.9%;
+  padding: 20px;
+  background: #fff;
+  background: rgba(150, 161, 168, 0.7);
+  padding: 25px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 #style-22{
@@ -910,20 +887,7 @@ top:85px;
   padding: 25px;
   border-radius: 10px;
 }
-.conteiner3{
-  position: absolute;
-  right: 15px;
-  top:327.5%;
-  height: 80%;
-  width: 80%;
-  margin-right: 8.9%;
-  padding: 20px;
-  background: #fff;
-  background: rgba(150, 161, 168, 0.7);
-  padding: 25px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
+
 
 .booking-form .form-btn {
 	margin-top: 27px;

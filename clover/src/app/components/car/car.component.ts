@@ -33,29 +33,34 @@ export class CarComponent implements OnInit {
     this.initForm();
   }
 
-  filterCars(): void {
+  filterServices(): void {
     //this.filteredCars = new Array<Car>();
     let filterParams = new Array<AbstractFilterParam>();
     if (this.getFilterFieldValue("rentServiceFilter")) {
-      filterParams.push(this.addCarBrandFilterParam());
+      filterParams.push(this.addNameServiceFilterParam());
+    }
+    if (this.getFilterFieldValue("rentServiceFilter")) {
+      filterParams.push(this.addLocationFilterParam());
     }
 
-    this.filtredRentServices = this.rentServices.filterCars(this.allRentServices, filterParams);
+    this.filtredRentServices = this.rentServices.filterServices(this.allRentServices, filterParams);
   }
 
   resetFilter(): void {
     this.filtredRentServices = this.allRentServices;
   }
 
-  addCarBrandFilterParam(): ReturnType<any> {
+  addNameServiceFilterParam(): ReturnType<any> {
+    return new StringFilterParam("rentServiceFilter", this.getFilterFieldValue("rentServiceFilter"));
+  }
+
+  addLocationFilterParam(): ReturnType<any> {
     return new StringFilterParam("rentServiceFilter", this.getFilterFieldValue("rentServiceFilter"));
   }
 
   getFilterFieldValue(filterFieldId: string) {
     return (<HTMLInputElement> document.getElementById(filterFieldId)).value;
   }
-
-
 
   private initForm() {
     this.SearchCarForm = new FormGroup({

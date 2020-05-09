@@ -9,12 +9,17 @@ body {
 }
 
 .list{
+    height: 500px;
+    width: 350px;
+    float: left;
+    position: relative;
     display: flex;
     justify-content: space-between;
+    margin-left: 2%;
 }
 
 .item{
-  width:31%;
+  width:500px;
   display: inline-block;
 }
 

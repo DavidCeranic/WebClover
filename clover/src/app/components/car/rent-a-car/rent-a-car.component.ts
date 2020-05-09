@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Car } from 'src/app/entities/Car/car'
 import { CarService } from 'src/app/services/car/car.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AbstractFilterParam } from 'src/app/entities/abstract-filter-param/abstract-filter-param';
+import { StringFilterParam } from 'src/app/entities/string-filter-param/string-filter-param';
 
 @Component({
   selector: 'app-rent-a-car',
@@ -9,12 +11,36 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./rent-a-car.component.css']
 })
 export class RentACarComponent implements OnInit {
-  allCars: Array<Car>;
   showStr = "Locations";
   SearchCarForm: FormGroup;
+
+  allCars: Array<Car>;
+  filtredCars: Array<Car>;
   
   constructor(private carService: CarService) { 
     this.allCars = this.carService.loadCars();
+    this.filtredCars = this.allCars;
+  }
+
+  filterCars(): void {
+    let filterParams = new Array<AbstractFilterParam>();
+    if (this.getFilterFieldValue("startLocationFilter")) {
+      filterParams.push(this.addNameServiceFilterParam());
+    }
+
+    this.filtredCars = this.carService.filterCars(this.allCars, filterParams);
+  }
+
+  resetFilter(): void {
+    this.filtredCars = this.allCars;
+  }
+
+  addNameServiceFilterParam(): ReturnType<any> {
+    return new StringFilterParam("startLocationFilter", this.getFilterFieldValue("startLocationFilter"));
+  }
+
+  getFilterFieldValue(filterFieldId: string) {
+    return (<HTMLInputElement> document.getElementById(filterFieldId)).value;
   }
 
   private initForm() {

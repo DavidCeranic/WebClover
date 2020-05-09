@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Car } from 'src/app/entities/Car/car'
+import { Car } from 'src/app/entities/Car/car';
+import { AbstractFilterParam } from 'src/app/entities/abstract-filter-param/abstract-filter-param';
+import { StringFilterParam } from 'src/app/entities/string-filter-param/string-filter-param';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,29 @@ export class CarService {
 
   loadCars() {
     return this.mockedCars();
+  }
+
+  filterCars(allCars: Car[], filterParams: AbstractFilterParam[]): Car[] {
+    let filteredCars = new Array<Car>();
+    for (const car of allCars) {
+      let addCar = true;
+      for (const filterParam of filterParams) {
+        if (this.checkCarBrandFilter(car, filterParam)) {
+            addCar = false;
+            break;
+        }
+
+      }
+
+      if (addCar)
+        filteredCars.push(car);
+    }
+
+    return filteredCars;
+  }
+
+  checkCarBrandFilter(car: Car, filterParam: AbstractFilterParam): boolean {
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'startLocationFilter' && !car.location.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
   }
 
   mockedCars(): Array<Car>{

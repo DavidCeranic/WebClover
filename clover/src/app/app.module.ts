@@ -18,6 +18,7 @@ import { BookAFlightComponent } from './components/book-a-flight/book-a-flight.c
 import { PomocnaComponent } from './components/pomocna/pomocna.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RentACarFilterComponent } from './components/car/rent-a-car-filter/rent-a-car-filter.component';
+import { CarFilterComponent } from './components/car/car-filter/car-filter.component';
 
 
 
@@ -35,6 +36,7 @@ import { RentACarFilterComponent } from './components/car/rent-a-car-filter/rent
     PomocnaComponent,
     PaymentComponent,
     RentACarFilterComponent,
+    CarFilterComponent,
     
   ],
   imports: [
