@@ -130,3 +130,5 @@ C:\Users\david\WebClover\WebAPI\WebAPI\bin\Debug\netcoreapp3.0\WebAPI.dll
 C:\Users\david\WebClover\WebAPI\WebAPI\bin\Debug\netcoreapp3.0\WebAPI.pdb
 C:\Users\david\WebClover\WebAPI\WebAPI\obj\Debug\netcoreapp3.0\WebAPI.dll
 C:\Users\david\WebClover\WebAPI\WebAPI\obj\Debug\netcoreapp3.0\WebAPI.pdb
+C:\Users\david\WebClover\WebAPI\WebAPI\obj\Debug\netcoreapp3.0\WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\david\WebClover\WebAPI\WebAPI\obj\Debug\netcoreapp3.0\WebAPI.genruntimeconfig.cache

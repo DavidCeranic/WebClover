@@ -9,7 +9,7 @@
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
                 </svg>
               </div>
-              <input id="search" type="text" placeholder="Renta car service or Location" />
+              <input id="search" type="text" placeholder="Renta car service or Location" id="rentServiceFilter"/>
             </div>
             <div class="input-field second-wrap">
               <div class="icon-wrap">
@@ -32,59 +32,15 @@
             </div>
           </div>
         </form>
-      </div>	
-
-      <div class="main">
-        <div class="main-agileinfo"> 
-          <div id="owl-demo" class="owl-carousel owl-theme"><!-- owl-carousel -->
-
-            <div class="item">
-              <div class="pricing pricing-two">
-                <div class="pricing-top top-two">
-                  <h3>Hartz Rental Car</h3>
-                  <p>Novi Sad</p>
-                </div>
-                <div class="pricing-bottom"> 
-                <div class="img1" ></div>
-                <div class="agileits-buy">
-                  <a class="popup-with-zoom-anim" routerLink="/car/rent-a-car">More</a>
-                </div>
-                </div>
-              </div> 
-            </div> 
-
-            <div class="item">
-              <div class="pricing pricing-two">
-                <div class="pricing-top top-two">
-                  <h3>Dollar Rental Car</h3>
-                  <p>Beograd</p>
-                </div>
-                <div class="pricing-bottom"> 
-                <div class="img2" ></div>
-                <div class="agileits-buy">
-                  <a class="popup-with-zoom-anim" routerLink="/car/rent-a-car">More</a>
-                </div>
-                </div>
-              </div> 
-            </div>  
-
-            <div class="item">
-              <div class="pricing pricing-two">
-                <div class="pricing-top top-two">
-                  <h3>Avis Rental Car</h3>
-                  <p>Niš</p>
-                </div>
-                <div class="pricing-bottom"> 
-                <div class="img3" ></div>
-                <div class="agileits-buy">
-                  <a class="popup-with-zoom-anim" routerLink="/car/rent-a-car">More</a>
-                </div>
-                </div>
-              </div> 
-            </div>    
-
-          </div>	
-        </div>	
       </div>
+
+
+      <div [hidden]="filtredRentServices.length !== 0">
+        <hr/>
+        <h5 style="text-align: center;">Trenutno nema dostupnih rent a car servisa koja zadovoljavaju zadate parametre.</h5>
+    </div>
+    <div [hidden]="filtredRentServices.length === 0">
+        <app-rent-a-car-filter [filtredRentServices]="filtredRentServices"></app-rent-a-car-filter>
+    </div>
   </div>
 </body>

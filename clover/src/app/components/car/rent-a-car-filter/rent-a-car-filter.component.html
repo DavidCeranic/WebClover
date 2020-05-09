@@ -1,0 +1,24 @@
+<div class="main">
+        <div class="main-agileinfo"> 
+          <div id="owl-demo" class="owl-carousel owl-theme"><!-- owl-carousel -->
+
+            <div *ngFor="let service of filtredRentServices" class="list">
+            <div class="item">
+              <div class="pricing pricing-two">
+                <div class="pricing-top top-two">
+                  <h3>{{service.serviceName}}</h3>
+                  <p>{{service.location}}</p>
+                </div>
+                <div class="pricing-bottom"> 
+                <div class="img1" ></div>
+                <div class="agileits-buy">
+                  <a class="popup-with-zoom-anim" routerLink="/car/rent-a-car">More</a>
+                </div>
+                </div>
+              </div> 
+            </div> 
+          </div>
+
+          </div>	
+        </div>	
+      </div>

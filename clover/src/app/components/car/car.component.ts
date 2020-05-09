@@ -3,6 +3,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Car } from 'src/app/entities/Car/car'
 import { CarService } from 'src/app/services/car/car.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RentService } from 'src/app/entities/rentService/rent-service';
+import { RentServicesService } from 'src/app/services/rentServices/rent-services.service';
+import { AbstractFilterParam } from 'src/app/entities/abstract-filter-param/abstract-filter-param';
+import { StringFilterParam } from 'src/app/entities/string-filter-param/string-filter-param';
 
 
 
@@ -17,11 +21,41 @@ export class CarComponent implements OnInit {
   rentService: string;
   display = false;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  allRentServices: Array<RentService>;
+  filtredRentServices: Array<RentService>;
+
+  constructor(private rentServices: RentServicesService, private router: Router, private route: ActivatedRoute) { 
+    this.allRentServices = this.rentServices.loadRentServices();
+    this.filtredRentServices = this.allRentServices;
+  }
 
   ngOnInit(): void {
     this.initForm();
   }
+
+  filterCars(): void {
+    //this.filteredCars = new Array<Car>();
+    let filterParams = new Array<AbstractFilterParam>();
+    if (this.getFilterFieldValue("rentServiceFilter")) {
+      filterParams.push(this.addCarBrandFilterParam());
+    }
+
+    this.filtredRentServices = this.rentServices.filterCars(this.allRentServices, filterParams);
+  }
+
+  resetFilter(): void {
+    this.filtredRentServices = this.allRentServices;
+  }
+
+  addCarBrandFilterParam(): ReturnType<any> {
+    return new StringFilterParam("rentServiceFilter", this.getFilterFieldValue("rentServiceFilter"));
+  }
+
+  getFilterFieldValue(filterFieldId: string) {
+    return (<HTMLInputElement> document.getElementById(filterFieldId)).value;
+  }
+
+
 
   private initForm() {
     this.SearchCarForm = new FormGroup({
@@ -37,7 +71,6 @@ export class CarComponent implements OnInit {
   onClick(ServiceName: string) {
     this.rentService = ServiceName;
     this.display = true;
-    //this.router.navigate(['/car/rent-a-car'], { relativeTo: this.route});
   }
 
   Prikaz() : boolean{
