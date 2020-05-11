@@ -11,6 +11,7 @@
               </div>
               <input id="search" type="text" placeholder="Renta car service or Location" id="rentServiceFilter"/>
             </div>
+
             <div class="input-field second-wrap">
               <div class="icon-wrap">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -19,6 +20,7 @@
               </div>
               <input class="datepicker" id="depart" type="text" placeholder="01 Jan 2020" />
             </div>
+
             <div class="input-field third-wrap">
               <div class="icon-wrap">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -27,12 +29,16 @@
               </div>
               <input class="datepicker" id="return" type="text" placeholder="31 Jan 2020" />
             </div>
+
             <div class="input-field fifth-wrap">
               <button class="btn-search" type="button" (click)="filterServices()">SEARCH</button>
             </div>
+            
           </div>
         </form>
       </div>
+
+      <a routerLink="/car/add-rent-a-car">Dodaj Service</a>
 
 
       <div [hidden]="filtredRentServices.length !== 0">

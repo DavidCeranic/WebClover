@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SingInComponent } from './components/sing-in/sing-in.component';
 import { SingUpComponent } from './components/sing-in/sing-up/sing-up.component';
 import { CarComponent } from './components/car/car.component';
-import { UserGuard } from './guards/user.guard';
+import { UserGuard } from './guards/user/user.guard';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { FlightsComponent } from './components/flights/flights.component';
 import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
@@ -11,8 +11,8 @@ import { RentACarComponent } from './components/car/rent-a-car/rent-a-car.compon
 import { BookAFlightComponent } from './components/book-a-flight/book-a-flight.component';
 import { PomocnaComponent } from './components/pomocna/pomocna.component';
 import { PaymentComponent } from './components/payment/payment.component';
-
-
+import { AddRentACarComponent } from './components/car/add-rent-a-car/add-rent-a-car.component';
+import { AdminGuard } from './guards/admin/admin.guard';
 
 const routes: Routes = [
   {
@@ -35,7 +35,8 @@ const routes: Routes = [
     path: "car",
     children: [
       {path: "", component: CarComponent, canActivate: [UserGuard]},
-      {path: "rent-a-car", component: RentACarComponent}
+      {path: "rent-a-car", component: RentACarComponent},
+      {path: "add-rent-a-car", component: AddRentACarComponent, canActivate: [AdminGuard]}
     ]
   },
   {

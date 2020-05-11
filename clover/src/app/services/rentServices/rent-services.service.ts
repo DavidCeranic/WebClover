@@ -26,10 +26,10 @@ export class RentServicesService {
             break;
         }
 
-        //if (this.checkLocation(car, filterParam)) {
-        //addCar = false;
-        //break;
-        //}
+        if (this.checkLocation(car, filterParam)) {
+        addCar = false;
+        break;
+        }
       }
 
       if (addCar)

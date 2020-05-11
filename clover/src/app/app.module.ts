@@ -19,6 +19,7 @@ import { PomocnaComponent } from './components/pomocna/pomocna.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RentACarFilterComponent } from './components/car/rent-a-car-filter/rent-a-car-filter.component';
 import { CarFilterComponent } from './components/car/car-filter/car-filter.component';
+import { AddRentACarComponent } from './components/car/add-rent-a-car/add-rent-a-car.component';
 
 
 
@@ -37,6 +38,7 @@ import { CarFilterComponent } from './components/car/car-filter/car-filter.compo
     PaymentComponent,
     RentACarFilterComponent,
     CarFilterComponent,
+    AddRentACarComponent,
     
   ],
   imports: [

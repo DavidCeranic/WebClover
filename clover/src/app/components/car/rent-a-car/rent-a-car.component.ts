@@ -4,6 +4,8 @@ import { CarService } from 'src/app/services/car/car.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractFilterParam } from 'src/app/entities/abstract-filter-param/abstract-filter-param';
 import { StringFilterParam } from 'src/app/entities/string-filter-param/string-filter-param';
+import { NumberFilterParam } from 'src/app/entities/number-filter-param/number-filter-param';
+
 
 @Component({
   selector: 'app-rent-a-car',
@@ -28,6 +30,14 @@ export class RentACarComponent implements OnInit {
       filterParams.push(this.addNameServiceFilterParam());
     }
 
+    if (this.getFilterFieldValue("endLocationFilter")) {
+      filterParams.push(this.addEndLocationFilterParam());
+    }
+
+    if (this.getFilterFieldValue("carMaxPerDayPriceFilter")) {
+      filterParams.push(this.addCarMaxPerDayPriceFilterParam());
+    }
+
     this.filtredCars = this.carService.filterCars(this.allCars, filterParams);
   }
 
@@ -37,6 +47,14 @@ export class RentACarComponent implements OnInit {
 
   addNameServiceFilterParam(): ReturnType<any> {
     return new StringFilterParam("startLocationFilter", this.getFilterFieldValue("startLocationFilter"));
+  }
+
+  addEndLocationFilterParam(): ReturnType<any> {
+    return new StringFilterParam("endLocationFilter", this.getFilterFieldValue("endLocationFilter"));
+  }
+
+  addCarMaxPerDayPriceFilterParam(): ReturnType<any> {
+    return new NumberFilterParam("carMaxPerDayPriceFilter", +this.getFilterFieldValue("carMaxPerDayPriceFilter"));
   }
 
   getFilterFieldValue(filterFieldId: string) {
