@@ -20,6 +20,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { RentACarFilterComponent } from './components/car/rent-a-car-filter/rent-a-car-filter.component';
 import { CarFilterComponent } from './components/car/car-filter/car-filter.component';
 import { AddRentACarComponent } from './components/car/add-rent-a-car/add-rent-a-car.component';
+import { SearchFlightComponent } from './components/flights/search-flight/search-flight.component';
 
 
 
@@ -39,6 +40,7 @@ import { AddRentACarComponent } from './components/car/add-rent-a-car/add-rent-a
     RentACarFilterComponent,
     CarFilterComponent,
     AddRentACarComponent,
+    SearchFlightComponent,
     
   ],
   imports: [
