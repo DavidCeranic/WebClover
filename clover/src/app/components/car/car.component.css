@@ -302,3 +302,11 @@ body, html {
 }
 
 
+.admin{
+  position: absolute;
+  display: block;
+  margin-left: -47%;
+  margin-top: 15%;
+}
+
+

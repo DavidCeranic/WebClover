@@ -39,9 +39,9 @@ export class CarComponent implements OnInit {
     if (this.getFilterFieldValue("rentServiceFilter")) {
       filterParams.push(this.addNameServiceFilterParam());
     }
-    if (this.getFilterFieldValue("rentServiceFilter")) {
-      filterParams.push(this.addLocationFilterParam());
-    }
+    //if (this.getFilterFieldValue("rentServiceFilter")) {
+      //filterParams.push(this.addLocationFilterParam());
+    //}
 
     this.filtredRentServices = this.rentServices.filterServices(this.allRentServices, filterParams);
   }

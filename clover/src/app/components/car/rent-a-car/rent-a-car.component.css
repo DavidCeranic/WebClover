@@ -911,3 +911,8 @@ top:85px;
 .booking-form .submit-btn:focus {
 	opacity: 0.9;
 }
+
+.admin{
+  margin-left: -75%;
+  margin-top: 20%;
+}
