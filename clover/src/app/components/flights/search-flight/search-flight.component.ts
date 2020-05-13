@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
   selector: 'app-search-flight',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchFlightComponent implements OnInit {
 
-  @Input() searchedFlights;
+  @Input() searchedFlights ;
 
   constructor() { }
 
