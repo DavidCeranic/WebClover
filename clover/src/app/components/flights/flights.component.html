@@ -32,7 +32,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<span class="form-label">Flyning to</span>
-												<input class="form-control" type="text" placeholder="City or airport">
+												<input class="form-control" type="text" placeholder="City or airport" id="searchToFilter">
 											</div>
 										</div>
 									</div>
@@ -134,7 +134,7 @@
 			
 									  <div routerLink="/rent-a-car" class="col" ontouchstart="this.classList.toggle('hover');">
 										<div class="container">
-											<div class="front" style="background-image: url(https://unsplash.it/502/502/)">
+											<div class="front" style="background-image: url(https://unsplash.it/503/503/)">
 												<div class="inner">
 													<p>Rayanair</p>
 									  <span>Irish</span>
@@ -154,7 +154,7 @@
 						
 					</div>
 
-					<div class="conteiner3" id="style-22">
+					
 						<div [hidden]="searchedFlights.length !== 0">
 							<hr/>
 							<h5 style="text-align: center;">Trenutno nema dostupnih LETOVA koja zadovoljavaju zadate parametre.</h5>
@@ -163,7 +163,7 @@
 							<app-search-flight [searchedFlights]="searchedFlights"></app-search-flight>
 						  </div>
 
-					</div>
+					
 
 
 

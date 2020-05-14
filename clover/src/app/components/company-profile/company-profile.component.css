@@ -358,6 +358,13 @@ border-radius: 10px;
 width: 440px;
 }
 
+.booking-form2 {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 10px;
+  width: 440px;
+  }
+
 .booking-form .form-group {
 position: relative;
 margin-bottom: 20px;
@@ -736,6 +743,18 @@ right: 400px;
 top:455px;
   height: 40%;
   width: 55%;
+  padding: 20px;
+  background: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 25px;
+  border-radius: 10px;
+}
+.conteiner8{
+  position: absolute;
+right: 0px;
+top:255px;
+  height: 40%;
+  width: 21%;
   padding: 20px;
   background: #fff;
   background: rgba(0, 0, 0, 0.3);
