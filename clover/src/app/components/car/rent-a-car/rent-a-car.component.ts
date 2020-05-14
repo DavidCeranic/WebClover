@@ -14,7 +14,7 @@ import { RentService } from 'src/app/entities/rentService/rent-service';
   styleUrls: ['./rent-a-car.component.css']
 })
 export class RentACarComponent implements OnInit {
-  message: RentService;
+  rentService: RentService;
 
   showStr = "Locations";
   SearchCarForm: FormGroup;
@@ -24,7 +24,7 @@ export class RentACarComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.data.currentMessage.subscribe(message => this.message = message);
+    this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
   }
   
   constructor(private carService: CarService, private data: RentServiceDetailsService) { 
