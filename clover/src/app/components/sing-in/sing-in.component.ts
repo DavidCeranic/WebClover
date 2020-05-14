@@ -35,6 +35,10 @@ export class SingInComponent implements OnInit {
     localStorage.setItem('sessionUserRole', JSON.stringify('USER'));
   }
 
+  becomeAAdmin(): void{
+    localStorage.setItem('sessionUserRolee', JSON.stringify('ADMIN'));
+  }
+
   private initForm() {
     this.singInForm = new FormGroup({
       'Email': new FormControl('', Validators.required),

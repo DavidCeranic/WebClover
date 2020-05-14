@@ -5,7 +5,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractFilterParam } from 'src/app/entities/abstract-filter-param/abstract-filter-param';
 import { StringFilterParam } from 'src/app/entities/string-filter-param/string-filter-param';
 import { NumberFilterParam } from 'src/app/entities/number-filter-param/number-filter-param';
-
+import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
+import { RentService } from 'src/app/entities/rentService/rent-service';
 
 @Component({
   selector: 'app-rent-a-car',
@@ -13,13 +14,20 @@ import { NumberFilterParam } from 'src/app/entities/number-filter-param/number-f
   styleUrls: ['./rent-a-car.component.css']
 })
 export class RentACarComponent implements OnInit {
+  rentService: RentService;
+
   showStr = "Locations";
   SearchCarForm: FormGroup;
 
   allCars: Array<Car>;
   filtredCars: Array<Car>;
+
+  ngOnInit(): void {
+    this.initForm();
+    this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
+  }
   
-  constructor(private carService: CarService) { 
+  constructor(private carService: CarService, private data: RentServiceDetailsService) { 
     this.allCars = this.carService.loadCars();
     this.filtredCars = this.allCars;
   }
@@ -69,9 +77,7 @@ export class RentACarComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.initForm();
-  }
+  
 
   navigateTo(section: string){
     window.location.hash='';

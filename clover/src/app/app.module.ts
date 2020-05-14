@@ -21,6 +21,7 @@ import { RentACarFilterComponent } from './components/car/rent-a-car-filter/rent
 import { CarFilterComponent } from './components/car/car-filter/car-filter.component';
 import { AddRentACarComponent } from './components/car/add-rent-a-car/add-rent-a-car.component';
 import { SearchFlightComponent } from './components/flights/search-flight/search-flight.component';
+import { AddCarComponent } from './components/car/add-car/add-car.component';
 
 
 
@@ -41,6 +42,7 @@ import { SearchFlightComponent } from './components/flights/search-flight/search
     CarFilterComponent,
     AddRentACarComponent,
     SearchFlightComponent,
+    AddCarComponent,
     
   ],
   imports: [

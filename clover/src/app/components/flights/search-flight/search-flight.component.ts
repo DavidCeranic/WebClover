@@ -7,7 +7,6 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class SearchFlightComponent implements OnInit {
 
-  @Input() searchedFlights ;
 
   constructor() { }
 

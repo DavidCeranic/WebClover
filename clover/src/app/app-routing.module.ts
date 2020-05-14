@@ -13,6 +13,7 @@ import { PomocnaComponent } from './components/pomocna/pomocna.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { AddRentACarComponent } from './components/car/add-rent-a-car/add-rent-a-car.component';
 import { AdminGuard } from './guards/admin/admin.guard';
+import { AddCarComponent } from './components/car/add-car/add-car.component';
 
 const routes: Routes = [
   {
@@ -36,7 +37,8 @@ const routes: Routes = [
     children: [
       {path: "", component: CarComponent, canActivate: [UserGuard]},
       {path: "rent-a-car", component: RentACarComponent},
-      {path: "add-rent-a-car", component: AddRentACarComponent, canActivate: [AdminGuard]}
+      {path: "add-rent-a-car", component: AddRentACarComponent, canActivate: [AdminGuard]},
+      {path: "add-car", component: AddCarComponent, canActivate: [AdminGuard]}
     ]
   },
   {
