@@ -36,7 +36,9 @@ export class FlightsComponent implements OnInit {
     if (this.getFilterFieldValue("searchFromFilter")) {
       filterParams.push(this.addSearchFromFilterParam());
     }
-    
+    if (this.getFilterFieldValue("searchToFilter")) {
+      filterParams.push(this.addSearchToFilterParam());
+    }
 
     this.searchedFlights = this.flightService.searchFligts(this.allFlightss, filterParams);
   }
@@ -49,7 +51,9 @@ export class FlightsComponent implements OnInit {
   addSearchFromFilterParam(): ReturnType<any> {
     return new StringFilterParam("searchFromFilter", this.getFilterFieldValue("searchFromFilter"));
   }
-
+  addSearchToFilterParam(): ReturnType<any> {
+    return new StringFilterParam("searchToFilter", this.getFilterFieldValue("searchToFilter"));
+  }
 
 
   getFilterFieldValue(filterFieldId: string) {

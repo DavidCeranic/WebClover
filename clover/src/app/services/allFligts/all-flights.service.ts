@@ -23,6 +23,10 @@ export class AllFlightsService {
           addFlight=false;
           break;
         }
+        if(this.checkFlyingTo(flight,filterParam)){
+          addFlight=false;
+          break;
+        }
 
        
       }
@@ -37,7 +41,7 @@ export class AllFlightsService {
   }
 
   checkFlyingTo(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
-    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'flyingTo' && !flight.to.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchToFilter' && !flight.to.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
   }
 
  
