@@ -6,6 +6,8 @@ import { AbstractFilterParam } from 'src/app/entities/abstract-filter-param/abst
 import { StringFilterParam } from 'src/app/entities/string-filter-param/string-filter-param';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {AboutCompany} from "src/app/entities/aboutCompany/about-company"
+import {AvioCompanyService} from 'src/app/services/avioCompany/avio-company.service'
 
 @Component({
   selector: 'app-flights',
@@ -15,14 +17,17 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class FlightsComponent implements OnInit {
 
- 
+  //avioCompService = AvioCompanyService;
+  allAvioCompanies:Array<AboutCompany>
+
 
   allFlightss:Array<FlightInfo>;
   searchedFlights: Array<FlightInfo>
 
-  constructor(private flightService: AllFlightsService, private router: Router, private route: ActivatedRoute){
+  constructor(private flightService: AllFlightsService,private avioCompService:AvioCompanyService, private router: Router, private route: ActivatedRoute){
     this.allFlightss=this.flightService.getFlights();
     this.searchedFlights=this.allFlightss;
+    this.allAvioCompanies=this.avioCompService.loadAllAvioCompanies();
   }
 
   ngOnInit(): void {

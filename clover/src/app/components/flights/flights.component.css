@@ -338,7 +338,9 @@ background-color: transparent;
 	opacity: 0.9;
 }
 .wrapper{
-    width: 90%;
+  float: left;
+    position: relative;
+    width: 30%;
     margin: 0 auto;
     max-width: 80rem;
   }

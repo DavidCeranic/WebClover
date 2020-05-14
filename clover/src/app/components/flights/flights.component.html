@@ -97,57 +97,29 @@
 				
 
 				<div class="conteiner2" id="style-2">
-						<div class="wrapper">
+
+						<div class="wrapper" *ngFor="let company of allAvioCompanies">
 							<p class="resp-tabs-list">  </p>
 							<div class="cols">
 									  <div routerLink="/company-profile" class="col" ontouchstart="this.classList.toggle('hover');">
 										  <div class="container">
 											  <div class="front" style="background-image: url(https://unsplash.it/500/500/)">
 												  <div class="inner">
-													  <p>Wizzair</p>
-										<span>Hungary</span>
+													  <p>{{company.avioCompName}}</p>
+										<span>{{company.avioCompAddress}}</span>
 												  </div>
 											  </div>
 											  <div class="back">
 												  <div class="inner">
-													<p>Wizz Air, legally incorporated as Wizz Air Hungary Ltd.and stylised as W!ZZ Air,is a Hungarian low-cost airline with its head office in Budapest.</p>
+													<p>{{company.avioCompAbout}}</p>
 												  </div>
 											  </div>
 										  </div>
 									  </div>
 			
-									  <div routerLink="/book-a-flight" class="col" ontouchstart="this.classList.toggle('hover');">
-										  <div class="container">
-											  <div class="front" style="background-image: url(https://unsplash.it/502/502/)">
-												  <div class="inner">
-													  <p>Airserbia</p>
-										<span>Serbia</span>
-												  </div>
-											  </div>
-											  <div class="back">
-												  <div class="inner">
-													  <p>AirSerbia is the flag carrier of Serbia. The company's headquarters is located in Belgrade, Serbia,Nikola Tesla Airport</p>
-												  </div>
-											  </div>
-										  </div>
-									  </div>
+									  
 			
-									  <div routerLink="/rent-a-car" class="col" ontouchstart="this.classList.toggle('hover');">
-										<div class="container">
-											<div class="front" style="background-image: url(https://unsplash.it/503/503/)">
-												<div class="inner">
-													<p>Rayanair</p>
-									  <span>Irish</span>
-												</div>
-											</div>
-											<div class="back">
-												<div class="inner">
-													<p>Ryanair is an Irish budget airline founded in 1984, Dublin, with its primary operational bases at Dublin and London Stansted airports</p>
-												</div>
-											</div>
-										</div>
-									</div>
-			
+									  
 							</div>
 							
 						</div>
