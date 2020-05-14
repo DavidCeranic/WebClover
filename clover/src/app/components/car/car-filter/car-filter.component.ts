@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+//import { MatDialogModule } from "@angular/material/dialog";
+//import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { RentCarComponent } from './RentCar/rent-car/rent-car.component';
 
 @Component({

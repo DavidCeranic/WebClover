@@ -1,17 +1,21 @@
 export class AboutCompany {
-    name: string;
-    address: string;
-    about:string;
-    destinations:string;
-    flights:string;
-    //ovde fale stvari?
+    avioCompName: string;
+    avioCompAddress: string;
+    avioCompAbout:string;
+    avioCompDestinations:string;
+   // avioCompFlights:List<string>;
+    avioCompFastReservationDiscount:string;
+    avioCompSeats:string;
+    avioCompPrices:number;
 
-    constructor(name:string,address:string,about:string,destinations:string,flights: string){
-        this.name =name;
-        this.address=address;
-        this.about=about;
-        this.destinations=destinations;
-        this.flights= flights;
+    constructor(avioCompName:string,avioCompAddress:string,avioCompAbout:string,avioCompDestinations:string,avioCompFastReservationDiscount: string,avioCompSeats:string,avioCompPrices: number){
+        this.avioCompName= avioCompName;
+        this. avioCompAddress= avioCompAddress;
+        this.avioCompAbout = avioCompAbout;
+        this.avioCompDestinations = avioCompDestinations;
+        this.avioCompFastReservationDiscount= avioCompFastReservationDiscount;
+        this.avioCompSeats= avioCompSeats;
+        this.avioCompPrices=avioCompPrices;
     }
 
 }
