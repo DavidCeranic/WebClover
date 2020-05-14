@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { RentCarComponent } from './RentCar/rent-car/rent-car.component';
 
 @Component({
   selector: 'app-car-filter',
@@ -8,10 +11,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CarFilterComponent implements OnInit {
 
   @Input() filtredCars;
+  
 
-  constructor() { }
+  constructor(){}//public dialog: MatDialog
 
   ngOnInit(): void {
   }
 
+  onCreate(){
+    //this.dialog.open(RentCarComponent);
+  }
 }
