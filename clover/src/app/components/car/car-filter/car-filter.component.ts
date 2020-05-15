@@ -21,4 +21,13 @@ export class CarFilterComponent implements OnInit {
   onCreate(){
     //this.dialog.open(RentCarComponent);
   }
+
+  check(){
+    const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
+      if (userRole === 'ADMIN') {
+        return false;
+      }
+
+      return true;
+  }
 }

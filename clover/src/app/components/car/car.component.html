@@ -29,15 +29,14 @@
           </div>
         </form>
 
-        <div class="admin">
+        <div class="admin" [hidden]="check()">
           <div class="s002" >
             <form>
               <div class="inner-form">
                 <div class="input-field fifth-wrap">
                   <p style="color:lavenderblush; margin-left: 35%;"> Admin Services</p>
                   <div class="input-field fifth-wrap">
-                    <button class="btn-search" type="button" routerLink="/car/add-rent-a-car">Add</button>
-                    <button class="btn-search" type="button" routerLink="/car/add-rent-a-car">Change</button>
+                    <button class="btn-search" type="button" routerLink="/car/add-rent-a-car">Add Service</button>
                   </div>
                 </div>
               </div>

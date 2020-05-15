@@ -81,4 +81,13 @@ export class CarComponent implements OnInit {
   Prikaz() : boolean{
     return this.display;
   }
+
+  check(){
+    const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
+      if (userRole === 'ADMIN') {
+        return false;
+      }
+      
+      return true;
+  }
 }

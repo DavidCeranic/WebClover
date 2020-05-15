@@ -23,4 +23,13 @@ export class RentACarFilterComponent implements OnInit {
     this.data.changeMessage(service);
   }
 
+  check(){
+    const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
+      if (userRole === 'ADMIN') {
+        return false;
+      }
+
+      return true;
+  }
+
 }

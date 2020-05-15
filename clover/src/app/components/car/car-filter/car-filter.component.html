@@ -10,5 +10,6 @@
         
         <div class="btn">
         <button class="myButton" (click)="onCreate()">Rent {{car.pricePerDay}}$</button>
+        <button class="myButton" [hidden]="check()">Change</button>
       </div>
       </div>

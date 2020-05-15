@@ -77,7 +77,14 @@ export class RentACarComponent implements OnInit {
     });
   }
 
-  
+  check(){
+    const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
+      if (userRole === 'ADMIN') {
+        return false;
+      }
+
+      return true;
+  }
 
   navigateTo(section: string){
     window.location.hash='';
