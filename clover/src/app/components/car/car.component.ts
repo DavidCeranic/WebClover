@@ -39,9 +39,9 @@ export class CarComponent implements OnInit {
     if (this.getFilterFieldValue("rentServiceFilter")) {
       filterParams.push(this.addNameServiceFilterParam());
     }
-    //if (this.getFilterFieldValue("rentServiceFilter")) {
-      //filterParams.push(this.addLocationFilterParam());
-    //}
+    if (this.getFilterFieldValue("rentServiceFilter2")) {
+      filterParams.push(this.addLocationFilterParam());
+    }
 
     this.filtredRentServices = this.rentServices.filterServices(this.allRentServices, filterParams);
   }
@@ -55,7 +55,7 @@ export class CarComponent implements OnInit {
   }
 
   addLocationFilterParam(): ReturnType<any> {
-    return new StringFilterParam("rentServiceFilter", this.getFilterFieldValue("rentServiceFilter"));
+    return new StringFilterParam("rentServiceFilter2", this.getFilterFieldValue("rentServiceFilter2"));
   }
 
   getFilterFieldValue(filterFieldId: string) {

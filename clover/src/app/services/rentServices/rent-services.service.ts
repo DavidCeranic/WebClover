@@ -28,10 +28,10 @@ export class RentServicesService {
             break;
         }
 
-        //if (this.checkLocation(car, filterParam)) {
-        //addCar = false;
-        //break;
-        //}
+        if (this.checkLocation(car, filterParam)) {
+            addCar = false;
+            break;
+        }
       }
 
       if (addCar)
@@ -46,7 +46,7 @@ export class RentServicesService {
   }
 
   checkLocation(car: RentService, filterParam: AbstractFilterParam): boolean {
-    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'rentServiceFilter' && !car.location.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'rentServiceFilter2' && !car.location.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
   }
 
   mockedRentSer(): Array<RentService> {

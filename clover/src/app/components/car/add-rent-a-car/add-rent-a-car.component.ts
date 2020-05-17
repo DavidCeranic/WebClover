@@ -9,6 +9,7 @@ import { RentServiceDetailsService } from 'src/app/services/rentServices/rentSer
   styleUrls: ['./add-rent-a-car.component.css']
 })
 export class AddRentACarComponent implements OnInit {
+  display: boolean;
 
   rentService: RentService;
   SelectedCar: Car;
@@ -17,6 +18,7 @@ export class AddRentACarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.display=true;
     this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
   }
 
