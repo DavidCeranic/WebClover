@@ -23,6 +23,11 @@ export class RentACarFilterComponent implements OnInit {
     this.data.changeMessage(service);
   }
 
+  onSelectRentService(service: RentService){
+    this.router.navigateByUrl('/car/add-rent-a-car');
+    this.data.changeMessage(service);
+  }
+
   check(){
     const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
       if (userRole === 'ADMIN') {
