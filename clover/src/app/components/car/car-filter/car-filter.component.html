@@ -2,13 +2,14 @@
     <div *ngFor="let car of filtredCars" class="div1">
         <div class="image" style="content:url({{car.imageUrl}})"></div>
         <div class="divName">{{car.serviceName}}</div>
-        <div class="div5To">Brand: {{car.brand}}</div>
-        <div class="div6To">Model: {{car.model}}</div>
-        <div class="div3From">{{car.location}}</div>
-        
+        <div class="div5To">Brand: {{car.brand}}  Year:{{car.year}}</div>
+        <div class="div6To">Model: {{car.model}} Seats:{{car.numOfSeats}}</div>
+        <div class="div3From">{{car.location}} Type:{{car.typeOfCar}}</div>
+        <div class="rate"> <ngb-rating [rate]="3"></ngb-rating> </div> 
         
         
         <div class="btn">
         <button class="myButton" (click)="onCreate()">Rent {{car.pricePerDay}}$</button>
+        <button class="myButton" [hidden]="check()" (click)="onSelectCar(car)">Change</button>
       </div>
       </div>

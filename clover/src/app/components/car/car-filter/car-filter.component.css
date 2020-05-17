@@ -3,7 +3,7 @@
   .div1{
     background-color: rgba(234, 247, 246, 0.808);
     width: 530px;
-    height: 145px;
+    height: 205px;
     border-radius: 10px;
     position: relative;
     display: inline-block;
@@ -12,7 +12,7 @@
   div.image {
     position: absolute;
     width: 200px;
-    height: 100px;
+    height: 170px;
     left: 0;
     top: 12px;
    
@@ -79,4 +79,9 @@
     .myButton:active {
     position:relative;
     top:1px;
+    }
+
+    .rate{
+      margin-left: 70%;
+      margin-top: 23%
     }

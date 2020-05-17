@@ -37,7 +37,7 @@
       </div>
 
       <div class="row content">
-        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
+        <!-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
           <p>
             Primero Hertz Rental Car je nosilac franšiza Europcar, InterRent i Global Rent a Car za države Srbiju i Crnu Goru. 
             Ti brendovi su deo Europcar Mobility Group koja je prisutna u većini zemalja sveta. Osnovne delatnosti kompanije:
@@ -58,6 +58,10 @@
             Matični broj pravnog lica: 17453416
             Registarski broj: 2780037616
           </p>
+        </div> -->
+
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
+          <p>{{rentService.about}}</p>
         </div>
       </div>
 
@@ -142,14 +146,13 @@
         </div>      
 </section>
 
-<section id="admin">
+<section id="admin" [hidden]="check()">
   <div class="adminDiv">
     <div class="booking-form">
       <form style="margin-top: 17%;">
             <p style="color:white;"> Admin Services</p>
               <div class="form-btn">
-                <button class="submit-btn" type="button" routerLink="/car/add-car">Add</button>
-                <button class="submit-btn" type="button" routerLink="/car/add-car">Change</button>
+                <button class="submit-btn" type="button" routerLink="/car/add-car">Add Car</button>
               </div>
       </form>
     </div>
@@ -169,7 +172,12 @@
 </div>
 
 
-
+<section id="locations" class="locations">
+  <agm-map [zoom]="17" [latitude]="rentService.lat" [longitude]="rentService.lng">
+      <agm-marker [latitude]="rentService.lat" [longitude]="rentService.lng">
+      </agm-marker>
+  </agm-map>
+</section>
 
 
 <section id="contact" class="contact">
@@ -184,17 +192,18 @@
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="contact-about">
           <h3>{{rentService.serviceName}}</h3>
-          <p>Za sve nedoumice koje imate možete nas pozvati, kontaktirati putem maila ili nas posetiti na jednoj od mnogobrojnih lokacija. </p>
+          <!-- <p>Za sve nedoumice koje imate možete nas pozvati, kontaktirati putem maila ili nas posetiti na jednoj od mnogobrojnih lokacija. </p>
           <div class="social-links">
             <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
             <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
             <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
             <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
-          </div>
+          </div> -->
+          <p>{{rentService.contact}}</p>
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+      <!-- <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
         <div class="info">
           <div>
             <i class="ri-map-pin-line"></i>
@@ -212,7 +221,7 @@
           </div>
 
         </div>
-      </div>
+      </div> -->
 
       <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">
         <form action="forms/contact.php" method="post" role="form" class="php-email-form">

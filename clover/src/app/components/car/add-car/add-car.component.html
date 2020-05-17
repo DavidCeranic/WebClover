@@ -1,74 +1,46 @@
-<div class="booking-form">
-    <form>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="form-group">
-            <span class="form-label">Start Location</span>
-            <input class="form-control" type="text" placeholder="Start Location" id="startLocationFilter">
-          </div>
-        </div>
+<form>
+  <div class="inner-form">
+    <div class="input-field first-wrap">
+      Rent Service Name: 
+      <input type="text" placeholder="{{car.serviceName}}" id="serviceName"/>
+    </div>
 
-        <div class="col-md-3">
-          <div class="form-group">
-            <span class="form-label">Start Date</span>
-            <input class="form-control" type="date" required>
-          </div>
-        </div>
+    <div class="input-field first-wrap">
+      Car Brand:
+      <input type="text" placeholder="{{car.brand}}" id="brand"/>
+    </div>
 
-        <div class="col-md-2">
-          <div class="form-group">
-            <span class="form-label">Type of Vehicle</span>
-            <select class="form-control">
-              <option>Putnicko</option>
-              <option>Teretno</option>
-              <option>Kabriolet</option>
-            </select>
-            <span class="select-arrow"></span>
-          </div>
-        </div>
+    <div class="input-field first-wrap">
+      Car Model:
+      <input type="text" placeholder="{{car.model}}" id="model"/>
+    </div>
 
-        <div class="col-md-2">
-          <div class="form-group">
-            <span class="form-label">Passengers</span>
-            <select class="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-            <span class="select-arrow"></span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        
-        <div class="col-md-3">
-          <div class="form-group">
-            <span class="form-label">End Location</span>
-            <input class="form-control" type="text" placeholder="End Location" id="endLocationFilter">
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <span class="form-label">End Date</span>
-            <input class="form-control" type="date" required>
-          </div>
-        </div>
+    <div class="input-field first-wrap">
+      Car Year:
+      <input type="text" placeholder="{{car.year}}" id="year"/>
+    </div>
 
-        <div class="col-md-4">
-          <div class="form-group">
-            <span class="form-label">Price</span>
-            <input class="form-control" style="width: 35%;" type="number" placeholder="Price" id="carMaxPerDayPriceFilter">
-          </div>
-        </div>
-        
-        <div class="col-md-2">
-          <div class="form-btn">
-            <button class="submit-btn" style="margin-left: -82%; margin-top: 15%;">Add Car</button>
-          </div>
-        </div>
-      </div>
-    </form>
+    <div class="input-field first-wrap">
+      Price per Day:
+      <input type="text" placeholder="{{car.pricePerDay}}" id="pricePerDay"/>
+    </div>
+
+    <div class="input-field first-wrap">
+      Number of Seats:
+      <input type="text" placeholder="{{car.numOfSeats}}" id="numberOfSeats"/>
+    </div>
+
+    <div class="input-field fifth-wrap">
+      <button class="btn-search" type="button">Add Image</button>
+    </div>
+
+    <div class="input-field first-wrap">
+      Car Locatio:
+      <input type="text" placeholder="{{car.location}}" id="location"/>
+    </div>
+
+    <div class="input-field fifth-wrap">
+      <button class="btn-search" type="button" (click)="AddCar()">Add Rent Service</button>
+    </div>
   </div>
+</form>

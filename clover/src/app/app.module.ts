@@ -24,7 +24,8 @@ import { SearchFlightComponent } from './components/flights/search-flight/search
 import { AddCarComponent } from './components/car/add-car/add-car.component';
 import { RentCarComponent } from './components/car/car-filter/RentCar/rent-car/rent-car.component';
 
-
+import { AgmCoreModule } from '@agm/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -51,7 +52,11 @@ import { RentCarComponent } from './components/car/car-filter/RentCar/rent-car/r
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBZR9ncGXHSYJjwRsz4HTAv-d9XjT6MzUk'
+    }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
