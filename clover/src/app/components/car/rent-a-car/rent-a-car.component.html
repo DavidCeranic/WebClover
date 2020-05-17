@@ -172,7 +172,12 @@
 </div>
 
 
-
+<section id="locations" class="locations">
+  <agm-map [zoom]="17" [latitude]="rentService.lat" [longitude]="rentService.lng">
+      <agm-marker [latitude]="rentService.lat" [longitude]="rentService.lng">
+      </agm-marker>
+  </agm-map>
+</section>
 
 
 <section id="contact" class="contact">
