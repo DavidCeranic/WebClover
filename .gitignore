@@ -413,3 +413,19 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 /packages
+WebApiClover/.vs/WebApiClover/DesignTimeBuild/.dtbcache.v2
+WebApiClover/.vs/WebApiClover/v16/.suo
+WebApiClover/WebApiClover/bin/Debug/netcoreapp3.0/Properties/launchSettings.json
+WebApiClover/WebApiClover/bin/Debug/netcoreapp3.0/WebApiClover.pdb
+WebApiClover/WebApiClover/bin/Debug/netcoreapp3.0/WebApiClover.runtimeconfig.dev.json
+WebApiClover/WebApiClover/obj/Debug/netcoreapp3.0/WebApiClover.assets.cache
+WebApiClover/WebApiClover/obj/Debug/netcoreapp3.0/WebApiClover.csproj.CoreCompileInputs.cache
+WebApiClover/WebApiClover/obj/Debug/netcoreapp3.0/WebApiClover.csproj.FileListAbsolute.txt
+WebApiClover/WebApiClover/obj/Debug/netcoreapp3.0/WebApiClover.csprojAssemblyReference.cache
+WebApiClover/WebApiClover/obj/Debug/netcoreapp3.0/WebApiClover.dll
+WebApiClover/WebApiClover/obj/Debug/netcoreapp3.0/WebApiClover.pdb
+WebApiClover/WebApiClover/obj/project.assets.json
+WebApiClover/WebApiClover/obj/project.nuget.cache
+WebApiClover/WebApiClover/obj/WebApiClover.csproj.nuget.dgspec.json
+WebApiClover/WebApiClover/obj/WebApiClover.csproj.nuget.g.props
+WebApiClover/WebApiClover/Properties/launchSettings.json
