@@ -18,6 +18,10 @@ namespace WebApiClover.Models
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
+        public string Email { get; set; }
+
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
         public string Password { get; set; }
 
         [Required]
