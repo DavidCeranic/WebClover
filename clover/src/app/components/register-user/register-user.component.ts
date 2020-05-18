@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserDetailsService } from 'src/app/services/userDetails/user-details.service';
 
 @Component({
   selector: 'app-register-user',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: UserDetailsService) { }
 
   ngOnInit(): void {
+    this.service.refreshList();
   }
 
 }

@@ -28,6 +28,8 @@ import { AgmCoreModule } from '@agm/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { UserDetailsService } from './services/userDetails/user-details.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -60,7 +62,9 @@ import { HttpClientModule } from '@angular/common/http';
       apiKey: 'AIzaSyBZR9ncGXHSYJjwRsz4HTAv-d9XjT6MzUk'
     }),
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [UserDetailsService],
   bootstrap: [AppComponent],

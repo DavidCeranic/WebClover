@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { User } from 'src/app/entities/User/user';
 import { SingInComponent } from '../sing-in.component';
 import { UserDetailsService } from 'src/app/services/userDetails/user-details.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sing-up',
@@ -17,7 +18,7 @@ export class SingUpComponent implements OnInit {
 
   @Output() messageEvent = new EventEmitter<string>();
 
-  constructor(public service: UserDetailsService) { }
+  constructor(public service: UserDetailsService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.resetForm();
@@ -33,6 +34,7 @@ export class SingUpComponent implements OnInit {
     this.service.postUserDetails(form.value).subscribe(
       res => {
         this.resetForm(form);
+        this.toastr.success('Submitted successfully','User Detail Register');
       },
       err => {
         console.log(err);
