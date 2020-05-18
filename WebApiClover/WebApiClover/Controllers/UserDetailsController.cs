@@ -28,18 +28,18 @@ namespace WebApiClover.Controllers
         }
 
         // GET: api/UserDetails/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<UserDetail>> GetUserDetail(int id)
-        //{
-        //    var userDetail = await _context.UserDetails.FindAsync(id);
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserDetail>> GetUserDetail(int id)
+        {
+            var userDetail = await _context.UserDetails.FindAsync(id);
 
-        //    if (userDetail == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (userDetail == null)
+            {
+                return NotFound();
+            }
 
-        //    return userDetail;
-        //}
+            return userDetail;
+        }
 
         // PUT: api/UserDetails/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for

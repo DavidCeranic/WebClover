@@ -211,4 +211,12 @@ h2 {
     background: #78c7d2;
     font-size: 25px; 
   }
+
+  .input.ng-touched.ng-invalid{
+    border-color: #dc3545;
+  }
+
+  .input.ng-calid{
+    border-color: #28a745;
+  }
   

@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { User } from 'src/app/entities/User/user';
 import { SingInComponent } from '../sing-in.component';
+import { UserDetailsService } from 'src/app/services/userDetails/user-details.service';
 
 @Component({
   selector: 'app-sing-up',
@@ -16,32 +17,27 @@ export class SingUpComponent implements OnInit {
 
   @Output() messageEvent = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(public service: UserDetailsService) { }
 
   ngOnInit(): void {
-    this.initForm();
+    this.resetForm();
   }
 
-  private initForm() {
-    this.singUpForm = new FormGroup({
-      'FirstName' : new FormControl('', Validators.required),
-      'LastName': new FormControl('', [Validators.required, Validators.maxLength(100)]),
-      'Email': new FormControl(''),
-      'Password': new FormControl(''),
-      'City': new FormControl(''),
-      'PhoneNumber': new FormControl('')
-    });
-  }
 
   navigateTo(section: string){
     window.location.hash='';
     window.location.hash = section;
   }
 
-  onSubmit(): void {
-    const user = new User(this.getValue("FirstName"),this.getValue("LastName"),this.getValue("Email"),
-                 this.getValue("Password"),this.getValue("City"), this.getValue("PhoneNumber"));
-    this.registerUser.push(user);
+  onSubmit(form: NgForm){
+    this.service.postUserDetails(form.value).subscribe(
+      res => {
+        this.resetForm(form);
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
   sendMessage(){
@@ -54,6 +50,20 @@ export class SingUpComponent implements OnInit {
 
   getValue(Id: string) {
     return (<HTMLInputElement> document.getElementById(Id)).value;
+  }
+
+  resetForm(form?: NgForm){
+    if(form!=null)
+      form.resetForm();
+      this.service.formData = {
+        userId: "",
+        name: "",
+        email: "",
+        password: "",
+        city: "",
+        phoneNumber: "",
+        userType: "",
+      }
   }
 
 }

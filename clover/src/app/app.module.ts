@@ -26,6 +26,9 @@ import { RentCarComponent } from './components/car/car-filter/RentCar/rent-car/r
 
 import { AgmCoreModule } from '@agm/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { UserDetailsService } from './services/userDetails/user-details.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -56,9 +59,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBZR9ncGXHSYJjwRsz4HTAv-d9XjT6MzUk'
     }),
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UserDetailsService],
   bootstrap: [AppComponent],
   entryComponents: [RentCarComponent]
 })
