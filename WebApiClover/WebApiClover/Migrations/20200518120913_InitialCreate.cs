@@ -16,7 +16,8 @@ namespace WebApiClover.Migrations
                     Password = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    UserType = table.Column<string>(type: "nvarchar(100)", nullable: false)
+                    UserType = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", nullable: false)
                 },
                 constraints: table =>
                 {
