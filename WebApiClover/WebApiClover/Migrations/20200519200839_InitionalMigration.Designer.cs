@@ -9,8 +9,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200519183011_DveTabele")]
-    partial class DveTabele
+    [Migration("20200519200839_InitionalMigration")]
+    partial class InitionalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,6 +56,48 @@ namespace WebApiClover.Migrations
                     b.HasKey("avioCompID");
 
                     b.ToTable("AboutCompanies");
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.RentService", b =>
+                {
+                    b.Property<int>("ServiceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("About")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Contact")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Img")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("Lat")
+                        .HasColumnType("decimal");
+
+                    b.Property<decimal>("Lng")
+                        .HasColumnType("decimal");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("ServiceId");
+
+                    b.ToTable("RentService");
                 });
 
             modelBuilder.Entity("WebApiClover.Models.UserDetail", b =>
