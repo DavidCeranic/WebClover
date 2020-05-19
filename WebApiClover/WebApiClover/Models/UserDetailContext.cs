@@ -9,12 +9,14 @@ namespace WebApiClover.Models
     public class UserDetailContext : DbContext 
     {
 
-        public UserDetailContext(DbContextOptions<UserDetailContext> options):base(options)
+        public UserDetailContext(DbContextOptions<UserDetailContext> options) : base(options)
         {
 
 
         }
 
         public DbSet<UserDetail> UserDetails { get; set; }
+
+        public DbSet<AboutCompany> AboutCompanies { get; set; }
     }
 }
