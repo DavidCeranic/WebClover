@@ -6,7 +6,7 @@ to:string;
 departing:Date;
 returning:Date;
 classf:string;
-
+baggage : string;
 stops:number;
 duration:string;
 companyName:string;
