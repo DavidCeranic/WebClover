@@ -1,31 +1,50 @@
-<form>
-    <div class="inner-form">
-      <div class="input-field first-wrap">
+<form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form">
+
+    <input type="hidden" name="serviceId" [value]="service.formData.serviceId">
+
+      <div class="form-group">
         Rent Service Name: 
-        <input id="search" type="text" placeholder="{{rentService.serviceName}}" id="serviceName"/>
+        <input #serviceName="ngModel" [(ngModel)]="service.formData.serviceName" name="serviceName" type="text" class="form-input" id="serviceName" required/>
       </div>
 
-      <div class="input-field first-wrap">
+      <div class="form-group">
         Rent Service Locarion:
-        <input id="search" type="text" placeholder="{{rentService.location}}" id="location"/>
+        <input #location="ngModel" [(ngModel)]="service.formData.location" name="location" type="text" class="form-input" id="location" required/>
       </div>
 
-      <div class="input-field fifth-wrap">
-        <button class="btn-search" type="button">Add Image</button>
+      <div class="form-group">
+        <!-- <button class="btn-search" type="button">Add Image</button> -->
+        Rent Service Img:
+        <input #img="ngModel" [(ngModel)]="service.formData.img" name="img" type="text" class="form-input" id="about" required/>
       </div>
 
-      <div class="input-field first-wrap">
+      <div class="form-group">
+        Rent Service Description:
+        <input #description="ngModel" [(ngModel)]="service.formData.description" name="description"  type="text" class="form-input" id="about" required/>
+      </div>
+
+      <div class="form-group">
         About Rent Service:
-        <input id="search" type="text" placeholder="{{rentService.about}}" id="about"/>
+        <input #about="ngModel" [(ngModel)]="service.formData.about" name="about" type="text" class="form-input" id="about" required/>
       </div>
 
-      <div class="input-field first-wrap">
+      <div class="form-group">
         Rent Service Contact:
-        <input id="search" type="text" placeholder="{{rentService.contact}}" id="contact"/>
+        <input #contact="ngModel" [(ngModel)]="service.formData.contact" name="contact" type="text" class="form-input" id="contact" required/>
       </div>
 
-      <div class="input-field fifth-wrap">
-        <button class="btn-search" type="button" (click)="AddRentService()">Add Rent Service</button>
+      <div class="form-group">
+        Rent Service Latitude:
+        <input #lat="ngModel" [(ngModel)]="service.formData.lat" name="lat" type="number" class="form-input" id="contact" required/>
       </div>
+
+      <div class="form-group">
+        Rent Service Longitude:
+        <input #lng="ngModel" [(ngModel)]="service.formData.lng" name="lng" type="number" class="form-input" id="contact" required/>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" name="submit" id="submit" class="form-submit" value="Add Rent Service"/>
     </div>
+
   </form>

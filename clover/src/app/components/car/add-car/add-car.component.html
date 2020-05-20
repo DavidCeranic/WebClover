@@ -1,46 +1,65 @@
-<form>
-  <div class="inner-form">
-    <div class="input-field first-wrap">
+<form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form">
+
+  <input type="hidden" name="carId" [value]="service.formData.carId">
+
+    <div class="form-group">
       Rent Service Name: 
-      <input type="text" placeholder="{{car.serviceName}}" id="serviceName"/>
+      <input #serviceName="ngModel" [(ngModel)]="service.formData.serviceName" name="serviceName" type="text" class="form-input" id="serviceName" required/>
     </div>
 
-    <div class="input-field first-wrap">
+    <div class="form-group">
       Car Brand:
-      <input type="text" placeholder="{{car.brand}}" id="brand"/>
+      <input #brand="ngModel" [(ngModel)]="service.formData.brand" name="brand" type="text" class="form-input" id="brand" required/>
     </div>
 
-    <div class="input-field first-wrap">
+    <div class="form-group">
+      <!-- <button class="btn-search" type="button">Add Image</button> -->
       Car Model:
-      <input type="text" placeholder="{{car.model}}" id="model"/>
+      <input #model="ngModel" [(ngModel)]="service.formData.model" name="model" type="text" class="form-input" id="model" required/>
     </div>
 
-    <div class="input-field first-wrap">
+    <div class="form-group">
       Car Year:
-      <input type="text" placeholder="{{car.year}}" id="year"/>
+      <input #year="ngModel" [(ngModel)]="service.formData.year" name="year"  type="number" class="form-input" id="year" required/>
     </div>
 
-    <div class="input-field first-wrap">
+    <div class="form-group">
       Price per Day:
-      <input type="text" placeholder="{{car.pricePerDay}}" id="pricePerDay"/>
+      <input #pricePerDay="ngModel" [(ngModel)]="service.formData.pricePerDay" name="pricePerDay" type="number" class="form-input" id="pricePerDay" required/>
     </div>
 
-    <div class="input-field first-wrap">
+    <div class="form-group">
       Number of Seats:
-      <input type="text" placeholder="{{car.numOfSeats}}" id="numberOfSeats"/>
+      <input #numOfSeats="ngModel" [(ngModel)]="service.formData.numOfSeats" name="numOfSeats" type="number" class="form-input" id="numOfSeats" required/>
     </div>
 
-    <div class="input-field fifth-wrap">
-      <button class="btn-search" type="button">Add Image</button>
+    <div class="form-group">
+      Image:
+      <input #imgUrl="ngModel" [(ngModel)]="service.formData.imgUrl" name="imgUrl" type="text" class="form-input" id="imgUrl" required/>
     </div>
 
-    <div class="input-field first-wrap">
+    <div class="form-group">
       Car Locatio:
-      <input type="text" placeholder="{{car.location}}" id="location"/>
+      <input #location="ngModel" [(ngModel)]="service.formData.location" name="location" type="text" class="form-input" id="location" required/>
     </div>
 
-    <div class="input-field fifth-wrap">
-      <button class="btn-search" type="button" (click)="AddCar()">Add Rent Service</button>
+    <div class="form-group">
+      Car End Locatio: 
+      <input #endLocation="ngModel" [(ngModel)]="service.formData.endLocation" name="endLocation" type="text" class="form-input" id="endLocation" required/>
     </div>
+
+    <div class="form-group">
+      Type of Car:
+      <input #typeOfCar="ngModel" [(ngModel)]="service.formData.typeOfCar" name="typeOfCar" type="text" class="form-input" id="typeOfCar" required/>
+    </div>
+
+    <div class="form-group">
+      Car Rate:
+      <input #rate="ngModel" [(ngModel)]="service.formData.rate" name="rate" type="text" class="form-input" id="rate" required/>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" name="submit" id="submit" class="form-submit" value="Add Rent Service"/>
   </div>
+
 </form>

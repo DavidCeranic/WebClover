@@ -1,6 +1,7 @@
 import { Car } from '../Car/car';
 
 export class RentService {
+    serviceId: string;
     serviceName: string;
     location: string;
     img: string;

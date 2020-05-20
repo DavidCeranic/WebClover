@@ -9,8 +9,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200520104522_FlightInfo")]
-    partial class FlightInfo
+    [Migration("20200520155628_InitionalMigration")]
+    partial class InitionalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,6 +56,59 @@ namespace WebApiClover.Migrations
                     b.HasKey("avioCompID");
 
                     b.ToTable("AboutCompanies");
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.CarInfo", b =>
+                {
+                    b.Property<int>("CarId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("EndLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("NumOfSeats")
+                        .HasColumnType("decimal");
+
+                    b.Property<decimal>("PricePerDay")
+                        .HasColumnType("decimal");
+
+                    b.Property<string>("Rate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("TypeOfCar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("Year")
+                        .HasColumnType("decimal");
+
+                    b.HasKey("CarId");
+
+                    b.ToTable("CarInfo");
                 });
 
             modelBuilder.Entity("WebApiClover.Models.FlightInfo", b =>
