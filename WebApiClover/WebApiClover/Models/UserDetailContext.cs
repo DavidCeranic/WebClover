@@ -22,5 +22,7 @@ namespace WebApiClover.Models
         public DbSet<RentService> RentService { get; set; }
 
         public DbSet<FlightInfo> FlightsInfo { get; set; }
+
+        public DbSet<CarInfo> CarInfo { get; set; }
     }
 }
