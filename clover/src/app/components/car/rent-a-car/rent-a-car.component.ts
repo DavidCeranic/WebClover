@@ -7,6 +7,7 @@ import { StringFilterParam } from 'src/app/entities/string-filter-param/string-f
 import { NumberFilterParam } from 'src/app/entities/number-filter-param/number-filter-param';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { RentService } from 'src/app/entities/rentService/rent-service';
+import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 
 @Component({
   selector: 'app-rent-a-car',
@@ -23,12 +24,13 @@ export class RentACarComponent implements OnInit {
   filtredCars: Array<Car>;
 
   ngOnInit(): void {
+    this.service.refreshList();
     this.initForm();
     this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
   }
   
-  constructor(private carService: CarService, private data: RentServiceDetailsService) { 
-    this.allCars = this.carService.loadCars();
+  constructor(private carService: CarService, private data: RentServiceDetailsService, public service: CarDetailsService) { 
+    this.allCars = this.service.list;
     this.filtredCars = this.allCars;
   }
 

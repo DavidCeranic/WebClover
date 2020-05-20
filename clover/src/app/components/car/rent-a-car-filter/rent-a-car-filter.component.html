@@ -2,20 +2,20 @@
         <div class="main-agileinfo"> 
           <div id="owl-demo" class="owl-carousel owl-theme"><!-- owl-carousel -->
 
-            <div *ngFor="let service of filtredRentServices" class="list">
+            <div *ngFor="let rentService of filtredRentServices" class="list">
             <div class="item">
               <div class="pricing pricing-two">
                 <div class="pricing-top top-two">
-                  <h3>{{service.serviceName}}</h3>
-                  <p>{{service.location}}</p>
+                  <h3>{{rentService.serviceName}}</h3>
+                  <p>{{rentService.location}}</p>
                 </div>
                 <div class="pricing-bottom"> 
                 <div class="img1">
-                  <img style="width: 100%;" src={{service.img}}/>
+                  <img style="width: 100%;" src={{rentService.img}}/>
                 </div>
                 <div class="agileits-buy">
-                  <a class="popup-with-zoom-anim" (click)="onSelect(service)">More</a>
-                  <a class="popup-with-zoom-anim" [hidden]="check()" style="margin-left: 10%;" (click)="onSelectRentService(service)">Change</a>
+                  <a class="popup-with-zoom-anim" (click)="onSelect(rentService)">More</a>
+                  <a class="popup-with-zoom-anim" [hidden]="check()" style="margin-left: 10%;" (click)="onSelectRentService(rentService)">Change</a>
                 </div>
                 </div>
               </div> 

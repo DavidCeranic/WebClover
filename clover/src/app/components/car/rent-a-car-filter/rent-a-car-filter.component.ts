@@ -13,19 +13,20 @@ export class RentACarFilterComponent implements OnInit {
 
   @Input() filtredRentServices;
 
-  constructor(public router: Router, private data: RentServiceDetailsService) { }
+  constructor(public router: Router, public service: RentServiceDetailsService) { }
 
   ngOnInit(): void {
+    this.service.refreshList();
   }
 
   onSelect(service: RentService){
     this.router.navigateByUrl('/car/rent-a-car');
-    this.data.changeMessage(service);
+    this.service.changeMessage(service);
   }
 
   onSelectRentService(service: RentService){
     this.router.navigateByUrl('/car/add-rent-a-car');
-    this.data.changeMessage(service);
+    this.service.changeMessage(service);
   }
 
   check(){

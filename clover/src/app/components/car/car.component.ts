@@ -7,6 +7,7 @@ import { RentService } from 'src/app/entities/rentService/rent-service';
 import { RentServicesService } from 'src/app/services/rentServices/rent-services.service';
 import { AbstractFilterParam } from 'src/app/entities/abstract-filter-param/abstract-filter-param';
 import { StringFilterParam } from 'src/app/entities/string-filter-param/string-filter-param';
+import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 
 
 
@@ -24,12 +25,13 @@ export class CarComponent implements OnInit {
   allRentServices: Array<RentService>;
   filtredRentServices: Array<RentService>;
 
-  constructor(private rentServices: RentServicesService, private router: Router, private route: ActivatedRoute) { 
-    this.allRentServices = this.rentServices.loadRentServices();
+  constructor(private rentServices: RentServicesService, private router: Router, private route: ActivatedRoute, public service: RentServiceDetailsService) { 
+    this.allRentServices = this.service.list;
     this.filtredRentServices = this.allRentServices;
   }
 
   ngOnInit(): void {
+    this.service.refreshList();
     this.initForm();
   }
 
