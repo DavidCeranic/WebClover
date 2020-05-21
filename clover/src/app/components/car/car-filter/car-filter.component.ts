@@ -32,6 +32,7 @@ export class CarFilterComponent implements OnInit {
   }
 
   onSelectCar(car: Car){
+    this.data.formData = car;
     this.router.navigateByUrl('/car/add-car');
     this.data.changeMessage(car);
   }
