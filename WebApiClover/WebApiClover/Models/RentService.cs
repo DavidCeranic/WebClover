@@ -21,29 +21,33 @@ namespace WebApiClover.Models
         public string Location { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar(500)")]
         public string Img { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar(500)")]
         public string Description { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar(4000)")]
         public string About { get; set; }
+
+        [Required]
+        [Column(TypeName = "nvarchar(500)")]
+        public string PriceTable { get; set; }
 
         //public string Cars { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar(4000)")]
         public string Contact { get; set; }
 
         [Required]
         [Column(TypeName = "decimal")]
-        public long Lat { get; set; }
+        public float Lat { get; set; }
 
         [Required]
         [Column(TypeName = "decimal")]
-        public long Lng { get; set; }
+        public float Lng { get; set; }
     }
 }

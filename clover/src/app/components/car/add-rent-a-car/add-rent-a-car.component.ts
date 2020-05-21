@@ -54,6 +54,7 @@ export class AddRentACarComponent implements OnInit {
         location: "",
         img: "",
         description: "",
+        priceTable: "",
         about: "",
         cars: null,
         locationMap: "",

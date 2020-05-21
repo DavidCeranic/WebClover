@@ -73,7 +73,7 @@ namespace WebApiClover.Migrations
 
                     b.Property<string>("ImgUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Location")
                         .IsRequired()
@@ -168,19 +168,19 @@ namespace WebApiClover.Migrations
 
                     b.Property<string>("About")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(4000)");
 
                     b.Property<string>("Contact")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(4000)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Img")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<decimal>("Lat")
                         .HasColumnType("decimal");
@@ -191,6 +191,10 @@ namespace WebApiClover.Migrations
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PriceTable")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("ServiceName")
                         .IsRequired()

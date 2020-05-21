@@ -7,6 +7,7 @@ export class RentService {
     img: string;
     description: string;
     about: string;
+    priceTable: string;
     cars: Array<Car>;
     locationMap: string;
     contact: string;

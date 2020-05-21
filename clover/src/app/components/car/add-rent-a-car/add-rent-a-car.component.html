@@ -29,6 +29,11 @@
       </div>
 
       <div class="form-group">
+        Rent Service Price Table:
+        <input #priceTable="ngModel" [(ngModel)]="service.formData.priceTable" name="priceTable" type="text" class="form-input" id="priceTable" required/>
+      </div>
+
+      <div class="form-group">
         Rent Service Contact:
         <input #contact="ngModel" [(ngModel)]="service.formData.contact" name="contact" type="text" class="form-input" id="contact" required/>
       </div>

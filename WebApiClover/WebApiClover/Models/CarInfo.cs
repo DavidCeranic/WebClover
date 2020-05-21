@@ -37,7 +37,7 @@ namespace WebApiClover.Models
         public long NumOfSeats { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar(500)")]
         public string ImgUrl { get; set; }
 
         [Required]

@@ -50,10 +50,11 @@ namespace WebApiClover.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ServiceName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Img = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    About = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Contact = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Img = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    About = table.Column<string>(type: "nvarchar(4000)", nullable: false),
+                    PriceTable = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    Contact = table.Column<string>(type: "nvarchar(4000)", nullable: false),
                     Lat = table.Column<decimal>(type: "decimal", nullable: false),
                     Lng = table.Column<decimal>(type: "decimal", nullable: false)
                 },
@@ -95,7 +96,7 @@ namespace WebApiClover.Migrations
                                 Year = table.Column<decimal>(type: "decimal", nullable: false),
                                 PricePerDay = table.Column<decimal>(type: "decimal", nullable: false),
                                 NumOfSeats = table.Column<decimal>(type: "decimal", nullable: false),
-                                ImgUrl = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                                ImgUrl = table.Column<string>(type: "nvarchar(500)", nullable: false),
                                 Location = table.Column<string>(type: "nvarchar(100)", nullable: false),
                                 EndLocation = table.Column<string>(type: "nvarchar(100)", nullable: false),
                                 TypeOfCar = table.Column<string>(type: "nvarchar(100)", nullable: false),
@@ -109,8 +110,9 @@ namespace WebApiClover.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+
             migrationBuilder.DropTable(
-                name: "UserDetails");
+                            name: "UserDetails");
 
             migrationBuilder.DropTable(
                 name: "AboutCompanies");
