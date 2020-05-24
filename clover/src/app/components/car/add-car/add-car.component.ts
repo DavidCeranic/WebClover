@@ -15,7 +15,7 @@ export class AddCarComponent implements OnInit {
   constructor(public service: CarDetailsService) { }
 
   ngOnInit(): void {
-    //this.resetForm();
+    this.resetForm();
     this.service.currentMessage.subscribe(car => this.car = car);
   }
 

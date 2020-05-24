@@ -21,7 +21,7 @@ export class AddRentACarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.resetForm();
+    this.resetForm();
     this.display=true;
     this.service.currentMessage.subscribe(rentService => this.rentService = rentService);
   }
