@@ -11,48 +11,48 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AboutCompaniesController : ControllerBase
+    public class CompanyAboutsController : ControllerBase
     {
         private readonly UserDetailContext _context;
 
-        public AboutCompaniesController(UserDetailContext context)
+        public CompanyAboutsController(UserDetailContext context)
         {
             _context = context;
         }
 
-        // GET: api/AboutCompanies
+        // GET: api/CompanyAbouts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AboutCompany>>> GetAboutCompanies()
+        public async Task<ActionResult<IEnumerable<CompanyAbout>>> GetCompanyAbout()
         {
-            return await _context.AboutCompanies.ToListAsync();
+            return await _context.CompanyAbout.ToListAsync();
         }
 
-        // GET: api/AboutCompanies/5
+        // GET: api/CompanyAbouts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<AboutCompany>> GetAboutCompany(int id)
+        public async Task<ActionResult<CompanyAbout>> GetCompanyAbout(int id)
         {
-            var aboutCompany = await _context.AboutCompanies.FindAsync(id);
+            var companyAbout = await _context.CompanyAbout.FindAsync(id);
 
-            if (aboutCompany == null)
+            if (companyAbout == null)
             {
                 return NotFound();
             }
 
-            return aboutCompany;
+            return companyAbout;
         }
 
-        // PUT: api/AboutCompanies/5
+        // PUT: api/CompanyAbouts/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAboutCompany(int id, AboutCompany aboutCompany)
+        public async Task<IActionResult> PutCompanyAbout(int id, CompanyAbout companyAbout)
         {
-            if (id != aboutCompany.AvioCompID)
+            if (id != companyAbout.AvioCompID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(aboutCompany).State = EntityState.Modified;
+            _context.Entry(companyAbout).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace WebApiClover.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AboutCompanyExists(id))
+                if (!CompanyAboutExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +73,37 @@ namespace WebApiClover.Controllers
             return NoContent();
         }
 
-        // POST: api/AboutCompanies
+        // POST: api/CompanyAbouts
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<AboutCompany>> PostAboutCompany(AboutCompany aboutCompany)
+        public async Task<ActionResult<CompanyAbout>> PostCompanyAbout(CompanyAbout companyAbout)
         {
-            _context.AboutCompanies.Add(aboutCompany);
+            _context.CompanyAbout.Add(companyAbout);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAboutCompany", new { id = aboutCompany.AvioCompID }, aboutCompany);
+            return CreatedAtAction("GetCompanyAbout", new { id = companyAbout.AvioCompID }, companyAbout);
         }
 
-        // DELETE: api/AboutCompanies/5
+        // DELETE: api/CompanyAbouts/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<AboutCompany>> DeleteAboutCompany(int id)
+        public async Task<ActionResult<CompanyAbout>> DeleteCompanyAbout(int id)
         {
-            var aboutCompany = await _context.AboutCompanies.FindAsync(id);
-            if (aboutCompany == null)
+            var companyAbout = await _context.CompanyAbout.FindAsync(id);
+            if (companyAbout == null)
             {
                 return NotFound();
             }
 
-            _context.AboutCompanies.Remove(aboutCompany);
+            _context.CompanyAbout.Remove(companyAbout);
             await _context.SaveChangesAsync();
 
-            return aboutCompany;
+            return companyAbout;
         }
 
-        private bool AboutCompanyExists(int id)
+        private bool CompanyAboutExists(int id)
         {
-            return _context.AboutCompanies.Any(e => e.AvioCompID == id);
+            return _context.CompanyAbout.Any(e => e.AvioCompID == id);
         }
     }
 }

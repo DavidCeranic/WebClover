@@ -9,8 +9,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200520155628_InitionalMigration")]
-    partial class InitionalMigration
+    [Migration("20200524171838_NewTable")]
+    partial class NewTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,38 +22,40 @@ namespace WebApiClover.Migrations
 
             modelBuilder.Entity("WebApiClover.Models.AboutCompany", b =>
                 {
-                    b.Property<string>("avioCompID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("AvioCompID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("avioCompAbout")
+                    b.Property<string>("AvioCompAbout")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("avioCompAddress")
+                    b.Property<string>("AvioCompAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("avioCompDestinations")
+                    b.Property<string>("AvioCompDestinations")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("avioCompFastReservationDiscount")
+                    b.Property<string>("AvioCompFastReservationDiscount")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("avioCompName")
+                    b.Property<string>("AvioCompName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("avioCompPrices")
+                    b.Property<string>("AvioCompPrices")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("avioCompSeats")
+                    b.Property<string>("AvioCompSeats")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("avioCompID");
+                    b.HasKey("AvioCompID");
 
                     b.ToTable("AboutCompanies");
                 });
@@ -109,6 +111,46 @@ namespace WebApiClover.Migrations
                     b.HasKey("CarId");
 
                     b.ToTable("CarInfo");
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.CompanyAbout", b =>
+                {
+                    b.Property<int>("AvioCompID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AvioCompAbout")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AvioCompAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AvioCompDestinations")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AvioCompFastReservationDiscount")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AvioCompName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AvioCompPrices")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AvioCompSeats")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("AvioCompID");
+
+                    b.ToTable("CompanyAbout");
                 });
 
             modelBuilder.Entity("WebApiClover.Models.FlightInfo", b =>

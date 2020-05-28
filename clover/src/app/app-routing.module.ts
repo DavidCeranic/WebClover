@@ -14,6 +14,8 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { AddRentACarComponent } from './components/car/add-rent-a-car/add-rent-a-car.component';
 import { AdminGuard } from './guards/admin/admin.guard';
 import { AddCarComponent } from './components/car/add-car/add-car.component';
+import { AddAboutCompanyComponent } from './components/company-profile/add-about-company/add-about-company.component';
+import { AddFlightComponent } from './components/company-profile/add-flight/add-flight.component';
 
 const routes: Routes = [
   {
@@ -62,6 +64,13 @@ const routes: Routes = [
   {
     path:"payment",
     component:PaymentComponent
+  },
+  {
+    path:"add-about-company",
+    component:AddAboutCompanyComponent
+  },{
+    path:"add-flight",
+    component:AddFlightComponent
   }
 ];
 

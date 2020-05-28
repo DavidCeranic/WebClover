@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AboutCompany} from "src/app/entities/aboutCompany/about-company"
 import {AvioCompanyService} from 'src/app/services/avioCompany/avio-company.service'
-import {AvioCompanyDetailsService} from 'src/app/services/avioCompany/avio-company-details.service';
+import {AvioCompanyDetailsService} from "src/app/services/avioCompany/avio-company-details/avio-company-details.service";
 @Component({
   selector: 'app-flights',
   templateUrl: './flights.component.html',
@@ -24,14 +24,15 @@ export class FlightsComponent implements OnInit {
   allFlightss:Array<FlightInfo>;
   searchedFlights: Array<FlightInfo>
 
-  constructor(private flightService: AllFlightsService,private avioCompService:AvioCompanyService, private router: Router, private route: ActivatedRoute,private data:AvioCompanyService){
+  constructor(private flightService: AllFlightsService,private avioCompService:AvioCompanyService, private router: Router, private route: ActivatedRoute,private data:AvioCompanyService,public service :AvioCompanyDetailsService){
     this.allFlightss=this.flightService.getFlights();
     this.searchedFlights=this.allFlightss;
-    this.allAvioCompanies=this.avioCompService.loadAllAvioCompanies();
+    this.allAvioCompanies=this.service.list;
   }
 
   ngOnInit(): void {
     //$('.datepicker').pickadate();
+    this.service.refreshList();
    
   }
 

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace WebApiClover.Models
 {
-    public class AboutCompany
+    public class CompanyAbout
     {
         [Key]
         public int AvioCompID { get; set; }
 
         [Required]
-        [Column(TypeName ="nvarchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string AvioCompName { get; set; }
 
         [Required]

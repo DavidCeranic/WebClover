@@ -2,44 +2,45 @@
 
 namespace WebApiClover.Migrations
 {
-    public partial class InitionalMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "UserDetails",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    UserType = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(100)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserDetails", x => x.UserId);
-                });
+               name: "UserDetails",
+               columns: table => new
+               {
+                   UserId = table.Column<int>(nullable: false)
+                       .Annotation("SqlServer:Identity", "1, 1"),
+                   Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                   Password = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                   City = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                   PhoneNumber = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                   UserType = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                   Email = table.Column<string>(type: "nvarchar(100)", nullable: false)
+               },
+               constraints: table =>
+               {
+                   table.PrimaryKey("PK_UserDetails", x => x.UserId);
+               });
 
             migrationBuilder.CreateTable(
             name: "AboutCompanies",
             columns: table => new
             {
-                avioCompID = table.Column<string>(nullable: false),
-                avioCompName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                AvioCompID = table.Column<int>(nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
+                AvioCompName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                 avioCompAddress = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                avioCompAbout = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                avioCompDestinations = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                avioCompFastReservationDiscount = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                avioCompSeats = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                avioCompPrices = table.Column<string>(type: "nvarchar(100)", nullable: false)
+                AvioCompAbout = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                AvioCompDestinations = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                AvioCompFastReservationDiscount = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                AvioCompSeats = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                AvioCompPrices = table.Column<string>(type: "nvarchar(100)", nullable: false)
             },
             constraints: table =>
             {
-                table.PrimaryKey("PK_AboutCompanies", x => x.avioCompID);
+                table.PrimaryKey("PK_AboutCompanies", x => x.AvioCompID);
             });
 
             migrationBuilder.CreateTable(
