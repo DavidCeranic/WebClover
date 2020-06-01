@@ -1,0 +1,61 @@
+<form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form">
+
+    <input type="hidden" name="flightID" [value]="service.formData.flightID">
+
+      <div class="form-group">
+        From:
+        <input #from="ngModel" [(ngModel)]="service.formData.from" name="from" type="text" class="form-input" id="from" required/>
+      </div>
+
+      <div class="form-group">
+        To:
+        <input #to="ngModel" [(ngModel)]="service.formData.to" name="to" type="text" class="form-input" id="to" required/>
+      </div>
+
+      <div class="form-group">
+        <!-- <button class="btn-search" type="button">Add Image</button> -->
+        Departing:
+        <input #departing="ngModel" [(ngModel)]="service.formData.departing" name="departing" type="date" class="form-input" id="departing" required/>
+      </div>
+
+      <div class="form-group">
+        Returning:
+        <input #returning="ngModel" [(ngModel)]="service.formData.returning" name="returning"  type="date" class="form-input" id="returning" required/>
+      </div>
+
+      <div class="form-group">
+        Classf:
+        <input #classf="ngModel" [(ngModel)]="service.formData.classf" name="classf" type="text" class="form-input" id="classf" required/>
+      </div>
+
+      <div class="form-group">
+        Baggage:
+        <input #baggage="ngModel" [(ngModel)]="service.formData.baggage" name="baggage" type="text" class="form-input" id="baggage" required/>
+      </div>
+
+      <div class="form-group">
+        Stops:
+        <input #stops="ngModel" [(ngModel)]="service.formData.stops" name="stops" type="number" class="form-input" id="stops" required/>
+      </div>
+
+      <div class="form-group">
+        Duration:
+        <input #duration="ngModel" [(ngModel)]="service.formData.duration" name="duration" type="text" class="form-input" id="duration" required/>
+      </div>
+
+      <div class="form-group">
+        CompanyName:
+        <input #companyName="ngModel" [(ngModel)]="service.formData.companyName" name="companyName" type="text" class="form-input" id="companyName" required/>
+      </div>
+
+      <div class="form-group">
+        Price:
+        <input #price="ngModel" [(ngModel)]="service.formData.price" name="price" type="number" class="form-input" id="price" required/>
+      </div>
+      
+
+      <div class="form-group">
+        <input type="submit" name="submit" id="submit" class="form-submit" value="Add FLIGHT"/>
+    </div>
+
+  </form>

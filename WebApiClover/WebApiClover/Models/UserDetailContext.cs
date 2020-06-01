@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApiClover.Models;
 
 namespace WebApiClover.Models
 {
@@ -24,5 +25,9 @@ namespace WebApiClover.Models
         public DbSet<FlightInfo> FlightsInfo { get; set; }
 
         public DbSet<CarInfo> CarInfo { get; set; }
+
+        public DbSet<WebApiClover.Models.CompanyAbout> CompanyAbout { get; set; }
+
+        public DbSet<WebApiClover.Models.FlightInfo2> FlightInfo2 { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 export class AboutCompany {
+    avioCompID:number;
     avioCompName: string;
     avioCompAddress: string;
     avioCompAbout:string;
@@ -6,9 +7,9 @@ export class AboutCompany {
    // avioCompFlights:List<string>;
     avioCompFastReservationDiscount:string;
     avioCompSeats:string;
-    avioCompPrices:number;
+    avioCompPrices:string;
 
-    constructor(avioCompName:string,avioCompAddress:string,avioCompAbout:string,avioCompDestinations:string,avioCompFastReservationDiscount: string,avioCompSeats:string,avioCompPrices: number){
+    constructor(avioCompName:string,avioCompAddress:string,avioCompAbout:string,avioCompDestinations:string,avioCompFastReservationDiscount: string,avioCompSeats:string,avioCompPrices: string){
         this.avioCompName= avioCompName;
         this. avioCompAddress= avioCompAddress;
         this.avioCompAbout = avioCompAbout;
