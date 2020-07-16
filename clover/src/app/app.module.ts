@@ -30,6 +30,8 @@ import { UserDetailsService } from './services/userDetails/user-details.service'
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  import { ToastrModule } from 'ngx-toastr';
+import { AddAboutCompanyComponent } from './components/add-about-company/add-about-company.component';
+import { AddFlightComponent } from './components/add-flight/add-flight.component';
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SearchFlightComponent,
     AddCarComponent,
     RentCarComponent,
+    AddAboutCompanyComponent,
+    AddFlightComponent,
     
   ],
   imports: [
