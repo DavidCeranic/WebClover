@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RentService } from 'src/app/entities/rentService/rent-service';
 import { Router } from '@angular/router';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
+import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -13,7 +14,10 @@ export class RentACarFilterComponent implements OnInit {
 
   @Input() filtredRentServices;
 
-  constructor(public router: Router, public service: RentServiceDetailsService) { }
+  constructor(public router: Router, public service: RentServiceDetailsService, config: NgbRatingConfig) {
+    config.max = 5;
+    config.readonly = true;
+   }
 
   ngOnInit(): void {
     this.service.refreshList();
