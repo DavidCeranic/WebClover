@@ -34,6 +34,8 @@ import { AddAboutCompanyComponent } from './components/add-about-company/add-abo
 import { AddFlightComponent } from './components/add-flight/add-flight.component';
 
 
+import { MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,8 +56,7 @@ import { AddFlightComponent } from './components/add-flight/add-flight.component
     AddCarComponent,
     RentCarComponent,
     AddAboutCompanyComponent,
-    AddFlightComponent,
-    
+    AddFlightComponent
   ],
   imports: [
     BrowserModule,
@@ -68,9 +69,12 @@ import { AddFlightComponent } from './components/add-flight/add-flight.component
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatDialogModule
   ],
-  providers: [UserDetailsService],
+  providers: [
+    UserDetailsService 
+  ],
   bootstrap: [AppComponent],
   entryComponents: [RentCarComponent]
 })
