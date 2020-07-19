@@ -32,7 +32,7 @@ export class CarFilterComponent implements OnInit {
   onRent(car: Car){
     this.dialog.open(RentCarComponent, {
       height: '300px',
-      width: '400px',
+      width: '650px',
     });
     this.data.changeMessage(car);
   }

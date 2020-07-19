@@ -10,15 +10,12 @@ import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.s
 })
 export class RentCarComponent implements OnInit {
   car: Car;
-  
+  NumOfDays: number;
+
   constructor(public service: CarDetailsService) { }
 
   ngOnInit(): void {
     this.service.currentMessage.subscribe(car => this.car = car);
-  }
-
-  getFieldValue(filterFieldId: string) {
-    return (<HTMLInputElement> document.getElementById(filterFieldId)).value;
   }
 
   onSubmit(form: NgForm){
