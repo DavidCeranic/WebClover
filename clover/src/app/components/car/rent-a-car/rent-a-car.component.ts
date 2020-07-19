@@ -8,6 +8,9 @@ import { NumberFilterParam } from 'src/app/entities/number-filter-param/number-f
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { RentService } from 'src/app/entities/rentService/rent-service';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
+import { AddCarComponent } from '../add-car/add-car.component';
+import { MatDialog } from "@angular/material/dialog";
+
 
 @Component({
   selector: 'app-rent-a-car',
@@ -29,7 +32,7 @@ export class RentACarComponent implements OnInit {
     this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
   }
   
-  constructor(private carService: CarService, private data: RentServiceDetailsService, public service: CarDetailsService) { 
+  constructor(public dialog: MatDialog, private carService: CarService, private data: RentServiceDetailsService, public service: CarDetailsService) { 
     this.allCars = this.service.list;
     this.filtredCars = this.allCars;
   }
@@ -95,5 +98,12 @@ export class RentACarComponent implements OnInit {
 
   onSubmit(){
     
+  }
+
+  onAddCar(){
+    this.dialog.open(AddCarComponent, {
+      height: '600px',
+      width: '500px',
+    });
   }
 }

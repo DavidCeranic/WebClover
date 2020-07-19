@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import { Inject } from '@angular/core'; 
+import { AddCarComponent } from '../add-car/add-car.component';
 
 @Component({
   selector: 'app-car-filter',
@@ -28,16 +29,20 @@ export class CarFilterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onCreate(){
+  onRent(car: Car){
     this.dialog.open(RentCarComponent, {
       height: '300px',
       width: '400px',
     });
+    this.data.changeMessage(car);
   }
 
   onSelectCar(car: Car){
     this.data.formData = car;
-    this.router.navigateByUrl('/car/add-car');
+    this.dialog.open(AddCarComponent, {
+      height: '600px',
+      width: '500px',
+    });
     this.data.changeMessage(car);
   }
 

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Car } from 'src/app/entities/Car/car';
+import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 
 @Component({
   selector: 'app-rent-car',
@@ -6,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rent-car.component.css']
 })
 export class RentCarComponent implements OnInit {
-
-  constructor() { }
+  car: Car;
+  
+  constructor(public service: CarDetailsService) { }
 
   ngOnInit(): void {
+    this.service.currentMessage.subscribe(car => this.car = car);
   }
 
+  getFieldValue(filterFieldId: string) {
+    return (<HTMLInputElement> document.getElementById(filterFieldId)).value;
+  }
+
+  onSubmit(form: NgForm){
+
+  }
 }

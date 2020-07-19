@@ -8,6 +8,8 @@ import { RentServicesService } from 'src/app/services/rentServices/rent-services
 import { AbstractFilterParam } from 'src/app/entities/abstract-filter-param/abstract-filter-param';
 import { StringFilterParam } from 'src/app/entities/string-filter-param/string-filter-param';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
+import { AddRentACarComponent } from './add-rent-a-car/add-rent-a-car.component';
+import { MatDialog } from "@angular/material/dialog";
 
 
 
@@ -25,7 +27,7 @@ export class CarComponent implements OnInit {
   allRentServices: Array<RentService>;
   filtredRentServices: Array<RentService>;
 
-  constructor(private rentServices: RentServicesService, private router: Router, private route: ActivatedRoute, public service: RentServiceDetailsService) { 
+  constructor(public dialog: MatDialog, private rentServices: RentServicesService, private router: Router, private route: ActivatedRoute, public service: RentServiceDetailsService) { 
     this.allRentServices = this.service.list;
     this.filtredRentServices = this.allRentServices;
   }
@@ -91,5 +93,12 @@ export class CarComponent implements OnInit {
       }
       
       return true;
+  }
+
+  onAddService(){
+    this.dialog.open(AddRentACarComponent, {
+      height: '520px',
+      width: '500px',
+    });
   }
 }

@@ -76,6 +76,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     UserDetailsService 
   ],
   bootstrap: [AppComponent],
-  entryComponents: [RentCarComponent]
+  entryComponents: [
+    RentCarComponent,
+    AddRentACarComponent,
+    AddCarComponent
+  ]
 })
 export class AppModule { }

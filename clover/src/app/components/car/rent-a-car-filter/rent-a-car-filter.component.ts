@@ -3,7 +3,8 @@ import { RentService } from 'src/app/entities/rentService/rent-service';
 import { Router } from '@angular/router';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
-
+import { AddRentACarComponent } from '../add-rent-a-car/add-rent-a-car.component';
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-rent-a-car-filter',
@@ -14,7 +15,7 @@ export class RentACarFilterComponent implements OnInit {
 
   @Input() filtredRentServices;
 
-  constructor(public router: Router, public service: RentServiceDetailsService, config: NgbRatingConfig) {
+  constructor(public dialog: MatDialog, public router: Router, public service: RentServiceDetailsService, config: NgbRatingConfig) {
     config.max = 5;
     config.readonly = true;
    }
@@ -30,7 +31,10 @@ export class RentACarFilterComponent implements OnInit {
 
   onSelectRentService(service: RentService){
     this.service.formData = service;
-    this.router.navigateByUrl('/car/add-rent-a-car');
+    this.dialog.open(AddRentACarComponent, {
+      height: '520px',
+      width: '500px',
+    });
     this.service.changeMessage(service);
   }
 
