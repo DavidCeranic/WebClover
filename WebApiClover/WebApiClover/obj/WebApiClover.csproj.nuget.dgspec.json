@@ -64,9 +64,17 @@
               "target": "Package",
               "version": "[3.0.0, )"
             },
+            "Microsoft.Owin.Security.OAuth": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "Owin": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             }
           },
           "imports": [

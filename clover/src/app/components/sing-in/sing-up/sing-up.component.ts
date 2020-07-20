@@ -34,7 +34,7 @@ export class SingUpComponent implements OnInit {
     this.service.postUserDetails(form.value).subscribe(
       res => {
         this.resetForm(form);
-        this.toastr.success('Submitted successfully','User Detail Register');
+        this.toastr.success('User successfully added');
       },
       err => {
         console.log(err);

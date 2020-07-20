@@ -297,6 +297,5 @@ C:\Users\david\WebClover\WebApiClover\WebApiClover\obj\Debug\netcoreapp3.0\stati
 C:\Users\david\WebClover\WebApiClover\WebApiClover\obj\Debug\netcoreapp3.0\WebApiClover.dll
 C:\Users\david\WebClover\WebApiClover\WebApiClover\obj\Debug\netcoreapp3.0\WebApiClover.pdb
 C:\Users\david\WebClover\WebApiClover\WebApiClover\obj\Debug\netcoreapp3.0\WebApiClover.genruntimeconfig.cache
-C:\Users\david\WebClover\WebApiClover\WebApiClover\obj\Debug\netcoreapp3.0\WebApiClover.csproj.CoreCompileInputs.cache
-C:\Users\david\WebClover\WebApiClover\WebApiClover\obj\Debug\netcoreapp3.0\WebApiClover.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\david\WebClover\WebApiClover\WebApiClover\obj\Debug\netcoreapp3.0\WebApiClover.csprojAssemblyReference.cache
+C:\Users\david\WebClover\WebApiClover\WebApiClover\bin\Debug\netcoreapp3.0\Owin.dll

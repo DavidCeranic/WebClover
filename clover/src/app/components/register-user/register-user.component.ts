@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetailsService } from 'src/app/services/userDetails/user-details.service';
 import { User } from 'src/app/entities/User/user';
+import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register-user',
@@ -28,5 +29,7 @@ export class RegisterUserComponent implements OnInit {
       }
     }
   }
+
+  
 
 }

@@ -11,6 +11,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using WebApiClover.Models;
 using Microsoft.EntityFrameworkCore;
+using Owin;
+using Microsoft.Owin.Security.OAuth;
+using Microsoft.Owin;
 
 namespace WebApiClover
 {
