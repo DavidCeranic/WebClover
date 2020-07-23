@@ -21,11 +21,19 @@ export class RentServiceDetailsService {
     this.messageSource.next(message);
   }
   
-  postUserDetails(formData: RentService){
+  postRentService(formData: RentService){
     return this.http.post(this.rootUrl + 'RentServices', formData);
   }
 
   refreshList(){
     this.http.get(this.rootUrl + 'RentServices').toPromise().then(res => this.list = res as RentService[]);
+  }
+
+  putRentService(formData: RentService){
+    return this.http.put(this.rootUrl + 'RentServices/'+formData.serviceId, formData);
+  }
+
+  deleteRentService(serviceId: number){
+    return this.http.delete(this.rootUrl + 'RentServices/'+serviceId);
   }
 }

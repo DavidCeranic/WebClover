@@ -68,4 +68,6 @@ export class SingUpComponent implements OnInit {
       }
   }
 
+  valueChange(secEmail: string){
+  }
 }

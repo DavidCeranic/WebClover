@@ -30,12 +30,18 @@ export class RentACarFilterComponent implements OnInit {
   }
 
   onSelectRentService(service: RentService){
-    this.service.formData = service;
+    this.service.formData = Object.assign({}, service);
     this.dialog.open(AddRentACarComponent, {
       height: '520px',
       width: '500px',
     });
     this.service.changeMessage(service);
+  }
+
+  onDelete(serviceId: number){
+    if(confirm('Are you sure to delete this rent service?')){
+    this.service.deleteRentService(serviceId).subscribe( res => {this.service.refreshList();});
+    }
   }
 
   check(){

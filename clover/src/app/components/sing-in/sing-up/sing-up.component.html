@@ -25,13 +25,13 @@
                   </div>
 
                   <div style="margin-left: 10px;" class="form-group">
-                    <input type="password" id="Password" class="form-input" placeholder="Repeat your password" required/>
+                    <input type="password" (ngModelChange)="valueChange($event)" id="Password" class="form-input" placeholder="Repeat your password" required/>
                   </div>
                 </div>
 
                 <div style="margin-left: 16px;" class="row">
                   <div class="form-group">
-                    <input type="text" #city="ngModel" [(ngModel)]="service.formData.city" name="city" id="City" class="form-input" placeholder="City" required/>
+                    <input type="text" (ngModelChange)="valueChange($event)" #city="ngModel" [(ngModel)]="service.formData.city" name="city" id="City" class="form-input" placeholder="City" required/>
                   </div>
 
                   <div style="margin-left: 10px;" class="form-group">

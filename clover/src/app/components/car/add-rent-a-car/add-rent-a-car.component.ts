@@ -3,6 +3,7 @@ import { RentService } from 'src/app/entities/rentService/rent-service';
 import { Car } from 'src/app/entities/Car/car';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-rent-a-car',
@@ -14,10 +15,10 @@ export class AddRentACarComponent implements OnInit {
 
   display: boolean;
 
-  rentService: RentService;
+  rentService?: RentService = null;
   SelectedCar: Car;
 
-  constructor(public service: RentServiceDetailsService) { 
+  constructor(public service: RentServiceDetailsService, private toastr: ToastrService) { 
   }
 
   ngOnInit(): void {
@@ -31,7 +32,25 @@ export class AddRentACarComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    this.service.postUserDetails(form.value).subscribe(
+    if(form.value.serviceId == null)
+      this.insertRentService(form);
+    else
+      this.updateRentService(form);
+  }
+
+  insertRentService(form: NgForm){
+    this.service.postRentService(form.value).subscribe(
+      res => {
+        this.resetForm(form);
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  updateRentService(form: NgForm){
+    this.service.putRentService(form.value).subscribe(
       res => {
         this.resetForm(form);
       },
