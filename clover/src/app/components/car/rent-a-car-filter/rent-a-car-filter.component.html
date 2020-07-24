@@ -15,10 +15,12 @@
                   <img style="width: 100%;" src={{rentService.img}}/>
                 </div>
                 <div class="agileits-buy">
-                  <a class="popup-with-zoom-anim" (click)="onSelect(rentService)">More</a>
-                  <a class="popup-with-zoom-anim" [hidden]="check()" style="margin-left: 10%;" (click)="onSelectRentService(rentService)">Change</a>
-                  <a class="popup-with-zoom-anim" [hidden]="check()" style="margin-left: 30%;" (click)="onDelete(rentService.serviceId)">Delete</a>
-                </div>
+                  <a class="popup-with-zoom-anim" (click)="onSelect(rentService)" style="width: 100px;">More</a>
+                   <div class="row">
+                    <a class="popup-with-zoom-anim" [hidden]="check()" style="margin-left: 15%; margin-top: 5%; width: 100px;" (click)="onSelectRentService(rentService)">Change</a>
+                    <a class="popup-with-zoom-anim" [hidden]="check()" style="margin-top: 5%; width: 100px; margin-left: 15px;" (click)="onDelete(rentService.serviceId)">Delete</a>
+                   </div>
+                  </div>
                 </div>
               </div> 
             </div> 

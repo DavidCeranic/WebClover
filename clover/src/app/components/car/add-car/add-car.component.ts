@@ -20,7 +20,25 @@ export class AddCarComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    this.service.postUserDetails(form.value).subscribe(
+    if(form.value.carId == null)
+      this.insertCar(form);
+    else
+      this.updateCar(form);
+  }
+
+  insertCar(form: NgForm){
+    this.service.postCar(form.value).subscribe(
+      res => {
+        this.resetForm(form);
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  updateCar(form: NgForm){
+    this.service.putCar(form.value).subscribe(
       res => {
         this.resetForm(form);
       },
@@ -42,7 +60,7 @@ export class AddCarComponent implements OnInit {
     if(form!=null)
       form.resetForm();
       this.service.formData = {
-        carId: "",
+        carId: null,
         serviceName: "",
         brand: "",
         model: "",

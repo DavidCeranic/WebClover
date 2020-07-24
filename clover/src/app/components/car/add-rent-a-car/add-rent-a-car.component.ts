@@ -68,7 +68,7 @@ export class AddRentACarComponent implements OnInit {
     if(form!=null)
       form.resetForm();
       this.service.formData = {
-        serviceId: "",
+        serviceId: null,
         serviceName: "",
         location: "",
         img: "",

@@ -20,7 +20,7 @@ export class CarFilterComponent implements OnInit {
   @Input() filtredCars;
   
 
-  constructor(public dialog: MatDialog, public router: Router, private data: CarDetailsService, config: NgbRatingConfig)//
+  constructor(public dialog: MatDialog, public service: CarDetailsService, public router: Router, private data: CarDetailsService, config: NgbRatingConfig)//
   {
     config.max = 5;
     config.readonly = true;
@@ -44,6 +44,12 @@ export class CarFilterComponent implements OnInit {
       width: '500px',
     });
     this.data.changeMessage(car);
+  }
+
+  onDelete(serviceId: number){
+    if(confirm('Are you sure to delete this car?')){
+    this.service.deleteCar(serviceId).subscribe( res => {this.service.refreshList();});
+    }
   }
 
   check(){

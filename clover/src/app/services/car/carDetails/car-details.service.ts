@@ -16,7 +16,7 @@ export class CarDetailsService {
 
   constructor(private http:HttpClient) { }
 
-  postUserDetails(formData: Car){
+  postCar(formData: Car){
     return this.http.post(this.rootUrl + 'CarInfoes', formData);
   }
 
@@ -26,5 +26,13 @@ export class CarDetailsService {
 
   changeMessage(message: Car){
     this.messageSource.next(message);
+  }
+
+  putCar(formData: Car){
+    return this.http.put(this.rootUrl + 'CarInfoes/'+formData.carId, formData);
+  }
+
+  deleteCar(carId: number){
+    return this.http.delete(this.rootUrl + 'CarInfoes/'+carId);
   }
 }
