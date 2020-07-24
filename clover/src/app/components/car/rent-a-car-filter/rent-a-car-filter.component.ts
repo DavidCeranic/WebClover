@@ -5,6 +5,7 @@ import { RentServiceDetailsService } from 'src/app/services/rentServices/rentSer
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import { AddRentACarComponent } from '../add-rent-a-car/add-rent-a-car.component';
 import { MatDialog } from "@angular/material/dialog";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-rent-a-car-filter',
@@ -15,7 +16,7 @@ export class RentACarFilterComponent implements OnInit {
 
   @Input() filtredRentServices;
 
-  constructor(public dialog: MatDialog, public router: Router, public service: RentServiceDetailsService, config: NgbRatingConfig) {
+  constructor(public dialog: MatDialog, private toastr: ToastrService, public router: Router, public service: RentServiceDetailsService, config: NgbRatingConfig) {
     config.max = 5;
     config.readonly = true;
    }
@@ -40,7 +41,14 @@ export class RentACarFilterComponent implements OnInit {
 
   onDelete(serviceId: number){
     if(confirm('Are you sure to delete this rent service?')){
-    this.service.deleteRentService(serviceId).subscribe( res => {this.service.refreshList();});
+    this.service.deleteRentService(serviceId).subscribe( res => {
+      this.toastr.warning("Deleted Successfully");
+      this.service.refreshList();
+    },
+    err => {
+      this.toastr.error('error');
+        }
+      )
     }
   }
 

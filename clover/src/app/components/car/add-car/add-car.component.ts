@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { Car } from 'src/app/entities/Car/car';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-car',
@@ -12,7 +13,7 @@ export class AddCarComponent implements OnInit {
   addCarForm: FormGroup;
   car: Car;
 
-  constructor(public service: CarDetailsService) { }
+  constructor(public service: CarDetailsService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.resetForm();
@@ -29,10 +30,11 @@ export class AddCarComponent implements OnInit {
   insertCar(form: NgForm){
     this.service.postCar(form.value).subscribe(
       res => {
+        this.toastr.success("Inserted Successfully");
         this.resetForm(form);
       },
       err => {
-        console.log(err);
+        this.toastr.error('error');
       }
     )
   }
@@ -40,10 +42,11 @@ export class AddCarComponent implements OnInit {
   updateCar(form: NgForm){
     this.service.putCar(form.value).subscribe(
       res => {
+        this.toastr.success("Updated Successfully");
         this.resetForm(form);
       },
       err => {
-        console.log(err);
+        this.toastr.error('error');
       }
     )
   }

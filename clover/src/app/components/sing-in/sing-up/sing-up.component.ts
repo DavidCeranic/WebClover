@@ -31,13 +31,17 @@ export class SingUpComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+    this.insertUser(form);
+  }
+
+  insertUser(form: NgForm){
     this.service.postUserDetails(form.value).subscribe(
       res => {
-        this.resetForm(form);
         this.toastr.success('User successfully added');
+        this.resetForm(form);
       },
       err => {
-        console.log(err);
+        this.toastr.success('error');
       }
     )
   }

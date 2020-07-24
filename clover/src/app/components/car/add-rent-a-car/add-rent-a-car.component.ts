@@ -41,10 +41,11 @@ export class AddRentACarComponent implements OnInit {
   insertRentService(form: NgForm){
     this.service.postRentService(form.value).subscribe(
       res => {
+        this.toastr.success("Inserted Successfully");
         this.resetForm(form);
       },
       err => {
-        console.log(err);
+        this.toastr.error('error');
       }
     )
   }
@@ -52,10 +53,11 @@ export class AddRentACarComponent implements OnInit {
   updateRentService(form: NgForm){
     this.service.putRentService(form.value).subscribe(
       res => {
+        this.toastr.success("Updated Successfully");
         this.resetForm(form);
       },
       err => {
-        console.log(err);
+        this.toastr.error('error');
       }
     )
   }

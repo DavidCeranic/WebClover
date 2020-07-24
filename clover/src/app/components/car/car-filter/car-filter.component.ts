@@ -8,6 +8,7 @@ import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.s
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import { Inject } from '@angular/core'; 
 import { AddCarComponent } from '../add-car/add-car.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-car-filter',
@@ -20,7 +21,7 @@ export class CarFilterComponent implements OnInit {
   @Input() filtredCars;
   
 
-  constructor(public dialog: MatDialog, public service: CarDetailsService, public router: Router, private data: CarDetailsService, config: NgbRatingConfig)//
+  constructor(public dialog: MatDialog, private toastr: ToastrService, public service: CarDetailsService, public router: Router, private data: CarDetailsService, config: NgbRatingConfig)//
   {
     config.max = 5;
     config.readonly = true;
@@ -48,7 +49,14 @@ export class CarFilterComponent implements OnInit {
 
   onDelete(serviceId: number){
     if(confirm('Are you sure to delete this car?')){
-    this.service.deleteCar(serviceId).subscribe( res => {this.service.refreshList();});
+    this.service.deleteCar(serviceId).subscribe( res => {
+      this.toastr.warning("Deleted Successfully");
+      this.service.refreshList();
+    },
+    err => {
+      this.toastr.error('error');
+        }
+      )
     }
   }
 
