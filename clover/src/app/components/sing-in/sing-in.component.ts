@@ -6,6 +6,9 @@ import {FlightInfo} from 'src/app/entities/flightInfo/flight-info';
 import { UserDetailsService } from 'src/app/services/userDetails/user-details.service';
 import { Router } from '@angular/router';
 import { HttpBackend } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
+import { User } from 'src/app/entities/User/user';
+
 @Component({
   selector: 'app-sing-in',
   templateUrl: './sing-in.component.html',
@@ -16,11 +19,17 @@ export class SingInComponent implements OnInit {
   allFlightss:Array<FlightInfo>;
   singInForm: FormGroup;
   @ViewChild(SingUpComponent) sing_up: SingUpComponent;
-
-  constructor(private flightService: AllFlightsService, public service: UserDetailsService, public router: Router)
-   {  this.allFlightss=this.flightService.getFlights();}
+  http: HttpClient;
   displayStr = "SingIn";
+  user: User;
 
+  constructor(private flightService: AllFlightsService, public service: UserDetailsService, public router: Router, http: HttpClient,)
+   {
+       this.allFlightss=this.flightService.getFlights();
+       this.http = http;
+      
+  }
+  
   ngOnInit(): void 
   {
       this.service.refreshList();
@@ -43,17 +52,24 @@ export class SingInComponent implements OnInit {
     localStorage.setItem('sessionUserRolee', JSON.stringify('ADMIN'));
   }
 
-  onSubmit(form: NgForm) {
-    for(let user of this.service.list)
-    {
-      if(user.name == this.getValue("Email")){
-        if(user.password == this.getValue("Password")){
-          this.SingInUser(this.getValue("Email"), this.getValue("Password"));
-          this.router.navigateByUrl('/register-user');
+  onSubmit() {
+    const email = this.getValue("Email");
+    const password = this.getValue("Password");
+
+    console.log("Cao");
+    this.http.post<User>("http://localhost:5000/api/UserDetails/Login", { email, password }).toPromise().then((res: User) => {
+
+      console.log(res.StringToken);
+      localStorage.setItem("user_token", res.StringToken);
+      this.router.navigateByUrl('/register-user');
+    },
+      err => {
+        if (err.status === 400) {
+          alert(err.error.message);
         }
-      }
-    }
+      });
   }
+
 
   showRegister(){
     this.displayStr = "SingUp"

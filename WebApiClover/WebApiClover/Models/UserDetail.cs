@@ -34,7 +34,9 @@ namespace WebApiClover.Models
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
-        public string UserType { get; set; }// ovde treba da bude neki enum koji ce predstavljati kog tipa je User;
+        public string UserType { get; set; }
+
+        public string StringToken;
 
     }
 }

@@ -35,6 +35,7 @@ import { AddFlightComponent } from './components/add-flight/add-flight.component
 
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { AuthInterceptor } from './AuthInterceptor';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule
   ],
   providers: [
-    UserDetailsService 
+    UserDetailsService,
+    AuthInterceptor
   ],
   bootstrap: [AppComponent],
   entryComponents: [

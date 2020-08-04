@@ -22,7 +22,7 @@
                     <button class="btn" (click)="showRegister()"><span>Register</span></button>
                   </div>
 
-                <form [formGroup]="loginGroup"  autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form">
+                <form [formGroup]="loginGroup" autocomplete="off" (ngSubmit)="onSubmit()" id="signup-form" class="signup-form">
                   <div class="form-group">
                       <input type="mail" name="email" formControlName="email" id="Email" class="form-input" placeholder="Mail" required/>
                     </div>
