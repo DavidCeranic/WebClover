@@ -69,7 +69,7 @@ export class SingUpComponent implements OnInit {
         city: "",
         phoneNumber: "",
         userType: "",
-        token: ""
+        StringToken: ""
       }
   }
 

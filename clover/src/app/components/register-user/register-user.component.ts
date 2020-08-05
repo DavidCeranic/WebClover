@@ -11,6 +11,7 @@ import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 export class RegisterUserComponent implements OnInit {
 
   user: User;
+  parseJwt: string;
 
   constructor(public service: UserDetailsService) {
   }
@@ -20,14 +21,6 @@ export class RegisterUserComponent implements OnInit {
   ngOnInit(): void {
     this.service.refreshList();
     this.service.currentMessage.subscribe(message => this.message = message);
-
-    for(let SUser of this.service.list){
-      if(SUser.email == this.message[0]){
-        if(SUser.password == this.message[1]){
-          this.user = SUser;
-        }
-      }
-    }
   }
 
   
