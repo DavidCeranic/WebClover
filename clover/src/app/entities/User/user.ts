@@ -1,6 +1,6 @@
 export class User {
     userId: string;
-    name: string;
+    Name: string;
     email: string;
     password: string;
     city: string;
@@ -9,7 +9,7 @@ export class User {
     StringToken: string;
 
     constructor(name: string, email: string, password: string, city: string, phoneNumber: string, userType: string,  token: string) {
-        this.name = name;
+        this.Name = name;
         this.email = email;
         this.password = password;
         this.city = city;

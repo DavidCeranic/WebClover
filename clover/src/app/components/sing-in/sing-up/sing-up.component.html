@@ -11,8 +11,8 @@
 
                 <div style="margin-left: 16px;" class="row">
                   <div class="form-group">
-                      <input #name="ngModel" [(ngModel)]="service.formData.name" name="name" type="text" id="Name" class="form-input" placeholder="Name" required/>
-                      <div class="validation-error" *ngIf="name.invalid && name.touched">This field is required</div>
+                      <input #Name="ngModel" [(ngModel)]="service.formData.Name" name="name" type="text" id="Name" class="form-input" placeholder="Name" required/>
+                      <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required</div>
                   </div>
 
                   <div style="margin-left: 10px;" class="form-group">

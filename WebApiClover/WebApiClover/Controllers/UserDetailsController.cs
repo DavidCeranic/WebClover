@@ -29,6 +29,8 @@ namespace WebApiClover.Controllers
 
         // GET: api/UserDetails
         [HttpGet]
+        [AllowAnonymous]
+
         public async Task<ActionResult<IEnumerable<UserDetail>>> GetUserDetails()
         {
             return await _context.UserDetails.ToListAsync();
@@ -38,8 +40,8 @@ namespace WebApiClover.Controllers
         // GET: api/UserDetails/5
         [HttpGet("{id}")]
         //[Authorize(Roles = "User")]//ko ima pristup ovde
-        [Authorize(Roles = "User,Admin")]//ko ima pristup ovde
-        //[AllowAnonymous]//svi mogu
+        //[Authorize(Roles = "User,Admin")]//ko ima pristup ovde
+        [AllowAnonymous]//svi mogu
         public async Task<ActionResult<UserDetail>> GetUserDetail(int id)
         {
             var userDetail = await _context.UserDetails.FindAsync(id);
@@ -75,7 +77,7 @@ namespace WebApiClover.Controllers
                     new Claim(ClaimTypes.Name, userDetail.UserId.ToString()),
                     new Claim(ClaimTypes.Role, userDetail.UserType)
                 }),
-                Expires = DateTime.UtcNow.AddDays(1),
+                Expires = DateTime.UtcNow.AddHours(3),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -92,6 +94,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+        [AllowAnonymous]
+
         public async Task<IActionResult> PutUserDetail(int id, UserDetail userDetail)
         {
             if (id != userDetail.UserId)
@@ -124,7 +128,9 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        [Authorize(Roles = "User,Admin")]//ko ima pristup ovde
+        //[Authorize(Roles = "User,Admin")]//ko ima pristup ovde
+        [AllowAnonymous]
+
         public async Task<ActionResult<UserDetail>> PostUserDetail(UserDetail userDetail)
         {
             _context.UserDetails.Add(userDetail);
@@ -135,6 +141,8 @@ namespace WebApiClover.Controllers
 
         // DELETE: api/UserDetails/5
         [HttpDelete("{id}")]
+        [AllowAnonymous]
+
         public async Task<ActionResult<UserDetail>> DeleteUserDetail(int id)
         {
             var userDetail = await _context.UserDetails.FindAsync(id);

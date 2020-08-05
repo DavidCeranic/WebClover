@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { HttpBackend } from '@angular/common/http';
 import { HttpClient } from "@angular/common/http";
 import { User } from 'src/app/entities/User/user';
+import { RegisterUserService } from 'src/app/services/userDetails/registerUser/register-user.service';
 
 @Component({
   selector: 'app-sing-in',
@@ -23,7 +24,7 @@ export class SingInComponent implements OnInit {
   displayStr = "SingIn";
   user: User;
 
-  constructor(private flightService: AllFlightsService, public service: UserDetailsService, public router: Router, http: HttpClient,)
+  constructor(private flightService: AllFlightsService, private registerService: RegisterUserService, public service: UserDetailsService, public router: Router, http: HttpClient,)
    {
        this.allFlightss=this.flightService.getFlights();
        this.http = http;
@@ -56,18 +57,9 @@ export class SingInComponent implements OnInit {
     const email = this.getValue("Email");
     const password = this.getValue("Password");
 
-    console.log("Cao");
-    this.http.post<User>("http://localhost:5000/api/UserDetails/Login", { email, password }).toPromise().then((res: User) => {
+    this.registerService.logIn(email, password);
 
-      console.log(res.StringToken);
-      localStorage.setItem("user_token", res.StringToken);
-      this.router.navigateByUrl('/register-user');
-    },
-      err => {
-        if (err.status === 400) {
-          alert(err.error.message);
-        }
-      });
+    this.router.navigateByUrl('/register-user');
   }
 
 
@@ -93,7 +85,7 @@ export class SingInComponent implements OnInit {
   }
 
   loginGroup = new FormGroup({
-    email: new FormControl("", [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$")]),
+    email: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", [Validators.required, Validators.minLength(3)])
   });
 }

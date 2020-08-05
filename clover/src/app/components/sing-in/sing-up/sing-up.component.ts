@@ -63,7 +63,7 @@ export class SingUpComponent implements OnInit {
       form.resetForm();
       this.service.formData = {
         userId: null,
-        name: "",
+        Name: "",
         email: "",
         password: "",
         city: "",

@@ -76,7 +76,8 @@ import { AuthInterceptor } from './AuthInterceptor';
   ],
   providers: [
     UserDetailsService,
-    AuthInterceptor
+    AuthInterceptor,
+    RegisterUserComponent
   ],
   bootstrap: [AppComponent],
   entryComponents: [
