@@ -12,7 +12,7 @@
                         </div>
                         <div class="profile-usertitle">
                             <div class="profile-usertitle-name">
-                                
+                                <div *ngIf="user !== null"> {{user.Name}} </div>
                             </div>
 
                             <div class="profile-usertitle-job">

@@ -23,6 +23,9 @@ export class RegisterUserComponent implements OnInit {
   ngOnInit(): void {
     this.service.refreshList();
     this.service.currentMessage.subscribe(message => this.message = message);
+    this.registerUser.loggedIn.subscribe(res=>{
+      this.user=res;
+    });
     // this.user = this.registerUser.user;
   }
 

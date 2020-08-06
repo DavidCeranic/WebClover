@@ -9,7 +9,7 @@ export class RegisterUserService {
 
   user: User;
   http: HttpClient;
-  @Output() loggedIn: EventEmitter<User> = new EventEmitter();
+  @Output() loggedIn = new EventEmitter<User>();
 
   constructor(http: HttpClient) { 
     this.http = http;
