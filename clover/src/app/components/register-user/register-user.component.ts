@@ -15,9 +15,7 @@ export class RegisterUserComponent implements OnInit {
   parseJwt: string;
 
   constructor(public service: UserDetailsService, private registerUser: RegisterUserService) {
-    // registerUser.loggedIn.subscribe(this.Click);
     this.user = null;
-    this.user = this.registerUser.user;
   }
 
   message: string[];
@@ -25,15 +23,15 @@ export class RegisterUserComponent implements OnInit {
   ngOnInit(): void {
     this.service.refreshList();
     this.service.currentMessage.subscribe(message => this.message = message);
-    this.user = this.registerUser.user;
+    // this.user = this.registerUser.user;
   }
 
-  // Click(user: User){
-    
-  //   console.log("Pretisnuto");
-  //   console.log(user);
+  Click(){
+    console.log("Pretisnuto");
+    this.user = this.registerUser.user;
+    console.log(this.user);
 
-  // }
+  }
 
   
 
