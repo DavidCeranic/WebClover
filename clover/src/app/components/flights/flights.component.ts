@@ -73,6 +73,13 @@ export class FlightsComponent implements OnInit {
     this.router.navigateByUrl('/company-profile');
     this.data.changeMessage(service);
   }
-
+  check(){
+    const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
+      if (userRole === 'ADMIN') {
+        return false;
+      }
+      
+      return true;
+  }
 }
 
