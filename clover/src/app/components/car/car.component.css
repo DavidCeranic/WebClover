@@ -309,4 +309,11 @@ body, html {
   margin-top: 15%;
 }
 
+.radio{
+  position: absolute;
+  display: block;
+  margin-left: 90.3%;
+  margin-top: -30%;
+}
+
 

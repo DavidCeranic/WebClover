@@ -52,6 +52,10 @@ export class RentACarFilterComponent implements OnInit {
     }
   }
 
+  onInfo(rentService: RentService){
+
+  }
+
   check(){
     const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
       if (userRole === 'ADMIN' || userRole === "RENTADMIN") {
