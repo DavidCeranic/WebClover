@@ -26,13 +26,22 @@ export class RegisterUserComponent implements OnInit {
     this.registerUser.loggedIn.subscribe(res=>{
       this.user=res;
     });
-    // this.user = this.registerUser.user;
   }
 
-  Click(){
-    console.log("Pretisnuto");
-    this.user = this.registerUser.user;
-    console.log(this.user);
+  check(){
+    const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
+      if (userRole === 'ADMIN') {
+        return false;
+      }
+      
+      return true;
+  }
+
+  onAddRentService(){
+
+  }
+
+  onAddFlightService(){
 
   }
 

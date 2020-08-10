@@ -32,7 +32,7 @@ export class CarFilterComponent implements OnInit {
 
   onRent(car: Car){
     this.dialog.open(RentCarComponent, {
-      height: '300px',
+      height: '400px',
       width: '650px',
     });
     this.data.changeMessage(car);
@@ -62,7 +62,7 @@ export class CarFilterComponent implements OnInit {
 
   check(){
     const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
-      if (userRole === 'ADMIN') {
+      if (userRole === 'ADMIN' || userRole === "RENTADMIN") {
         return false;
       }
 

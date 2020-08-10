@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="profile-userbuttons">
-                            <button type="button" (click)="Click()" class="btn btn-success btn-sm">Points</button>
+                            <button type="button" class="btn btn-success btn-sm">Points</button>
                             <button type="button" class="btn btn-danger btn-sm">Message</button>
                         </div>
                         <div class="profile-usermenu">
@@ -63,7 +63,23 @@
             </div>
         </div>
 
-
+        <div class="admin" [hidden]="check()">
+            <div class="s002" >
+              <form>
+                <div class="inner-form">
+                  <div class="input-field fifth-wrap">
+                    <p style="color:lavenderblush; margin-left: 35%;"> Admin Services</p>
+                    <div class="input-field fifth-wrap">
+                      <button class="btn-search" style="font-size: small" type="button" (click)="onAddRentService()">Add Rent Admin</button>
+                    </div>
+                    <div class="input-field fifth-wrap">
+                        <button class="btn-search" style="font-size: small" type="button" (click)="onAddFlightService()">Add Fligth Admin</button>
+                      </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
 
     </div>
 </body>
