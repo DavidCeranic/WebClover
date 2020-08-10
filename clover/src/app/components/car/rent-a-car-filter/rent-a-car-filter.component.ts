@@ -54,7 +54,7 @@ export class RentACarFilterComponent implements OnInit {
 
   check(){
     const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
-      if (userRole === 'ADMIN') {
+      if (userRole === 'ADMIN' || userRole === "RENTADMIN") {
         return false;
       }
 

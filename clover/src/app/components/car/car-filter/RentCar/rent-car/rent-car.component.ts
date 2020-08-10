@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder } from '@angular/forms';
 import { Car } from 'src/app/entities/Car/car';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 
@@ -12,7 +12,7 @@ export class RentCarComponent implements OnInit {
   car: Car;
   NumOfDays: number;
 
-  constructor(public service: CarDetailsService) { }
+  constructor(public service: CarDetailsService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.service.currentMessage.subscribe(car => this.car = car);
