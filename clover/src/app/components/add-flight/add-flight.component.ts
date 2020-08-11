@@ -49,7 +49,10 @@ export class AddFlightComponent implements OnInit {
         stops:0,
         duration:"",
         companyName:"",
-        price:0
+        price:0,
+        seatsNumber:0,
+        rateFlight:0
+        
         
       }
     }

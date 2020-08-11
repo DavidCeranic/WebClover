@@ -40,5 +40,12 @@ namespace WebApiClover.Models
         [Required]
         [Column(TypeName = "nvarchar(100)")]
         public string AvioCompPrices { get; set; }
+
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
+        public int RateCompany { get; set; }
+
+        public List<FlightInfo2> CompanyFlihts { get; set; }
+
     }
 }

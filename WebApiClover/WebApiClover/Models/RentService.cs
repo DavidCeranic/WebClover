@@ -49,5 +49,11 @@ namespace WebApiClover.Models
         [Required]
         [Column(TypeName = "decimal")]
         public float Lng { get; set; }
+
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
+        public int RateService { get; set; }
+
+        public List<CarInfo> ServiceCars { get; set; }
     }
 }
