@@ -12,8 +12,11 @@ stops:number;
 duration:string;
 companyName:string;
 price:number;
+seatsNumber:number;
+rateFlight:number;
 
-constructor(from:string, to:string,departing:string,returning:string,classf:string,stops:number,duration:string,companyName:string,price:number){
+constructor(from:string, to:string,departing:string,returning:string,classf:string,stops:number,duration:string,companyName:string,price:number,seatsNumber:number,
+    rateFlight:number){
     this.from=from;
     this.to=to;
     this.departing=departing;
@@ -24,5 +27,7 @@ constructor(from:string, to:string,departing:string,returning:string,classf:stri
     this.duration=duration;
     this.companyName=companyName;
     this.price=price;
+    this.seatsNumber=seatsNumber;
+    this.rateFlight=rateFlight;
 }
 }
