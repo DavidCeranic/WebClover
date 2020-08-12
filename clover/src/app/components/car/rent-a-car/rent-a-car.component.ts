@@ -33,7 +33,11 @@ export class RentACarComponent implements OnInit {
   }
   
   constructor(public dialog: MatDialog, private carService: CarService, data: RentServiceDetailsService, public service: CarDetailsService) { 
-    this.allCars = this.service.list;
+    this.service.refreshList();
+    this.service.messageEvent.subscribe( x => {
+      this.allCars = x;
+      this.filtredCars = this.allCars;
+    })
     this.data = data;
   }
 
