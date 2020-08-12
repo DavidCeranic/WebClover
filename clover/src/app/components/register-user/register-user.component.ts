@@ -3,8 +3,6 @@ import { UserDetailsService } from 'src/app/services/userDetails/user-details.se
 import { User } from 'src/app/entities/User/user';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { RegisterUserService } from 'src/app/services/userDetails/registerUser/register-user.service';
-import { MatDialog } from '@angular/material/dialog';
-import { SingUpComponent } from '../sing-in/sing-up/sing-up.component';
 
 @Component({
   selector: 'app-register-user',
@@ -16,7 +14,7 @@ export class RegisterUserComponent implements OnInit {
   user: User;
   parseJwt: string;
 
-  constructor(public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog) {
+  constructor(public service: UserDetailsService, private registerUser: RegisterUserService) {
     this.user = null;
   }
 
@@ -40,17 +38,11 @@ export class RegisterUserComponent implements OnInit {
   }
 
   onAddRentService(){
-    this.dialog.open(SingUpComponent, {
-      height: '520px',
-      width: '500px',
-    });
+
   }
 
   onAddFlightService(){
-    this.dialog.open(SingUpComponent, {
-      height: '520px',
-      width: '500px',
-    });
+
   }
 
   //test

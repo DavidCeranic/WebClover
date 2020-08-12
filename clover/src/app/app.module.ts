@@ -36,7 +36,6 @@ import { AddFlightComponent } from './components/add-flight/add-flight.component
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthInterceptor } from './AuthInterceptor';
-import { AdminInfoComponent } from './components/car/rent-a-car-filter/admin-info/admin-info.component';
 
 
 @NgModule({
@@ -59,8 +58,7 @@ import { AdminInfoComponent } from './components/car/rent-a-car-filter/admin-inf
     AddCarComponent,
     RentCarComponent,
     AddAboutCompanyComponent,
-    AddFlightComponent,
-    AdminInfoComponent
+    AddFlightComponent
   ],
   imports: [
     BrowserModule,
