@@ -48,6 +48,7 @@ export class AddRentACarComponent implements OnInit {
         this.toastr.error('error');
       }
     )
+
   }
 
   updateRentService(form: NgForm){
@@ -77,7 +78,7 @@ export class AddRentACarComponent implements OnInit {
         description: "",
         priceTable: "",
         about: "",
-        cars: null,
+        serviceCars: null,
         locationMap: "",
         contact: "",
         lat: 0,
