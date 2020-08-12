@@ -6,6 +6,7 @@ import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import { AddRentACarComponent } from '../add-rent-a-car/add-rent-a-car.component';
 import { MatDialog } from "@angular/material/dialog";
 import { ToastrService } from 'ngx-toastr';
+import { AdminInfoComponent } from './admin-info/admin-info.component';
 
 @Component({
   selector: 'app-rent-a-car-filter',
@@ -50,6 +51,17 @@ export class RentACarFilterComponent implements OnInit {
         }
       )
     }
+
+    location.reload();
+  }
+
+  onInfo(rentService: RentService){
+    this.service.formData = Object.assign({}, rentService);
+    this.dialog.open(AdminInfoComponent, {
+      height: '520px',
+      width: '700px',
+    });
+    this.service.changeMessage(rentService);
   }
 
   check(){
