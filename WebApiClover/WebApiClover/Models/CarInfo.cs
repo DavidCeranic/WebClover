@@ -52,9 +52,7 @@ namespace WebApiClover.Models
         [Column(TypeName = "nvarchar(100)")]
         public string TypeOfCar { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(100)")]
-        public int Rate { get; set; }
+        public virtual List<Rate> RateCar { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
