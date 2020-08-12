@@ -8,7 +8,7 @@ export class RentService {
     description: string;
     about: string;
     priceTable: string;
-    cars: Array<Car>;
+    serviceCars: Car[];
     locationMap: string;
     contact: string;
     lat: number;

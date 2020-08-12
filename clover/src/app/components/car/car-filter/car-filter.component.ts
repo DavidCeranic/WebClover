@@ -9,6 +9,7 @@ import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import { Inject } from '@angular/core'; 
 import { AddCarComponent } from '../add-car/add-car.component';
 import { ToastrService } from 'ngx-toastr';
+import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 
 @Component({
   selector: 'app-car-filter',
@@ -19,12 +20,14 @@ import { ToastrService } from 'ngx-toastr';
 export class CarFilterComponent implements OnInit {
 
   @Input() filtredCars;
-  
+  dataCars: RentServiceDetailsService;
+  id: number;
 
-  constructor(public dialog: MatDialog, private toastr: ToastrService, public service: CarDetailsService, public router: Router, private data: CarDetailsService, config: NgbRatingConfig)//
+  constructor(public dialog: MatDialog, dataCars: RentServiceDetailsService, private toastr: ToastrService, public service: CarDetailsService, public router: Router, private data: CarDetailsService, config: NgbRatingConfig)//
   {
     config.max = 5;
     config.readonly = true;
+    this.dataCars = dataCars;
   }
 
   ngOnInit(): void {

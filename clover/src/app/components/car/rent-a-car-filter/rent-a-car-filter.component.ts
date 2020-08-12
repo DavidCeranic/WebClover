@@ -26,9 +26,12 @@ export class RentACarFilterComponent implements OnInit {
     this.service.refreshList();
   }
 
-  onSelect(service: RentService){
+  onSelect(serviceParam: RentService){
+    this.service.selectedService = serviceParam;
+    console.log(this.service.selectedService);
+    console.log(serviceParam);
+    this.service.changeMessage(serviceParam);
     this.router.navigateByUrl('/car/rent-a-car');
-    this.service.changeMessage(service);
   }
 
   onSelectRentService(service: RentService){
