@@ -169,11 +169,11 @@
 
 
 <div class="conteiner3" id="style-22">
-<div [hidden]="filtredCars.length !== 0">
+<div [hidden]="this.data.selectedService.serviceCars.length !== 0">
   <hr/>
   <h5 style="text-align: center;">Trenutno nema dostupnih vozila koja zadovoljavaju zadate parametre.</h5>
 </div>
-<div [hidden]="filtredCars.length === 0">
+<div [hidden]="this.data.selectedService.serviceCars.length === 0">
   <app-car-filter [filtredCars]="filtredCars"></app-car-filter>
 </div>
 </div>

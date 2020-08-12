@@ -81,12 +81,12 @@
 
       
 
-      <div [hidden]="filtredRentServices.length !== 0">
+      <!-- <div [hidden]="this.service.list.length !== 0">
         <hr/>
         <h5 style="text-align: center;">Trenutno nema dostupnih rent a car servisa koja zadovoljavaju zadate parametre.</h5>
-    </div>
-    <div [hidden]="filtredRentServices.length === 0">
+    </div> -->
+    <!-- <div [hidden]="this.service.list.length === 0"> -->
         <app-rent-a-car-filter [filtredRentServices]="filtredRentServices"></app-rent-a-car-filter>
-    </div>
+    <!-- </div> -->
   </div>
 </body>

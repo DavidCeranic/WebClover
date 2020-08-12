@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { HttpClient } from '@angular/common/http';
 import { RentService } from 'src/app/entities/rentService/rent-service';
@@ -11,9 +11,12 @@ export class RentServiceDetailsService {
   private messageSource = new BehaviorSubject<RentService>(null);
   currentMessage = this.messageSource.asObservable();
 
+  @Output() messageEvent = new EventEmitter<RentService[]>();
+
   formData: RentService;
   readonly rootUrl= 'http://localhost:5000/api/';
   list: RentService[];
+  selectedService: RentService;
 
   constructor(private http:HttpClient) { }
 
@@ -26,7 +29,10 @@ export class RentServiceDetailsService {
   }
 
   refreshList(){
-    this.http.get(this.rootUrl + 'RentServices').toPromise().then(res => this.list = res as RentService[]);
+    this.http.get(this.rootUrl + 'RentServices').toPromise().then(res => {
+      this.list = res as RentService[];
+      this.messageEvent.emit(this.list);
+    } );
   }
 
   putRentService(formData: RentService){

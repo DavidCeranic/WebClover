@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { HttpClient } from '@angular/common/http';
 import { Car } from 'src/app/entities/Car/car';
@@ -14,6 +14,9 @@ export class CarDetailsService {
   private messageSource = new BehaviorSubject<Car>(null);
   currentMessage = this.messageSource.asObservable();
 
+  @Output() messageEvent = new EventEmitter<Car[]>();
+
+
   constructor(private http:HttpClient) { }
 
   postCar(formData: Car){
@@ -21,7 +24,10 @@ export class CarDetailsService {
   }
 
   refreshList(){
-    this.http.get(this.rootUrl + 'CarInfoes').toPromise().then(res => this.list = res as Car[]);
+    this.http.get(this.rootUrl + 'CarInfoes').toPromise().then(res => {
+      this.list = res as Car[];
+      this.messageEvent.emit(this.list);
+    });
   }
 
   changeMessage(message: Car){

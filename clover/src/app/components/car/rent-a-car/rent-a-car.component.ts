@@ -22,7 +22,7 @@ export class RentACarComponent implements OnInit {
 
   showStr = "Locations";
   SearchCarForm: FormGroup;
-
+  data: RentServiceDetailsService;
   allCars: Array<Car>;
   filtredCars: Array<Car>;
 
@@ -32,9 +32,13 @@ export class RentACarComponent implements OnInit {
     this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
   }
   
-  constructor(public dialog: MatDialog, private carService: CarService, private data: RentServiceDetailsService, public service: CarDetailsService) { 
-    this.allCars = this.service.list;
-    this.filtredCars = this.allCars;
+  constructor(public dialog: MatDialog, private carService: CarService, data: RentServiceDetailsService, public service: CarDetailsService) { 
+    this.service.refreshList();
+    this.service.messageEvent.subscribe( x => {
+      this.allCars = x;
+      this.filtredCars = this.allCars;
+    })
+    this.data = data;
   }
 
   filterCars(): void {

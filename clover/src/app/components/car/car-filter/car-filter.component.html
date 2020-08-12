@@ -1,5 +1,5 @@
 
-    <div *ngFor="let car of filtredCars" class="div1">
+    <div *ngFor="let car of this.dataCars.selectedService.serviceCars" class="div1">
         <div class="image" style="content:url({{car.imgUrl}})"></div>
         <div class="divName">{{car.serviceName}}</div>
         <div class="div5To">Brand: {{car.brand}}  Year:{{car.year}}</div>

@@ -28,8 +28,11 @@ export class CarComponent implements OnInit {
   filtredRentServices: Array<RentService>;
 
   constructor(public dialog: MatDialog, private rentServices: RentServicesService, private router: Router, private route: ActivatedRoute, public service: RentServiceDetailsService) { 
-    this.allRentServices = this.service.list;
-    this.filtredRentServices = this.allRentServices;
+    this.service.refreshList();
+    this.service.messageEvent.subscribe( x => { 
+      this.allRentServices = x;
+      this.filtredRentServices = this.allRentServices;
+    } );
   }
 
   ngOnInit(): void {
