@@ -74,7 +74,8 @@ export class AddCarComponent implements OnInit {
         location: "",
         endLocation: "",
         typeOfCar: "",
-        rate: ""
+        rate: "",
+        isTaken: 0
       }
   }
 

@@ -11,9 +11,10 @@ export class Car {
     endLocation: string;
     typeOfCar: string;
     rate: string;
+    isTaken: number;
 
 
-    constructor(serviceName: string, brand: string, model: string, year: number, pricePerDay: number, numOfSeats: number, imgUrl: string, location: string, endLocation: string, typeOfCar: string, rate: string) {
+    constructor(serviceName: string, brand: string, model: string, year: number, pricePerDay: number, numOfSeats: number, imgUrl: string, location: string, endLocation: string, typeOfCar: string, rate: string,isTaken: number) {
         this.serviceName = serviceName;
         this.brand = brand;
         this.model = model;
@@ -25,5 +26,6 @@ export class Car {
         this.endLocation = endLocation;
         this.typeOfCar = typeOfCar;
         this.rate = rate;
+        this.isTaken = isTaken;
     }
 }
