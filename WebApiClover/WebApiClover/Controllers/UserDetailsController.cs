@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,7 @@ namespace WebApiClover.Controllers
     public class UserDetailsController : ControllerBase
     {
         private readonly UserDetailContext _context;
+        private IEmailService email;
 
         public UserDetailsController(UserDetailContext context)
         {
@@ -135,7 +137,7 @@ namespace WebApiClover.Controllers
         {
             _context.UserDetails.Add(userDetail);
             await _context.SaveChangesAsync();
-
+            await email.SendMailAsync("ceranicdavid@gmail.com", "Test", "Test");
             return CreatedAtAction("GetUserDetail", new { id = userDetail.UserId }, userDetail);
         }
 
