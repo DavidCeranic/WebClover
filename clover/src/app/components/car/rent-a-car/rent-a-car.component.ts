@@ -35,7 +35,7 @@ export class RentACarComponent implements OnInit {
   constructor(public dialog: MatDialog, private carService: CarService, data: RentServiceDetailsService, public service: CarDetailsService) { 
     this.service.refreshList();
     this.service.messageEvent.subscribe( x => {
-      this.allCars = x;
+      this.allCars = this.data.selectedService.serviceCars;
       this.filtredCars = this.allCars;
     })
     this.data = data;
@@ -56,6 +56,7 @@ export class RentACarComponent implements OnInit {
     }
 
     this.filtredCars = this.carService.filterCars(this.allCars, filterParams);
+    console.log(this.filtredCars);
   }
 
   resetFilter(): void {
