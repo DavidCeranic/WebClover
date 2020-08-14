@@ -47,10 +47,10 @@ namespace WebApiClover.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCarInfo(int id, CarInfo carInfo)
         {
-            if (id != carInfo.CarId)
-            {
-                return BadRequest();
-            }
+            //if (id != carInfo.CarId)
+            //{
+            //    return BadRequest();
+            //}
 
             _context.Entry(carInfo).State = EntityState.Modified;
 

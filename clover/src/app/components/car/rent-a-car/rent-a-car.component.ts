@@ -105,7 +105,7 @@ export class RentACarComponent implements OnInit {
     
   }
 
-  onAddCar(){
+  onAddCar(rentService: RentService){
     this.dialog.open(AddCarComponent, {
       height: '600px',
       width: '500px',

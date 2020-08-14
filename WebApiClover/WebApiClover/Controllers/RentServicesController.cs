@@ -47,10 +47,10 @@ namespace WebApiClover.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRentService(int id, RentService rentService)
         {
-            if (id != rentService.ServiceId)
-            {
-                return BadRequest();
-            }
+            //if (id != rentService.ServiceId)
+            //{
+            //    return BadRequest();
+            //}
 
             _context.Entry(rentService).State = EntityState.Modified;
 
