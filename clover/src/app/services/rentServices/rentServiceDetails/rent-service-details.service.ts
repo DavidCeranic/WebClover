@@ -35,8 +35,9 @@ export class RentServiceDetailsService {
     } );
   }
 
-  putRentService(formData: RentService){
-    return this.http.put(this.rootUrl + 'RentServices/'+formData.serviceId, formData);
+  putRentService(formData: RentService, serviceId: string){
+    var num = parseInt(serviceId);
+    return this.http.put(this.rootUrl + 'RentServices/'+num, formData);
   }
 
   deleteRentService(serviceId: number){

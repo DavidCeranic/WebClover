@@ -10,6 +10,7 @@ import { Inject } from '@angular/core';
 import { AddCarComponent } from '../add-car/add-car.component';
 import { ToastrService } from 'ngx-toastr';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
+import { ChangeCarComponent } from '../add-car/change-car/change-car.component';
 
 @Component({
   selector: 'app-car-filter',
@@ -43,7 +44,7 @@ export class CarFilterComponent implements OnInit {
 
   onSelectCar(car: Car){
     this.data.formData = car;
-    this.dialog.open(AddCarComponent, {
+    this.dialog.open(ChangeCarComponent, {
       height: '600px',
       width: '500px',
     });

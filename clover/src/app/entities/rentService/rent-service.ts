@@ -8,11 +8,11 @@ export class RentService {
     description: string;
     about: string;
     priceTable: string;
-    serviceCars: Car[];
     locationMap: string;
     contact: string;
     lat: number;
     lng: number;
+    serviceCars: Car[];
 
     constructor(serviceName: string, location: string, description: string, img: string, about: string, cars: Array<Car>, contact: string, lat: number, lng: number) {
         this.serviceName = serviceName;

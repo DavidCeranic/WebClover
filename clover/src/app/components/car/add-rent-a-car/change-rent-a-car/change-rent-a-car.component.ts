@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm, FormGroup } from '@angular/forms';
+import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
+import { ToastrService } from 'ngx-toastr';
 import { RentService } from 'src/app/entities/rentService/rent-service';
 import { Car } from 'src/app/entities/Car/car';
-import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
-import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-add-rent-a-car',
-  templateUrl: './add-rent-a-car.component.html',
-  styleUrls: ['./add-rent-a-car.component.css']
+  selector: 'app-change-rent-a-car',
+  templateUrl: './change-rent-a-car.component.html',
+  styleUrls: ['./change-rent-a-car.component.css']
 })
-export class AddRentACarComponent implements OnInit {
+export class ChangeRentACarComponent implements OnInit {
+
   AddRentCarForm: FormGroup;
 
   display: boolean;
@@ -32,20 +33,19 @@ export class AddRentACarComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    this.insertRentService(form);
+    this.updateRentService(form);
   }
 
-  insertRentService(form: NgForm){
-    this.service.postRentService(form.value).subscribe(
+  updateRentService(form: NgForm){
+    this.service.putRentService(form.value, this.rentService.serviceId).subscribe(
       res => {
-        this.toastr.success("Inserted Successfully");
+        this.toastr.success("Updated Successfully");
         this.resetForm(form);
       },
       err => {
         this.toastr.error('error');
       }
     )
-
   }
 
   onClear() {
@@ -70,5 +70,6 @@ export class AddRentACarComponent implements OnInit {
         lng:0
       }
   }
+
 
 }

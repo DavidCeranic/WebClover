@@ -7,6 +7,7 @@ import { AddRentACarComponent } from '../add-rent-a-car/add-rent-a-car.component
 import { MatDialog } from "@angular/material/dialog";
 import { ToastrService } from 'ngx-toastr';
 import { AdminInfoComponent } from './admin-info/admin-info.component';
+import { ChangeRentACarComponent } from '../add-rent-a-car/change-rent-a-car/change-rent-a-car.component';
 
 @Component({
   selector: 'app-rent-a-car-filter',
@@ -34,7 +35,7 @@ export class RentACarFilterComponent implements OnInit {
 
   onSelectRentService(service: RentService){
     this.service.formData = Object.assign({}, service);
-    this.dialog.open(AddRentACarComponent, {
+    this.dialog.open(ChangeRentACarComponent, {
       height: '520px',
       width: '500px',
     });
