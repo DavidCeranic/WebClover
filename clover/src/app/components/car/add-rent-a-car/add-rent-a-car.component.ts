@@ -40,6 +40,7 @@ export class AddRentACarComponent implements OnInit {
       res => {
         this.toastr.success("Inserted Successfully");
         this.resetForm(form);
+        this.service.refreshList();
       },
       err => {
         this.toastr.error('error');

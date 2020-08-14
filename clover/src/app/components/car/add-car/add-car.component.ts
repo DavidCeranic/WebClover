@@ -32,6 +32,7 @@ export class AddCarComponent implements OnInit {
         //this.rentService.putRentService(this.rentService.selectedService);
         this.toastr.success("Inserted Successfully");
         this.resetForm(form);
+        this.service.refreshList();
       },
       err => {
         this.toastr.error('error');

@@ -32,6 +32,7 @@ export class ChangeCarComponent implements OnInit {
         console.log(this.car.carId);
         this.toastr.success("Updated Successfully");
         this.resetForm(form);
+        this.service.refreshList();
       },
       err => {
         this.toastr.error('error');

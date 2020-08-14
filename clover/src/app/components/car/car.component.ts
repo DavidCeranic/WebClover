@@ -27,17 +27,17 @@ export class CarComponent implements OnInit {
   allRentServices: Array<RentService>;
   filtredRentServices: Array<RentService>;
 
+  ngOnInit(): void {
+    this.service.refreshList();
+    this.initForm();
+  }
+
   constructor(public dialog: MatDialog, private rentServices: RentServicesService, private router: Router, private route: ActivatedRoute, public service: RentServiceDetailsService) { 
     this.service.refreshList();
     this.service.messageEvent.subscribe( x => { 
       this.allRentServices = x;
       this.filtredRentServices = this.allRentServices;
     } );
-  }
-
-  ngOnInit(): void {
-    this.service.refreshList();
-    this.initForm();
   }
 
   filterServices(): void {

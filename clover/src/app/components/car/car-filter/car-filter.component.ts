@@ -56,6 +56,7 @@ export class CarFilterComponent implements OnInit {
     this.service.deleteCar(serviceId).subscribe( res => {
       this.toastr.warning("Deleted Successfully");
       this.service.refreshList();
+      this.dataCars.refreshList();
     },
     err => {
       this.toastr.error('error');

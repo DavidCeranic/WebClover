@@ -56,7 +56,6 @@ export class RentACarComponent implements OnInit {
     }
 
     this.filtredCars = this.carService.filterCars(this.allCars, filterParams);
-    console.log(this.filtredCars);
   }
 
   resetFilter(): void {

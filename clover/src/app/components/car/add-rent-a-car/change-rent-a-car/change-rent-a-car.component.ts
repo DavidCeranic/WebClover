@@ -41,6 +41,7 @@ export class ChangeRentACarComponent implements OnInit {
       res => {
         this.toastr.success("Updated Successfully");
         this.resetForm(form);
+        this.service.refreshList();
       },
       err => {
         this.toastr.error('error');
