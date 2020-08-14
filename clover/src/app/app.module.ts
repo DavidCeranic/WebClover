@@ -39,6 +39,8 @@ import { AuthInterceptor } from './AuthInterceptor';
 import { AdminInfoComponent } from './components/car/rent-a-car-filter/admin-info/admin-info.component';
 import { ChangeRentACarComponent } from './components/car/add-rent-a-car/change-rent-a-car/change-rent-a-car.component';
 import { ChangeCarComponent } from './components/car/add-car/change-car/change-car.component';
+import { ServiceRateComponent } from './components/car/rent-a-car-filter/admin-info/service-rate/service-rate.component';
+import { CarRateComponent } from './components/car/rent-a-car-filter/admin-info/car-rate/car-rate.component';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { ChangeCarComponent } from './components/car/add-car/change-car/change-c
     AddFlightComponent,
     AdminInfoComponent,
     ChangeRentACarComponent,
-    ChangeCarComponent
+    ChangeCarComponent,
+    ServiceRateComponent,
+    CarRateComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +93,11 @@ import { ChangeCarComponent } from './components/car/add-car/change-car/change-c
   entryComponents: [
     RentCarComponent,
     AddRentACarComponent,
-    AddCarComponent
+    AddCarComponent,
+    ChangeRentACarComponent,
+    ChangeCarComponent,
+    ServiceRateComponent,
+    CarRateComponent
   ]
 })
 export class AppModule { }

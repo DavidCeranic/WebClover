@@ -1,5 +1,5 @@
-<div class="main">
-    <div class="main-agileinfo"> 
+<div class="nav">
+    <div class="nav-agileinfo"> 
       <div id="owl-demo" class="owl-carousel owl-theme"><!-- owl-carousel -->
         <div class="item">
           <div class="pricing pricing-two">
@@ -16,5 +16,17 @@
           </div> 
         </div> 
       </div>	
-    </div>	
+    </div>
+    
+    
+    <div class="main">
+      <div *ngIf="display === 'ServiceRate'">
+        <app-service-rate></app-service-rate>
+      </div>
+
+      <div *ngIf="display === 'CarRate'">
+        <app-car-rate></app-car-rate>
+      </div>
+
+    </div>
   </div> 
