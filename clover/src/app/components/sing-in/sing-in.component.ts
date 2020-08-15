@@ -9,6 +9,8 @@ import { HttpBackend } from '@angular/common/http';
 import { HttpClient } from "@angular/common/http";
 import { User } from 'src/app/entities/User/user';
 import { RegisterUserService } from 'src/app/services/userDetails/registerUser/register-user.service';
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 @Component({
   selector: 'app-sing-in',
@@ -24,7 +26,7 @@ export class SingInComponent implements OnInit {
   displayStr = "SingIn";
   user: User;
 
-  constructor(private flightService: AllFlightsService, private registerService: RegisterUserService, public service: UserDetailsService, public router: Router, http: HttpClient,)
+  constructor(private flightService: AllFlightsService, private registerService: RegisterUserService, public service: UserDetailsService, public router: Router, http: HttpClient,private authService: SocialAuthService)
    {
        this.allFlightss=this.flightService.getFlights();
        this.http = http;
@@ -88,4 +90,23 @@ export class SingInComponent implements OnInit {
     email: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", [Validators.required, Validators.minLength(3)])
   });
+
+  OnFacebook() : void{
+    var user=this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    console.log(user);
+  }
+
+
+  OnInstagram(){}
+  OnTwitter(){}
+
+  OnGoogle() : void{
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(res=>{
+      var user=new User(res.firstName,res.email,"","","","User",res.idToken);
+      this.http.post<User>('http://localhost:5000/api/UserDetails/'+'Social', user).toPromise().then((res: any) => {
+        this.user=res as User;
+        });
+    });
+  }
 }
+
