@@ -139,7 +139,7 @@ namespace WebApiClover.Controllers
         {
             _context.UserDetails.Add(userDetail);
             await _context.SaveChangesAsync();
-            await email.SendMailAsync("ceranicdavid@gmail.com", "Test", "Test");
+            //await email.SendMailAsync("ceranicdavid@gmail.com", "Test", "Test");
             return CreatedAtAction("GetUserDetail", new { id = userDetail.UserId }, userDetail);
         }
 

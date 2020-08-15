@@ -34,9 +34,10 @@ export class CarDetailsService {
     this.messageSource.next(message);
   }
 
-  putCar(formData: Car, carId: string){
-    var num = parseInt(carId);
-    return this.http.put(this.rootUrl + 'CarInfoes/'+num, formData);
+  putCar(formData: Car, carId:string, rentServiceId: string){
+    var rentService = parseInt(rentServiceId);
+    formData.carId = carId;
+    return this.http.put(this.rootUrl + 'CarInfoes/'+rentService, formData);
   }
 
   deleteCar(carId: number){

@@ -52,6 +52,6 @@ namespace WebApiClover.Models
 
         public virtual List<Rate> RateService { get; set; }
 
-        public List<CarInfo> ServiceCars { get; set; }
+        public virtual List<CarInfo> ServiceCars { get; set; }
     }
 }

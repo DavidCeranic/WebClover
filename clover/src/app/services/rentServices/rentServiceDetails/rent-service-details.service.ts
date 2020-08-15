@@ -37,6 +37,7 @@ export class RentServiceDetailsService {
 
   putRentService(formData: RentService, serviceId: string){
     var num = parseInt(serviceId);
+    formData.serviceId = serviceId;
     return this.http.put(this.rootUrl + 'RentServices/'+num, formData);
   }
 
