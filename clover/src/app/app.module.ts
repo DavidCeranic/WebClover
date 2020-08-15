@@ -42,6 +42,12 @@ import { ChangeCarComponent } from './components/car/add-car/change-car/change-c
 import { ServiceRateComponent } from './components/car/rent-a-car-filter/admin-info/service-rate/service-rate.component';
 import { CarRateComponent } from './components/car/rent-a-car-filter/admin-info/car-rate/car-rate.component';
 
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  AmazonLoginProvider,
+} from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -82,12 +88,37 @@ import { CarRateComponent } from './components/car/rent-a-car-filter/admin-info/
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    MatDialogModule
+    MatDialogModule,
+    SocialLoginModule
   ],
   providers: [
     UserDetailsService,
     AuthInterceptor,
-    RegisterUserComponent
+    RegisterUserComponent,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '910535454357-cv1dfle5r07scko2u9rgtd7d9oq4dk5b.apps.googleusercontent.com'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('391279595172865'),
+          },
+          {
+            id: AmazonLoginProvider.PROVIDER_ID,
+            provider: new AmazonLoginProvider(
+              'clientId'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent],
   entryComponents: [

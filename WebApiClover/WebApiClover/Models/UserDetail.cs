@@ -20,15 +20,12 @@ namespace WebApiClover.Models
         [Column(TypeName = "nvarchar(100)")]
         public string Email { get; set; }
 
-        [Required]
         [Column(TypeName = "nvarchar(100)")]
         public string Password { get; set; }
 
-        [Required]
         [Column(TypeName = "nvarchar(100)")]
         public string City { get; set; }
 
-        [Required]
         [Column(TypeName = "nvarchar(100)")]
         public string PhoneNumber { get; set; }
 
@@ -36,10 +33,12 @@ namespace WebApiClover.Models
         [Column(TypeName = "nvarchar(100)")]
         public string UserType { get; set; }
 
-        public string StringToken;
+        public string StringToken { get; set; }
 
         public List<CarInfo> UserCars { get; set; }
 
         public List<FlightInfo2> UserFlights{ get; set; }
+
+        public bool IsVerify { get; set; }
     }
 }
