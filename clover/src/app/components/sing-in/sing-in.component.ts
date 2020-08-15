@@ -58,12 +58,9 @@ export class SingInComponent implements OnInit {
   onSubmit() {
     const email = this.getValue("Email");
     const password = this.getValue("Password");
-
     this.registerService.logIn(email, password);
-
     this.router.navigateByUrl('/register-user');
   }
-
 
   showRegister(){
     this.displayStr = "SingUp"
@@ -81,8 +78,6 @@ export class SingInComponent implements OnInit {
     let back = new Array<string>();
     back.push(email);
     back.push(password);
-    
-
     this.service.changeMessage(back);
   }
 
@@ -92,21 +87,27 @@ export class SingInComponent implements OnInit {
   });
 
   OnFacebook() : void{
-    var user=this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    console.log(user);
+    var user=this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(res=>{
+      var user=new User(res.firstName,res.email,"","","","User",res.idToken);
+      this.http.post<User>('http://localhost:5000/api/UserDetails/'+'SocialFB', user).toPromise().then((res: any) => {
+        this.user=res as User;
+        this.registerService.user = this.user;
+        this.router.navigateByUrl('/register-user');
+        });
+    });
   }
-
-
-  OnInstagram(){}
-  OnTwitter(){}
 
   OnGoogle() : void{
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(res=>{
       var user=new User(res.firstName,res.email,"","","","User",res.idToken);
       this.http.post<User>('http://localhost:5000/api/UserDetails/'+'Social', user).toPromise().then((res: any) => {
         this.user=res as User;
+        this.registerService.user = this.user;
+        this.registerService.loggedIn.emit(res);
+        this.router.navigateByUrl('/register-user');
         });
     });
+    
   }
 }
 

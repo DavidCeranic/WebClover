@@ -202,6 +202,34 @@ namespace WebApiClover.Controllers
             return (true, googleApiTokenInfo);
         }
 
+        private async Task<(bool isVaild, GoogleApiTokenInfo apiTokenInfo)> VerifyTokenAsync2(string providerToken)
+        {
+            var httpClient = new HttpClient();
+            var requestUri = new Uri($"https://graph.facebook.com/me?access_token={providerToken}");
+
+            HttpResponseMessage responseMessage;
+
+            try
+            {
+                responseMessage = await httpClient.GetAsync(requestUri);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return (false, null);
+            }
+
+            if (responseMessage.StatusCode != HttpStatusCode.OK)
+            {
+                Console.WriteLine(responseMessage.StatusCode);
+                return (false, null);
+            }
+
+            var response = await responseMessage.Content.ReadAsStringAsync();
+            var googleApiTokenInfo = JsonConvert.DeserializeObject<GoogleApiTokenInfo>(response);
+            return (true, googleApiTokenInfo);
+        }
+
         [HttpPost("Social")]
         [AllowAnonymous]
         public async Task<object> SocialLogin([FromBody] UserDetail model)
@@ -254,7 +282,54 @@ namespace WebApiClover.Controllers
 
 
 
+        [HttpPost("SocialFB")]
+        [AllowAnonymous]
+        public async Task<object> SocialLoginFB([FromBody] UserDetail model)
+        {
+            var tokenVerification = await VerifyTokenAsync2(model.StringToken);
+            if (tokenVerification.isVaild)
+            {
+                var user = await GetUserByEmailAsync(tokenVerification.apiTokenInfo.email);
+                if (user == null)
+                {
+                    user = AddAsync(new UserDetail()
+                    {
+                        Email = tokenVerification.apiTokenInfo.email,
+                        Name = model.Name,
+                        IsVerify = true,
+                        UserType = "User"
+                    });
 
+                }
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var key = Encoding.ASCII.GetBytes("this is my custom Secret key for authnetication");
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new[]
+                    {
+                        new Claim(ClaimTypes.Name, user.UserId.ToString()),
+                        new Claim(ClaimTypes.Role, user.UserType)
+                    }),
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var tokenString = tokenHandler.WriteToken(token);
+
+                // return basic user info (without password) and token to store client side
+                return await Task.FromResult<IActionResult>(Ok(JsonConvert.SerializeObject(new
+                {
+                    UserId = user.UserId,
+                    Email = user.Email,
+                    tokenString = tokenString,
+                    Name = user.Name,
+                    UserType = user.UserType
+                })));
+            }
+
+            return BadRequest(new { message = "Error logging in with google" });
+        }
 
 
 

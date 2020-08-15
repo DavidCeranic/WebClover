@@ -108,13 +108,7 @@ import {
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('391279595172865'),
-          },
-          {
-            id: AmazonLoginProvider.PROVIDER_ID,
-            provider: new AmazonLoginProvider(
-              'clientId'
-            ),
+            provider: new FacebookLoginProvider('EAAFj3eFHNAEBAO5MEWmw10otD296f4LZBAoKpOet78K0mc9BYAMjnbkdg3iM3VgXhIQXGdNpfaOo44pPaprtbde7bZCv70RoTrKwiZBmoBFoGZBJ9UkxuKD5b7cyghfazrLBvL999ICg7J9pdk1LZA2JSu6QTu8ZCq6Oa5lKJkQgm8bzMnvLe5O3OnzNIakdAZD'),
           },
         ],
       } as SocialAuthServiceConfig,
