@@ -30,6 +30,7 @@ export class AddCarComponent implements OnInit {
       res => {  
         //this.rentService.selectedService.serviceCars.push(form.value);
         //this.rentService.putRentService(this.rentService.selectedService);
+        console.log(form.value);
         this.toastr.success("Inserted Successfully");
         this.resetForm(form);
         this.service.refreshList();

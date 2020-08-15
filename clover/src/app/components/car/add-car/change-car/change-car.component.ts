@@ -26,13 +26,12 @@ export class ChangeCarComponent implements OnInit {
   }
 
   updateCar(form: NgForm){
-    this.service.putCar(form.value, this.car.carId).subscribe(
+    this.service.putCar(form.value, this.car.carId, this.rentService.selectedService.serviceId).subscribe(
       res => {
-        console.log(form.value);
-        console.log(this.car.carId);
         this.toastr.success("Updated Successfully");
         this.resetForm(form);
         this.service.refreshList();
+        this.rentService.refreshList();
       },
       err => {
         this.toastr.error('error');
