@@ -26,19 +26,33 @@ export class AddCarComponent implements OnInit {
   }
 
   insertCar(form: NgForm){
-    this.service.postCar(form.value).subscribe(
-      res => {  
-        //this.rentService.selectedService.serviceCars.push(form.value);
-        //this.rentService.putRentService(this.rentService.selectedService);
-        console.log(form.value);
-        this.toastr.success("Inserted Successfully");
-        this.resetForm(form);
-        this.service.refreshList();
-      },
-      err => {
-        this.toastr.error('error');
-      }
-    )
+    // this.service.postCar(form.value).subscribe(
+    //   res => {  
+    //     //this.rentService.selectedService.serviceCars.push(form.value);
+    //     //this.rentService.putRentService(this.rentService.selectedService);
+    //     console.log(form.value);
+    //     this.toastr.success("Inserted Successfully");
+    //     this.resetForm(form);
+    //     this.service.refreshList();
+    //   },
+    //   err => {
+    //     this.toastr.error('error');
+    //   }
+    // )
+    this.rentService.selectedService.serviceCars.push(form.value);
+
+        this.rentService.putRentService(this.rentService.selectedService, this.rentService.selectedService.serviceId).subscribe(
+          res => {  
+            //this.rentService.selectedService.serviceCars.push(form.value);
+            //this.rentService.putRentService(this.rentService.selectedService);
+            this.toastr.success("Inserted Successfully");
+            this.resetForm(form);
+            this.service.refreshList();
+          },
+          err => {
+            this.toastr.error('error');
+          }
+        )
   }
 
   onClear() {

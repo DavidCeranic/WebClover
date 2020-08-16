@@ -26,6 +26,7 @@ export class ChangeCarComponent implements OnInit {
   }
 
   updateCar(form: NgForm){
+    this.rentService.selectedService.serviceCars.push(form.value);
     this.service.putCar(form.value, this.car.carId, this.rentService.selectedService.serviceId).subscribe(
       res => {
         this.toastr.success("Updated Successfully");
