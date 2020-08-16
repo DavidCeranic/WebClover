@@ -54,6 +54,13 @@ namespace WebApiClover.Controllers
 
             _context.Entry(rentService).State = EntityState.Modified;
 
+            var rs = _context.RentService.FirstOrDefault(x => x.ServiceId == rentService.ServiceId);
+            rs.ServiceCars = rentService.ServiceCars;
+            foreach (var child in rs.ServiceCars)
+            {
+                _context.Entry(child).State = child.CarId == 0 ? EntityState.Added : EntityState.Modified;
+            }
+
             try
             {
                 await _context.SaveChangesAsync();
@@ -77,6 +84,7 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
+        [HttpPost("RentServices")]
         public async Task<ActionResult<RentService>> PostRentService(RentService rentService)
         {
             _context.RentService.Add(rentService);
