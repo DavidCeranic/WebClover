@@ -270,9 +270,15 @@ namespace WebApiClover.Controllers
                 {
                     UserId = user.UserId,
                     Email = user.Email,
-                    tokenString = tokenString,
+                    StringToken = tokenString,
                     Name = user.Name,
-                    UserType = user.UserType
+                    UserType = user.UserType,
+                    City= "",
+                    IsVerify = true,
+                    Password= "",
+                    PhoneNumber= "",
+                    UserCars= "",
+                    UserFlights=""
                 })));
             }
 

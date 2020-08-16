@@ -1,1 +1,5 @@
-<p>car-rate works!</p>
+<div *ngFor="let car of this.cars" class="div1">
+    <div class="image" style="content:url({{car.imgUrl}})"></div>
+    <div class="divName">{{car.serviceName}}</div>
+    <div class="rate"> <ngb-rating [rate]="3"></ngb-rating> </div> 
+</div>
