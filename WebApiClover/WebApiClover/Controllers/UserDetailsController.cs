@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Interfaces.Services;
+using Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,9 +27,10 @@ namespace WebApiClover.Controllers
         private readonly UserDetailContext _context;
         private IEmailService email;
 
-        public UserDetailsController(UserDetailContext context)
+        public UserDetailsController(UserDetailContext context, IEmailService emailService)
         {
             _context = context;
+            this.email = emailService;
         }
 
         // GET: api/UserDetails
@@ -139,13 +141,35 @@ namespace WebApiClover.Controllers
         {
             _context.UserDetails.Add(userDetail);
             await _context.SaveChangesAsync();
-            //await email.SendMailAsync("ceranicdavid@gmail.com", "Test", "Test");
+
+            const string subject = "Email verification";
+            var body = $"<p>For:{userDetail.Email}</p><a href=\"http://localhost:5000/api/UserDetails/ConfirmEmail/{userDetail.Email}\"> Email</a>";
+
+            await email.SendMailAsync(userDetail.Email, subject, body);
+
             return CreatedAtAction("GetUserDetail", new { id = userDetail.UserId }, userDetail);
         }
 
 
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("ConfirmEmail/{mail}")]
+        public async Task<object> ConfirmEmailAsync(string mail)
+        {
+            Console.WriteLine("Uso");
+            var user = await GetUserByEmailAsync(mail);
+            if (user is null)
+            {
+                return BadRequest(new { message = "Error processing email" });
+            }
 
+            Console.WriteLine("All ok");
+            user.IsVerify = true;
+            _context.Entry(user).State = EntityState.Modified;
+            _context.SaveChanges();
+            return Ok("<html><body><a Pretisni ovde href=\"localhost:4200></body></html>");
+        }
 
 
 
