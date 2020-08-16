@@ -55,7 +55,7 @@ export class CarFilterComponent implements OnInit {
     if(confirm('Are you sure to delete this car?')){
     this.service.deleteCar(carId).subscribe( res => {
       this.toastr.warning("Deleted Successfully");
-      this.service.refreshList();
+      //this.dataCars.selectedService.serviceCars =  this.dataCars.list;
       this.dataCars.refreshList();
     },
     err => {
@@ -63,7 +63,6 @@ export class CarFilterComponent implements OnInit {
         }
       )
     }
-    location.reload();
   }
 
   check(){

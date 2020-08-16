@@ -102,15 +102,16 @@ export class SingInComponent implements OnInit {
   }
 
   OnFacebook() : void{
-    var user=this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(res=>{
-      var user=new User(res.firstName,res.email,"","","","User",res.idToken);
-      this.http.post<User>('http://localhost:5000/api/UserDetails/'+'SocialFB', user).toPromise().then((res: any) => {
-        localStorage.setItem("user_token", res.StringToken);
-        this.user=res as User;
-        this.registerService.user = this.user;
-        this.router.navigateByUrl('/register-user');
-        });
-    });
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    // var user=this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(res=>{
+    //   var user=new User(res.firstName,res.email,"","","","User",res.idToken);
+    //   this.http.post<User>('http://localhost:5000/api/UserDetails/'+'SocialFB', user).toPromise().then((res: any) => {
+    //     localStorage.setItem("user_token", res.StringToken);
+    //     this.user=res as User;
+    //     this.registerService.user = this.user;
+    //     this.router.navigateByUrl('/register-user');
+    //     });
+    // });
   }
 
   OnGoogle() : void{

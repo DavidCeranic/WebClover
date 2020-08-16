@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Core.Interfaces.Services;
+using Core.Services;
 
 namespace WebApiClover
 {
@@ -34,6 +36,7 @@ namespace WebApiClover
             services.AddDbContext<UserDetailContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
             services.AddCors();
+
 
             var key = Encoding.ASCII.GetBytes("this is my custom Secret key for authnetication");
             services.AddAuthentication(x =>
@@ -67,6 +70,9 @@ namespace WebApiClover
                         ValidateAudience = false,
                     };
                 });
+
+            services.AddScoped<IEmailService, EmailService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

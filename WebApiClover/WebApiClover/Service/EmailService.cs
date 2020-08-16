@@ -14,38 +14,40 @@ namespace Core.Services
   
         public async Task SendMailAsync(string to, string subject, string body, string from = "noreply@gmail.com")
         {
-            var client = new SmtpClient(SmtpClientHost, SmtpClientPort)
+            using (SmtpClient smtpClient = new SmtpClient())
             {
-                EnableSsl = true,
-                Credentials = new NetworkCredential(NetworkCredentialUsername, NetworkCredentialPassword)
-            };
-
-            using (var message = new MailMessage())
-            {
-
-                message.To.Add(to);
-
-                message.From = new MailAddress(from);
-                message.Subject = subject;
-                message.Body = body;
-                message.IsBodyHtml = true;
-                message.Priority = MailPriority.High;
-
-                try
+                var basicCredential = new NetworkCredential(NetworkCredentialUsername, NetworkCredentialPassword);
+                using (MailMessage message = new MailMessage())
                 {
-                    await client.SendMailAsync(message);
-                }
-                catch (Exception ex)
-                {
-                    Trace.TraceError(ex.Message);
+                    MailAddress fromAddress = new MailAddress(from, from);
+                    smtpClient.EnableSsl = true;
+                    smtpClient.Host = "smtp.gmail.com";
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = basicCredential;
+
+                    message.From = fromAddress;
+                    message.Subject = subject;
+                    message.IsBodyHtml = true;
+                    message.Body = body;
+                    message.To.Add(to);
+
+                    try
+                    {
+                        await smtpClient.SendMailAsync(message);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.StackTrace);
+                        Trace.TraceError(ex.Message);
+                    }
                 }
             }
         }
 
 
-        public string NetworkCredentialPassword { get; set; } = "qxpxxthmsivvxxce";
+        public string NetworkCredentialPassword { get; set; } = "cloverweb";
 
-        public string NetworkCredentialUsername { get; set; } = "ceranicdavid@gmail.com";
+        public string NetworkCredentialUsername { get; set; } = "clover.web21@gmail.com";
 
         public string SmtpClientHost { get; set; } = "smtp.gmail.com";
             

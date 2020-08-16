@@ -108,7 +108,7 @@ import {
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('EAAFj3eFHNAEBAO5MEWmw10otD296f4LZBAoKpOet78K0mc9BYAMjnbkdg3iM3VgXhIQXGdNpfaOo44pPaprtbde7bZCv70RoTrKwiZBmoBFoGZBJ9UkxuKD5b7cyghfazrLBvL999ICg7J9pdk1LZA2JSu6QTu8ZCq6Oa5lKJkQgm8bzMnvLe5O3OnzNIakdAZD'),
+            provider: new FacebookLoginProvider('249894789308291'),
           },
         ],
       } as SocialAuthServiceConfig,
