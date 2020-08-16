@@ -4,6 +4,8 @@ import { User } from 'src/app/entities/User/user';
 import { SingInComponent } from '../sing-in.component';
 import { UserDetailsService } from 'src/app/services/userDetails/user-details.service';
 import { ToastrService } from 'ngx-toastr';
+import { RegisterUserService } from 'src/app/services/userDetails/registerUser/register-user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sing-up',
@@ -18,7 +20,7 @@ export class SingUpComponent implements OnInit {
 
   @Output() messageEvent = new EventEmitter<string>();
 
-  constructor(public service: UserDetailsService, private toastr: ToastrService) { }
+  constructor(public service: UserDetailsService, private toastr: ToastrService, private registerService: RegisterUserService, public router: Router) { }
 
   ngOnInit(): void {
     this.resetForm();
@@ -31,6 +33,8 @@ export class SingUpComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+    //proveriti da li je dosla neka vrednost(RentAdmin, FlightAdmin) pa onda staviti user ili nesto od ta dva
+    form.value.userType="User";
     this.insertUser(form);
   }
 
@@ -43,7 +47,7 @@ export class SingUpComponent implements OnInit {
       err => {
         this.toastr.success('error');
       }
-    )
+    );
   }
 
   sendMessage(){

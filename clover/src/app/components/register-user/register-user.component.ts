@@ -44,6 +44,7 @@ export class RegisterUserComponent implements OnInit {
       height: '520px',
       width: '500px',
     });
+    //poslati string RentAdmin i u singUp postaviti to kao vrednost
   }
 
   onAddFlightService(){
@@ -52,7 +53,5 @@ export class RegisterUserComponent implements OnInit {
       width: '500px',
     });
   }
-
-  //test
 
 }

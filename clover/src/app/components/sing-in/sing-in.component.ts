@@ -30,7 +30,6 @@ export class SingInComponent implements OnInit {
    {
        this.allFlightss=this.flightService.getFlights();
        this.http = http;
-      
   }
   
   ngOnInit(): void 
@@ -55,15 +54,13 @@ export class SingInComponent implements OnInit {
     localStorage.setItem('sessionUserRolee', JSON.stringify('ADMIN'));
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
     const email = this.getValue("Email");
     const password = this.getValue("Password");
-
     this.registerService.logIn(email, password);
-
+    this.resetForm(form);
     this.router.navigateByUrl('/register-user');
   }
-
 
   showRegister(){
     this.displayStr = "SingUp"
@@ -77,36 +74,57 @@ export class SingInComponent implements OnInit {
     return (<HTMLInputElement> document.getElementById(Id)).value;
   }
 
-  SingInUser(email: string, password: string){
-    let back = new Array<string>();
-    back.push(email);
-    back.push(password);
-    
+  // SingInUser(email: string, password: string){
+  //   let back = new Array<string>();
+  //   back.push(email);
+  //   back.push(password);
+  //   this.service.changeMessage(back);
+  // }
 
-    this.service.changeMessage(back);
+  // loginGroup = new FormGroup({
+  //   email: new FormControl("", [Validators.required, Validators.email]),
+  //   password: new FormControl("", [Validators.required, Validators.minLength(3)])
+  // });
+
+  resetForm(form?: NgForm){
+    if(form!=null)
+      form.resetForm();
+      this.service.formData = {
+        userId: null,
+        Name: "",
+        email: "",
+        password: "",
+        city: "",
+        phoneNumber: "",
+        userType: "",
+        StringToken: ""
+      }
   }
-
-  loginGroup = new FormGroup({
-    email: new FormControl("", [Validators.required, Validators.email]),
-    password: new FormControl("", [Validators.required, Validators.minLength(3)])
-  });
 
   OnFacebook() : void{
-    var user=this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    console.log(user);
+    var user=this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(res=>{
+      var user=new User(res.firstName,res.email,"","","","User",res.idToken);
+      this.http.post<User>('http://localhost:5000/api/UserDetails/'+'SocialFB', user).toPromise().then((res: any) => {
+        localStorage.setItem("user_token", res.StringToken);
+        this.user=res as User;
+        this.registerService.user = this.user;
+        this.router.navigateByUrl('/register-user');
+        });
+    });
   }
-
-
-  OnInstagram(){}
-  OnTwitter(){}
 
   OnGoogle() : void{
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(res=>{
       var user=new User(res.firstName,res.email,"","","","User",res.idToken);
       this.http.post<User>('http://localhost:5000/api/UserDetails/'+'Social', user).toPromise().then((res: any) => {
+        localStorage.setItem("user_token", res.StringToken);
         this.user=res as User;
+        this.registerService.user = res as User;
+        this.registerService.loggedIn.emit(res);
+        this.router.navigateByUrl('/register-user');
         });
     });
+    
   }
 }
 
