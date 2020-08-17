@@ -1,0 +1,127 @@
+<div class="filter">
+<div class="booking-form">
+    <form>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <span class="form-label">Start Location</span>
+            <input class="form-control" type="text" placeholder="Start Location" id="startLocationFilter">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <span class="form-label">Start Date</span>
+            <input class="form-control" type="date" required>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="form-group">
+            <span class="form-label">Type of Vehicle</span>
+            <select class="form-control">
+              <option>Putnicko</option>
+              <option>Teretno</option>
+              <option>Kabriolet</option>
+            </select>
+            <span class="select-arrow"></span>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="form-group">
+            <span class="form-label">Passengers</span>
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <span class="select-arrow"></span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        
+        <div class="col-md-3">
+          <div class="form-group">
+            <span class="form-label">End Location</span>
+            <input class="form-control" type="text" placeholder="End Location" id="endLocationFilter">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <span class="form-label">End Date</span>
+            <input class="form-control" type="date" required>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <span class="form-label">Price</span>
+            <input class="form-control" style="width: 35%;" type="number" placeholder="Price" id="carMaxPerDayPriceFilter">
+          </div>
+        </div>
+        
+        <div class="col-md-2">
+          <div class="form-btn">
+            <button class="submit-btn" (click)="filterCars()">Show Cars</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>     
+</div>
+
+<div class="radio" style="width:150px;">
+  <div class="s002" >
+    <form>
+      <div class="inner-form">
+        <div class="input-field fifth-wrap">
+          <p style="color:lavenderblush; margin-left: 12%; margin-bottom: 20%;"> Sort</p>
+          <div class="input-field fifth-wrap">
+            <div class="row">
+              <input type="radio" value="name" name="sort" style="height: 1em; margin-left: -47%;">
+              <p style="color:lavenderblush; margin-left: -40%; margin-top: -1%;"> Name</p>
+            </div>
+            <div class="row">
+              <input type="radio" value="city" name="sort" style="height: 1em; margin-left: -47%;">
+              <p style="color:lavenderblush; margin-left: -40%; margin-top: -1%;"> City</p>
+            </div>
+            <div class="row">
+              <input type="radio" value="distance" name="sort" style="height: 1em; margin-left: -47%;">
+              <p style="color:lavenderblush; margin-left: -40%; margin-top: -1%;"> Distance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+  <section id="admin" [hidden]="check()">
+    <div class="adminDiv">
+      <div class="booking-form">
+        <form style="margin-top: 17%;">
+              <p style="color:white;"> Admin Services</p>
+                <div class="form-btn">
+                  <button class="submit-btn" type="button" (click)="onAddCar(this.data.selectedService)">Add Car</button>
+                </div>
+        </form>
+      </div>
+      </div>
+  </section>
+
+
+
+  <div class="conteiner3" id="style-22">
+    <div [hidden]="this.data.selectedService.serviceCars.length !== 0">
+      <hr/>
+      <h5 style="text-align: center;">Trenutno nema dostupnih vozila koja zadovoljavaju zadate parametre.</h5>
+    </div>
+    <div [hidden]="this.data.selectedService.serviceCars.length === 0">
+      <app-car-filter [filtredCars]="filtredCars"></app-car-filter>
+    </div>
+    </div>
