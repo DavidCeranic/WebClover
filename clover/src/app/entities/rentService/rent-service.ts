@@ -1,4 +1,5 @@
 import { Car } from '../Car/car';
+import { Office } from '../office/office';
 
 export class RentService {
     serviceId: string;
@@ -13,6 +14,7 @@ export class RentService {
     lat: number;
     lng: number;
     serviceCars: Car[];
+    serviceOffice: Office[];
 
     constructor(serviceName: string, location: string, description: string, img: string, about: string, cars: Array<Car>, contact: string, lat: number, lng: number) {
         this.serviceName = serviceName;

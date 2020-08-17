@@ -48,6 +48,10 @@ import {
   FacebookLoginProvider,
   AmazonLoginProvider,
 } from 'angularx-social-login';
+import { AboutRentComponent } from './components/car/rent-a-car/about-rent/about-rent/about-rent.component';
+import { CarsRentComponent } from './components/car/rent-a-car/cars-rent/cars-rent/cars-rent.component';
+import { LocationsRentComponent } from './components/car/rent-a-car/locations-rent/locations-rent/locations-rent.component';
+import { AddOfficeComponent } from './components/car/rent-a-car/locations-rent/locations-rent/add-office/add-office/add-office.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +78,11 @@ import {
     ChangeRentACarComponent,
     ChangeCarComponent,
     ServiceRateComponent,
-    CarRateComponent
+    CarRateComponent,
+    AboutRentComponent,
+    CarsRentComponent,
+    LocationsRentComponent,
+    AddOfficeComponent
   ],
   imports: [
     BrowserModule,

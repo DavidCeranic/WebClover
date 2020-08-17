@@ -10,6 +10,7 @@ import { RentService } from 'src/app/entities/rentService/rent-service';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import { AddCarComponent } from '../add-car/add-car.component';
 import { MatDialog } from "@angular/material/dialog";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,80 +20,21 @@ import { MatDialog } from "@angular/material/dialog";
 })
 export class RentACarComponent implements OnInit {
   rentService: RentService;
-
+  display="home";
   showStr = "Locations";
-  SearchCarForm: FormGroup;
   data: RentServiceDetailsService;
-  allCars: Array<Car>;
-  filtredCars: Array<Car>;
+  
 
   ngOnInit(): void {
     this.service.refreshList();
-    this.initForm();
-    this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
+    //this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
+    this.rentService = this.data.selectedService;
   }
   
-  constructor(public dialog: MatDialog, private carService: CarService, data: RentServiceDetailsService, public service: CarDetailsService) { 
-    this.service.refreshList();
-    this.service.messageEvent.subscribe( x => {
-      this.allCars = this.data.selectedService.serviceCars;
-      this.filtredCars = this.allCars;
-    })
+  constructor(public dialog: MatDialog, private carService: CarService, data: RentServiceDetailsService, public router: Router, public service: CarDetailsService) 
+  { 
     this.data = data;
-  }
-
-  filterCars(): void {
-    let filterParams = new Array<AbstractFilterParam>();
-    if (this.getFilterFieldValue("startLocationFilter")) {
-      filterParams.push(this.addNameServiceFilterParam());
-    }
-
-    if (this.getFilterFieldValue("endLocationFilter")) {
-      filterParams.push(this.addEndLocationFilterParam());
-    }
-
-    if (this.getFilterFieldValue("carMaxPerDayPriceFilter")) {
-      filterParams.push(this.addCarMaxPerDayPriceFilterParam());
-    }
-
-    this.filtredCars = this.carService.filterCars(this.allCars, filterParams);
-  }
-
-  resetFilter(): void {
-    this.filtredCars = this.allCars;
-  }
-
-  addNameServiceFilterParam(): ReturnType<any> {
-    return new StringFilterParam("startLocationFilter", this.getFilterFieldValue("startLocationFilter"));
-  }
-
-  addEndLocationFilterParam(): ReturnType<any> {
-    return new StringFilterParam("endLocationFilter", this.getFilterFieldValue("endLocationFilter"));
-  }
-
-  addCarMaxPerDayPriceFilterParam(): ReturnType<any> {
-    return new NumberFilterParam("carMaxPerDayPriceFilter", +this.getFilterFieldValue("carMaxPerDayPriceFilter"));
-  }
-
-  getFilterFieldValue(filterFieldId: string) {
-    return (<HTMLInputElement> document.getElementById(filterFieldId)).value;
-  }
-
-  private initForm() {
-    this.SearchCarForm = new FormGroup({
-      'Place': new FormControl('', Validators.required),
-      'StartDate': new FormControl('', Validators.required),
-      'EndDate': new FormControl('', Validators.required)
-    });
-  }
-
-  check(){
-    const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
-      if (userRole === 'ADMIN' || userRole === "RENTADMIN") {
-        return false;
-      }
-
-      return true;
+    this.rentService = this.data.selectedService;
   }
 
   navigateTo(section: string){
@@ -100,14 +42,22 @@ export class RentACarComponent implements OnInit {
     window.location.hash = section;
   }
 
-  onSubmit(){
-    
+  onHome(){
+    this.display="home";
   }
 
-  onAddCar(rentService: RentService){
-    this.dialog.open(AddCarComponent, {
-      height: '600px',
-      width: '500px',
-    });
+  onAbout(){
+    this.display="about-rent";
+    //this.router.navigateByUrl('/car/rent-a-car/about');
+  }
+
+  onCars(){
+    this.display="cars-rent";
+    //this.router.navigateByUrl('/car/rent-a-car/cars');
+  }
+
+  onLocations(){
+    this.display="locations-rent";
+    //this.router.navigateByUrl('car/rent-a-car/locations');
   }
 }

@@ -3,7 +3,9 @@ body {
    color: #444444;
  }
 
-
+.main{
+  margin-top: 2%;
+}
  
  a {
    color: #3498db;
@@ -425,9 +427,11 @@ body {
   margin-left: 20%;
 }
 
-.container{
+.container2{
   width: 120%;
   left: 0;
+  margin-top: 14%;
+  margin-left: 23%;
 }
 
 

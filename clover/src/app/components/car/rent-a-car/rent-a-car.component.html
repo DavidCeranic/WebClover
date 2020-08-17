@@ -2,24 +2,24 @@
     <div class="container d-flex align-items-center">
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a fragment="hero" (click)="navigateTo('hero')">Home</a></li>
-          <li><a fragment="about" (click)="navigateTo('about')">About</a></li>
-          <li><a fragment="cars" (click)="navigateTo('cars')">Cars</a></li>
-          <li><a fragment="locations" (click)="navigateTo('locations')">Locations</a></li>
-          <li><a fragment="contact" (click)="navigateTo('contact')">Contact</a></li>
+          <li class="active"><a fragment="hero" (click)="onHome()">Home</a></li>
+          <li><a fragment="about" (click)="onAbout()">About</a></li>
+          <li><a fragment="cars" (click)="onCars()">Cars</a></li>
+          <li><a fragment="locations" (click)="onLocations()">Locations</a></li>
         </ul>
       </nav>
     </div>
 </header>
 
-<section id="hero" >
-    <div class="container">
+
+<div class="main">
+  <div *ngIf="display === 'home'">
+    <div class="container2">
       <div class="row">
         <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
           <h1 data-aos="fade-up">{{rentService.serviceName}}</h1>
           <h2 data-aos="fade-up" data-aos-delay="400">{{rentService.description}}</h2>
           <div data-aos="fade-up" data-aos-delay="800">
-            <a fragment="about" (click)="navigateTo('cars')" class="btn-get-started scrollto">Naša vozila</a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
@@ -27,238 +27,21 @@
         </div>
       </div>
     </div>
-</section>
-
-<section id="about" class="about">
-    <div class="container">
-
-      <div class="section-title" data-aos="fade-up">
-        <h2>O nama</h2>
-      </div>
-
-      <div class="row content">
-        <!-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
-          <p>
-            Primero Hertz Rental Car je nosilac franšiza Europcar, InterRent i Global Rent a Car za države Srbiju i Crnu Goru. 
-            Ti brendovi su deo Europcar Mobility Group koja je prisutna u većini zemalja sveta. Osnovne delatnosti kompanije:
-          </p>
-          <ul>
-            <li><i class="ri-check-double-line"></i> Najam vozila u zemlji i inostranstvu</li>
-            <li><i class="ri-check-double-line"></i> Dugoročni najmovi vozila – operativni lizing</li>
-            <li><i class="ri-check-double-line"></i> Limo servis - najam vozila sa vozačem</li>
-          </ul>
-        </div>
-        <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
-          <p>
-            Skraćeno poslovno ime: Hertz Rental Car
-            Puno poslovno ime: DRUŠTVO ZA TRGOVINU I USLUGE Hertz Rental Car
-            Pravna forma: DOO - Društvo sa ograničenom odgovornošću
-            Obveznik PDV: da
-            Poreski identifikacioni broj: 102449114
-            Matični broj pravnog lica: 17453416
-            Registarski broj: 2780037616
-          </p>
-        </div> -->
-
-        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
-          <p>{{rentService.about}}</p>
-        </div>
-
-        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
-          <div style="margin-top: -8%;" class="section-title" data-aos="fade-up">
-            <h2>Cenovnik</h2>
-          </div>
-          <img src={{rentService.priceTable}} class="img-fluid animated" alt="">
-        </div>
-      </div>
-
-    </div>
-</section>
-
-
-<section id="cars" >
-        <div class="booking-form">
-          <form>
-            <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
-                  <span class="form-label">Start Location</span>
-                  <input class="form-control" type="text" placeholder="Start Location" id="startLocationFilter">
-                </div>
-              </div>
-
-              <div class="col-md-3">
-                <div class="form-group">
-                  <span class="form-label">Start Date</span>
-                  <input class="form-control" type="date" required>
-                </div>
-              </div>
-
-              <div class="col-md-2">
-                <div class="form-group">
-                  <span class="form-label">Type of Vehicle</span>
-                  <select class="form-control">
-                    <option>Putnicko</option>
-                    <option>Teretno</option>
-                    <option>Kabriolet</option>
-                  </select>
-                  <span class="select-arrow"></span>
-                </div>
-              </div>
-
-              <div class="col-md-2">
-                <div class="form-group">
-                  <span class="form-label">Passengers</span>
-                  <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                  <span class="select-arrow"></span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row">
-              
-              <div class="col-md-3">
-                <div class="form-group">
-                  <span class="form-label">End Location</span>
-                  <input class="form-control" type="text" placeholder="End Location" id="endLocationFilter">
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <span class="form-label">End Date</span>
-                  <input class="form-control" type="date" required>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="form-label">Price</span>
-                  <input class="form-control" style="width: 35%;" type="number" placeholder="Price" id="carMaxPerDayPriceFilter">
-                </div>
-              </div>
-              
-              <div class="col-md-2">
-                <div class="form-btn">
-                  <button class="submit-btn" (click)="filterCars()">Show Cars</button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>      
-</section>
-
-<section id="admin" [hidden]="check()">
-  <div class="adminDiv">
-    <div class="booking-form">
-      <form style="margin-top: 17%;">
-            <p style="color:white;"> Admin Services</p>
-              <div class="form-btn">
-                <button class="submit-btn" type="button" (click)="onAddCar(this.data.selectedService)">Add Car</button>
-              </div>
-      </form>
-    </div>
-    </div>
-</section>
-
-
-
-<div class="conteiner3" id="style-22">
-<div [hidden]="this.data.selectedService.serviceCars.length !== 0">
-  <hr/>
-  <h5 style="text-align: center;">Trenutno nema dostupnih vozila koja zadovoljavaju zadate parametre.</h5>
-</div>
-<div [hidden]="this.data.selectedService.serviceCars.length === 0">
-  <app-car-filter [filtredCars]="filtredCars"></app-car-filter>
-</div>
-</div>
-
-
-<!-- <section id="locations" class="locations">
-  <agm-map [zoom]="17" [latitude]="rentService.lat" [longitude]="rentService.lng">
-      <agm-marker [latitude]="rentService.lat" [longitude]="rentService.lng">
-      </agm-marker>
-  </agm-map>
-</section> -->
-
-
-<section id="contact" class="contact">
-  <div class="container">
-
-    <div class="section-title" data-aos="fade-up">
-      <h2>Contact Us</h2>
-    </div>
-
-    <div class="row">
-
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="contact-about">
-          <h3>{{rentService.serviceName}}</h3>
-          <!-- <p>Za sve nedoumice koje imate možete nas pozvati, kontaktirati putem maila ili nas posetiti na jednoj od mnogobrojnih lokacija. </p>
-          <div class="social-links">
-            <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-            <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-            <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
-          </div> -->
-          <p>{{rentService.contact}}</p>
-        </div>
-      </div>
-
-      <!-- <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
-        <div class="info">
-          <div>
-            <i class="ri-map-pin-line"></i>
-            <p>3. Oktobar 20/10<br>Novi Sad, 21000</p>
-          </div>
-
-          <div>
-            <i class="ri-mail-send-line"></i>
-            <p>hertzrentalcar@gmail.com</p>
-          </div>
-
-          <div>
-            <i class="ri-phone-line"></i>
-            <p>+381 21 555 555</p>
-          </div>
-
-        </div>
-      </div> -->
-
-      <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-          <div class="form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-            <div class="validate"></div>
-          </div>
-          <div class="form-group">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-            <div class="validate"></div>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-            <div class="validate"></div>
-          </div>
-          <div class="form-group">
-            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-            <div class="validate"></div>
-          </div>
-          <div class="mb-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your message has been sent. Thank you!</div>
-          </div>
-          <div class="text-center"><button type="submit">Send Message</button></div>
-        </form>
-      </div>
-
-    </div>
-
   </div>
-</section>
+
+  <div *ngIf="display === 'about-rent'">
+    <app-about-rent></app-about-rent> -->
+  </div>
+
+  <div *ngIf="display === 'cars-rent'">
+    <app-cars-rent></app-cars-rent>
+  </div>
+
+  <div *ngIf="display === 'locations-rent'">
+    <app-locations-rent></app-locations-rent>
+  </div>
+
+</div>
+
+
 

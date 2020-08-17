@@ -1,0 +1,32 @@
+<div *ngFor="let office of this.allOffice" class="div1">
+  <div class="divName">{{office.name}}</div>
+  <div class="div5To"><Address></Address>: {{office.address}} </div>
+  
+  <div class="btn">
+  <button class="myButton" [hidden]="check()" (click)="onDelete(office.officeId)">Delete</button>
+</div>
+</div>
+
+
+<section id="admin" [hidden]="check()">
+  <div class="adminDiv">
+    <div class="booking-form">
+      <form style="margin-top: 17%;">
+            <p style="color:white;"> Admin Services</p>
+              <div class="form-btn">
+                <button class="submit-btn" type="button" (click)="onAddOffice(this.data.selectedService)">Add Office</button>
+              </div>
+      </form>
+    </div>
+    </div>
+</section>
+
+
+<section id="locations" class="locations">
+  <agm-map [zoom]="14" [latitude]="rentService.lat" [longitude]="rentService.lng">
+      <agm-marker [latitude]="rentService.lat" [longitude]="rentService.lng">
+      </agm-marker>
+  </agm-map>
+</section>
+
+

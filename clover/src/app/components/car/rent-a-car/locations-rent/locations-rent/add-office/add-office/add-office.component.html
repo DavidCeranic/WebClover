@@ -1,0 +1,35 @@
+<form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form">
+
+    <input type="hidden" name="carId" [value]="service.formData.officeId">
+  
+      <div class="form-group">
+        Office Name: 
+        <input #name="ngModel" [(ngModel)]="service.formData.name" name="name" type="text" class="form-input" id="name" required/>
+        <div class="validation-error" *ngIf="name.invalid && name.touched">This field is required</div>
+      </div>
+  
+      <div class="form-group">
+        Office Address:
+        <input #address="ngModel" [(ngModel)]="service.formData.address" name="address" type="text" class="form-input" id="address" required/>
+        <div class="validation-error" *ngIf="address.invalid && address.touched">This field is required</div>
+      </div>
+  
+      <div class="form-group">
+        Office Lat:
+        <input #lat="ngModel" [(ngModel)]="service.formData.lat" name="lat" type="number" class="form-input" id="lat" required/>
+        <div class="validation-error" *ngIf="lat.invalid && lat.touched">This field is required</div>
+      </div>
+  
+      <div class="form-group">
+        Office Lng:
+        <input #lng="ngModel" [(ngModel)]="service.formData.lng" name="lng"  type="number" class="form-input" id="lng" required/>
+        <div class="validation-error" *ngIf="lng.invalid && lng.touched">This field is required</div>
+      </div>
+  
+      <div class="form-group">
+        <input type="submit" [disabled]="form.invalid" name="submit" id="submit" class="form-submit" value="Add Office"/>
+    </div>
+  
+    <button mat-dialog-close> Close</button>
+    
+  </form>
