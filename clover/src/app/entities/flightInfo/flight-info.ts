@@ -28,6 +28,6 @@ constructor(from:string, to:string,departing:string,returning:string,classf:stri
     this.companyName=companyName;
     this.price=price;
     this.seatsNumber=seatsNumber;
-    this.rateFlight=rateFlight;
+    
 }
 }
