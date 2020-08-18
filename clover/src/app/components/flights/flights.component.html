@@ -131,13 +131,13 @@
 					</div>
 
 					
-						<div [hidden]="searchedFlights.length !== 0">
-							<hr/>
-							<h5 style="text-align: center;">Trenutno nema dostupnih LETOVA koja zadovoljavaju zadate parametre.</h5>
-						  </div>
-						  <div [hidden]="searchedFlights.length === 0">
-							<app-search-flight [searchedFlights]="searchedFlights"></app-search-flight>
-						  </div>
+					<div [hidden]="searchedFlights.length !== 0">
+						<hr/>
+						<h5 style="text-align: center;">Trenutno nema dostupnih LETOVA koja zadovoljavaju zadate parametre.</h5>
+					  </div>
+					  <div [hidden]="searchedFlights.length === 0">
+						<app-search-flight [searchedFlights]="searchedFlights"></app-search-flight>
+					  </div>
 
 					
 
