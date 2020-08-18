@@ -10,7 +10,7 @@ import { RentService } from 'src/app/entities/rentService/rent-service';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import { AddCarComponent } from '../add-car/add-car.component';
 import { MatDialog } from "@angular/material/dialog";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -23,15 +23,24 @@ export class RentACarComponent implements OnInit {
   display="home";
   showStr = "Locations";
   data: RentServiceDetailsService;
-  
+  id: string;
 
   ngOnInit(): void {
-    this.service.refreshList();
+    //this.service.refreshList();
     //this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
+
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        this.data.refreshList();
+        //ne treba listu i find nego da se doda metoda koja ce da vraca auto po idu
+        this.rentService = this.data.list.find(i => i.serviceId ===this.id);
+      }
+    )
     this.rentService = this.data.selectedService;
   }
   
-  constructor(public dialog: MatDialog, private carService: CarService, data: RentServiceDetailsService, public router: Router, public service: CarDetailsService) 
+  constructor(public dialog: MatDialog, private carService: CarService, data: RentServiceDetailsService, public router: Router, public route: ActivatedRoute, public service: CarDetailsService) 
   { 
     this.data = data;
     this.rentService = this.data.selectedService;
@@ -53,7 +62,7 @@ export class RentACarComponent implements OnInit {
 
   onCars(){
     this.display="cars-rent";
-    //this.router.navigateByUrl('/car/rent-a-car/cars');
+    this.router.navigateByUrl('/car/rent-a-car/'+this.rentService.serviceId+'/cars');
   }
 
   onLocations(){

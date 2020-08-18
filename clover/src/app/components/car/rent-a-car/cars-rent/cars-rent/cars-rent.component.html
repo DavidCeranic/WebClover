@@ -107,7 +107,7 @@
         <form style="margin-top: 17%;">
               <p style="color:white;"> Admin Services</p>
                 <div class="form-btn">
-                  <button class="submit-btn" type="button" (click)="onAddCar(this.data.selectedService)">Add Car</button>
+                  <button class="submit-btn" type="button" (click)="onAddCar()">Add Car</button>
                 </div>
         </form>
       </div>
@@ -117,11 +117,11 @@
 
 
   <div class="conteiner3" id="style-22">
-    <div [hidden]="this.data.selectedService.serviceCars.length !== 0">
+    <!-- <div [hidden]="this.data.selectedService.serviceCars.length !== 0">
       <hr/>
       <h5 style="text-align: center;">Trenutno nema dostupnih vozila koja zadovoljavaju zadate parametre.</h5>
     </div>
-    <div [hidden]="this.data.selectedService.serviceCars.length === 0">
+    <div [hidden]="this.data.selectedService.serviceCars.length === 0"> -->
       <app-car-filter [filtredCars]="filtredCars"></app-car-filter>
-    </div>
+    <!-- </div> -->
     </div>

@@ -16,6 +16,7 @@ export class RentService {
     serviceCars: Car[];
     serviceOffice: Office[];
 
+
     constructor(serviceName: string, location: string, description: string, img: string, about: string, cars: Array<Car>, contact: string, lat: number, lng: number) {
         this.serviceName = serviceName;
         this.location = location;

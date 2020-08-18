@@ -12,6 +12,7 @@ export class RentServiceDetailsService {
   currentMessage = this.messageSource.asObservable();
 
   @Output() messageEvent = new EventEmitter<RentService[]>();
+  @Output() messageEvent2 = new EventEmitter<RentService>();
 
   formData: RentService;
   readonly rootUrl= 'http://localhost:5000/api/';
@@ -43,5 +44,9 @@ export class RentServiceDetailsService {
 
   deleteRentService(serviceId: number){
     return this.http.delete(this.rootUrl + 'RentServices/'+serviceId);
+  }
+
+  getRentServiceById(serviceId: number){
+    return this.http.get<RentService>(this.rootUrl + 'RentServices/' + serviceId.toString());
   }
 }
