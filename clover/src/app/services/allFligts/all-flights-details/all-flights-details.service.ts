@@ -22,9 +22,12 @@ export class AllFligtsDetailsService {
     return this.http.post(this.rootUrl + 'FlightInfo2', formData);
   }
 
-  refreshList(){
-    this.http.get(this.rootUrl + 'FlightInfo2').toPromise().then(res => this.list = res as FlightInfo[]);
-  }
+
+    refreshList(){
+      
+     return this.http.get<FlightInfo[]>(this.rootUrl + 'FlightInfo2');
+    }
+  
 
   changeMessage(message: FlightInfo){
     this.messageSource.next(message);
