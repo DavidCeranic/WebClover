@@ -23,7 +23,7 @@ export class AvioCompanyDetailsService {
   }
 
   refreshList(){
-    this.http.get(this.rootUrl + 'CompanyAbouts').toPromise().then(res => this.list = res as AboutCompany[]);
+   return this.http.get<AboutCompany[]>(this.rootUrl + 'CompanyAbouts');
   }
 
   changeMessage(message: AboutCompany){
