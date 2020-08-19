@@ -10,7 +10,7 @@ import { CarService } from 'src/app/services/car/car.service';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import { AddCarComponent } from '../../../add-car/add-car.component';
-import { Params, ActivatedRoute } from '@angular/router';
+import { Params, ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cars-rent',
@@ -22,6 +22,7 @@ export class CarsRentComponent implements OnInit {
   filtredCars: Array<Car>;
   SearchCarForm: FormGroup;
   id: number;
+  display="cars-rent";
 
   rentService: RentService;
   //data: RentServiceDetailsService;
@@ -46,7 +47,7 @@ export class CarsRentComponent implements OnInit {
     this.initForm();
   }
 
-  constructor(public dialog: MatDialog, private carService: CarService,private rentServiceDetails: RentServiceDetailsService, public route: ActivatedRoute, public service: CarDetailsService) {
+  constructor(public dialog: MatDialog, private carService: CarService,private rentServiceDetails: RentServiceDetailsService, public route: ActivatedRoute, public service: CarDetailsService, public router: Router) {
     this.service.refreshList();
     this.service.messageEvent.subscribe( x => {
       //this.allCars = this.rentService.serviceCars;
@@ -115,6 +116,27 @@ export class CarsRentComponent implements OnInit {
 
   resetFilter(): void {
     this.filtredCars = this.allCars;
+  }
+
+
+  onHome(){
+    this.display="home";
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId);
+  }
+
+  onAbout(){
+    this.display="about-rent";
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/about');
+  }
+
+  onCars(){
+    this.display="cars-rent";
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/cars');
+  }
+
+  onLocations(){
+    this.display="locations-rent";
+    this.router.navigateByUrl('car/rent-a-car/' + this.rentService.serviceId + '/locations');
   }
 
 }
