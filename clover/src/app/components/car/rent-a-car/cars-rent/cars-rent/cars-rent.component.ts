@@ -31,12 +31,10 @@ export class CarsRentComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = params['id'];
-        console.log(this.id);
         //this.data.refreshList();
         this.rentServiceDetails.getRentServiceById(this.id).subscribe(
           dataV => {
             this.rentService = dataV;
-            console.log(this.rentService);
             this.allCars = this.rentService.serviceCars;
             this.filtredCars = this.allCars;
           }
@@ -56,10 +54,15 @@ export class CarsRentComponent implements OnInit {
    }
 
   onAddCar(){
-    this.dialog.open(AddCarComponent, {
-      height: '600px',
-      width: '500px',
-    });
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/add-car');
+    // const dialogRef = this.dialog.open(AddCarComponent, {
+    //   height: '600px',
+    //   width: '500px',
+    // });
+
+    // dialogRef.afterClosed().subscribe( result => {
+
+    // });
   }
 
   check(){

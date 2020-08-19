@@ -20,11 +20,11 @@ export class OfficeDetailsService {
   constructor(private http:HttpClient) { }
 
   postOffice(formData: Office){
-    return this.http.post(this.rootUrl + 'OfficeInfoes', formData);
+    return this.http.post(this.rootUrl + 'OfficeDetails', formData);
   }
 
   refreshList(){
-    this.http.get(this.rootUrl + 'OfficeInfoes').toPromise().then(res => {
+    this.http.get(this.rootUrl + 'OfficeDetails').toPromise().then(res => {
       this.list = res as Office[];
       this.messageEvent.emit(this.list);
     });
@@ -33,10 +33,10 @@ export class OfficeDetailsService {
   putOffice(formData: Office, officeId:string, rentServiceId: string){
     var rentService = parseInt(rentServiceId);
     formData.officeId = officeId;
-    return this.http.put(this.rootUrl + 'OfficeInfoes/'+rentService, formData);
+    return this.http.put(this.rootUrl + 'OfficeDetails/'+rentService, formData);
   }
 
   deleteOffice(carId: number){
-    return this.http.delete(this.rootUrl + 'OfficeInfoes/'+carId);
+    return this.http.delete(this.rootUrl + 'OfficeDetails/'+carId);
   }
 }

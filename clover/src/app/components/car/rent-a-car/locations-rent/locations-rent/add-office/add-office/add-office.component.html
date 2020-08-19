@@ -2,10 +2,15 @@
 
     <input type="hidden" name="carId" [value]="service.formData.officeId">
   
+    <div class="form-group">
+      Rent Service Id: 
+      <input #RentServiceServiceId="ngModel" [(ngModel)]="service.formData.RentServiceServiceId" name="RentServiceServiceId" type="number" class="form-input" id="RentServiceServiceId" required/>
+    </div>
+
       <div class="form-group">
         Office Name: 
-        <input #name="ngModel" [(ngModel)]="service.formData.name" name="name" type="text" class="form-input" id="name" required/>
-        <div class="validation-error" *ngIf="name.invalid && name.touched">This field is required</div>
+        <input #officeName="ngModel" [(ngModel)]="service.formData.officeName" name="officeName" type="text" class="form-input" id="officeName" required/>
+        <div class="validation-error" *ngIf="officeName.invalid && officeName.touched">This field is required</div>
       </div>
   
       <div class="form-group">

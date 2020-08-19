@@ -35,6 +35,7 @@ export class LocationsRentComponent implements OnInit {
         this.rentServiceDetails.getRentServiceById(this.id).subscribe(
           dataV => {
             this.rentService = dataV;
+            this.allOffice = this.rentService.serviceOffice;
             console.log(this.rentService);
           }
         )
@@ -53,10 +54,12 @@ export class LocationsRentComponent implements OnInit {
   }
 
   onAddOffice(){
-    this.dialog.open(AddOfficeComponent, {
-      height: '600px',
-      width: '500px',
-    });
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/add-office');
+
+    // this.dialog.open(AddOfficeComponent, {
+    //   height: '600px',
+    //   width: '500px',
+    // });
   }
 
   onDelete(carId: number){
@@ -69,6 +72,7 @@ export class LocationsRentComponent implements OnInit {
         }
       )
     }
+    location.reload();
   }
 
   onHome(){

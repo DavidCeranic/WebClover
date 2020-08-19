@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,15 +25,14 @@ namespace WebApiClover.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RentService>>> GetRentService()
         {
-            return await _context.RentService.Include(x=>x.ServiceCars).ToListAsync();
+            return await _context.RentService.Include(x=>x.ServiceCars).Include(c => c.ServiceOffice).ToListAsync();
         }
 
         // GET: api/RentServices/5
         [HttpGet("{id}")]
         public async Task<ActionResult<RentService>> GetRentService(int id)
         {
-            
-            var rentService = await _context.RentService.Include(car => car.ServiceCars).FirstOrDefaultAsync(car => car.ServiceId == id);
+            var rentService = await _context.RentService.Include(car => car.ServiceCars).Include(office => office.ServiceOffice).FirstOrDefaultAsync(car => car.ServiceId == id);
 
             if (rentService == null)
             {
@@ -60,6 +60,12 @@ namespace WebApiClover.Controllers
             foreach (var child in rs.ServiceCars)
             {
                 _context.Entry(child).State = child.CarId == 0 ? EntityState.Added : EntityState.Modified;
+            }
+
+            rs.ServiceOffice = rentService.ServiceOffice;
+            foreach (var child in rs.ServiceOffice)
+            {
+                _context.Entry(child).State = child.OfficeId == 0 ? EntityState.Added : EntityState.Modified;
             }
 
             try

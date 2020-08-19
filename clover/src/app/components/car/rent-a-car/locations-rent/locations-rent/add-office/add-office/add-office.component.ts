@@ -3,6 +3,8 @@ import { OfficeDetailsService } from 'src/app/services/officeDetails/office-deta
 import { NgForm, FormGroup } from '@angular/forms';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Params } from '@angular/router';
+import { RentService } from 'src/app/entities/rentService/rent-service';
 
 @Component({
   selector: 'app-add-office',
@@ -11,10 +13,25 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddOfficeComponent implements OnInit {
   addOfficeForm: FormGroup;
+  id: number;
+  rentService: RentService;
 
-  constructor(public service: OfficeDetailsService, public rentService: RentServiceDetailsService, private toastr: ToastrService) { }
+  constructor(public service: OfficeDetailsService, public rentServiceServis: RentServiceDetailsService, private toastr: ToastrService, public route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.resetForm();
+    
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        this.rentServiceServis.getRentServiceById(this.id).subscribe(
+          dataV => {
+            this.rentService = dataV;
+            console.log(this.rentService);
+          }
+        )
+      }
+    )
   }
 
   onSubmit(form: NgForm){
@@ -22,9 +39,10 @@ export class AddOfficeComponent implements OnInit {
   }
 
   insertOffice(form: NgForm){
-    this.rentService.selectedService.serviceCars.push(form.value);
+    //console.log(this.rentService);
+    this.rentServiceServis.selectedService.serviceOffice.push(form.value);
 
-        this.rentService.putRentService(this.rentService.selectedService, this.rentService.selectedService.serviceId).subscribe(
+        this.rentServiceServis.putRentService(this.rentServiceServis.selectedService, this.rentServiceServis.selectedService.serviceId).subscribe(
           res => {  
             this.toastr.success("Inserted Successfully");
             this.resetForm(form);
@@ -45,10 +63,11 @@ export class AddOfficeComponent implements OnInit {
       form.resetForm();
       this.service.formData = {
         officeId: null,
-        name: "",
+        officeName: "",
         address: "",
         lat: 0,
-        lng: 0
+        lng: 0,
+        RentServiceServiceId: null
       }
   }
 

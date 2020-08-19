@@ -4,6 +4,8 @@ import { Car } from 'src/app/entities/Car/car';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import { ToastrService } from 'ngx-toastr';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
+import { RentService } from 'src/app/entities/rentService/rent-service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-add-car',
@@ -13,12 +15,29 @@ import { RentServiceDetailsService } from 'src/app/services/rentServices/rentSer
 export class AddCarComponent implements OnInit {
   addCarForm: FormGroup;
   car: Car;
+  id: number;
+  rentService: RentService;
 
-  constructor(public service: CarDetailsService, private toastr: ToastrService, public rentService: RentServiceDetailsService) { }
+  constructor(public service: CarDetailsService, private toastr: ToastrService, public rentServiceServis: RentServiceDetailsService, public router: Router, public route: ActivatedRoute) 
+  { 
+  }
 
   ngOnInit(): void {
     this.resetForm();
     this.service.currentMessage.subscribe(car => this.car = car);
+    
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        this.rentServiceServis.getRentServiceById(this.id).subscribe(
+          dataV => {
+            this.rentService = dataV;
+            console.log(this.rentService);
+          }
+        )
+      }
+    )
+
   }
 
   onSubmit(form: NgForm){
@@ -26,22 +45,9 @@ export class AddCarComponent implements OnInit {
   }
 
   insertCar(form: NgForm){
-    // this.service.postCar(form.value).subscribe(
-    //   res => {  
-    //     //this.rentService.selectedService.serviceCars.push(form.value);
-    //     //this.rentService.putRentService(this.rentService.selectedService);
-    //     console.log(form.value);
-    //     this.toastr.success("Inserted Successfully");
-    //     this.resetForm(form);
-    //     this.service.refreshList();
-    //   },
-    //   err => {
-    //     this.toastr.error('error');
-    //   }
-    // )
-    this.rentService.selectedService.serviceCars.push(form.value);
+    this.rentServiceServis.selectedService.serviceCars.push(form.value);
 
-        this.rentService.putRentService(this.rentService.selectedService, this.rentService.selectedService.serviceId).subscribe(
+        this.rentServiceServis.putRentService(this.rentServiceServis.selectedService, this.rentServiceServis.selectedService.serviceId).subscribe(
           res => {  
             //this.rentService.selectedService.serviceCars.push(form.value);
             //this.rentService.putRentService(this.rentService.selectedService);
