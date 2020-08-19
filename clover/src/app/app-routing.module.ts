@@ -42,7 +42,7 @@ const routes: Routes = [
     path: "car",
     children: [
       {path: "", component: CarComponent, canActivate: [UserGuard]},
-        {path: "rent-a-car",
+        {path: "rent-a-car/:id",
         children: [
           {path: "", component: RentACarComponent},
           {path: "about", component: AboutRentComponent},

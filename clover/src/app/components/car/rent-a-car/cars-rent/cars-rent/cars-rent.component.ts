@@ -10,6 +10,7 @@ import { CarService } from 'src/app/services/car/car.service';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import { AddCarComponent } from '../../../add-car/add-car.component';
+import { Params, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cars-rent',
@@ -20,28 +21,40 @@ export class CarsRentComponent implements OnInit {
   allCars: Array<Car>;
   filtredCars: Array<Car>;
   SearchCarForm: FormGroup;
+  id: number;
 
   rentService: RentService;
-  data: RentServiceDetailsService;
+  //data: RentServiceDetailsService;
 
   ngOnInit(): void {
-    this.data.refreshList();
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        console.log(this.id);
+        //this.data.refreshList();
+        this.rentServiceDetails.getRentServiceById(this.id).subscribe(
+          dataV => {
+            this.rentService = dataV;
+            console.log(this.rentService);
+            this.allCars = this.rentService.serviceCars;
+            this.filtredCars = this.allCars;
+          }
+        )
+      }
+    )
     this.service.refreshList();
     this.initForm();
-    //this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
   }
 
-  constructor(public dialog: MatDialog, private carService: CarService, data: RentServiceDetailsService, public service: CarDetailsService) {
-    //this.data.refreshList();
-    this.data = data;
+  constructor(public dialog: MatDialog, private carService: CarService,private rentServiceDetails: RentServiceDetailsService, public route: ActivatedRoute, public service: CarDetailsService) {
     this.service.refreshList();
     this.service.messageEvent.subscribe( x => {
-      this.allCars = this.data.selectedService.serviceCars;
-      this.filtredCars = this.allCars;
+      //this.allCars = this.rentService.serviceCars;
+      //this.filtredCars = this.allCars;
     })
    }
 
-  onAddCar(rentService: RentService){
+  onAddCar(){
     this.dialog.open(AddCarComponent, {
       height: '600px',
       width: '500px',

@@ -44,4 +44,8 @@ export class RentServiceDetailsService {
   deleteRentService(serviceId: number){
     return this.http.delete(this.rootUrl + 'RentServices/'+serviceId);
   }
+
+  getRentServiceById(serviceId: number){
+    return this.http.get<RentService>(this.rootUrl + 'RentServices/' + serviceId.toString());
+  }
 }
