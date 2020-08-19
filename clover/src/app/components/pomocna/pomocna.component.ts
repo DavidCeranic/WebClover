@@ -10,7 +10,7 @@ export class PomocnaComponent implements OnInit {
 
   allFlightss:Array<FlightInfo>;
   constructor(private flightService: AllFlightsService){
-    this.allFlightss=this.flightService.getFlights();
+   // this.allFlightss=this.flightService.getFlights();
   }
 
   ngOnInit(): void {

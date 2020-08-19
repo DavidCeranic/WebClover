@@ -56,6 +56,12 @@ export class FlightsComponent implements OnInit {
     if (this.getFilterFieldValue("searchToFilter")) {
       filterParams.push(this.addSearchToFilterParam());
     }
+    if(this.getFilterFieldValue("searchClassFilter")){
+      filterParams.push(this.addsearchClassFilterParam());
+    }
+    if(this.getFilterFieldValue("searchBaggegFilter")){
+      filterParams.push(this.addSearchBaggegParam());
+    }
 
     this.searchedFlights = this.flightService.searchFligts(this.allFlightss, filterParams);
   }
@@ -71,7 +77,12 @@ export class FlightsComponent implements OnInit {
   addSearchToFilterParam(): ReturnType<any> {
     return new StringFilterParam("searchToFilter", this.getFilterFieldValue("searchToFilter"));
   }
-
+  addsearchClassFilterParam(): ReturnType<any> {
+    return new StringFilterParam("searchClassFilter", this.getFilterFieldValue("searchClassFilter"));
+  }
+  addSearchBaggegParam(): ReturnType<any> {
+    return new StringFilterParam("searchBaggegFilter", this.getFilterFieldValue("searchBaggegFilter"));
+  }
 
   getFilterFieldValue(filterFieldId: string) {
     return (<HTMLInputElement> document.getElementById(filterFieldId)).value;

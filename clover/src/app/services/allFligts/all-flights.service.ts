@@ -10,9 +10,9 @@ import { NumberFilterParam } from 'src/app/entities/number-filter-param/number-f
 export class AllFlightsService {
 
   constructor() { }
-  getFlights() {
-    return this.mockedFlights();
-  }
+ // getFlights() {
+ //  return this.mockedFlights();
+ // }
 
   searchFligts(allFlightss : FlightInfo[],filterParams: AbstractFilterParam[]): FlightInfo[]{
     let searchedFlights = new Array<FlightInfo>();
@@ -24,6 +24,14 @@ export class AllFlightsService {
           break;
         }
         if(this.checkFlyingTo(flight,filterParam)){
+          addFlight=false;
+          break;
+        }
+        if(this.checkClass(flight,filterParam)){
+          addFlight=false;
+          break;
+        }
+        if(this.checkBaggeg(flight,filterParam)){
           addFlight=false;
           break;
         }
@@ -44,6 +52,13 @@ export class AllFlightsService {
     return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchToFilter' && !flight.to.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
   }
 
+  checkClass(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchClassFilter' && !flight.to.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+  }
+
+  checkBaggeg(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchBaggegFilter' && !flight.from.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+  }
  
 
 
