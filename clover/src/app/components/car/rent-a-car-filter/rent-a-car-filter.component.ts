@@ -30,7 +30,7 @@ export class RentACarFilterComponent implements OnInit {
   onSelect(serviceParam: RentService){
     this.service.selectedService = serviceParam;
     this.service.changeMessage(serviceParam);
-    this.router.navigateByUrl('/car/rent-a-car');
+    this.router.navigateByUrl('/car/rent-a-car/' + serviceParam.serviceId);
   }
 
   onSelectRentService(service: RentService){

@@ -68,7 +68,8 @@ export class AddRentACarComponent implements OnInit {
         locationMap: "",
         contact: "",
         lat: 0,
-        lng:0
+        lng:0,
+        serviceOffice: null
       }
   }
 

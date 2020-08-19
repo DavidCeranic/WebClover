@@ -32,6 +32,7 @@ export class CarFilterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.service.refreshList();
   }
 
   onRent(car: Car){
