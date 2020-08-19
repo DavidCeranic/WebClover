@@ -28,7 +28,7 @@ export class SingInComponent implements OnInit {
 
   constructor(private flightService: AllFlightsService, private registerService: RegisterUserService, public service: UserDetailsService, public router: Router, http: HttpClient,private authService: SocialAuthService)
    {
-       this.allFlightss=this.flightService.getFlights();
+     //  this.allFlightss=this.flightService.getFlights();
        this.http = http;
   }
   
