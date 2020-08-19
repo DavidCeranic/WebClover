@@ -6,6 +6,8 @@ import { AddOfficeComponent } from './add-office/add-office/add-office.component
 import { OfficeDetailsService } from 'src/app/services/officeDetails/office-details.service';
 import { ToastrService } from 'ngx-toastr';
 import { Office } from 'src/app/entities/office/office';
+import { Params, ActivatedRoute, Router } from '@angular/router';
+import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 
 @Component({
   selector: 'app-locations-rent',
@@ -13,20 +15,32 @@ import { Office } from 'src/app/entities/office/office';
   styleUrls: ['./locations-rent.component.css']
 })
 export class LocationsRentComponent implements OnInit {
-  allOffice: Array<Office>;
   rentService: RentService;
-  data: RentServiceDetailsService;
+  id: number;
+  allOffice: Array<Office>;
+  display="locations-rent";
 
-  constructor(public dialog: MatDialog, data: RentServiceDetailsService, private service: OfficeDetailsService, private toastr: ToastrService) { 
-    this.data = data;
+  constructor(public dialog: MatDialog, private rentServiceDetails: RentServiceDetailsService, public route: ActivatedRoute, public service: CarDetailsService, public router: Router, private toastr: ToastrService, private officeService: OfficeDetailsService) {
     this.service.refreshList();
     this.service.messageEvent.subscribe( x => {
-      //this.allOffice = this.data.selectedService.;
     })
-  }
+   }
 
   ngOnInit(): void {
-    this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        console.log(this.id);
+        //this.data.refreshList();
+        this.rentServiceDetails.getRentServiceById(this.id).subscribe(
+          dataV => {
+            this.rentService = dataV;
+            console.log(this.rentService);
+          }
+        )
+      }
+    )
+    this.service.refreshList();
   }
 
   check(){
@@ -38,7 +52,7 @@ export class LocationsRentComponent implements OnInit {
       return true;
   }
 
-  onAddOffice(rentService: RentService){
+  onAddOffice(){
     this.dialog.open(AddOfficeComponent, {
       height: '600px',
       width: '500px',
@@ -47,16 +61,34 @@ export class LocationsRentComponent implements OnInit {
 
   onDelete(carId: number){
     if(confirm('Are you sure to delete this car?')){
-    this.service.deleteOffice(carId).subscribe( res => {
+    this.officeService.deleteOffice(carId).subscribe( res => {
       this.toastr.warning("Deleted Successfully");
-      //this.dataCars.selectedService.serviceCars =  this.dataCars.list;
-      //this.dataCars.refreshList();
     },
     err => {
       this.toastr.error('error');
         }
       )
     }
+  }
+
+  onHome(){
+    this.display="home";
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId);
+  }
+
+  onAbout(){
+    this.display="about-rent";
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/about');
+  }
+
+  onCars(){
+    this.display="cars-rent";
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/cars');
+  }
+
+  onLocations(){
+    this.display="locations-rent";
+    this.router.navigateByUrl('car/rent-a-car/' + this.rentService.serviceId + '/locations');
   }
 
 }

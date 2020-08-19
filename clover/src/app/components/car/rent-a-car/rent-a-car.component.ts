@@ -22,28 +22,32 @@ export class RentACarComponent implements OnInit {
   rentService: RentService;
   display="home";
   showStr = "Locations";
-  data: RentServiceDetailsService;
-  id: string;
+  id: number;
 
   ngOnInit(): void {
-    //this.service.refreshList();
-    //this.data.currentMessage.subscribe(rentService => this.rentService = rentService);
     this.route.params.subscribe(
       (params: Params) => {
         this.id = params['id'];
-        this.data.refreshList();
-        //ne treba listu i find nego da se doda metoda koja ce da vraca auto po idu
-        this.rentService = this.data.list.find(i => i.serviceId ===this.id);
+        console.log(this.id);
+        //this.data.refreshList();
+        this.rentServiceDetails.getRentServiceById(this.id).subscribe(
+          dataV => {
+            this.rentService = dataV;
+            console.log(this.rentService);
+          }
+        )
       }
     )
-    this.rentService = this.data.selectedService;
+    this.service.refreshList();
   }
   
-  constructor(public dialog: MatDialog, private carService: CarService, data: RentServiceDetailsService, public router: Router, public route: ActivatedRoute, public service: CarDetailsService)  
-  { 
-    this.data = data;
-    this.rentService = this.data.selectedService;
-  }
+  constructor(public dialog: MatDialog, private carService: CarService,private rentServiceDetails: RentServiceDetailsService, public route: ActivatedRoute, public service: CarDetailsService, public router: Router) {
+    this.service.refreshList();
+    this.service.messageEvent.subscribe( x => {
+      //this.allCars = this.rentService.serviceCars;
+      //this.filtredCars = this.allCars;
+    })
+   }
 
   navigateTo(section: string){
     window.location.hash='';
@@ -56,16 +60,16 @@ export class RentACarComponent implements OnInit {
 
   onAbout(){
     this.display="about-rent";
-    //this.router.navigateByUrl('/car/rent-a-car/about');
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/about');
   }
 
   onCars(){
     this.display="cars-rent";
-    this.router.navigateByUrl('/car/rent-a-car/'+this.rentService.serviceId+'/cars');
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/cars');
   }
 
   onLocations(){
     this.display="locations-rent";
-    //this.router.navigateByUrl('car/rent-a-car/locations');
+    this.router.navigateByUrl('car/rent-a-car/' + this.rentService.serviceId + '/locations');
   }
 }

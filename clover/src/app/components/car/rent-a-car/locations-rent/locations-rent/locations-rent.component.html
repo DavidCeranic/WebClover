@@ -1,3 +1,16 @@
+<header id="header" class="fixed-left">
+  <div class="container d-flex align-items-center">
+    <nav class="nav-menu d-none d-lg-block">
+      <ul>
+        <li class="active"><a fragment="hero" (click)="onHome()">Home</a></li>
+        <li><a fragment="about" (click)="onAbout()">About</a></li>
+        <li><a fragment="cars" (click)="onCars()">Cars</a></li>
+        <li><a fragment="locations" (click)="onLocations()">Locations</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 <div *ngFor="let office of this.allOffice" class="div1">
   <div class="divName">{{office.name}}</div>
   <div class="div5To"><Address></Address>: {{office.address}} </div>
@@ -14,7 +27,7 @@
       <form style="margin-top: 17%;">
             <p style="color:white;"> Admin Services</p>
               <div class="form-btn">
-                <button class="submit-btn" type="button" (click)="onAddOffice(this.data.selectedService)">Add Office</button>
+                <button class="submit-btn" type="button" (click)="onAddOffice()">Add Office</button>
               </div>
       </form>
     </div>
