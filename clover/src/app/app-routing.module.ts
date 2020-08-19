@@ -20,6 +20,7 @@ import { AdminInfoComponent } from './components/car/rent-a-car-filter/admin-inf
 import { AboutRentComponent } from './components/car/rent-a-car/about-rent/about-rent/about-rent.component';
 import { CarsRentComponent } from './components/car/rent-a-car/cars-rent/cars-rent/cars-rent.component';
 import { LocationsRentComponent } from './components/car/rent-a-car/locations-rent/locations-rent/locations-rent.component';
+import { AddOfficeComponent } from './components/car/rent-a-car/locations-rent/locations-rent/add-office/add-office/add-office.component';
 
 const routes: Routes = [
   {
@@ -45,12 +46,13 @@ const routes: Routes = [
         {path: "rent-a-car/:id",
         children: [
           {path: "", component: RentACarComponent},
+          {path: "add-car", component: AddCarComponent, canActivate: [AdminGuard]},
           {path: "about", component: AboutRentComponent},
           {path: "cars", component: CarsRentComponent},
-          {path: "locations", component: LocationsRentComponent}
+          {path: "locations", component: LocationsRentComponent},
+          {path: "add-office", component: AddOfficeComponent}
         ]},
       {path: "add-rent-a-car", component: AddRentACarComponent, canActivate: [AdminGuard]},
-      {path: "add-car", component: AddCarComponent, canActivate: [AdminGuard]}
     ]
   },
   {

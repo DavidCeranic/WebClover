@@ -1,15 +1,17 @@
 export class Office {
     officeId: string;
-    name: string;
+    officeName: string;
     address: string;
     lat: number;
     lng: number;
+    RentServiceServiceId: number;
 
-    constructor(officeId: string, name: string, address: string, lat: number, lng: number) {
+    constructor(officeId: string, officeName: string, address: string, lat: number, lng: number, RentServiceServiceId: number) {
         this.officeId = officeId;
-        this.name = name;
+        this.officeName = officeName;
         this.address = address;
         this.lat = lat;
         this.lng = lng;
+        this.RentServiceServiceId = RentServiceServiceId;
     }
 }
