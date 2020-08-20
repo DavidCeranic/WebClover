@@ -74,7 +74,7 @@ export class AddCarComponent implements OnInit {
       form.resetForm();
       this.service.formData = {
         carId: null,
-        serviceName: "",
+        //serviceName: "",
         brand: "",
         model: "",
         year: 0,

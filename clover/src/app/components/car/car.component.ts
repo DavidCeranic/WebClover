@@ -80,11 +80,6 @@ export class CarComponent implements OnInit {
   onSubmit() {
   }
 
-  onClick(ServiceName: string) {
-    this.rentService = ServiceName;
-    this.display = true;
-  }
-
   Prikaz() : boolean{
     return this.display;
   }

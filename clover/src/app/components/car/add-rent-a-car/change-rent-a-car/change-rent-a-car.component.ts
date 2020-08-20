@@ -4,6 +4,7 @@ import { RentServiceDetailsService } from 'src/app/services/rentServices/rentSer
 import { ToastrService } from 'ngx-toastr';
 import { RentService } from 'src/app/entities/rentService/rent-service';
 import { Car } from 'src/app/entities/Car/car';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-change-rent-a-car',
@@ -14,18 +15,26 @@ export class ChangeRentACarComponent implements OnInit {
 
   AddRentCarForm: FormGroup;
 
-  display: boolean;
-
-  rentService?: RentService = null;
+  rentService: RentService;
   SelectedCar: Car;
+  id: number;
 
-  constructor(public service: RentServiceDetailsService, private toastr: ToastrService) { 
+  constructor(public service: RentServiceDetailsService, private toastr: ToastrService, public route: ActivatedRoute) { 
   }
 
   ngOnInit(): void {
     this.resetForm();
-    this.display=true;
     this.service.currentMessage.subscribe(rentService => this.rentService = rentService);
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['rentid'];
+        this.service.getRentServiceById(this.id).subscribe(
+          dataV => {
+            this.rentService = dataV;
+          }
+        )
+      }
+    )
   }
 
   getFieldValue(filterFieldId: string) {

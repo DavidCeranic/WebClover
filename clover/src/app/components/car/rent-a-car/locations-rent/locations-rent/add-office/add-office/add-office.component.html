@@ -2,10 +2,7 @@
 
     <input type="hidden" name="carId" [value]="service.formData.officeId">
   
-    <div class="form-group">
-      Rent Service Id: 
-      <input #RentServiceServiceId="ngModel" [(ngModel)]="service.formData.RentServiceServiceId" name="RentServiceServiceId" type="number" class="form-input" id="RentServiceServiceId" required/>
-    </div>
+    <input type="hidden" name="RentServiceServiceId" [value]="rentService.serviceId">
 
       <div class="form-group">
         Office Name: 

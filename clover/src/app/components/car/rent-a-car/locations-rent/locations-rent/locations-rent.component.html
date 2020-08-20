@@ -36,9 +36,12 @@
 
 
 <section id="locations" class="locations">
-  <agm-map [zoom]="14" [latitude]="rentService.lat" [longitude]="rentService.lng">
-      <agm-marker [latitude]="rentService.lat" [longitude]="rentService.lng">
+  
+  <agm-map [zoom]="9" [latitude]="this.rentService.serviceOffice[0].lat" [longitude]="this.rentService.serviceOffice[0].lng">
+    <div *ngFor="let office of this.rentService.serviceOffice" class="div1">
+      <agm-marker [latitude]="office.lat" [longitude]="office.lng">
       </agm-marker>
+    </div>
   </agm-map>
 </section>
 

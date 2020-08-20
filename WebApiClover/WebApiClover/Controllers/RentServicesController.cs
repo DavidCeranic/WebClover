@@ -59,6 +59,7 @@ namespace WebApiClover.Controllers
             rs.ServiceCars = rentService.ServiceCars;
             foreach (var child in rs.ServiceCars)
             {
+
                 _context.Entry(child).State = child.CarId == 0 ? EntityState.Added : EntityState.Modified;
             }
 

@@ -45,7 +45,7 @@
         <div class="validation-error" *ngIf="contact.invalid && contact.touched">This field is required</div>
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         Rent Service Latitude:
         <input #lat="ngModel" [(ngModel)]="service.formData.lat" name="lat" type="number" class="form-input" id="contact" placeholder="{{rentService.lat}}" required/>
         <div class="validation-error" *ngIf="lat.invalid && lat.touched">This field is required</div>
@@ -55,10 +55,10 @@
         Rent Service Longitude:
         <input #lng="ngModel" [(ngModel)]="service.formData.lng" name="lng" type="number" class="form-input" id="contact" placeholder="{{rentService.lng}}" required/>
         <div class="validation-error" *ngIf="lng.invalid && lng.touched">This field is required</div>
-      </div>
+      </div> -->
 
       <div class="form-group">
-        <input type="submit" [disabled]="form.invalid" name="submit" id="submit" class="form-submit" value="Add Rent Service"/>
+        <input type="submit" [disabled]="form.invalid" name="submit" id="submit" class="form-submit" value="Change Rent Service"/>
     </div>
 
     <button mat-dialog-close> Close</button>
