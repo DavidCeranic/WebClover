@@ -5,6 +5,8 @@ import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { RegisterUserService } from 'src/app/services/userDetails/registerUser/register-user.service';
 import { SingUpComponent } from '../sing-in/sing-up/sing-up.component';
 import { MatDialog } from '@angular/material/dialog';
+import { SingUpRentAdminComponent } from './sing-up-rent-admin/sing-up-rent-admin/sing-up-rent-admin.component';
+import { SingUpFlightAdminComponent } from './sing-up-flight-admin/sing-up-flight-admin/sing-up-flight-admin.component';
 
 @Component({
   selector: 'app-register-user',
@@ -40,7 +42,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   onAddRentService(){
-    this.dialog.open(SingUpComponent, {
+    this.dialog.open(SingUpRentAdminComponent, {
       height: '520px',
       width: '500px',
     });
@@ -48,7 +50,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   onAddFlightService(){
-    this.dialog.open(SingUpComponent, {
+    this.dialog.open(SingUpFlightAdminComponent, {
       height: '520px',
       width: '500px',
     });

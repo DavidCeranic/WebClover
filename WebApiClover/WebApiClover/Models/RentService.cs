@@ -42,11 +42,9 @@ namespace WebApiClover.Models
         [Column(TypeName = "nvarchar(4000)")]
         public string Contact { get; set; }
 
-        [Required]
         [Column(TypeName = "decimal")]
         public float Lat { get; set; }
 
-        [Required]
         [Column(TypeName = "decimal")]
         public float Lng { get; set; }
 

@@ -18,7 +18,11 @@ export class RegisterUserService {
   logIn(email: string, password: string){
     this.http.post<User>("http://localhost:5000/api/UserDetails/Login", { email, password }).toPromise().then(res => {
       localStorage.setItem("user_token", res.StringToken);
+      localStorage.setItem("regUser", res.userId);
       this.user = res as User;
+      //TO DO
+      console.log(this.user);
+      console.log(this.user.userId);
       this.loggedIn.emit(this.user);
     },
       err => {

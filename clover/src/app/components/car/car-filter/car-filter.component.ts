@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { RentCarComponent } from './RentCar/rent-car/rent-car.component';
 import { Car } from 'src/app/entities/Car/car';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import { Inject } from '@angular/core'; 
@@ -11,6 +11,7 @@ import { AddCarComponent } from '../add-car/add-car.component';
 import { ToastrService } from 'ngx-toastr';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { ChangeCarComponent } from '../add-car/change-car/change-car.component';
+import { RentService } from 'src/app/entities/rentService/rent-service';
 
 @Component({
   selector: 'app-car-filter',
@@ -23,8 +24,9 @@ export class CarFilterComponent implements OnInit {
   @Input() filtredCars;
   dataCars: RentServiceDetailsService;
   id: number;
+  rentService: RentService;
 
-  constructor(public dialog: MatDialog, dataCars: RentServiceDetailsService, private toastr: ToastrService, public service: CarDetailsService, public router: Router, private data: CarDetailsService, config: NgbRatingConfig)//
+  constructor(public dialog: MatDialog, dataCars: RentServiceDetailsService, private toastr: ToastrService, public service: CarDetailsService, public router: Router, private data: CarDetailsService, config: NgbRatingConfig,  public route: ActivatedRoute)//
   {
     config.max = 5;
     config.readonly = true;
@@ -32,24 +34,37 @@ export class CarFilterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        //this.data.refreshList();
+        this.dataCars.getRentServiceById(this.id).subscribe(
+          dataV => {
+            this.rentService = dataV;
+          }
+        )
+      }
+    )
     this.service.refreshList();
   }
 
   onRent(car: Car){
-    this.dialog.open(RentCarComponent, {
-      height: '400px',
-      width: '650px',
-    });
-    this.data.changeMessage(car);
+    // this.dialog.open(RentCarComponent, {
+    //   height: '400px',
+    //   width: '650px',
+    // });
+    // this.data.changeMessage(car);
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/rent/' + car.carId);
   }
 
   onSelectCar(car: Car){
     this.data.formData = car;
-    this.dialog.open(ChangeCarComponent, {
-      height: '600px',
-      width: '500px',
-    });
-    this.data.changeMessage(car);
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/change-car/' + car.carId);
+    // this.dialog.open(ChangeCarComponent, {
+    //   height: '600px',
+    //   width: '500px',
+    // });
+    // this.data.changeMessage(car);
   }
 
   onDelete(carId: number){
@@ -64,6 +79,7 @@ export class CarFilterComponent implements OnInit {
         }
       )
     }
+    location.reload();
   }
 
   check(){

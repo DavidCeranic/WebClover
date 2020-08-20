@@ -43,4 +43,8 @@ export class CarDetailsService {
   deleteCar(carId: number){
     return this.http.delete(this.rootUrl + 'CarInfoes/'+carId);
   }
+
+  getCarById(carId: number){
+    return this.http.get<Car>(this.rootUrl + 'CarInfoes/' + carId.toString());
+  }
 }

@@ -4,6 +4,8 @@ import { Car } from 'src/app/entities/Car/car';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import { ToastrService } from 'ngx-toastr';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
+import { RentService } from 'src/app/entities/rentService/rent-service';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
   selector: 'app-change-car',
@@ -13,12 +15,37 @@ import { RentServiceDetailsService } from 'src/app/services/rentServices/rentSer
 export class ChangeCarComponent implements OnInit {
   addCarForm: FormGroup;
   car: Car;
+  id: number;
+  rentService: RentService;
 
-  constructor(public service: CarDetailsService, private toastr: ToastrService, public rentService: RentServiceDetailsService) { }
+  constructor(public service: CarDetailsService, private toastr: ToastrService, public rentServiceServis: RentServiceDetailsService, public router: Router, public route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.resetForm();
-    this.service.currentMessage.subscribe(car => this.car = car);
+    //this.service.currentMessage.subscribe(car => this.car = car);
+    
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        this.rentServiceServis.getRentServiceById(this.id).subscribe(
+          dataV => {
+            this.rentService = dataV;
+          }
+        )
+      }
+    )
+
+
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['carid'];
+        this.service.getCarById(this.id).subscribe(
+          carV => {
+            this.car = carV;
+          }
+        )
+      }
+    )
   }
 
   onSubmit(form: NgForm){
@@ -26,13 +53,15 @@ export class ChangeCarComponent implements OnInit {
   }
 
   updateCar(form: NgForm){
-    this.rentService.selectedService.serviceCars.push(form.value);
-    this.service.putCar(form.value, this.car.carId, this.rentService.selectedService.serviceId).subscribe(
-      res => {
-        this.toastr.success("Updated Successfully");
+    this.rentServiceServis.selectedService.serviceCars.push(form.value);
+
+    this.rentServiceServis.putRentService(this.rentServiceServis.selectedService, this.rentServiceServis.selectedService.serviceId).subscribe(
+      res => {  
+        //this.rentService.selectedService.serviceCars.push(form.value);
+        //this.rentService.putRentService(this.rentService.selectedService);
+        this.toastr.success("Inserted Successfully");
         this.resetForm(form);
         this.service.refreshList();
-        this.rentService.refreshList();
       },
       err => {
         this.toastr.error('error');
@@ -53,7 +82,7 @@ export class ChangeCarComponent implements OnInit {
       form.resetForm();
       this.service.formData = {
         carId: null,
-        serviceName: "",
+        //serviceName: "",
         brand: "",
         model: "",
         year: 0,

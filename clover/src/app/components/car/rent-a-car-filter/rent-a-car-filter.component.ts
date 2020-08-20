@@ -34,12 +34,14 @@ export class RentACarFilterComponent implements OnInit {
   }
 
   onSelectRentService(service: RentService){
-    this.service.formData = Object.assign({}, service);
-    this.dialog.open(ChangeRentACarComponent, {
-      height: '520px',
-      width: '500px',
-    });
-    this.service.changeMessage(service);
+    // this.service.formData = Object.assign({}, service);
+    // this.dialog.open(ChangeRentACarComponent, {
+    //   height: '520px',
+    //   width: '500px',
+    // });
+    // this.service.changeMessage(service);
+
+    this.router.navigateByUrl('car/change-rent-a-car/' + service.serviceId);
   }
 
   onDelete(serviceId: number){

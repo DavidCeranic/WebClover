@@ -21,6 +21,9 @@ import { AboutRentComponent } from './components/car/rent-a-car/about-rent/about
 import { CarsRentComponent } from './components/car/rent-a-car/cars-rent/cars-rent/cars-rent.component';
 import { LocationsRentComponent } from './components/car/rent-a-car/locations-rent/locations-rent/locations-rent.component';
 import { AddOfficeComponent } from './components/car/rent-a-car/locations-rent/locations-rent/add-office/add-office/add-office.component';
+import { ChangeCarComponent } from './components/car/add-car/change-car/change-car.component';
+import { RentCarComponent } from './components/car/car-filter/RentCar/rent-car/rent-car.component';
+import { ChangeRentACarComponent } from './components/car/add-rent-a-car/change-rent-a-car/change-rent-a-car.component';
 
 const routes: Routes = [
   {
@@ -48,10 +51,13 @@ const routes: Routes = [
     path: "car",
     children: [
       {path: "", component: CarComponent, canActivate: [UserGuard]},
+      {path: "change-rent-a-car/:rentid", component: ChangeRentACarComponent},
         {path: "rent-a-car/:id",
         children: [
           {path: "", component: RentACarComponent},
           {path: "add-car", component: AddCarComponent, canActivate: [AdminGuard]},
+          {path: "change-car/:carid", component: ChangeCarComponent, canActivate: [AdminGuard]},
+          {path: "rent/:carid", component: RentCarComponent},
           {path: "about", component: AboutRentComponent},
           {path: "cars", component: CarsRentComponent},
           {path: "locations", component: LocationsRentComponent},
