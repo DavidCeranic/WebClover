@@ -8,6 +8,8 @@ import { FormGroup, NgForm } from '@angular/forms';
 import {AllFligtsDetailsService} from 'src/app/services/allFligts/all-flights-details/all-flights-details.service'
 import { NumberFilterParam } from 'src/app/entities/number-filter-param/number-filter-param';
 import { ActivatedRoute} from '@angular/router';
+import { MatDialog } from "@angular/material/dialog";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-profile',
