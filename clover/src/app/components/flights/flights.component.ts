@@ -92,7 +92,7 @@ export class FlightsComponent implements OnInit {
     
   }
   onSelect(service: AboutCompany){
-    this.router.navigateByUrl('/company-profile');
+    this.router.navigateByUrl('/flights/company-profile');
     this.data.changeMessage(service);
   }
   check(){

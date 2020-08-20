@@ -33,7 +33,12 @@ const routes: Routes = [
   },
   {
     path: "flights",
-    component: FlightsComponent
+  //  component:FlightsComponent,
+    children:[{path:"",component:FlightsComponent,canActivate:[UserGuard] },
+      {path:'company-profile',component:CompanyProfileComponent},
+    {path:'payment',component:PaymentComponent}
+  ]
+   
   },
   {
     path: "sing-up",
@@ -61,10 +66,7 @@ const routes: Routes = [
 
   },
   
-  {
-    path:"company-profile",
-    component: CompanyProfileComponent
-  },
+ 
   {
     path:"book-a-flight",
     component: BookAFlightComponent

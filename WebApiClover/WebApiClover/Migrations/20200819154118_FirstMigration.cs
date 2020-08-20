@@ -2,7 +2,7 @@
 
 namespace WebApiClover.Migrations
 {
-    public partial class InitionalMigration : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -93,10 +93,12 @@ namespace WebApiClover.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    UserType = table.Column<string>(type: "nvarchar(100)", nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    UserType = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    StringToken = table.Column<string>(nullable: true),
+                    IsVerify = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

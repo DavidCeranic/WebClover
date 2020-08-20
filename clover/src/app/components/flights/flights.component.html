@@ -95,7 +95,7 @@
 						<div class="wrapper" *ngFor="let company of allAvioCompanies" >
 							<p class="resp-tabs-list">  </p>
 							<div class="cols">
-									  <div routerLink="/company-profile" class="col" ontouchstart="this.classList.toggle('hover');">
+									  <div (click)="onSelect(company)" class="col" ontouchstart="this.classList.toggle('hover');">
 										  <div class="container">
 											  <div class="front" style="background-image: url(https://unsplash.it/500/500/)">
 												  <div class="inner">
