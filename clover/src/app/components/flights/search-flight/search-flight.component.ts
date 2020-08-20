@@ -1,4 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-flight',
@@ -8,9 +9,13 @@ import { Component, OnInit,Input } from '@angular/core';
 export class SearchFlightComponent implements OnInit {
 
   @Input() searchedFlights;
-  constructor() { }
+  constructor(private router : Router ) { }
 
   ngOnInit(): void {
   }
 
+  onSelect(){
+    this.router.navigateByUrl('/flights/payment');
+    //this.data.changeMessage(service);
+  }
 }
