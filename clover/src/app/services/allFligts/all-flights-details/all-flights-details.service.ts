@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import {FlightInfo} from "src/app/entities/flightInfo/flight-info"
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,10 @@ export class AllFligtsDetailsService {
   constructor(private http:HttpClient) { }
 
 
-  postFlightDetails(formData: FlightInfo){
-    return this.http.post(this.rootUrl + 'FlightInfo2', formData);
+  postFlightDetails(formData: FlightInfo, companyId: number){
+    let params = new HttpParams();
+    params = params.set('companyId', companyId.toString());
+    return this.http.post(this.rootUrl + 'FlightInfo2', formData, {params: params});
   }
 
 

@@ -2,7 +2,7 @@
         <div class="bg"> 
         <div class="conteinter4">
         <div class="image2"></div>
-        <div class="about"><p style="color:whitesmoke">aaaaassssss{{abtCompany.avioCompDestinations}}sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p></div>
+        <div class="about"><p style="color:whitesmoke">ffff{{companyData.avioCompName}}ssssssssssssssssssss</p></div>
         
             
         </div>
@@ -129,6 +129,8 @@
                 <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" >
 
                  <input type="hidden" name="flightID" [value]="service.formData.flightID">
+                 <input type="hidden" name="flightID" [value]="companyData.avioCompID">
+
                 <div class="form-group">
                        From:
                         <input name="from"   #from="ngModel" [(ngModel)]="service.formData.from"  type="text"  class="form-control" placeholder="City or airport" id="from" required>

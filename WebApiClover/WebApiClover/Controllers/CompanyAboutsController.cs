@@ -24,7 +24,7 @@ namespace WebApiClover.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CompanyAbout>>> GetCompanyAbout()
         {
-            return await _context.CompanyAbout.ToListAsync();
+            return await _context.CompanyAbout.Include(x=>x.CompanyFlights).ToListAsync();
         }
 
         // GET: api/CompanyAbouts/5
@@ -45,14 +45,22 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCompanyAbout(int id, CompanyAbout companyAbout)
+        public async Task<IActionResult> PutCompanyAbout(int id,[FromBody] CompanyAbout companyAbout)
         {
-            if (id != companyAbout.AvioCompID)
-            {
-                return BadRequest();
-            }
+            //if (id != companyAbout.AvioCompID)
+            //{
+            //    return BadRequest();
+            //}
 
             _context.Entry(companyAbout).State = EntityState.Modified;
+
+            var ca = _context.CompanyAbout.FirstOrDefault(x => x.AvioCompID == companyAbout.AvioCompID);
+            ca.CompanyFlights=companyAbout.CompanyFlights;
+            foreach (var item in ca.CompanyFlights)
+            {
+                _context.Entry(item).State = item.FlightID == 0 ? EntityState.Added : EntityState.Modified;
+
+            }
 
             try
             {

@@ -7,9 +7,10 @@ import { AvioCompanyDetailsService } from 'src/app/services/avioCompany/avio-com
 import { FormGroup, NgForm } from '@angular/forms';
 import {AllFligtsDetailsService} from 'src/app/services/allFligts/all-flights-details/all-flights-details.service'
 import { NumberFilterParam } from 'src/app/entities/number-filter-param/number-filter-param';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Params} from '@angular/router';
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-company-profile',
@@ -20,9 +21,10 @@ export class CompanyProfileComponent implements OnInit {
   addFlight : FormGroup
 
   allFlightss:Array<FlightInfo>;
+  companyData:AboutCompany;
   id:number;
 
-  constructor(private flightService: AllFlightsService,private data:AvioCompanyService,public service :AllFligtsDetailsService ){
+  constructor(private flightService: AllFlightsService, private toastr: ToastrService,public route: ActivatedRoute,private data:AvioCompanyService,public service :AllFligtsDetailsService,public companyService: AvioCompanyDetailsService ){
  // this.service.refreshList();
  //this.service.messageEvent.subscribe( x => {
 //})
@@ -31,25 +33,49 @@ export class CompanyProfileComponent implements OnInit {
   abtCompany : AboutCompany;
   abtC2:AvioCompanyDetailsService;
   ngOnInit(): void {
+
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['compID'];
+        console.log(this.id);
+        //this.data.refreshList();
+        this.companyService.getAvioCompanyById(this.id).toPromise().then(
+          dataV => {
+          this.companyData = dataV;
+        //    console.log(this.rentService);
+          }
+        )
+      }
+    )
+
+
     this.resetForm();
-    this.data.currentMessage.subscribe(abtCompany => this.abtCompany = abtCompany);
-    this.service.refreshList().subscribe(
+    this.data.currentMessage.toPromise().then(abtCompany => this.abtCompany = abtCompany);
+    this.service.refreshList().toPromise().then(
       data=>{
-        this.allFlightss=data;
+        this.allFlightss = new Array<FlightInfo>();
+        data.forEach(item=>{
+          if(item.companyAboutAvioCompID == this.id){
+            this.allFlightss.push(item);
+          }
+        })
+        // this.allFlightss=data;
       //  this.searchedFlights = this.allFlightss;
        }
 ); 
   }
   onSubmit(form: NgForm){
-    this.service.postFlightDetails(form.value).subscribe(
-      res => {
-        this.resetForm(form);
+    console.log(form.value);
+     this.service.postFlightDetails(form.value, this.id).subscribe(
+       res => {
+         this.resetForm(form);
       },
       err => {
         console.log(err);
       }
-    )
-    
+     )
+   // this.insertFlight(form);
+
   }
   onClear() {
     this.addFlight.reset();
@@ -59,6 +85,22 @@ export class CompanyProfileComponent implements OnInit {
     return (<HTMLInputElement> document.getElementById(filterFieldId)).value;
   }
 
+  insertFlight(form:NgForm){
+
+    this.companyData.companyFlights.push(form.value);
+
+    this.companyService.putAvioCompany(this.companyData,this.id).subscribe(
+      res=>{
+        this.toastr.success("Add Succesfully");
+        this.resetForm(form);
+        this.service.refreshList();
+
+      },
+      err=>{
+        this.toastr.error('error');
+      }
+    )
+  }
 
   resetForm(form?: NgForm){
     if(form!=null)
@@ -76,7 +118,9 @@ export class CompanyProfileComponent implements OnInit {
         companyName:"",
         price:0,
         seatsNumber:0,
-        rateFlight:0
+        rateFlight:0,
+        userDetailUserId:0,
+        companyAboutAvioCompID:0
         
       }
 }

@@ -14,6 +14,8 @@ companyName:string;
 price:number;
 seatsNumber:number;
 rateFlight:number;
+companyAboutAvioCompID: number;
+userDetailUserId: number;
 
 constructor(from:string, to:string,departing:string,returning:string,classf:string,stops:number,duration:string,companyName:string,price:number,seatsNumber:number,
     rateFlight:number){

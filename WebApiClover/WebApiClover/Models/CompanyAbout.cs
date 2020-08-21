@@ -41,9 +41,9 @@ namespace WebApiClover.Models
         [Column(TypeName = "nvarchar(100)")]
         public string AvioCompPrices { get; set; }
 
-        public virtual List<Rate> RateCompany { get; set; }
+        public virtual List<Rate> RateCompany { get; set; } = new List<Rate>();
 
-        public List<FlightInfo2> CompanyFlihts { get; set; }
+        public virtual List<FlightInfo2> CompanyFlights { get; set; } = new List<FlightInfo2>();
 
     }
 }

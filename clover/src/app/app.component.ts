@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'clover';
+  constructor(public router: Router){
+    
+  }
+
+  IsSignedIn():boolean{
+    return !!localStorage.getItem('userEmail');
+  }
+  LogOut(){
+    localStorage.clear();
+    this.router.navigateByUrl("/");
+  }
 }
