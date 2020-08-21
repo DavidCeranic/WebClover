@@ -254,6 +254,7 @@ ServiceFabricBackup/
 *.mdf
 *.ldf
 *.ndf
+.vs
 
 # Business Intelligence projects
 *.rdl.data
@@ -396,3 +397,6 @@ yarn-error.log
 
 .notes.md
 baseline.json
+*.v2
+*.dll
+*.pdb
