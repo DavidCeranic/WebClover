@@ -10,7 +10,7 @@ export class AvioCompanyDetailsService {
   formData: AboutCompany;
   readonly rootUrl= 'http://localhost:5000/api/';
   list: AboutCompany[];
-
+selectedServie2:AboutCompany;
 
 
   private messageSource = new BehaviorSubject<AboutCompany>(null);
@@ -29,4 +29,14 @@ export class AvioCompanyDetailsService {
   changeMessage(message: AboutCompany){
     this.messageSource.next(message);
   }
+
+  getAvioCompanyById(serviceId: number){
+    return this.http.get<AboutCompany>(this.rootUrl + 'CompanyAbouts/' + serviceId.toString());
+  }
+
+  putAvioCompany(formData: AboutCompany, avioCompID: number){
+    formData.avioCompID =avioCompID ;
+    return this.http.put<AboutCompany>(this.rootUrl + 'CompanyAbouts/' + avioCompID, formData);
+  }
+
 }

@@ -16,14 +16,14 @@ export class AddFlightComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    this.service.postFlightDetails(form.value).subscribe(
-      res => {
-        this.resetForm(form);
-      },
-      err => {
-        console.log(err);
-      }
-    )
+    // this.service.postFlightDetails(form.value,).subscribe(
+    //   res => {
+    //     this.resetForm(form);
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // )
     
   }
   onClear() {
@@ -51,7 +51,9 @@ export class AddFlightComponent implements OnInit {
         companyName:"",
         price:0,
         seatsNumber:0,
-        rateFlight:0
+        rateFlight:0,
+        userDetailUserId:0,
+        companyAboutAvioCompID:0
         
         
       }

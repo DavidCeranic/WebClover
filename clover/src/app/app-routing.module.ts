@@ -38,7 +38,7 @@ const routes: Routes = [
     path: "flights",
   //  component:FlightsComponent,
     children:[{path:"",component:FlightsComponent,canActivate:[UserGuard] },
-      {path:'company-profile/:id',component:CompanyProfileComponent},
+      {path:'company-profile/:compID',component:CompanyProfileComponent},
     {path:'payment',component:PaymentComponent}
   ]
    

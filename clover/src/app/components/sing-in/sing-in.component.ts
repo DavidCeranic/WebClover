@@ -48,6 +48,7 @@ export class SingInComponent implements OnInit {
 
   becomeAUser(): void {
     localStorage.setItem('sessionUserRole', JSON.stringify('USER'));
+    
   }
 
   becomeAAdmin(): void{

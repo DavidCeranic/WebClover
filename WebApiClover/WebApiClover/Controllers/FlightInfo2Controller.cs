@@ -47,10 +47,10 @@ namespace WebApiClover.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFlightInfo2(int id, FlightInfo2 flightInfo2)
         {
-            if (id != flightInfo2.FlightID)
-            {
-                return BadRequest();
-            }
+            //if (id != flightInfo2.FlightID)
+            //{
+            //    return BadRequest();
+            //}
 
             _context.Entry(flightInfo2).State = EntityState.Modified;
 
@@ -77,9 +77,10 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<FlightInfo2>> PostFlightInfo2(FlightInfo2 flightInfo2)
+        public async Task<ActionResult<FlightInfo2>> PostFlightInfo2(FlightInfo2 flightInfo2, [FromQuery] int companyId)
         {
-            _context.FlightInfo2.Add(flightInfo2);
+            var flight = _context.FlightInfo2.Add(flightInfo2);
+            _context.CompanyAbout.FirstOrDefault(x => x.AvioCompID == companyId).CompanyFlights.Add(flight.Entity);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetFlightInfo2", new { id = flightInfo2.FlightID }, flightInfo2);

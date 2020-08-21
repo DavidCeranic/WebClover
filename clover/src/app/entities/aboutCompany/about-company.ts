@@ -1,3 +1,5 @@
+import { FlightInfo } from '../flightInfo/flight-info';
+
 export class AboutCompany {
     avioCompID:number;
     avioCompName: string;
@@ -8,6 +10,7 @@ export class AboutCompany {
     avioCompFastReservationDiscount:string;
     avioCompSeats:string;
     avioCompPrices:string;
+    companyFlights= new Array<FlightInfo>();
 
     constructor(avioCompName:string,avioCompAddress:string,avioCompAbout:string,avioCompDestinations:string,avioCompFastReservationDiscount: string,avioCompSeats:string,avioCompPrices: string){
         this.avioCompName= avioCompName;

@@ -49,7 +49,8 @@ export class AddAboutCompanyComponent implements OnInit {
         avioCompDestinations:"",
         avioCompFastReservationDiscount:"",
         avioCompSeats:"",
-        avioCompPrices:""
+        avioCompPrices:"",
+        companyFlights:null
         
       }
       

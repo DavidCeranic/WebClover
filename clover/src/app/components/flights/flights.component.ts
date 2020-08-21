@@ -4,7 +4,7 @@ import {FlightInfo} from 'src/app/entities/flightInfo/flight-info';
 import {SearchFlightService} from 'src/app/services/searchFlight/search-flight.service';
 import { AbstractFilterParam } from 'src/app/entities/abstract-filter-param/abstract-filter-param';
 import { StringFilterParam } from 'src/app/entities/string-filter-param/string-filter-param';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AboutCompany} from "src/app/entities/aboutCompany/about-company"
 import {AvioCompanyService} from 'src/app/services/avioCompany/avio-company.service'
@@ -21,7 +21,7 @@ export class FlightsComponent implements OnInit {
   //avioCompService = AvioCompanyService;
   allAvioCompanies:Array<AboutCompany>
 
-  
+  id:number;
   allFlightss = new Array<FlightInfo>();
   searchedFlights = new Array<FlightInfo>();
 
@@ -32,6 +32,20 @@ export class FlightsComponent implements OnInit {
 
   ngOnInit(): void {
     //$('.datepicker').pickadate();
+
+    // this.route.params.subscribe(
+    //   (params: Params) => {
+    //     this.id = params['compID'];
+    //     console.log(this.id);
+    //     //this.data.refreshList();
+    //     //this.rentServiceDetails.getRentServiceById(this.id).subscribe(
+    //     //  dataV => {
+    //     //    this.rentService = dataV;
+    //      //   console.log(this.rentService);
+    //     //  }
+    //   //  )
+    //  }
+  //  )
 
     this.service.refreshList().subscribe(
       data=>{
@@ -92,7 +106,7 @@ export class FlightsComponent implements OnInit {
     
   }
   onSelect(service: AboutCompany){
-    this.router.navigateByUrl('/flights/company-profile');
+    this.router.navigateByUrl('/flights/company-profile/'+service.avioCompID);
     this.data.changeMessage(service);
   }
   check(){
