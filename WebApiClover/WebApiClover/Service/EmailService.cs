@@ -21,9 +21,10 @@ namespace Core.Services
                 {
                     MailAddress fromAddress = new MailAddress(from, from);
                     smtpClient.EnableSsl = true;
-                    smtpClient.Host = "smtp.gmail.com";
+                    smtpClient.Host = SmtpClientHost;
                     smtpClient.UseDefaultCredentials = false;
                     smtpClient.Credentials = basicCredential;
+                    smtpClient.Port = SmtpClientPort;
 
                     message.From = fromAddress;
                     message.Subject = subject;

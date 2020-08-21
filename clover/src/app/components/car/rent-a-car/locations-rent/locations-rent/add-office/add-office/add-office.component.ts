@@ -40,9 +40,9 @@ export class AddOfficeComponent implements OnInit {
 
   insertOffice(form: NgForm){
     //console.log(this.rentService);
-    this.rentServiceServis.selectedService.serviceOffice.push(form.value);
+    this.rentService.serviceOffice.push(form.value);
 
-        this.rentServiceServis.putRentService(this.rentServiceServis.selectedService, this.rentServiceServis.selectedService.serviceId).subscribe(
+        this.rentServiceServis.putRentService(this.rentService, this.rentService.serviceId).subscribe(
           res => {  
             this.toastr.success("Inserted Successfully");
             this.resetForm(form);

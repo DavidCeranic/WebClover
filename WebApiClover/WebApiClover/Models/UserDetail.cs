@@ -35,9 +35,9 @@ namespace WebApiClover.Models
 
         public string StringToken { get; set; }
 
-        public List<CarInfo> UserCars { get; set; }
+        public List<CarInfo> UserCars { get; set; } = new List<CarInfo>();
 
-        public List<FlightInfo2> UserFlights{ get; set; }
+        public List<FlightInfo2> UserFlights { get; set; } = new List<FlightInfo2>();
 
         public bool IsVerify { get; set; }
     }
