@@ -313,4 +313,3 @@ C:\Users\Vlada\Desktop\WebClover\WebApiClover\WebApiClover\bin\Debug\netcoreapp3
 C:\Users\Vlada\Desktop\WebClover\WebApiClover\WebApiClover\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Vlada\Desktop\WebClover\WebApiClover\WebApiClover\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Vlada\Desktop\WebClover\WebApiClover\WebApiClover\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\david\WebClover\WebApiClover\WebApiClover\obj\Debug\netcoreapp3.0\WebApiClover.csprojAssemblyReference.cache
