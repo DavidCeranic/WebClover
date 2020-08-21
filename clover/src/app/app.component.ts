@@ -8,9 +8,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'clover';
+  emaill:string;
   constructor(public router: Router){
     
   }
+  
 
   IsSignedIn():boolean{
     return !!localStorage.getItem('userEmail');
