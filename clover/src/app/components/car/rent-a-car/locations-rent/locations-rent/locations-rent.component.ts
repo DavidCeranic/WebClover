@@ -31,7 +31,6 @@ export class LocationsRentComponent implements OnInit {
       (params: Params) => {
         this.id = params['id'];
         console.log(this.id);
-        //this.data.refreshList();
         this.rentServiceDetails.getRentServiceById(this.id).subscribe(
           dataV => {
             this.rentService = dataV;
