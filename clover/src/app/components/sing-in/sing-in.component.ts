@@ -11,6 +11,7 @@ import { User } from 'src/app/entities/User/user';
 import { RegisterUserService } from 'src/app/services/userDetails/registerUser/register-user.service';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sing-in',
@@ -20,13 +21,17 @@ import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-logi
 export class SingInComponent implements OnInit {
   [x: string]: any;
   allFlightss:Array<FlightInfo>;
-  singInForm: FormGroup;
+  singInForm: FormGroup = new FormGroup({
+    email: new FormControl('',Validators.required),
+    // email: new FormControl('',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
+    password: new FormControl('', Validators.required)
+  })
   @ViewChild(SingUpComponent) sing_up: SingUpComponent;
   http: HttpClient;
   displayStr = "SingIn";
   user: User;
 
-  constructor(private flightService: AllFlightsService, private registerService: RegisterUserService, public service: UserDetailsService, public router: Router, http: HttpClient,private authService: SocialAuthService)
+  constructor(private flightService: AllFlightsService, private registerService: RegisterUserService, public service: UserDetailsService, public router: Router, http: HttpClient,private authService: SocialAuthService, private toster: ToastrService)
    {
      //  this.allFlightss=this.flightService.getFlights();
        this.http = http;
@@ -54,12 +59,26 @@ export class SingInComponent implements OnInit {
     localStorage.setItem('sessionUserRolee', JSON.stringify('ADMIN'));
   }
 
-  onSubmit(form: NgForm) {
-    const email = this.getValue("Email");
-    const password = this.getValue("Password");
-    this.registerService.logIn(email, password);
-    this.resetForm(form);
-    this.router.navigateByUrl('/register-user');
+  onSubmit() {
+    const email = this.singInForm.get('email').value;
+    const password = this.singInForm.get('password').value;
+    this.registerService.logIn(email, password).then(res => {
+      localStorage.setItem("user_token", res.StringToken);
+      localStorage.setItem("regUser", res.userId);
+      this.user = res as User;
+      //TO DO
+      //console.log(this.user);
+      //console.log(this.user.userId);
+      //this.loggedIn.emit(this.user);
+      this.singInForm.reset();
+      this.router.navigateByUrl('/register-user');
+    }).catch(err=>{
+      if(err.status === 400){
+        if(err.error === "Not Verified"){
+          this.toster.error("Not Verified");
+        }
+      }
+      });
   }
 
   showRegister(){

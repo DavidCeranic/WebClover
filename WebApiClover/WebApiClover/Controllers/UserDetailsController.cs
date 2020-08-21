@@ -75,6 +75,11 @@ namespace WebApiClover.Controllers
                 return BadRequest("Wrong email");
             }
 
+            if (!userDetail.IsVerify)
+            {
+                return BadRequest("Not Verified");
+            }
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("this is my custom Secret key for authnetication");
             var tokenDescriptor = new SecurityTokenDescriptor
