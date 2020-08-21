@@ -45,9 +45,9 @@ export class AddCarComponent implements OnInit {
   }
 
   insertCar(form: NgForm){
-    this.rentServiceServis.selectedService.serviceCars.push(form.value);
+    this.rentService.serviceCars.push(form.value);
 
-        this.rentServiceServis.putRentService(this.rentServiceServis.selectedService, this.rentServiceServis.selectedService.serviceId).subscribe(
+        this.rentServiceServis.putRentService(this.rentService, this.rentService.serviceId).subscribe(
           res => {  
             //this.rentService.selectedService.serviceCars.push(form.value);
             //this.rentService.putRentService(this.rentService.selectedService);
