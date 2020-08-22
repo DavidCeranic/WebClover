@@ -29,4 +29,8 @@ export class UserDetailsService {
   changeMessage(message: string[]){
     this.messageSource.next(message);
   }
+
+  getUserById(userId: number){
+    return this.http.get<User>(this.rootUrl + 'UserDetails/' + userId.toString());
+  }
 }
