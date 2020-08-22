@@ -27,15 +27,26 @@ export class AllFlightsService {
           addFlight=false;
           break;
         }
-        if(this.checkClass(flight,filterParam)){
-          addFlight=false;
-          break;
-        }
+       
         if(this.checkBaggeg(flight,filterParam)){
           addFlight=false;
           break;
         }
+        if(this.checkDeparting(flight,filterParam)){
+          addFlight=false;
+          break;
+        }
+        if(this.checkRetruning(flight,filterParam)){
+          addFlight=false;
+          break;
+        }
 
+        if(this.checkClassF(flight,filterParam)){
+          addFlight=false;
+          break;
+        }
+        
+        
        
       }
       if(addFlight)
@@ -52,13 +63,21 @@ export class AllFlightsService {
     return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchToFilter' && !flight.to.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
   }
 
-  checkClass(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
-    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchClassFilter' && !flight.classf.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
-  }
+  
 
   checkBaggeg(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
     return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchBaggegFilter' && !flight.baggage.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
   }
+  checkDeparting(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchDepartingFilter' && !flight.departing.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+  }
+  checkRetruning(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchReturningFilter' && !flight.returning.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+  }
+  checkClassF(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchClassFFilter' && !flight.classf.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+  }
+ 
  
 
 
