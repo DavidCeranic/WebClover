@@ -70,13 +70,19 @@ export class FlightsComponent implements OnInit {
     if (this.getFilterFieldValue("searchToFilter")) {
       filterParams.push(this.addSearchToFilterParam());
     }
-    if(this.getFilterFieldValue("searchClassFilter")){
-      filterParams.push(this.addsearchClassFilterParam());
-    }
+
     if(this.getFilterFieldValue("searchBaggegFilter")){
       filterParams.push(this.addSearchBaggegParam());
     }
-
+    if(this.getFilterFieldValue("searchDepartingFilter")){
+      filterParams.push(this.addSearchDepartingParam());
+    }
+    if(this.getFilterFieldValue("searchReturningFilter")){
+      filterParams.push(this.addSearchReturningParam());
+    }
+    if(this.getFilterFieldValue("searchClassFFilter")){
+      filterParams.push(this.addSearchClassFParam());
+    }
     this.searchedFlights = this.flightService.searchFligts(this.allFlightss, filterParams);
   }
 
@@ -91,16 +97,27 @@ export class FlightsComponent implements OnInit {
   addSearchToFilterParam(): ReturnType<any> {
     return new StringFilterParam("searchToFilter", this.getFilterFieldValue("searchToFilter"));
   }
-  addsearchClassFilterParam(): ReturnType<any> {
-    return new StringFilterParam("searchClassFilter", this.getFilterFieldValue("searchClassFilter"));
-  }
+  
   addSearchBaggegParam(): ReturnType<any> {
     return new StringFilterParam("searchBaggegFilter", this.getFilterFieldValue("searchBaggegFilter"));
   }
+  addSearchDepartingParam(): ReturnType<any> {
+    return new StringFilterParam("searchDepartingFilter", this.getFilterFieldValue("searchDepartingFilter"));
+  }
+  addSearchReturningParam(): ReturnType<any> {
+    return new StringFilterParam("searchReturningFilter", this.getFilterFieldValue("searchReturningFilter"));
+  }
+  addSearchClassFParam(): ReturnType<any> {
+    return new StringFilterParam("searchClassFFilter", this.getFilterFieldValue("searchClassFFilter"));
+  }
 
+  
+  
   getFilterFieldValue(filterFieldId: string) {
     return (<HTMLInputElement> document.getElementById(filterFieldId)).value;
   }
+  
+
 
   onSubmit(){
     
