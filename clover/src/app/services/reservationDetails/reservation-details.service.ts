@@ -31,6 +31,7 @@ export class ReservationDetailsService {
       this.list = res as Reservation[];
       this.messageEvent.emit(this.list); 
       
+      
     });
   }
 
