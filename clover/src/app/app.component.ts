@@ -15,7 +15,7 @@ export class AppComponent {
   
 
   IsSignedIn():boolean{
-    return !!localStorage.getItem('userEmail');
+    return !!localStorage.getItem('regId');
   }
   LogOut(){
     localStorage.clear();

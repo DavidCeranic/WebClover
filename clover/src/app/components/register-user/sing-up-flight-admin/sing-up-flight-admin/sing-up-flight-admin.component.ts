@@ -45,7 +45,7 @@ export class SingUpFlightAdminComponent implements OnInit {
     if(form!=null)
       form.resetForm();
       this.service.formData = {
-        userId: null,
+        UserId: null,
         Name: "",
         email: "",
         password: "",
