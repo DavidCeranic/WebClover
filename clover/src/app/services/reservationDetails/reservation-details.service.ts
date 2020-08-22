@@ -29,7 +29,8 @@ export class ReservationDetailsService {
   refreshList(){
     this.http.get(this.rootUrl + 'ReservationDetails').toPromise().then(res => {
       this.list = res as Reservation[];
-      this.messageEvent.emit(this.list);
+      this.messageEvent.emit(this.list); 
+      
     });
   }
 
