@@ -53,11 +53,11 @@ export class AllFlightsService {
   }
 
   checkClass(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
-    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchClassFilter' && !flight.to.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchClassFilter' && !flight.classf.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
   }
 
   checkBaggeg(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
-    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchBaggegFilter' && !flight.from.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchBaggegFilter' && !flight.baggage.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
   }
  
 
