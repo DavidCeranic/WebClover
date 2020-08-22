@@ -29,7 +29,9 @@ export class AllFligtsDetailsService {
       
      return this.http.get<FlightInfo[]>(this.rootUrl + 'FlightInfo2');
     }
-  
+    getFlightById(serviceId: number){
+      return this.http.get<FlightInfo>(this.rootUrl + 'FlightInfo2/' + serviceId.toString());
+    }
 
   changeMessage(message: FlightInfo){
     this.messageSource.next(message);
