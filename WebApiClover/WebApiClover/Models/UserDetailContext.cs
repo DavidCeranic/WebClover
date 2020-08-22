@@ -18,7 +18,6 @@ namespace WebApiClover.Models
 
         public DbSet<UserDetail> UserDetails { get; set; }
 
-        public DbSet<AboutCompany> AboutCompanies { get; set; }
 
         public DbSet<RentService> RentService { get; set; }
 
@@ -31,5 +30,7 @@ namespace WebApiClover.Models
         public DbSet<WebApiClover.Models.FlightInfo2> FlightInfo2 { get; set; }
 
         public DbSet<WebApiClover.Models.OfficeDetail> OfficeDetail { get; set; }
+
+        public DbSet<WebApiClover.Models.ReservationDetails> ReservationDetails { get; set; }
     }
 }

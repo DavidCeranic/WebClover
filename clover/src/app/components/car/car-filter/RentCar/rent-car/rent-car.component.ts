@@ -7,6 +7,7 @@ import { RentService } from 'src/app/entities/rentService/rent-service';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { User } from 'src/app/entities/User/user';
 import { UserDetailsService } from 'src/app/services/userDetails/user-details.service';
+import { ReservationDetailsService } from 'src/app/services/reservationDetails/reservation-details.service';
 
 @Component({
   selector: 'app-rent-car',
@@ -22,9 +23,11 @@ export class RentCarComponent implements OnInit {
   rentService: RentService;
   user: User;
 
-  constructor(public service: CarDetailsService, private formBuilder: FormBuilder, public route: ActivatedRoute, public rentServiceServis: RentServiceDetailsService, public userService: UserDetailsService) { }
+  constructor(public reservationService: ReservationDetailsService, public service: CarDetailsService, private formBuilder: FormBuilder, public route: ActivatedRoute, public rentServiceServis: RentServiceDetailsService, public userService: UserDetailsService) { }
 
   ngOnInit(): void {
+    this.resetForm();
+
     this.route.params.subscribe(
       (params: Params) => {
         this.idRent = params['id'];
@@ -56,6 +59,29 @@ export class RentCarComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+    this.insertReservation(form);
+  }
 
+  insertReservation(form: NgForm){
+    console.log(form.value);
+    this.reservationService.postReservation(form.value).subscribe(
+      res => {
+        this.resetForm(form);
+        this.reservationService.refreshList();
+      }
+    )
+  }
+
+  resetForm(form?: NgForm){
+    if(form!=null)
+      form.resetForm();
+      this.reservationService.formData = {
+        reservationId: null,
+        startDate: null,
+        endDate: null,
+        car: null,
+        user: null,
+        //startOffice: null
+      }
   }
 }

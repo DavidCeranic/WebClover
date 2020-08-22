@@ -1,55 +1,68 @@
- <p> {{user.Name}} rent-car work</p>
- <h1 mat-dialog-title> {{car.brand}} {{car.model}}</h1>
- <div class="image" style="content:url({{car.imgUrl}})"></div>
- 
- <form>
-   
-  <!--</form>#form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form"> -->
-
-    <!-- <input type="hidden" name="carId" [value]="service.formData.carId"> -->
+<h1 mat-dialog-title> {{car.brand}} {{car.model}}</h1>
+<div class="image" style="content:url({{car.imgUrl}})"></div>
 
 
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-            <span class="form-label">Start Date</span>
-            <input style="width: 175px;" class="form-control" type="date" id="startDate" name="startDate" formControlName="startDate" required>
-            </div>
-        </div>
+  <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form">
+    <input type="hidden" name="reservationId" [value]="reservationService.formData.reservationId">
 
-        <div class="col-md-3">
-            <div class="form-group">
-            <span style="margin-left: 40px;" class="form-label">End Date</span>
-            <input style="width: 175px; margin-left: 40px;" class="form-control" type="date" required>
-            </div>
-        </div>
+    <!-- <input type="hidden" name="car" [value]="this.car">
+
+    <input type="hidden" name="user" [value]="this.user"> -->
+
+  
+    <!-- <input type="hidden" name="StartOffice" [value]="null"> -->
+
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <span class="form-label">Start Date</span>
+        <input #startDate="ngModel" [(ngModel)]="reservationService.formData.startDate" style="width: 175px;" class="form-control" type="date" id="startDate" name="startDate" required>
+      </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-              <span class="form-label">Start Location</span>
-              <input style="width: 175px;" class="form-control" type="text" placeholder="Start Location" id="startLocationFilter">
-            </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <span style="margin-left: 40px;" class="form-label">End Date</span>
+        <input #endDate="ngModel" [(ngModel)]="reservationService.formData.endDate" style="width: 175px; margin-left: 40px;" class="form-control" type="date" id="endDate" name="endDate" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- <div class="col-md-3">
+      <div class="form-group">
+        <span class="form-label">Start Location</span>
+        <input #startOffice="ngModel" [(ngModel)]="reservationService.formData.startOffice" style="width: 175px;" class="form-control" type="text" placeholder="Start Location" id="startOffice" name="startOffice" required> -->
+
+
+        <!-- <select class="form-control">
+          <div *ngFor="let f of this.rentService.serviceOffice">
+            <option>{{f.officeName}}</option>
           </div>
+        </select> -->
 
-          <div class="col-md-3">
-            <div class="form-group">
-              <span style="margin-left: 40px;" class="form-label">End Location</span>
-              <input style="width: 175px; margin-left: 40px;" class="form-control" type="text" placeholder="End Location" id="endLocationFilter">
-            </div>
-          </div>
-    </div>
 
-    <div class="form-group">
-        Total Price: {{car.pricePerDay}} 
-    </div>
+      <!-- </div>
+    </div> -->
 
-    <div class="form-group">
-        <input type="submit" name="submit" id="submit" class="form-submit" value="Rent"/>
-    </div>
+    <!-- <div class="col-md-3">
+      <div class="form-group">
+        <span style="margin-left: 40px;" class="form-label">End Location</span>
+        <input #endOffice="ngModel" [(ngModel)]="reservationService.formData.endOffice" style="width: 175px; margin-left: 40px;" class="form-control" type="text" placeholder="End Location" id="endOffice" name="endOffice" required>
+      </div>
+    </div> -->
+  </div>
 
-    <button mat-dialog-close> Close</button>
+  <div class="form-group">
+    Total Price: {{car.pricePerDay}}
+  </div>
 
-</form>  
+  <div class="form-group">
+    <input type="submit" name="submit" id="submit" class="form-submit" value="Rent" />
+  </div>
+
+  <button mat-dialog-close> Close</button>
+
+</form>

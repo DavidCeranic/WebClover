@@ -19,44 +19,6 @@ namespace WebApiClover.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WebApiClover.Models.AboutCompany", b =>
-                {
-                    b.Property<string>("avioCompID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("avioCompAbout")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("avioCompAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("avioCompDestinations")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("avioCompFastReservationDiscount")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("avioCompName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("avioCompPrices")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("avioCompSeats")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("avioCompID");
-
-                    b.ToTable("AboutCompanies");
-                });
-
             modelBuilder.Entity("WebApiClover.Models.CarInfo", b =>
                 {
                     b.Property<int>("CarId")
@@ -224,7 +186,7 @@ namespace WebApiClover.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("CompanyAboutAvioCompID")
+                    b.Property<int>("CompanyAboutAvioCompID")
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyName")
@@ -388,6 +350,34 @@ namespace WebApiClover.Migrations
                     b.ToTable("RentService");
                 });
 
+            modelBuilder.Entity("WebApiClover.Models.ReservationDetails", b =>
+                {
+                    b.Property<int>("ReservationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReservationId");
+
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ReservationDetails");
+                });
+
             modelBuilder.Entity("WebApiClover.Models.UserDetail", b =>
                 {
                     b.Property<int>("UserId")
@@ -441,8 +431,10 @@ namespace WebApiClover.Migrations
             modelBuilder.Entity("WebApiClover.Models.FlightInfo2", b =>
                 {
                     b.HasOne("WebApiClover.Models.CompanyAbout", null)
-                        .WithMany("CompanyFlihts")
-                        .HasForeignKey("CompanyAboutAvioCompID");
+                        .WithMany("CompanyFlights")
+                        .HasForeignKey("CompanyAboutAvioCompID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("WebApiClover.Models.UserDetail", null)
                         .WithMany("UserFlights")
@@ -473,6 +465,21 @@ namespace WebApiClover.Migrations
                     b.HasOne("WebApiClover.Models.RentService", null)
                         .WithMany("RateService")
                         .HasForeignKey("RentServiceServiceId");
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.ReservationDetails", b =>
+                {
+                    b.HasOne("WebApiClover.Models.CarInfo", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApiClover.Models.UserDetail", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

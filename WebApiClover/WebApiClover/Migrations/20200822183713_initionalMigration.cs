@@ -1,29 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApiClover.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class initionalMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AboutCompanies",
-                columns: table => new
-                {
-                    avioCompID = table.Column<string>(nullable: false),
-                    avioCompName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    avioCompAddress = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    avioCompAbout = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    avioCompDestinations = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    avioCompFastReservationDiscount = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    avioCompSeats = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    avioCompPrices = table.Column<string>(type: "nvarchar(100)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AboutCompanies", x => x.avioCompID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "CompanyAbout",
                 columns: table => new
@@ -106,12 +89,35 @@ namespace WebApiClover.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OfficeDetail",
+                columns: table => new
+                {
+                    OfficeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OfficeName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Lat = table.Column<double>(type: "float", nullable: false),
+                    Lng = table.Column<double>(type: "float", nullable: false),
+                    RentServiceServiceId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OfficeDetail", x => x.OfficeId);
+                    table.ForeignKey(
+                        name: "FK_OfficeDetail_RentService_RentServiceServiceId",
+                        column: x => x.RentServiceServiceId,
+                        principalTable: "RentService",
+                        principalColumn: "ServiceId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CarInfo",
                 columns: table => new
                 {
                     CarId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ServiceName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    ServiceName = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     Brand = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Model = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Year = table.Column<decimal>(type: "decimal", nullable: false),
@@ -159,7 +165,7 @@ namespace WebApiClover.Migrations
                     CompanyName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Price = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     SeatsNumber = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    CompanyAboutAvioCompID = table.Column<int>(nullable: true),
+                    CompanyAboutAvioCompID = table.Column<int>(nullable: false),
                     UserDetailUserId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -170,13 +176,48 @@ namespace WebApiClover.Migrations
                         column: x => x.CompanyAboutAvioCompID,
                         principalTable: "CompanyAbout",
                         principalColumn: "AvioCompID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_FlightInfo2_UserDetails_UserDetailUserId",
                         column: x => x.UserDetailUserId,
                         principalTable: "UserDetails",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReservationDetails",
+                columns: table => new
+                {
+                    ReservationId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false),
+                    StartOfficeOfficeId = table.Column<int>(nullable: false),
+                    CarId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReservationDetails", x => x.ReservationId);
+                    table.ForeignKey(
+                        name: "FK_ReservationDetails_CarInfo_CarId",
+                        column: x => x.CarId,
+                        principalTable: "CarInfo",
+                        principalColumn: "CarId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ReservationDetails_OfficeDetail_StartOfficeOfficeId",
+                        column: x => x.StartOfficeOfficeId,
+                        principalTable: "OfficeDetail",
+                        principalColumn: "OfficeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ReservationDetails_UserDetails_UserId",
+                        column: x => x.UserId,
+                        principalTable: "UserDetails",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -241,6 +282,11 @@ namespace WebApiClover.Migrations
                 column: "UserDetailUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OfficeDetail_RentServiceServiceId",
+                table: "OfficeDetail",
+                column: "RentServiceServiceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Rate_CarInfoCarId",
                 table: "Rate",
                 column: "CarInfoCarId");
@@ -259,13 +305,25 @@ namespace WebApiClover.Migrations
                 name: "IX_Rate_RentServiceServiceId",
                 table: "Rate",
                 column: "RentServiceServiceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReservationDetails_CarId",
+                table: "ReservationDetails",
+                column: "CarId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReservationDetails_StartOfficeOfficeId",
+                table: "ReservationDetails",
+                column: "StartOfficeOfficeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReservationDetails_UserId",
+                table: "ReservationDetails",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AboutCompanies");
-
             migrationBuilder.DropTable(
                 name: "FlightsInfo");
 
@@ -273,19 +331,25 @@ namespace WebApiClover.Migrations
                 name: "Rate");
 
             migrationBuilder.DropTable(
-                name: "CarInfo");
+                name: "ReservationDetails");
 
             migrationBuilder.DropTable(
                 name: "FlightInfo2");
 
             migrationBuilder.DropTable(
-                name: "RentService");
+                name: "CarInfo");
+
+            migrationBuilder.DropTable(
+                name: "OfficeDetail");
 
             migrationBuilder.DropTable(
                 name: "CompanyAbout");
 
             migrationBuilder.DropTable(
                 name: "UserDetails");
+
+            migrationBuilder.DropTable(
+                name: "RentService");
         }
     }
 }
