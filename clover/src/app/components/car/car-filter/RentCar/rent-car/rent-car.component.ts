@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgForm, FormBuilder } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Car } from 'src/app/entities/Car/car';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -8,6 +8,8 @@ import { RentServiceDetailsService } from 'src/app/services/rentServices/rentSer
 import { User } from 'src/app/entities/User/user';
 import { UserDetailsService } from 'src/app/services/userDetails/user-details.service';
 import { ReservationDetailsService } from 'src/app/services/reservationDetails/reservation-details.service';
+import { Reservation } from 'src/app/entities/reservation/reservation';
+import { Office } from 'src/app/entities/office/office';
 
 @Component({
   selector: 'app-rent-car',
@@ -22,6 +24,13 @@ export class RentCarComponent implements OnInit {
   idUser: number;
   rentService: RentService;
   user: User;
+  startOffice: Office;
+  endOffice: Office;
+
+  reservationForm: FormGroup = new FormGroup({
+    startDate: new FormControl('', Validators.required),
+    endDate: new FormControl('', Validators.required)
+  })
 
   constructor(public reservationService: ReservationDetailsService, public service: CarDetailsService, private formBuilder: FormBuilder, public route: ActivatedRoute, public rentServiceServis: RentServiceDetailsService, public userService: UserDetailsService) { }
 
@@ -58,16 +67,17 @@ export class RentCarComponent implements OnInit {
     )
   }
 
-  onSubmit(form: NgForm){
-    this.insertReservation(form);
+  onSubmit(){
+    var reservation = new Reservation(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value, this.car, this.user, this.startOffice, this.endOffice);
+    this.insertReservation(reservation);
   }
 
-  insertReservation(form: NgForm){
-    console.log(form.value);
-    this.reservationService.postReservation(form.value).subscribe(
+  insertReservation(reservation: Reservation){
+    console.log(reservation);
+    this.reservationService.postReservation(reservation).subscribe(
       res => {
-        this.resetForm(form);
-        this.reservationService.refreshList();
+        this.resetForm();
+        //this.reservationService.refreshList();
       }
     )
   }
@@ -81,7 +91,8 @@ export class RentCarComponent implements OnInit {
         endDate: null,
         car: null,
         user: null,
-        //startOffice: null
+        startOffice: null,
+        endOffice: null
       }
   }
 }

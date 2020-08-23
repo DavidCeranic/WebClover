@@ -22,22 +22,19 @@ export class ReservationDetailsService {
   
 
   postReservation(formData: Reservation){
-    console.log(formData);
     return this.http.post(this.rootUrl + 'ReservationDetails/CreateReservationForCar', formData);
   }
 
   refreshList(){
     this.http.get(this.rootUrl + 'ReservationDetails').toPromise().then(res => {
       this.list = res as Reservation[];
-      this.messageEvent.emit(this.list); 
-      
-      
+      this.messageEvent.emit(this.list);
     });
   }
 
   putReservation(formData: Reservation, reservationId:string, rentServiceId: string){
     var rentService = parseInt(rentServiceId);
-    formData.reservationId = reservationId;
+    //formData.reservationId = reservationId;
     return this.http.put(this.rootUrl + 'ReservationDetails/'+rentService, formData);
   }
 
