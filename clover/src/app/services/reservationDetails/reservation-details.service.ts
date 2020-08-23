@@ -25,6 +25,12 @@ export class ReservationDetailsService {
     return this.http.post(this.rootUrl + 'ReservationDetails/CreateReservationForCar', formData);
   }
 
+  getReservationForCar(carId: number){
+    return this.http.get(this.rootUrl + 'ReservationDetails/GetReservationForCar/' + carId).toPromise().then(res => {
+      this.list = res as Reservation[];
+    })
+  }
+
   refreshList(){
     this.http.get(this.rootUrl + 'ReservationDetails').toPromise().then(res => {
       this.list = res as Reservation[];
