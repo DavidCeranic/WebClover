@@ -1,31 +1,22 @@
 <h1 mat-dialog-title> {{car.brand}} {{car.model}}</h1>
 <div class="image" style="content:url({{car.imgUrl}})"></div>
 
-
-
-  <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form">
-    <input type="hidden" name="reservationId" [value]="reservationService.formData.reservationId">
-
-    <!-- <input type="hidden" name="car" [value]="this.car">
-
-    <input type="hidden" name="user" [value]="this.user"> -->
-
   
-    <!-- <input type="hidden" name="StartOffice" [value]="null"> -->
 
+  <form #form="ngForm" [formGroup]="reservationForm" autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form">
 
   <div class="row">
     <div class="col-md-3">
       <div class="form-group">
         <span class="form-label">Start Date</span>
-        <input #startDate="ngModel" [(ngModel)]="reservationService.formData.startDate" style="width: 175px;" class="form-control" type="date" id="startDate" name="startDate" required>
+        <input formControlName="startDate" style="width: 175px;" class="form-control" type="date" id="startDate" name="startDate" required>
       </div>
     </div>
 
     <div class="col-md-3">
       <div class="form-group">
         <span style="margin-left: 40px;" class="form-label">End Date</span>
-        <input #endDate="ngModel" [(ngModel)]="reservationService.formData.endDate" style="width: 175px; margin-left: 40px;" class="form-control" type="date" id="endDate" name="endDate" required>
+        <input formControlName="endDate" style="width: 175px; margin-left: 40px;" class="form-control" type="date" id="endDate" name="endDate" required>
       </div>
     </div>
   </div>

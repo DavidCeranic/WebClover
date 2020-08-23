@@ -31,7 +31,7 @@ namespace WebApiClover.Controllers
         [HttpPost]
         [Microsoft.AspNetCore.Authorization.AllowAnonymous]
         [Route("CreateReservationForCar")]
-        public async Task<IActionResult> CreateReservationForCar([FromBody] ReservationDetails reservationDetails)
+        public async Task<IActionResult> CreateReservationForCar( ReservationDetails reservationDetails)
         {
             try
             {
