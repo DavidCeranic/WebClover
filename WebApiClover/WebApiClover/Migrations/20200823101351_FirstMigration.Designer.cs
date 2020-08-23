@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiClover.Models;
 
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    partial class UserDetailContextModelSnapshot : ModelSnapshot
+    [Migration("20200823101351_FirstMigration")]
+    partial class FirstMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,35 +239,6 @@ namespace WebApiClover.Migrations
                     b.ToTable("FlightInfo2");
                 });
 
-            modelBuilder.Entity("WebApiClover.Models.Friends", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Accepted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Added")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Removed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserEmail1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserEmail2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Friends");
-                });
-
             modelBuilder.Entity("WebApiClover.Models.OfficeDetail", b =>
                 {
                     b.Property<int>("OfficeId")
@@ -392,14 +365,8 @@ namespace WebApiClover.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("EndOfficeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("StartOfficeId")
-                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -407,10 +374,6 @@ namespace WebApiClover.Migrations
                     b.HasKey("ReservationId");
 
                     b.HasIndex("CarId");
-
-                    b.HasIndex("EndOfficeId");
-
-                    b.HasIndex("StartOfficeId");
 
                     b.HasIndex("UserId");
 
@@ -513,14 +476,6 @@ namespace WebApiClover.Migrations
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("WebApiClover.Models.OfficeDetail", "EndOffice")
-                        .WithMany()
-                        .HasForeignKey("EndOfficeId");
-
-                    b.HasOne("WebApiClover.Models.OfficeDetail", "StartOffice")
-                        .WithMany()
-                        .HasForeignKey("StartOfficeId");
 
                     b.HasOne("WebApiClover.Models.UserDetail", "User")
                         .WithMany()

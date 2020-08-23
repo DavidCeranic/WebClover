@@ -11,6 +11,9 @@ import { AllFligtsDetailsService } from 'src/app/services/allFligts/all-flights-
 export class SearchFlightComponent implements OnInit {
 
   @Input() searchedFlights;
+  searchCompanyName:string;
+  searchDuration:string;
+  
   constructor(public route: ActivatedRoute,public flightService :AllFligtsDetailsService,private router: Router) { }
   id:number;
   flightData:FlightInfo;

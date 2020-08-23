@@ -7,7 +7,9 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class RegisterUserService {
-
+  formData: User;
+  readonly rootUrl= 'http://localhost:5000/api/';
+  list: User[];
   user: User;
   http: HttpClient;
   @Output() loggedIn = new EventEmitter<User>();
@@ -15,7 +17,9 @@ export class RegisterUserService {
   constructor(http: HttpClient, private toastr: ToastrService) { 
     this.http = http;
   }
-
+  refreshList(){
+  return  this.http.get(this.rootUrl + 'UserDetails').toPromise().then(res => this.list = res as User[]);
+  }
 
   logIn(email: string, password: string) : Promise<User>{
     return this.http.post<User>("http://localhost:5000/api/UserDetails/Login", { email, password }).toPromise();//.then((res : any) => {

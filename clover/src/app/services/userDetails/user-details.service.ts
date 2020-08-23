@@ -22,8 +22,8 @@ export class UserDetailsService {
     return this.http.post(this.rootUrl + 'UserDetails', formData);
   }
 
-  refreshList(){
-    this.http.get(this.rootUrl + 'UserDetails').toPromise().then(res => this.list = res as User[]);
+  refreshList(): Promise<User[]>{
+   return this.http.get<User[]>(this.rootUrl + 'UserDetails').toPromise();
   }
 
   changeMessage(message: string[]){

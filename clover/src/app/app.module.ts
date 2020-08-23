@@ -54,6 +54,7 @@ import { LocationsRentComponent } from './components/car/rent-a-car/locations-re
 import { AddOfficeComponent } from './components/car/rent-a-car/locations-rent/locations-rent/add-office/add-office/add-office.component';
 import { SingUpRentAdminComponent } from './components/register-user/sing-up-rent-admin/sing-up-rent-admin/sing-up-rent-admin.component';
 import { SingUpFlightAdminComponent } from './components/register-user/sing-up-flight-admin/sing-up-flight-admin/sing-up-flight-admin.component';
+import { FlightFilterPipe } from './components/flights/flight-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { SingUpFlightAdminComponent } from './components/register-user/sing-up-f
     LocationsRentComponent,
     AddOfficeComponent,
     SingUpRentAdminComponent,
-    SingUpFlightAdminComponent
+    SingUpFlightAdminComponent,
+    FlightFilterPipe
   ],
   imports: [
     BrowserModule,

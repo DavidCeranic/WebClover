@@ -1,7 +1,7 @@
 <div class="conteiner3" id="style-22">
     <div class="inp1"><input type="text" class="inp" name="min" placeholder="lowest price.."></div>
-    <div class="inp2"><input type="text" class="inp" name="max" placeholder="higest price.."></div>
-    <div class="inp3"><input type="text" class="inp" name="cnm" placeholder="company name.."></div>
+    <div class="inp2"><input type="text" class="inp" name="max" placeholder="duration" [(ngModel)]="searchDuration"></div>
+    <div class="inp3"><input type="text" class="inp" name="cnm" placeholder=" company name.." [(ngModel)]="searchCompanyName"></div>
     <div class="btn11"><button class="button1">filter</button></div>
     <!--<div class="slctComp"> <select class="inp" name="country">
             <option value="australia">Wizzair</option>
@@ -9,15 +9,15 @@
             <option value="usa">USA</option>
           </select></div>-->
         
-    <div *ngFor="let f of searchedFlights" class="div1">
-            <div class="div2">{{f.departing.toLocaleString()}}</div>
-            <div class="div3From">{{f.from}}</div>
+    <div *ngFor="let flight of searchedFlights | flightFilter:searchCompanyName " class="div1">
+            <div class="div2">{{flight.departing.toLocaleString()}}</div>
+            <div class="div3From">{{flight.from}}</div>
             <div class="image"></div>
-            <div class="div4">{{f.returning.toLocaleString()}}</div>
-            <div class="div5To">{{f.to}}</div>
-            <div class="divName">{{f.companyName}}</div>
+            <div class="div4">{{flight.returning.toLocaleString()}}</div>
+            <div class="div5To">{{flight.to}}</div>
+            <div class="divName">{{flight.companyName}}</div>
             <div class="btn">
-            <button (click)="onSelect(f)" class="myButton">BOOK {{f.price}}$</button>
+            <button (click)="onSelect(flight)" class="myButton">BOOK {{flight.price}}$</button>
         </div>
         </div>
 

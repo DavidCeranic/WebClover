@@ -1,15 +1,18 @@
+import { Friends } from '../Friends/friends';
+
 export class User {
-    UserId: string;
-    Name: string;
+    userId: string;
+    name: string;
     email: string;
     password: string;
     city: string;
     phoneNumber: string;
     userType: string
     StringToken: string;
+    userFriends: Array<Friends>;
 
     constructor(name: string, email: string, password: string, city: string, phoneNumber: string, userType: string,  token: string) {
-        this.Name = name;
+        this.name = name;
         this.email = email;
         this.password = password;
         this.city = city;

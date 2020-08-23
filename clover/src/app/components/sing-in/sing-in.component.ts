@@ -63,9 +63,10 @@ export class SingInComponent implements OnInit {
   onSubmit() {
     const email = this.singInForm.get('email').value;
     const password = this.singInForm.get('password').value;
-    this.registerService.logIn(email, password).then(res => {
+    this.registerService.logIn(email, password).then((res : any)=> {
       localStorage.setItem("user_token", res.StringToken);
       localStorage.setItem("regId", res.UserId);
+      localStorage.setItem("regEmail",res.Email);
       this.user = res as User;
       //TO DO
       //console.log(this.user);
@@ -110,14 +111,15 @@ export class SingInComponent implements OnInit {
     if(form!=null)
       form.resetForm();
       this.service.formData = {
-        UserId: null,
-        Name: "",
+        userId: null,
+        name: "",
         email: "",
         password: "",
         city: "",
         phoneNumber: "",
         userType: "",
-        StringToken: ""
+        StringToken: "",
+        userFriends:null
       }
   }
 

@@ -32,5 +32,7 @@ namespace WebApiClover.Models
         public DbSet<WebApiClover.Models.OfficeDetail> OfficeDetail { get; set; }
 
         public DbSet<WebApiClover.Models.ReservationDetails> ReservationDetails { get; set; }
+
+        public DbSet<WebApiClover.Models.Friends> Friends { get; set; }
     }
 }
