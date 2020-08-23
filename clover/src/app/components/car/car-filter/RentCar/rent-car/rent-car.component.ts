@@ -54,6 +54,7 @@ export class RentCarComponent implements OnInit {
         this.service.getCarById(this.idCar).subscribe(
           dataV => {
             this.car = dataV;
+            this.reservationService.getReservationForCar(this.idCar);
           }
         )
       }
@@ -68,8 +69,14 @@ export class RentCarComponent implements OnInit {
   }
 
   onSubmit(){
-    var reservation = new Reservation(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value, this.car, this.user, this.startOffice, this.endOffice);
-    this.insertReservation(reservation);
+    if(this.checkDate(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value)){
+      var reservation = new Reservation(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value, this.car, this.user, this.startOffice, this.endOffice);
+      this.insertReservation(reservation);
+    }
+    else{
+      alert("Unesite dobar datum");
+    }
+
   }
 
   insertReservation(reservation: Reservation){
@@ -80,6 +87,27 @@ export class RentCarComponent implements OnInit {
         //this.reservationService.refreshList();
       }
     )
+  }
+
+  checkDate(startDate: Date, endDate: Date) : boolean{
+    if(endDate < startDate){
+      alert("Los datum");
+      return false
+    }
+
+    if(this.reservationService.list != null){
+      this.reservationService.list.forEach(element => {
+        if(startDate > element.endDate && endDate < element.startDate ){
+          return true;
+        }
+        else{
+          return false;
+        }
+      });
+    }
+    else{
+      return true;
+    }
   }
 
   resetForm(form?: NgForm){
