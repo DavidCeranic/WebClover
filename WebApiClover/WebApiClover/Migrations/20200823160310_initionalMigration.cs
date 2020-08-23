@@ -193,7 +193,8 @@ namespace WebApiClover.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
-                    StartOfficeOfficeId = table.Column<int>(nullable: false),
+                    StartOfficeId = table.Column<int>(nullable: true),
+                    EndOfficeId = table.Column<int>(nullable: true),
                     CarId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
                 },
@@ -207,11 +208,17 @@ namespace WebApiClover.Migrations
                         principalColumn: "CarId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ReservationDetails_OfficeDetail_StartOfficeOfficeId",
-                        column: x => x.StartOfficeOfficeId,
+                        name: "FK_ReservationDetails_OfficeDetail_EndOfficeId",
+                        column: x => x.EndOfficeId,
                         principalTable: "OfficeDetail",
                         principalColumn: "OfficeId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ReservationDetails_OfficeDetail_StartOfficeId",
+                        column: x => x.StartOfficeId,
+                        principalTable: "OfficeDetail",
+                        principalColumn: "OfficeId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ReservationDetails_UserDetails_UserId",
                         column: x => x.UserId,
@@ -312,9 +319,14 @@ namespace WebApiClover.Migrations
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReservationDetails_StartOfficeOfficeId",
+                name: "IX_ReservationDetails_EndOfficeId",
                 table: "ReservationDetails",
-                column: "StartOfficeOfficeId");
+                column: "EndOfficeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReservationDetails_StartOfficeId",
+                table: "ReservationDetails",
+                column: "StartOfficeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReservationDetails_UserId",

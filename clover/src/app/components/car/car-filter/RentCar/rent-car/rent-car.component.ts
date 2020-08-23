@@ -9,6 +9,7 @@ import { User } from 'src/app/entities/User/user';
 import { UserDetailsService } from 'src/app/services/userDetails/user-details.service';
 import { ReservationDetailsService } from 'src/app/services/reservationDetails/reservation-details.service';
 import { Reservation } from 'src/app/entities/reservation/reservation';
+import { Office } from 'src/app/entities/office/office';
 
 @Component({
   selector: 'app-rent-car',
@@ -23,6 +24,8 @@ export class RentCarComponent implements OnInit {
   idUser: number;
   rentService: RentService;
   user: User;
+  startOffice: Office;
+  endOffice: Office;
 
   reservationForm: FormGroup = new FormGroup({
     startDate: new FormControl('', Validators.required),
@@ -64,17 +67,16 @@ export class RentCarComponent implements OnInit {
     )
   }
 
-  onSubmit(form: NgForm){
-    var reservation = new Reservation(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value, this.car, this.user);
-
-    this.insertReservation(reservation, form);
+  onSubmit(){
+    var reservation = new Reservation(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value, this.car, this.user, this.startOffice, this.endOffice);
+    this.insertReservation(reservation);
   }
 
-  insertReservation(reservation: Reservation, form: NgForm){
+  insertReservation(reservation: Reservation){
     console.log(reservation);
     this.reservationService.postReservation(reservation).subscribe(
       res => {
-        this.resetForm(form);
+        this.resetForm();
         //this.reservationService.refreshList();
       }
     )
@@ -89,7 +91,8 @@ export class RentCarComponent implements OnInit {
         endDate: null,
         car: null,
         user: null,
-        //startOffice: null
+        startOffice: null,
+        endOffice: null
       }
   }
 }

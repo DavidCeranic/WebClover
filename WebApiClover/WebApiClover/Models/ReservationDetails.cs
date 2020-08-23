@@ -19,11 +19,11 @@ namespace WebApiClover.Models
         [Required]
         public DateTime EndDate { get; set; }
 
-        //[Required]
-        //public virtual OfficeDetail StartOffice { get; set; }
+        [ForeignKey("StartOfficeId")]
+        public virtual OfficeDetail StartOffice { get; set; }
 
-        //[Required]
-        //public virtual OfficeDetail EndOffice { get; set; }
+        [ForeignKey("EndOfficeId")]
+        public virtual OfficeDetail EndOffice { get; set; }
 
         [Required]
         public virtual CarInfo Car { get; set; }

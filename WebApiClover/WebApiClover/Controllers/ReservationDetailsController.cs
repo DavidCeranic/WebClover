@@ -37,8 +37,15 @@ namespace WebApiClover.Controllers
             {
                 var car = await _context.CarInfo.FirstOrDefaultAsync(x => x.CarId == reservationDetails.Car.CarId);
                 var user = await _context.UserDetails.FirstOrDefaultAsync(x => x.UserId == reservationDetails.User.UserId);
+                
                 reservationDetails.Car = car;
                 reservationDetails.User = user;
+
+                _context.Entry(reservationDetails).State = reservationDetails.ReservationId == 0 ? EntityState.Added : EntityState.Modified;
+                _context.Entry(reservationDetails.StartOffice).State = reservationDetails.StartOffice.OfficeId == 0 ? EntityState.Added : EntityState.Modified;
+                _context.Entry(reservationDetails.EndOffice).State = reservationDetails.EndOffice.OfficeId == 0 ? EntityState.Added : EntityState.Modified;
+
+
 
                 await _context.ReservationDetails.AddAsync(reservationDetails);
                 await _context.SaveChangesAsync();

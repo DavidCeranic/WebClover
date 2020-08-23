@@ -363,8 +363,14 @@ namespace WebApiClover.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("EndOfficeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("StartOfficeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -372,6 +378,10 @@ namespace WebApiClover.Migrations
                     b.HasKey("ReservationId");
 
                     b.HasIndex("CarId");
+
+                    b.HasIndex("EndOfficeId");
+
+                    b.HasIndex("StartOfficeId");
 
                     b.HasIndex("UserId");
 
@@ -474,6 +484,14 @@ namespace WebApiClover.Migrations
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WebApiClover.Models.OfficeDetail", "EndOffice")
+                        .WithMany()
+                        .HasForeignKey("EndOfficeId");
+
+                    b.HasOne("WebApiClover.Models.OfficeDetail", "StartOffice")
+                        .WithMany()
+                        .HasForeignKey("StartOfficeId");
 
                     b.HasOne("WebApiClover.Models.UserDetail", "User")
                         .WithMany()
