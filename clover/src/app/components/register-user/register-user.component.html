@@ -12,7 +12,7 @@
                         </div>
                         <div class="profile-usertitle">
                             <div class="profile-usertitle-name">
-                                <div *ngIf="user !== null"> {{user.Name}} </div>
+                                <div *ngIf="user !== null"> {{user.name}} </div>
                             </div>
 
                             <div class="profile-usertitle-job">
@@ -43,7 +43,7 @@
                                 <li>
                                     <a routerLink="/register-user">
                                     <i class="glyphicon glyphicon-list-alt"></i>
-                                    Your invites </a>
+                                    Your invites </a>  
                                 </li>
                                 <li>
                                     <a routerLink="/register-user">
@@ -56,8 +56,19 @@
                 </div>
 
                 <div class="col-md-9">
-                    <div class="profile-content">
-                       Ovde ce se prikazivati Reservation, Friend List, Your invites, Account Settings
+                    <div  >
+                       Ovde ce se prikazivati Reservation, Friend List, Your invites,
+                       <div *ngFor="let rUser of allRegistredUsers" class="div1">
+                        <div class="div2"></div>
+                        <div class="div3From">{{rUser.email}}</div>
+                        <div class="image"></div>
+                        <div class="div4"></div>
+                        <div class="div5To">{{rUser.name}}</div>
+                        <div class="divName"></div>
+                        <div class="btn2">
+                        <button (click)="addFriend(rUser)" class="myButton2">Add </button>
+                </div>
+                </div>
                     </div>
                 </div>
             </div>
@@ -80,6 +91,12 @@
               </form>
             </div>
           </div>
+          <form class="form-inline">
+            <div class="md-form my-0" style="margin-left: 750px;">
+              <input class="form-control mr-sm-2" type="text" placeholder="Find Frends" aria-label="Search">
+              <button type="button" class="btn btn-success btn-sm">Find</button>
+            </div>
+          </form>
 
     </div>
 </body>

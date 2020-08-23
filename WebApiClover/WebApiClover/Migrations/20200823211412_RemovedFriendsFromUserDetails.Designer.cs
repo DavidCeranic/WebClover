@@ -10,8 +10,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200822205642_reservationDetails")]
-    partial class reservationDetails
+    [Migration("20200823211412_RemovedFriendsFromUserDetails")]
+    partial class RemovedFriendsFromUserDetails
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -237,6 +237,35 @@ namespace WebApiClover.Migrations
                     b.HasIndex("UserDetailUserId");
 
                     b.ToTable("FlightInfo2");
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.Friends", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Added")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Removed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserEmail1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserEmail2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Friends");
                 });
 
             modelBuilder.Entity("WebApiClover.Models.OfficeDetail", b =>

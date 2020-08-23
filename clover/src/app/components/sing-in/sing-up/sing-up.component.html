@@ -2,7 +2,7 @@
   <section class="signup">
               <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form">
 
-                <input type="hidden" name="userId" [value]="service.formData.UserId">
+                <input type="hidden" name="userId" [value]="service.formData.userId">
 
                 <div>
                   <button class="btn" (click)="navigateTo('sing-in')" (click)="sendMessage()"><span>Sing in</span></button>
@@ -11,7 +11,7 @@
 
                 <div style="margin-left: 16px;" class="row">
                   <div class="form-group">
-                      <input #Name="ngModel" [(ngModel)]="service.formData.Name" name="name" type="text" id="Name" class="form-input" placeholder="Name" required/>
+                      <input #Name="ngModel" [(ngModel)]="service.formData.name" name="name" type="text" id="Name" class="form-input" placeholder="Name" required/>
                       <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required</div>
                   </div>
 

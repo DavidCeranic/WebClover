@@ -39,6 +39,7 @@ namespace WebApiClover.Models
 
         public List<FlightInfo2> UserFlights { get; set; } = new List<FlightInfo2>();
 
+        //public List<Friends> UserFriends { get; set; } = new List<Friends>();
         public bool IsVerify { get; set; }
     }
 }

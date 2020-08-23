@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApiClover.Migrations
 {
-    public partial class initionalMigration : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -193,7 +193,6 @@ namespace WebApiClover.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
-                    StartOfficeOfficeId = table.Column<int>(nullable: false),
                     CarId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
                 },
@@ -205,12 +204,6 @@ namespace WebApiClover.Migrations
                         column: x => x.CarId,
                         principalTable: "CarInfo",
                         principalColumn: "CarId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ReservationDetails_OfficeDetail_StartOfficeOfficeId",
-                        column: x => x.StartOfficeOfficeId,
-                        principalTable: "OfficeDetail",
-                        principalColumn: "OfficeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ReservationDetails_UserDetails_UserId",
@@ -312,11 +305,6 @@ namespace WebApiClover.Migrations
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReservationDetails_StartOfficeOfficeId",
-                table: "ReservationDetails",
-                column: "StartOfficeOfficeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ReservationDetails_UserId",
                 table: "ReservationDetails",
                 column: "UserId");
@@ -326,6 +314,9 @@ namespace WebApiClover.Migrations
         {
             migrationBuilder.DropTable(
                 name: "FlightsInfo");
+
+            migrationBuilder.DropTable(
+                name: "OfficeDetail");
 
             migrationBuilder.DropTable(
                 name: "Rate");
@@ -340,16 +331,13 @@ namespace WebApiClover.Migrations
                 name: "CarInfo");
 
             migrationBuilder.DropTable(
-                name: "OfficeDetail");
-
-            migrationBuilder.DropTable(
                 name: "CompanyAbout");
 
             migrationBuilder.DropTable(
-                name: "UserDetails");
+                name: "RentService");
 
             migrationBuilder.DropTable(
-                name: "RentService");
+                name: "UserDetails");
         }
     }
 }

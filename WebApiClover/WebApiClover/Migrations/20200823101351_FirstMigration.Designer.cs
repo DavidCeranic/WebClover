@@ -10,8 +10,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200822183713_initionalMigration")]
-    partial class initionalMigration
+    [Migration("20200823101351_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -368,17 +368,12 @@ namespace WebApiClover.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("StartOfficeOfficeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("ReservationId");
 
                     b.HasIndex("CarId");
-
-                    b.HasIndex("StartOfficeOfficeId");
 
                     b.HasIndex("UserId");
 
@@ -479,12 +474,6 @@ namespace WebApiClover.Migrations
                     b.HasOne("WebApiClover.Models.CarInfo", "Car")
                         .WithMany()
                         .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebApiClover.Models.OfficeDetail", "StartOffice")
-                        .WithMany()
-                        .HasForeignKey("StartOfficeOfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
