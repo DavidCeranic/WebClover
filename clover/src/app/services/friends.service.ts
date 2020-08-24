@@ -24,6 +24,6 @@ export class FriendsService {
     return this.http.get<Friends[]>(this.rootUrl + 'Friends/GetFriend/' + email).toPromise();
   }
   putFriends(formData:Friends){
-    return this.http.put(this.rootUrl + 'Friends/'+formData.id, formData);
+    return this.http.put(this.rootUrl + 'Friends/'+formData.id, formData).toPromise();
   }
 }
