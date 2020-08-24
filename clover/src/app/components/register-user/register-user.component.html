@@ -30,10 +30,15 @@
                                     <i class="glyphicon glyphicon-list"></i>
                                     Reservation </a>
                                 </li>
-                                <li>
+                                <li (click)="ispisPrijatelja()">
                                     <a routerLink="/register-user">
                                     <i class="glyphicon glyphicon-user"></i>
                                     Friend List </a>
+                                </li>
+                                <li (click)="ispisZahteva()">
+                                    <a routerLink="/register-user" >
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    Friend request </a>
                                 </li>
                                 <li>
                                     <a routerLink="/register-user">
@@ -71,6 +76,48 @@
                 </div>
                     </div>
                 </div>
+                <div  >
+                    Ovde ce se prikazivati frinedreq
+                    <div *ngFor="let friend of allFriendsReq" class="div1">
+                     <div class="div2"></div>
+                     <div class="div3From">{{friend.userEmail1}}</div>
+                     <div class="image"></div>
+                     <div class="div4"></div>
+                     <!-- <div class="div5To">{{friend.userEmail2}}</div> -->
+                     <div class="divName"></div>
+                     <div class="btn2">
+                     <button (click)="acceptFrind(friend)" class="myButton2">Accept </button>
+                     <button (click)="ignoreFfriend(friend)" class="myButton2">Ignore </button>
+             </div>
+             </div>
+                 </div>
+
+                 <div  >
+                    Ovde ce se prikazivati frined
+                    <div *ngFor="let friend of acceptedFriends" class="div1">
+                     <div class="div2"></div>
+                     <div class="div3From" >{{friend.userEmail2}}</div>
+                     <!-- <div class="div3From" >{{friend.userEmail1}}</div> -->
+                 
+                     <div class="btn2">
+                     <button (click)="deleteFriend(friend)" class="myButton2">Delete </button>
+                    
+             </div>
+             
+             </div>
+             <div *ngFor="let friend of pom1" class="div1">
+                <div class="div2"></div>
+                <div class="div3From" >{{friend.userEmail1}}</div>
+                <!-- <div class="div3From" >{{friend.userEmail1}}</div> -->
+            
+                <div class="btn2">
+                <button (click)="deleteFriend(friend)" class="myButton2">Delete </button>
+               
+        </div>
+        
+        </div>
+                 </div>
+
             </div>
         </div>
 
@@ -94,7 +141,7 @@
           <form class="form-inline">
             <div class="md-form my-0" style="margin-left: 750px;">
               <input class="form-control mr-sm-2" type="text" placeholder="Find Frends" aria-label="Search">
-              <button type="button" class="btn btn-success btn-sm">Find</button>
+              <button type="button"  class="btn btn-success btn-sm">Find</button>
             </div>
           </form>
 

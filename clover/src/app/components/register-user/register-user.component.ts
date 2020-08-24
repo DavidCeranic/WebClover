@@ -22,7 +22,16 @@ export class RegisterUserComponent implements OnInit {
   cc:string;
   fri:Friends;
   parseJwt: string;
+  clicked1:boolean=false;
+  clicked2:boolean=false;
+  
   allRegistredUsers = new Array<User>();
+  allFriends = new Array<Friends>();
+  allFriendsReq = new Array<Friends>();
+  pom1 = new Array<Friends>();
+  pom2 = new Array<Friends>();
+  
+  acceptedFriends = new Array<Friends>();
   list: User[];
   constructor(public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog,private friendService: FriendsService) {
     this.user = null;
@@ -34,6 +43,11 @@ export class RegisterUserComponent implements OnInit {
     this.service.refreshList().then(res => {
       this.allRegistredUsers = res;
     });
+    
+    this.friendService.getAllFriends().then(res=>{
+      this.allFriends=res;
+        });
+
     
     this.service.currentMessage.subscribe(message => this.message = message);
     this.registerUser.loggedIn.subscribe(res=>{
@@ -57,7 +71,48 @@ export class RegisterUserComponent implements OnInit {
     });
     //poslati string RentAdmin i u singUp postaviti to kao vrednost
   }
+  ispisZahteva(){
 
+    if(!this.clicked1){
+    this.allFriends.forEach(element => {
+      if(element.userEmail2==localStorage.getItem("regEmail")&&element.accepted==false){
+        this.allFriendsReq.push(element);
+        this.clicked1=true;
+      }
+    });
+  }
+  }
+  ignoreFfriend(friend:Friends){
+    friend.added=false;
+    this.friendService.putFriends(friend);
+  }
+  deleteFriend(friend:Friends){
+    friend.added=false;
+    friend.accepted=false;
+    this.friendService.putFriends(friend);
+  }
+  ispisPrijatelja(){
+    if(!this.clicked2){
+    this.allFriends.forEach(element => {
+      if(element.userEmail1==localStorage.getItem("regEmail") &&element.accepted==true){
+        this.acceptedFriends.push(element);
+        this.clicked2=true;
+      }
+      if(element.userEmail2==localStorage.getItem("regEmail") &&element.accepted==true){
+        this.pom1.push(element);
+        this.clicked2=true;
+      }
+
+    });
+  }
+  }
+  acceptFrind(friend:Friends){
+    friend.accepted=true;
+    this.friendService.putFriends(friend);
+
+  }
+
+ 
   onAddFlightService(){
     this.dialog.open(SingUpFlightAdminComponent, {
       height: '520px',
