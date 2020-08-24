@@ -15,6 +15,17 @@ export class PaymentComponent implements OnInit {
   id:number;
   flightData:FlightInfo;
 
+  dalijeadmin():boolean{
+
+    const userRole = JSON.parse(localStorage.getItem('role'));
+    if (userRole === 'Admin' || userRole === "FlightAdmin"|| userRole==="User") {
+      return true;
+    }else{
+  
+      return false;
+    }
+  
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(

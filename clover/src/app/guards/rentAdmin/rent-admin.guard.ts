@@ -5,17 +5,18 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UserGuard implements CanActivate {
+export class RentAdminGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
     {
       const userRole = JSON.parse(localStorage.getItem('role'));
-      if (userRole === 'User') {
+      if (userRole === 'RentAdmin') {
         return true;
       }
-
-      alert('Da biste pristupili ovom linku, morate imati ulogu korisnika!');
-        return ;
+  
+      alert('Da biste pristupili ovom linku, morate imati ulogu admina!');
+      return ;
     }
+  
 }

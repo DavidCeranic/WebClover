@@ -10,12 +10,12 @@ export class AdminGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
     {
-      const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
-      if (userRole === 'ADMIN') {
+      const userRole = JSON.parse(localStorage.getItem('role'));
+      if (userRole === 'Admin') {
         return true;
       }
   
-      alert('Da biste pristupili ovom linku, morate imati ulogu korisnika!');
+      alert('Da biste pristupili ovom linku, morate imati ulogu admina!');
       return ;
       
     }

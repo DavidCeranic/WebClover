@@ -34,7 +34,7 @@ export class SingUpComponent implements OnInit {
 
   onSubmit(form: NgForm){
     //proveriti da li je dosla neka vrednost(RentAdmin, FlightAdmin) pa onda staviti user ili nesto od ta dva
-    form.value.userType="User";
+    form.value.UserType="User";
     this.insertUser(form);
   }
 
@@ -72,7 +72,7 @@ export class SingUpComponent implements OnInit {
         password: "",
         city: "",
         phoneNumber: "",
-        userType: "",
+        UserType: "",
         StringToken: "",
         userFriends:null
       }
