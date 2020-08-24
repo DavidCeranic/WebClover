@@ -123,6 +123,36 @@ export class CarsRentComponent implements OnInit {
     this.filtredCars = this.allCars;
   }
 
+  Sort1(value: string) {
+    if (value == "brand") {
+      this.allCars = this.allCars.sort((n1, n2) => {
+        if (n1.brand > n2.brand)
+          return 1;
+
+        if (n1.brand < n2.brand)
+          return -1;
+
+        return 0;
+
+      }
+      );
+    }
+
+    if (value == "model") {
+      this.allCars = this.allCars.sort((n1, n2) => {
+        if (n1.model > n2.model)
+          return 1;
+
+        if (n1.model < n2.model)
+          return -1;
+
+        return 0;
+
+      }
+      );
+    }
+  }
+
 
   onHome(){
     this.display="home";

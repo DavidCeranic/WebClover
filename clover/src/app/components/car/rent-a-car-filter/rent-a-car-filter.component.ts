@@ -17,6 +17,8 @@ import { ChangeRentACarComponent } from '../add-rent-a-car/change-rent-a-car/cha
 export class RentACarFilterComponent implements OnInit {
 
   @Input() filtredRentServices;
+  searchRentName: string;
+  searchRentLocation: string;
 
   constructor(public dialog: MatDialog, private toastr: ToastrService, public router: Router, public service: RentServiceDetailsService, config: NgbRatingConfig) {
     config.max = 5;

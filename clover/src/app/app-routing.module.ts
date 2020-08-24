@@ -54,9 +54,9 @@ const routes: Routes = [
     path: "car",
     children: [
       { path: "", component: CarComponent},
-      { path: "change-rent-a-car/:rentid", component: ChangeRentACarComponent, canActivate: [AdminGuard, RentAdminGuard] },
+      { path: "change-rent-a-car/:rentid", component: ChangeRentACarComponent, canActivate: [AdminGuard] },
       {
-        path: "admin-info/:rentid" , canActivate: [AdminGuard, RentAdminGuard],
+        path: "admin-info/:rentid" , canActivate: [AdminGuard],
         children: [
           { path: "", component: AdminInfoComponent },
           { path: "service-rate", component: ServiceRateComponent },
@@ -69,8 +69,8 @@ const routes: Routes = [
         path: "rent-a-car/:id",
         children: [
           { path: "", component: RentACarComponent },
-          { path: "add-car", component: AddCarComponent, canActivate: [AdminGuard, RentAdminGuard] },
-          { path: "change-car/:carid", component: ChangeCarComponent, canActivate: [AdminGuard, RentAdminGuard] },
+          { path: "add-car", component: AddCarComponent, canActivate: [AdminGuard] },
+          { path: "change-car/:carid", component: ChangeCarComponent, canActivate: [AdminGuard] },
           { path: "rent/:carid", component: RentCarComponent },
           { path: "about", component: AboutRentComponent },
           { path: "cars", component: CarsRentComponent },
@@ -78,7 +78,7 @@ const routes: Routes = [
           { path: "add-office", component: AddOfficeComponent }
         ]
       },
-      { path: "add-rent-a-car", component: AddRentACarComponent, canActivate: [AdminGuard, RentAdminGuard] },
+      { path: "add-rent-a-car", component: AddRentACarComponent, canActivate: [AdminGuard] },
     ]
   },
   {

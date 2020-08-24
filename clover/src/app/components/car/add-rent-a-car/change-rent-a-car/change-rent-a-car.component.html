@@ -4,7 +4,7 @@
 
       <div class="form-group">
         Rent Service Name: 
-        <input #serviceName="ngModel" [(ngModel)]="service.formData.serviceName" name="serviceName" type="text" class="form-input" id="serviceName" placeholder="{{rentService.serviceName}}" required/>
+        <input #serviceName="ngModel" [(ngModel)]="service.formData.serviceName" name="serviceName" type="text" class="form-input" id="serviceName" placeholder="{{rentService.serviceName}}"  required/>
         <div class="validation-error" *ngIf="serviceName.invalid && serviceName.touched">This field is required</div>
       </div>
 
