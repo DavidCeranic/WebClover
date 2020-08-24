@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SingInComponent } from './components/sing-in/sing-in.component';
 import { SingUpComponent } from './components/sing-in/sing-up/sing-up.component';
@@ -24,6 +24,8 @@ import { AddOfficeComponent } from './components/car/rent-a-car/locations-rent/l
 import { ChangeCarComponent } from './components/car/add-car/change-car/change-car.component';
 import { RentCarComponent } from './components/car/car-filter/RentCar/rent-car/rent-car.component';
 import { ChangeRentACarComponent } from './components/car/add-rent-a-car/change-rent-a-car/change-rent-a-car.component';
+import { ServiceRateComponent } from './components/car/rent-a-car-filter/admin-info/service-rate/service-rate.component';
+import { CarRateComponent } from './components/car/rent-a-car-filter/admin-info/car-rate/car-rate.component';
 
 const routes: Routes = [
   {
@@ -36,12 +38,12 @@ const routes: Routes = [
   },
   {
     path: "flights",
-  //  component:FlightsComponent,
-    children:[{path:"",component:FlightsComponent,canActivate:[UserGuard] },
-      {path:'company-profile/:compID',component:CompanyProfileComponent},
-    {path:'payment/:flightID',component:PaymentComponent}
-  ]
-   
+    //  component:FlightsComponent,
+    children: [{ path: "", component: FlightsComponent, canActivate: [UserGuard] },
+    { path: 'company-profile/:compID', component: CompanyProfileComponent },
+    { path: 'payment/:flightID', component: PaymentComponent }
+    ]
+
   },
   {
     path: "sing-up",
@@ -50,20 +52,32 @@ const routes: Routes = [
   {
     path: "car",
     children: [
-      {path: "", component: CarComponent, canActivate: [UserGuard]},
-      {path: "change-rent-a-car/:rentid", component: ChangeRentACarComponent},
-        {path: "rent-a-car/:id",
+      { path: "", component: CarComponent, canActivate: [UserGuard] },
+      { path: "change-rent-a-car/:rentid", component: ChangeRentACarComponent },
+      {
+        path: "admin-info/:rentid",
         children: [
-          {path: "", component: RentACarComponent},
-          {path: "add-car", component: AddCarComponent, canActivate: [AdminGuard]},
-          {path: "change-car/:carid", component: ChangeCarComponent, canActivate: [AdminGuard]},
-          {path: "rent/:carid", component: RentCarComponent},
-          {path: "about", component: AboutRentComponent},
-          {path: "cars", component: CarsRentComponent},
-          {path: "locations", component: LocationsRentComponent},
-          {path: "add-office", component: AddOfficeComponent}
-        ]},
-      {path: "add-rent-a-car", component: AddRentACarComponent, canActivate: [AdminGuard]},
+          { path: "", component: AdminInfoComponent },
+          { path: "service-rate", component: ServiceRateComponent },
+          { path: "car-rate", component: CarRateComponent },
+          // {path: "graph", component: },
+          // {path: "revenues", component: }
+        ]
+      },
+      {
+        path: "rent-a-car/:id",
+        children: [
+          { path: "", component: RentACarComponent },
+          { path: "add-car", component: AddCarComponent, canActivate: [AdminGuard] },
+          { path: "change-car/:carid", component: ChangeCarComponent, canActivate: [AdminGuard] },
+          { path: "rent/:carid", component: RentCarComponent },
+          { path: "about", component: AboutRentComponent },
+          { path: "cars", component: CarsRentComponent },
+          { path: "locations", component: LocationsRentComponent },
+          { path: "add-office", component: AddOfficeComponent }
+        ]
+      },
+      { path: "add-rent-a-car", component: AddRentACarComponent, canActivate: [AdminGuard] },
     ]
   },
   {
@@ -71,26 +85,26 @@ const routes: Routes = [
     component: RegisterUserComponent
 
   },
-  
- 
+
+
   {
-    path:"book-a-flight",
+    path: "book-a-flight",
     component: BookAFlightComponent
   },
   {
-    path:"pomocna",
-    component:PomocnaComponent
+    path: "pomocna",
+    component: PomocnaComponent
   },
   {
-    path:"payment",
-    component:PaymentComponent
+    path: "payment",
+    component: PaymentComponent
   },
   {
-    path:"add-about-company",
-    component:AddAboutCompanyComponent
-  },{
-    path:"add-flight",
-    component:AddFlightComponent
+    path: "add-about-company",
+    component: AddAboutCompanyComponent
+  }, {
+    path: "add-flight",
+    component: AddFlightComponent
   }
 ];
 

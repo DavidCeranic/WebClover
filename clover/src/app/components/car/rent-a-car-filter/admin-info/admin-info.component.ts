@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { RentService } from 'src/app/entities/rentService/rent-service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-info',
@@ -8,32 +9,42 @@ import { RentService } from 'src/app/entities/rentService/rent-service';
   styleUrls: ['./admin-info.component.css']
 })
 export class AdminInfoComponent implements OnInit {
-
-  display: string;
-  service: RentServiceDetailsService;
   rentService: RentService;
+  id: number;
 
-  constructor() { }
+  constructor(public route: ActivatedRoute, public service: RentServiceDetailsService, public router: Router) { }
 
   ngOnInit(): void {
-    //this.service.currentMessage.subscribe(rentService => this.rentService = rentService);
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['rentid'];
+        this.service.getRentServiceById(this.id).subscribe(
+          dataV => {
+            this.rentService = dataV;
+          }
+        )
+      }
+    )
   }
 
   onServiceRate(){
-    console.log(this.rentService);
-    this.display="ServiceRate";
+    this.router.navigateByUrl('/car/admin-info/' + this.rentService.serviceId + '/service-rate');
+    
   }
 
   onCarRate(){
-    this.display="CarRate";
+    this.router.navigateByUrl('/car/admin-info/' + this.rentService.serviceId + '/car-rate');
+    
   }
 
   onGraph(){
-
+    this.router.navigateByUrl('/car/admin-info/' + this.rentService.serviceId + '/about');
+    
   }
 
   onRevenues(){
-
+    this.router.navigateByUrl('/car/admin-info/' + this.rentService.serviceId + '/about');
+    
   }
 
 }
