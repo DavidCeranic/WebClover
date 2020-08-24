@@ -51,15 +51,6 @@ export class SingInComponent implements OnInit {
     this.displayStr="SingIn";
   }
 
-  becomeAUser(): void {
-    localStorage.setItem('sessionUserRole', JSON.stringify('USER'));
-    
-  }
-
-  becomeAAdmin(): void{
-    localStorage.setItem('sessionUserRolee', JSON.stringify('ADMIN'));
-  }
-
   onSubmit() {
     const email = this.singInForm.get('email').value;
     const password = this.singInForm.get('password').value;
@@ -67,6 +58,7 @@ export class SingInComponent implements OnInit {
       localStorage.setItem("user_token", res.StringToken);
       localStorage.setItem("regId", res.UserId);
       localStorage.setItem("regEmail",res.Email);
+      localStorage.setItem("role", JSON.stringify(res.UserType));
       this.user = res as User;
       //TO DO
       //console.log(this.user);
@@ -117,7 +109,7 @@ export class SingInComponent implements OnInit {
         password: "",
         city: "",
         phoneNumber: "",
-        userType: "",
+        UserType: "",
         StringToken: "",
         userFriends:null
       }
@@ -141,6 +133,9 @@ export class SingInComponent implements OnInit {
       var user=new User(res.firstName,res.email,"","","","User",res.idToken);
       this.http.post<User>('http://localhost:5000/api/UserDetails/'+'Social', user).toPromise().then((res: any) => {
         localStorage.setItem("user_token", res.StringToken);
+        localStorage.setItem("role", JSON.stringify(res.UserType));
+        localStorage.setItem("regEmail",res.Email);
+        localStorage.setItem("regId", res.UserId);
         this.user=res as User;
         this.registerService.user = res as User;
         this.registerService.loggedIn.emit(res);

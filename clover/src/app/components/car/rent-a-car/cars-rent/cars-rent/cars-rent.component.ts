@@ -68,8 +68,8 @@ export class CarsRentComponent implements OnInit {
   }
 
   check(){
-    const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
-      if (userRole === 'ADMIN' || userRole === "RENTADMIN") {
+    const userRole = JSON.parse(localStorage.getItem('role'));
+      if (userRole === 'Admin' || userRole === "RentAdmin") {
         return false;
       }
 

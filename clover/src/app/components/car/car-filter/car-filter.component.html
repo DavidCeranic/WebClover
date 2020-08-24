@@ -10,7 +10,7 @@
         
         
         <div class="btn">
-        <button class="myButton" (click)="onRent(car)">Rent {{car.pricePerDay}}$</button>
+        <button class="myButton" *ngIf="dalijeadmin()" (click)="onRent(car)">Rent {{car.pricePerDay}}$</button>
         <button class="myButton" [hidden]="check()" (click)="onSelectCar(car)">Change</button>
         <button class="myButton" [hidden]="check()" (click)="onDelete(car.carId)">Delete</button>
       </div>

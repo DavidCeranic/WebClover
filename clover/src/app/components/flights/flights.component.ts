@@ -127,8 +127,8 @@ export class FlightsComponent implements OnInit {
     this.data.changeMessage(service);
   }
   check(){
-    const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
-      if (userRole === 'ADMIN') {
+    const userRole = JSON.parse(localStorage.getItem('role'));
+      if (userRole === 'Admin' || userRole === "FlightAdmin") {
         return false;
       }
       

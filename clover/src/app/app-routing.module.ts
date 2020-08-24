@@ -26,6 +26,7 @@ import { RentCarComponent } from './components/car/car-filter/RentCar/rent-car/r
 import { ChangeRentACarComponent } from './components/car/add-rent-a-car/change-rent-a-car/change-rent-a-car.component';
 import { ServiceRateComponent } from './components/car/rent-a-car-filter/admin-info/service-rate/service-rate.component';
 import { CarRateComponent } from './components/car/rent-a-car-filter/admin-info/car-rate/car-rate.component';
+import { RentAdminGuard } from './guards/rentAdmin/rent-admin.guard';
 
 const routes: Routes = [
   {
@@ -39,7 +40,7 @@ const routes: Routes = [
   {
     path: "flights",
     //  component:FlightsComponent,
-    children: [{ path: "", component: FlightsComponent, canActivate: [UserGuard] },
+    children: [{ path: "", component: FlightsComponent},
     { path: 'company-profile/:compID', component: CompanyProfileComponent },
     { path: 'payment/:flightID', component: PaymentComponent }
     ]
@@ -52,10 +53,10 @@ const routes: Routes = [
   {
     path: "car",
     children: [
-      { path: "", component: CarComponent, canActivate: [UserGuard] },
-      { path: "change-rent-a-car/:rentid", component: ChangeRentACarComponent },
+      { path: "", component: CarComponent},
+      { path: "change-rent-a-car/:rentid", component: ChangeRentACarComponent, canActivate: [AdminGuard, RentAdminGuard] },
       {
-        path: "admin-info/:rentid",
+        path: "admin-info/:rentid" , canActivate: [AdminGuard, RentAdminGuard],
         children: [
           { path: "", component: AdminInfoComponent },
           { path: "service-rate", component: ServiceRateComponent },
@@ -68,8 +69,8 @@ const routes: Routes = [
         path: "rent-a-car/:id",
         children: [
           { path: "", component: RentACarComponent },
-          { path: "add-car", component: AddCarComponent, canActivate: [AdminGuard] },
-          { path: "change-car/:carid", component: ChangeCarComponent, canActivate: [AdminGuard] },
+          { path: "add-car", component: AddCarComponent, canActivate: [AdminGuard, RentAdminGuard] },
+          { path: "change-car/:carid", component: ChangeCarComponent, canActivate: [AdminGuard, RentAdminGuard] },
           { path: "rent/:carid", component: RentCarComponent },
           { path: "about", component: AboutRentComponent },
           { path: "cars", component: CarsRentComponent },
@@ -77,7 +78,7 @@ const routes: Routes = [
           { path: "add-office", component: AddOfficeComponent }
         ]
       },
-      { path: "add-rent-a-car", component: AddRentACarComponent, canActivate: [AdminGuard] },
+      { path: "add-rent-a-car", component: AddRentACarComponent, canActivate: [AdminGuard, RentAdminGuard] },
     ]
   },
   {
@@ -101,10 +102,10 @@ const routes: Routes = [
   },
   {
     path: "add-about-company",
-    component: AddAboutCompanyComponent
+    component: AddAboutCompanyComponent, canActivate: [AdminGuard]
   }, {
     path: "add-flight",
-    component: AddFlightComponent
+    component: AddFlightComponent, canActivate: [AdminGuard]
   }
 ];
 

@@ -57,6 +57,20 @@ export class CarFilterComponent implements OnInit {
     this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/rent/' + car.carId);
   }
 
+  dalijeadmin():boolean{
+
+    const userRole = JSON.parse(localStorage.getItem('role'));
+    if (userRole === 'Admin' || userRole === "FlightAdmin"|| userRole==="User") {
+      return true;
+    }else{
+  
+      return false;
+    }
+  
+  }
+
+  
+
   onSelectCar(car: Car){
     this.data.formData = car;
     this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/change-car/' + car.carId);
@@ -83,8 +97,8 @@ export class CarFilterComponent implements OnInit {
   }
 
   check(){
-    const userRole = JSON.parse(localStorage.getItem('sessionUserRolee'));
-      if (userRole === 'ADMIN' || userRole === "RENTADMIN") {
+    const userRole = JSON.parse(localStorage.getItem('role'));
+      if (userRole === 'Admin' || userRole === "RentAdmin") {
         return false;
       }
 
