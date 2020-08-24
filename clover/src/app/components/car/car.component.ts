@@ -10,6 +10,7 @@ import { StringFilterParam } from 'src/app/entities/string-filter-param/string-f
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { AddRentACarComponent } from './add-rent-a-car/add-rent-a-car.component';
 import { MatDialog } from "@angular/material/dialog";
+import { NodeWithI18n } from '@angular/compiler';
 
 
 
@@ -32,12 +33,12 @@ export class CarComponent implements OnInit {
     this.initForm();
   }
 
-  constructor(public dialog: MatDialog, private rentServices: RentServicesService, private router: Router, private route: ActivatedRoute, public service: RentServiceDetailsService) { 
+  constructor(public dialog: MatDialog, private rentServices: RentServicesService, private router: Router, private route: ActivatedRoute, public service: RentServiceDetailsService) {
     this.service.refreshList();
-    this.service.messageEvent.subscribe( x => { 
+    this.service.messageEvent.subscribe(x => {
       this.allRentServices = x;
       this.filtredRentServices = this.allRentServices;
-    } );
+    });
   }
 
   filterServices(): void {
@@ -66,7 +67,7 @@ export class CarComponent implements OnInit {
   }
 
   getFilterFieldValue(filterFieldId: string) {
-    return (<HTMLInputElement> document.getElementById(filterFieldId)).value;
+    return (<HTMLInputElement>document.getElementById(filterFieldId)).value;
   }
 
   private initForm() {
@@ -80,20 +81,50 @@ export class CarComponent implements OnInit {
   onSubmit() {
   }
 
-  Prikaz() : boolean{
+  Prikaz(): boolean {
     return this.display;
   }
 
-  check(){
-    const userRole = JSON.parse(localStorage.getItem('Role'));
-      if (userRole === 'Admin' || userRole === "RentAdmin") {
-        return false;
+  Sort1(value: string) {
+    if (value == "name") {
+      this.allRentServices = this.allRentServices.sort((n1, n2) => {
+        if (n1.serviceName > n2.serviceName)
+          return 1;
+
+        if (n1.serviceName < n2.serviceName)
+          return -1;
+
+        return 0;
+
       }
-      
-      return true;
+      );
+    }
+
+    if (value == "city") {
+      this.allRentServices = this.allRentServices.sort((n1, n2) => {
+        if (n1.location > n2.location)
+          return 1;
+
+        if (n1.location < n2.location)
+          return -1;
+
+        return 0;
+
+      }
+      );
+    }
   }
 
-  onAddService(){
+  check() {
+    const userRole = JSON.parse(localStorage.getItem('Role'));
+    if (userRole === 'Admin' || userRole === "RentAdmin") {
+      return false;
+    }
+
+    return true;
+  }
+
+  onAddService() {
     this.dialog.open(AddRentACarComponent, {
       height: '520px',
       width: '500px',

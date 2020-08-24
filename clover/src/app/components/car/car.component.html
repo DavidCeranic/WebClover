@@ -61,16 +61,12 @@
                 <p style="color:lavenderblush; margin-left: 12%; margin-bottom: 20%;"> Sort</p>
                 <div class="input-field fifth-wrap">
                   <div class="row">
-                    <input type="radio" value="name" name="sort" style="height: 1em; margin-left: -47%;">
+                    <input type="radio" value="name" #mySelection1 (click)="Sort1(mySelection1.value)"  name="sort" style="height: 1em; margin-left: -47%;">
                     <p style="color:lavenderblush; margin-left: -40%; margin-top: -1%;"> Name</p>
                   </div>
                   <div class="row">
-                    <input type="radio" value="city" name="sort" style="height: 1em; margin-left: -47%;">
+                    <input type="radio" value="city" #mySelection2 (click)="Sort1(mySelection2.value)" name="sort" style="height: 1em; margin-left: -47%;">
                     <p style="color:lavenderblush; margin-left: -40%; margin-top: -1%;"> City</p>
-                  </div>
-                  <div class="row">
-                    <input type="radio" value="distance" name="sort" style="height: 1em; margin-left: -47%;">
-                    <p style="color:lavenderblush; margin-left: -40%; margin-top: -1%;"> Distance</p>
                   </div>
                 </div>
               </div>

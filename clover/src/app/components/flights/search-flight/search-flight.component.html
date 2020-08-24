@@ -9,7 +9,7 @@
             <option value="usa">USA</option>
           </select></div>-->
         
-    <div *ngFor="let flight of searchedFlights | flightFilter:searchCompanyName " class="div1">
+    <div *ngFor="let flight of searchedFlights | flightFilter:searchCompanyName" class="div1">
             <div class="div2">{{flight.departing.toLocaleString()}}</div>
             <div class="div3From">{{flight.from}}</div>
             <div class="image"></div>
