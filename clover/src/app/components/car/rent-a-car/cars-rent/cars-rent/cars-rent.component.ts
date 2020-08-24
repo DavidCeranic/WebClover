@@ -11,6 +11,7 @@ import { RentServiceDetailsService } from 'src/app/services/rentServices/rentSer
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import { AddCarComponent } from '../../../add-car/add-car.component';
 import { Params, ActivatedRoute, Router } from '@angular/router';
+import { Office } from 'src/app/entities/office/office';
 
 @Component({
   selector: 'app-cars-rent',
@@ -25,7 +26,8 @@ export class CarsRentComponent implements OnInit {
   display="cars-rent";
 
   rentService: RentService;
-  //data: RentServiceDetailsService;
+  startOffice: Office;
+  endOffice: Office;
 
   ngOnInit(): void {
     this.route.params.subscribe(

@@ -9,6 +9,11 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'clover';
   emaill:string;
+
+  ngOnInit(): void {
+    
+  }
+
   constructor(public router: Router){
     
   }

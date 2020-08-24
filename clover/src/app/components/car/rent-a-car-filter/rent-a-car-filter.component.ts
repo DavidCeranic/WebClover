@@ -60,12 +60,14 @@ export class RentACarFilterComponent implements OnInit {
   }
 
   onInfo(rentService: RentService){
-    this.service.formData = Object.assign({}, rentService);
-    this.dialog.open(AdminInfoComponent, {
-      height: '520px',
-      width: '700px',
-    });
-    this.service.changeMessage(rentService);
+    // this.service.formData = Object.assign({}, rentService);
+    // this.dialog.open(AdminInfoComponent, {
+    //   height: '520px',
+    //   width: '700px',
+    // });
+    // this.service.changeMessage(rentService);
+
+    this.router.navigateByUrl('car/admin-info/' + rentService.serviceId);
   }
 
   check(){

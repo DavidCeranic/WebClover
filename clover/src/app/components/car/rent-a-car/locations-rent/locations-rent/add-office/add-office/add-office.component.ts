@@ -3,7 +3,7 @@ import { OfficeDetailsService } from 'src/app/services/officeDetails/office-deta
 import { NgForm, FormGroup } from '@angular/forms';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RentService } from 'src/app/entities/rentService/rent-service';
 
 @Component({
@@ -16,7 +16,7 @@ export class AddOfficeComponent implements OnInit {
   id: number;
   rentService: RentService;
 
-  constructor(public service: OfficeDetailsService, public rentServiceServis: RentServiceDetailsService, private toastr: ToastrService, public route: ActivatedRoute) { }
+  constructor(public service: OfficeDetailsService, public rentServiceServis: RentServiceDetailsService, private toastr: ToastrService, public route: ActivatedRoute, public router: Router) { }
 
   ngOnInit(): void {
     this.resetForm();
@@ -36,6 +36,7 @@ export class AddOfficeComponent implements OnInit {
 
   onSubmit(form: NgForm){
     this.insertOffice(form);
+    this.router.navigateByUrl('car/rent-a-car/' + this.rentService.serviceId + '/locations');
   }
 
   insertOffice(form: NgForm){
@@ -49,9 +50,13 @@ export class AddOfficeComponent implements OnInit {
             this.service.refreshList();
           },
           err => {
-            this.toastr.error('error');
+            //this.toastr.error('error');
           }
         )
+  }
+
+  Close(){
+    this.router.navigateByUrl('car/rent-a-car/' + this.rentService.serviceId + '/locations');
   }
 
   onClear() {

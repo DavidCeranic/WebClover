@@ -42,6 +42,7 @@ export class AddCarComponent implements OnInit {
 
   onSubmit(form: NgForm){
       this.insertCar(form);
+      this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/cars');
   }
 
   insertCar(form: NgForm){
@@ -57,13 +58,17 @@ export class AddCarComponent implements OnInit {
             this.service.refreshList();
           },
           err => {
-            this.toastr.error('error');
+            //this.toastr.error('error');
           }
         )
   }
 
   onClear() {
     this.addCarForm.reset();
+  }
+
+  onClose(){
+    this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/cars');
   }
 
   getFieldValue(filterFieldId: string) {

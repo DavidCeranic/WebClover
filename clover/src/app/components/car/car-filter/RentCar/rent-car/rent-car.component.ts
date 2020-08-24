@@ -62,24 +62,24 @@ export class RentCarComponent implements OnInit {
 
     this.idUser = JSON.parse(localStorage.getItem("regId"));
     this.userService.getUserById(this.idUser).subscribe(
-      dataV =>{
+      dataV => {
         this.user = dataV;
       }
     )
   }
 
-  onSubmit(){
-    if(this.checkDate(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value)){
+  onSubmit() {
+    if (this.checkDate(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value)) {
       var reservation = new Reservation(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value, this.car, this.user, this.startOffice, this.endOffice);
       this.insertReservation(reservation);
     }
-    else{
+    else {
       alert("Unesite dobar datum");
     }
 
   }
 
-  insertReservation(reservation: Reservation){
+  insertReservation(reservation: Reservation) {
     console.log(reservation);
     this.reservationService.postReservation(reservation).subscribe(
       res => {
@@ -89,38 +89,42 @@ export class RentCarComponent implements OnInit {
     )
   }
 
-  checkDate(startDate: Date, endDate: Date) : boolean{
-    if(endDate < startDate){
+  checkDate(startDate: Date, endDate: Date): boolean {
+    if (endDate < startDate) {
       alert("Los datum");
       return false
     }
 
-    if(this.reservationService.list != null){
-      this.reservationService.list.forEach(element => {
-        if(startDate > element.endDate && endDate < element.startDate ){
+    if (this.reservationService.list != null) {
+      for (let i = 0; i < this.reservationService.list.length; i++) {
+        const element = this.reservationService.list[i];
+        if (startDate > element.endDate || endDate < element.startDate) {
           return true;
         }
-        else{
-          return false;
+        else {
+          if(element.startDate != element.endDate){
+            return false;
+          }
+          else{
+            return true;
+          }
         }
-      });
+      }
     }
-    else{
-      return true;
-    }
+    return true;
   }
 
-  resetForm(form?: NgForm){
-    if(form!=null)
+  resetForm(form?: NgForm) {
+    if (form != null)
       form.resetForm();
-      this.reservationService.formData = {
-        reservationId: null,
-        startDate: null,
-        endDate: null,
-        car: null,
-        user: null,
-        startOffice: null,
-        endOffice: null
-      }
+    this.reservationService.formData = {
+      reservationId: null,
+      startDate: null,
+      endDate: null,
+      car: null,
+      user: null,
+      startOffice: null,
+      endOffice: null
+    }
   }
 }

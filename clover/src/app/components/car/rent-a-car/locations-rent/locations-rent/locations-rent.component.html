@@ -12,11 +12,11 @@
 </header>
 
 
-<!-- <div [hidden]="this.rentService.serviceOffice.length !== 0">
+<div [hidden]="this.rentService.serviceOffice === undefined">
   <hr/>
   <h5 style="text-align: center;">Trenutno nema dostupnih offica koja zadovoljavaju zadate parametre.</h5>
 </div>
-<div [hidden]="this.rentService.serviceOffice.length === 0"> -->
+<div [hidden]="this.rentService.serviceOffice == undefined">
     <div *ngFor="let office of this.allOffice" class="div1">
       <div class="divName">{{office.officeName}}</div>
       <div class="div5To"><Address></Address>: {{office.address}} </div>
@@ -24,7 +24,7 @@
       <button class="myButton" [hidden]="check()" (click)="onDelete(office.officeId)">Delete</button>
     </div>
     </div>
-<!-- </div> -->
+</div>
 
 
 <!-- <div [hidden]="this.rentService.serviceOffice.length === 0" id="locations" class="locations"> -->
@@ -36,7 +36,7 @@
     </div>
   </agm-map>
 </div>
-
+<!-- </div> -->
 
 
 
