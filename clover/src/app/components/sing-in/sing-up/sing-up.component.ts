@@ -7,14 +7,34 @@ import { ToastrService } from 'ngx-toastr';
 import { RegisterUserService } from 'src/app/services/userDetails/registerUser/register-user.service';
 import { Router } from '@angular/router';
 
+export function passwordMatch(passwordGroup: FormGroup){
+  if(passwordGroup.get('password').value !== passwordGroup.get('repeatPassword').value){
+    return { match: true};
+  }
+  return null;
+}
+
 @Component({
   selector: 'app-sing-up',
   templateUrl: './sing-up.component.html',
   styleUrls: ['./sing-up.component.css']
 })
+
 export class SingUpComponent implements OnInit {
 
-  singUpForm: FormGroup;
+  singUpForm: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    // email: new FormControl('',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
+    city: new FormControl('', Validators.required),
+    phoneNumber: new FormControl('', Validators.required),
+    passwordGroup: new FormGroup({
+      password: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      repeatPassword: new FormControl('', [Validators.required, Validators.minLength(3)])},
+     {validators: passwordMatch}
+    )
+  })
+
   registerUser = new Array<User>();
   message: string = "SingIn";
 
@@ -27,30 +47,31 @@ export class SingUpComponent implements OnInit {
   }
 
 
-  navigateTo(section: string){
-    window.location.hash='';
+  navigateTo(section: string) {
+    window.location.hash = '';
     window.location.hash = section;
   }
 
-  onSubmit(form: NgForm){
-    //proveriti da li je dosla neka vrednost(RentAdmin, FlightAdmin) pa onda staviti user ili nesto od ta dva
-    form.value.UserType="User";
-    this.insertUser(form);
+  onSubmit() {
+    var user = this.singUpForm.value as User;
+    user.UserType = "User";
+    user.password = this.singUpForm.value.passwordGroup.password;
+    this.insertUser(user);
   }
 
-  insertUser(form: NgForm){
-    this.service.postUserDetails(form.value).subscribe(
+  insertUser(user: User) {
+    this.service.postUserDetails(user).subscribe(
       res => {
         this.toastr.success('User successfully added');
-        this.resetForm(form);
+        location.reload();
       },
       err => {
-        this.toastr.success('error');
+        this.toastr.error('error');
       }
     );
   }
 
-  sendMessage(){
+  sendMessage() {
     this.messageEvent.emit(this.message);
   }
 
@@ -59,25 +80,25 @@ export class SingUpComponent implements OnInit {
   }
 
   getValue(Id: string) {
-    return (<HTMLInputElement> document.getElementById(Id)).value;
+    return (<HTMLInputElement>document.getElementById(Id)).value;
   }
 
-  resetForm(form?: NgForm){
-    if(form!=null)
+  resetForm(form?: NgForm) {
+    if (form != null)
       form.resetForm();
-      this.service.formData = {
-        userId: null,
-        name: "",
-        email: "",
-        password: "",
-        city: "",
-        phoneNumber: "",
-        UserType: "",
-        StringToken: "",
-        userFriends:null
-      }
+    this.service.formData = {
+      userId: null,
+      name: "",
+      email: "",
+      password: "",
+      city: "",
+      phoneNumber: "",
+      UserType: "",
+      StringToken: "",
+      userFriends: null
+    }
   }
 
-  valueChange(secEmail: string){
+  valueChange(secEmail: string) {
   }
 }
