@@ -417,6 +417,39 @@ namespace WebApiClover.Migrations
                     b.ToTable("ReservationDetails");
                 });
 
+            modelBuilder.Entity("WebApiClover.Models.Seat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Class2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FlightInfo2Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Number2")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Taken")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FlightInfo2Id");
+
+                    b.ToTable("Seat");
+                });
+
             modelBuilder.Entity("WebApiClover.Models.UserDetail", b =>
                 {
                     b.Property<int>("UserId")
@@ -525,6 +558,15 @@ namespace WebApiClover.Migrations
                     b.HasOne("WebApiClover.Models.UserDetail", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.Seat", b =>
+                {
+                    b.HasOne("WebApiClover.Models.FlightInfo2", "FlightInfo2")
+                        .WithMany("Seats")
+                        .HasForeignKey("FlightInfo2Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

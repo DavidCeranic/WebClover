@@ -24,7 +24,7 @@ export class RegisterUserComponent implements OnInit {
   parseJwt: string;
   clicked1:boolean=false;
   clicked2:boolean=false;
-  
+  userName:string;
   allRegistredUsers = new Array<User>();
   allFriends = new Array<Friends>();
   allFriendsReq = new Array<Friends>();
@@ -52,6 +52,8 @@ export class RegisterUserComponent implements OnInit {
     this.service.currentMessage.subscribe(message => this.message = message);
     this.registerUser.loggedIn.subscribe(res=>{
       this.user=res;
+
+      this.userName=localStorage.getItem("")
     });
   }
 

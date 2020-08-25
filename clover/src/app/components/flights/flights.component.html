@@ -92,7 +92,38 @@
 					<div class="admin" [hidden]="check()">
 					<button  type="button" routerLink="/add-about-company" >addcomp</button>
 					</div>
-						<div class="wrapper" *ngFor="let company of allAvioCompanies" >
+
+					<!-- <div class="cols">
+					<input type="radio" value="name" #mySelection1 (click)="Sort1(mySelection1.value)"  >
+					<p style="color:lavenderblush"> Name</p>
+				
+					<input  type="radio" value="city" #mySelection2 (click)="Sort1(mySelection2.value)" name="sort">
+					<p style="color:lavenderblush"> City</p>
+				</div> -->
+				<div class="radio" style="width:150px;">
+					<div class="s002" >
+					  <form>
+						<div class="inner-form">
+						  <div class="input-field fifth-wrap">
+							<p style="color:lavenderblush"> Sort</p>
+							<div class="input-field fifth-wrap">
+							  <div class="row">
+								<input type="radio" value="name" #mySelection1 (click)="Sort1(mySelection1.value)"  name="sort" style="height: 1em; margin-left: -47%;">
+								<p style="color:lavenderblush"> Name</p>
+							  </div>
+							  <div class="row">
+								<input type="radio" value="city" #mySelection2 (click)="Sort1(mySelection2.value)" name="sort" style="height: 1em; margin-left: -47%;">
+								<p style="color:lavenderblush"> City</p>
+							  </div>
+							</div>
+						  </div>
+						</div>
+					  </form>
+					</div>
+				  </div>
+					
+						<div class="wrapper" *ngFor="let company of allAvioCompanies">
+							
 							<p class="resp-tabs-list">  </p>
 							<div class="cols">
 									  <div (click)="onSelect(company)" class="col" ontouchstart="this.classList.toggle('hover');">

@@ -117,7 +117,35 @@ export class FlightsComponent implements OnInit {
     return (<HTMLInputElement> document.getElementById(filterFieldId)).value;
   }
   
+  Sort1(value: string) {
+    if (value == "name") {
+      this.allAvioCompanies = this.allAvioCompanies.sort((n1, n2) => {
+        if (n1.avioCompName > n2.avioCompName)
+          return 1;
 
+        if (n1.avioCompName < n2.avioCompName)
+          return -1;
+
+        return 0;
+
+      }
+      );
+    }
+
+    if (value == "city") {
+      this.allAvioCompanies = this.allAvioCompanies.sort((n1, n2) => {
+        if (n1.avioCompAddress > n2.avioCompAddress)
+          return 1;
+
+        if (n1.avioCompAddress < n2.avioCompAddress)
+          return -1;
+
+        return 0;
+
+      }
+      );
+    }
+  }
 
   onSubmit(){
     

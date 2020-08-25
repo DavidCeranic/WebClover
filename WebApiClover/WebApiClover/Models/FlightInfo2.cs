@@ -67,6 +67,7 @@ namespace WebApiClover.Models
        
         public virtual List<Rate> RateFlight{ get; set; }
 
+        public virtual List<Seat> Seats { get; set; } = new List<Seat>();
         public int CompanyAboutAvioCompID { get; set; }
         //public int UserDetailUserId { get; set; }
     }
