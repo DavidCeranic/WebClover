@@ -20,8 +20,7 @@ namespace WebApiClover.Controllers
             _context = context;
         }
 
-        [HttpGet("{id}")]
-        [Route("GetReservationForCar")]
+        [HttpGet("GetReservationForCar/{carId}")]
         public async Task<List<ReservationDetails>> GetReservationForCar(int carId)
         {
             return await _context.ReservationDetails.Where(x => x.Car.CarId == carId).Include(p=>p.User).Include(p=>p.User).ToListAsync();

@@ -22,12 +22,16 @@ export class ReservationDetailsService {
   
 
   postReservation(formData: Reservation){
-    return this.http.post(this.rootUrl + 'ReservationDetails/CreateReservationForCar', formData);
+    return this.http.post(this.rootUrl + 'ReservationDetails/CreateReservationForCar', formData).toPromise().then(res => {
+      this.getReservationForCar(formData.car.carId);
+      console.log(formData.car.carId)
+    });
   }
 
   getReservationForCar(carId: number){
     return this.http.get(this.rootUrl + 'ReservationDetails/GetReservationForCar/' + carId).toPromise().then(res => {
       this.list = res as Reservation[];
+      console.log(carId);
     })
   }
 
