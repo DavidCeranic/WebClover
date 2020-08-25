@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Car } from 'src/app/entities/Car/car';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RentService } from 'src/app/entities/rentService/rent-service';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { User } from 'src/app/entities/User/user';
@@ -26,13 +26,15 @@ export class RentCarComponent implements OnInit {
   user: User;
   startOffice: Office;
   endOffice: Office;
+  totalPrice: number;
+  days: number;
 
   reservationForm: FormGroup = new FormGroup({
     startDate: new FormControl('', Validators.required),
     endDate: new FormControl('', Validators.required)
   })
 
-  constructor(public reservationService: ReservationDetailsService, public service: CarDetailsService, private formBuilder: FormBuilder, public route: ActivatedRoute, public rentServiceServis: RentServiceDetailsService, public userService: UserDetailsService) { }
+  constructor(public reservationService: ReservationDetailsService, public service: CarDetailsService, private formBuilder: FormBuilder, public route: ActivatedRoute, public rentServiceServis: RentServiceDetailsService, public userService: UserDetailsService, public router: Router) { }
 
   ngOnInit(): void {
     this.resetForm();
@@ -72,57 +74,63 @@ export class RentCarComponent implements OnInit {
     if (this.checkDate(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value)) {
       var reservation = new Reservation(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value, this.car, this.user, this.startOffice, this.endOffice);
       this.insertReservation(reservation);
+      
+      this.days = this.calculatePrice(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value);
+      this.totalPrice = this.car.pricePerDay * this.days;
+      alert("Uspesno ste rezervisali. Ukupna cena je: "+this.totalPrice);
+      this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/cars');
     }
-    else {
-      alert("Vec je rezervisano");
-    }
+  }
 
+  calculatePrice(startDate, endDate) : number{
+    let days = new Array<Date>();
+    let start = new Date(startDate);
+    let end = new Date(endDate);
+    let daysNum = (end.setHours(0, 0).valueOf() - start.setHours(0,0).valueOf())/86400000;
+
+    for (let i = 0; i < daysNum; i++) {
+      let date = new Date();
+      date.setDate(start.getDate() + i);
+      days.push(date);
+    }
+    
+    return days.length;
   }
 
   insertReservation(reservation: Reservation) {
-    console.log(reservation);
-    this.reservationService.postReservation(reservation).subscribe(
-      res => {
-        this.resetForm();
-        //this.reservationService.refreshList();
-      }
-    )
+    this.reservationService.postReservation(reservation);
   }
 
   checkDate(startDate: Date, endDate: Date): boolean {
     if (endDate < startDate) {
-      alert("End date must be greater than start date");
+      alert('Starting date must be lower then ending date.');
       return false;
     }
 
-    let dateNow = new Date();
-    if(endDate.getFullYear < dateNow.getFullYear && endDate.getMonth < dateNow.getMonth && endDate.getDay < dateNow.getDay  || startDate.getFullYear < dateNow.getFullYear && startDate.getMonth < dateNow.getMonth && startDate.getDay < dateNow.getDay){
-      alert("Ne moze u proslosti");
+    var start1 = new Date(startDate);
+    var end1 = new Date(endDate);
+    var now = new Date();
+    if (start1 < now || end1 < now) {
+      alert("ne moze u proslisti ");
       return false;
     }
 
-    if (this.reservationService.list != null) {
-      for (let i = 0; i < this.reservationService.list.length; i++) {
-        const element = this.reservationService.list[i];
+    for (let i = 0; i < this.reservationService.list.length; i++) {
+      var element = this.reservationService.list[i];
+      console.log(this.reservationService.list);
 
-        let start = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDay());
-        let end = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDay());
+      var start2 = new Date(element.startDate);
+      var end2 = new Date(element.endDate);
 
-        let Estart = new Date(element.startDate.getFullYear(), element.startDate.getMonth(), element.startDate.getDay());
-        let Eend = new Date(element.endDate.getFullYear(), element.endDate.getMonth(), element.endDate.getDay());
+      var start1 = new Date(startDate);
+      var end1 = new Date(endDate);
 
+      var r1 = end1.setHours(0, 0) - start2.setHours(0, 0);
+      var r2 = end2.setHours(0, 0) - start1.setHours(0, 0);
 
-        if (start.getTime() > Eend.getTime() || end.getTime() < Estart.getTime()) {
-          return true;
-        }
-        else {
-          if(element.startDate.toUTCString() != element.endDate.toUTCString()){
-            return false;
-          }
-          else{
-            return true;
-          }
-        }
+      if (r1 >= 0 && r2 >= 0) {
+        alert('Selected span of dates is already taken.');
+        return false;
       }
     }
     return true;
