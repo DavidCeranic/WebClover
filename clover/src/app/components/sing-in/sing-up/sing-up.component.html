@@ -1,8 +1,8 @@
 
   <section class="signup">
-              <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form">
+              <form #form="ngForm" [formGroup]="singUpForm" autocomplete="off" (ngSubmit)="onSubmit()" id="signup-form" class="signup-form">
 
-                <input type="hidden" name="userId" [value]="service.formData.userId">
+                <!-- <input type="hidden" name="userId" [value]="service.formData.userId"> -->
 
                 <div>
                   <button class="btn" (click)="navigateTo('sing-in')" (click)="sendMessage()"><span>Sing in</span></button>
@@ -10,48 +10,46 @@
                 </div>
 
                 <div style="margin-left: 16px;" class="row">
-                  <div class="form-group">
-                      <input #Name="ngModel" [(ngModel)]="service.formData.name" name="name" type="text" id="Name" class="form-input" placeholder="Name" required/>
-                      <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required</div>
+                  <div style="margin-right: 10px;" class="form-group">
+                    <input type="text" name="name" id="name" class="form-input" placeholder="Name" formControlName="name" required/>
+                    <div class="validation-error" *ngIf="singUpForm.get('name').invalid && singUpForm.get('name').touched">This field is required</div>
                   </div>
 
-                  <div style="margin-left: 10px;" class="form-group">
-                    <input type="mail" #email="ngModel" [(ngModel)]="service.formData.email" name="email" id="Email" class="form-input" placeholder="Mail" required/>
-                    <div class="validation-error" *ngIf="email.invalid && email.touched">This field is required</div>
+                  <div class="form-group">
+                      <input name="email" type="text" id="email" class="form-input" placeholder="Email" formControlName="email" required/>
+                      <div class="validation-error" *ngIf="singUpForm.get('email').invalid && singUpForm.get('email').touched">This field is required</div>
                   </div>
                 </div>
 
                 <div style="margin-left: 16px;" class="row">
                   <div class="form-group">
-                    <input type="password" #password="ngModel" [(ngModel)]="service.formData.password" name="password" id="Password" class="form-input" placeholder="Password" required/>
-                    <div class="validation-error" *ngIf="password.invalid && password.touched">This field is required</div>
+                    <input type="text" name="city" id="city" class="form-input" placeholder="City" formControlName="city" required/>
+                    <div class="validation-error" *ngIf="singUpForm.get('city').invalid && singUpForm.get('city').touched">This field is required</div>
                   </div>
 
                   <div style="margin-left: 10px;" class="form-group">
-                    <input type="password" (ngModelChange)="valueChange($event)" id="Password" name="repeatPassword" class="form-input" placeholder="Repeat your password" required/>
-                    <!-- <div class="validation-error" *ngIf="repeatPassword.invalid && repeatPassword.touched">This field is required</div> -->
+                    <input type="string" name="phoneNumber" id="phoneNumber" class="form-input" placeholder="Phone number" formControlName="phoneNumber" required/>
+                    <div class="validation-error" *ngIf="singUpForm.get('phoneNumber').invalid && singUpForm.get('phoneNumber').touched">This field is required</div>
                   </div>
                 </div>
 
-                <div style="margin-left: 16px;" class="row">
-                  <div class="form-group">
-                    <input type="text" (ngModelChange)="valueChange($event)" #city="ngModel" [(ngModel)]="service.formData.city" name="city" id="City" class="form-input" placeholder="City" required/>
-                    <div class="validation-error" *ngIf="city.invalid && city.touched">This field is required</div>
-                  </div>
+                <div formGroupName="passwordGroup">
+                  <div style="margin-left: 16px;" class="row">
+                    <div class="form-group" style="margin-right: 16px;">
+                      <input type="password" name="password" id="password" class="form-input" placeholder="Password" formControlName="password" required/>
+                      <!-- <div class="validation-error" *ngIf="singUpForm.value.passwordGroup.get('password').invalid && singUpForm.get('password').touched">This field is required</div> -->
+                    </div>
 
-                  <div style="margin-left: 10px;" class="form-group">
-                    <input type="string" #phoneNumber="ngModel" [(ngModel)]="service.formData.phoneNumber" name="phoneNumber" id="PhoneNumber" class="form-input" placeholder="Phone number" required/>
-                    <div class="validation-error" *ngIf="phoneNumber.invalid && phoneNumber.touched">This field is required</div>
+                    <div class="form-group">
+                      <input type="password" name="repeatPassword" id="repeatPassword" class="form-input" placeholder="Repeat password" formControlName="repeatPassword" required/>
+                      <!-- <div class="validation-error" *ngIf="singUpForm.value.passwordGroup.get('repeatPassword').invalid && singUpForm.value.passwordGroup.get('repeatPassword').touched">This field is required</div> -->
+                    </div>
                   </div>
                 </div>
 
-                  <!-- <div style="margin-left: 16px; width: 420px;" class="form-group">
-                    <input type="string" #userType="ngModel" [(ngModel)]="service.formData.userType" name="userType" id="UserType" class="form-input" placeholder="User Type" required/>
-                    <div class="validation-error" *ngIf="userType.invalid && userType.touched">This field is required</div>
-                  </div> -->
 
                   <div class="form-group">
-                      <input type="submit" [disabled]="form.invalid"  name="submit" id="submit" class="form-submit" value="Sign up"/>
+                      <input type="submit" [disabled]="singUpForm.invalid"  name="submit" id="submit" class="form-submit" value="Sign up"/>
                   </div>
               </form>
   </section>

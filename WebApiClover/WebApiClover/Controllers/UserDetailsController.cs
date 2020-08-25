@@ -66,12 +66,11 @@ namespace WebApiClover.Controllers
         public async Task<ActionResult<UserDetail>> Login([FromBody] EmailAndPassword EmailAndPassword)
         {
             Console.WriteLine(EmailAndPassword.email);
-            var userDetail = await _context.UserDetails.FirstOrDefaultAsync(x => x.Email == EmailAndPassword.email);
+            var userDetail = await _context.UserDetails.FirstOrDefaultAsync(x => x.Email == EmailAndPassword.email && x.Password == EmailAndPassword.password);
 
 
             if (userDetail == null)
             {
-
                 return BadRequest("Wrong email");
             }
 
@@ -174,7 +173,7 @@ namespace WebApiClover.Controllers
             user.IsVerify = true;
             _context.Entry(user).State = EntityState.Modified;
             _context.SaveChanges();
-            return Ok("<html><body><a Pretisni ovde href=\"localhost:4200></body></html>");
+            return Ok("Uspesno ste potvrdili mejl");
         }
 
 

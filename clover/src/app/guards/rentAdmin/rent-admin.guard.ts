@@ -11,11 +11,11 @@ export class RentAdminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
     {
       const userRole = JSON.parse(localStorage.getItem('role'));
-      if (userRole === 'RentAdmin') {
+      if (userRole === 'RentAdmin' || userRole === 'Admin') {
         return true;
       }
   
-      alert('Da biste pristupili ovom linku, morate imati ulogu admina!');
+      alert('Da biste pristupili ovom linku, morate imati ulogu Rent Admina!');
       return ;
     }
   
