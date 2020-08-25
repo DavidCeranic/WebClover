@@ -10,8 +10,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200823183018_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20200825202654_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -394,8 +394,14 @@ namespace WebApiClover.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("EndOfficeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("StartOfficeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -404,9 +410,47 @@ namespace WebApiClover.Migrations
 
                     b.HasIndex("CarId");
 
+                    b.HasIndex("EndOfficeId");
+
+                    b.HasIndex("StartOfficeId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("ReservationDetails");
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.Seat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Class2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FlightInfo2FlightId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Number2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Taken")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FlightInfo2FlightId");
+
+                    b.ToTable("Seat");
                 });
 
             modelBuilder.Entity("WebApiClover.Models.UserDetail", b =>
@@ -506,9 +550,26 @@ namespace WebApiClover.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WebApiClover.Models.OfficeDetail", "EndOffice")
+                        .WithMany()
+                        .HasForeignKey("EndOfficeId");
+
+                    b.HasOne("WebApiClover.Models.OfficeDetail", "StartOffice")
+                        .WithMany()
+                        .HasForeignKey("StartOfficeId");
+
                     b.HasOne("WebApiClover.Models.UserDetail", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.Seat", b =>
+                {
+                    b.HasOne("WebApiClover.Models.FlightInfo2", null)
+                        .WithMany("Seats")
+                        .HasForeignKey("FlightInfo2FlightId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

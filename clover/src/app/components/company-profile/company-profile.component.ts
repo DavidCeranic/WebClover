@@ -11,6 +11,10 @@ import { ActivatedRoute, Params} from '@angular/router';
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { browser } from 'protractor';
+import { Seat } from 'src/app/entities/Seat/seat';
+import { SeatService } from 'src/app/services/seat.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-company-profile',
@@ -23,8 +27,13 @@ export class CompanyProfileComponent implements OnInit {
   allFlightss:Array<FlightInfo>;
   companyData:AboutCompany;
   id:number;
-
-  constructor(private flightService: AllFlightsService, private toastr: ToastrService,public route: ActivatedRoute,private data:AvioCompanyService,public service :AllFligtsDetailsService,public companyService: AvioCompanyDetailsService ){
+  id2:number;
+  brs:number;
+  i:number;
+  bbb:number;
+  sediste:Seat;
+  cena:number;
+  constructor(private flightService: AllFlightsService,public seatService:  SeatService, private toastr: ToastrService,public route: ActivatedRoute,private data:AvioCompanyService,public service :AllFligtsDetailsService,public companyService: AvioCompanyDetailsService ){
  // this.service.refreshList();
  //this.service.messageEvent.subscribe( x => {
 //})
@@ -37,6 +46,7 @@ export class CompanyProfileComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = params['compID'];
+        this.id2=params['flightID']
         console.log(this.id);
         //this.data.refreshList();
         this.companyService.getAvioCompanyById(this.id).toPromise().then(
@@ -67,14 +77,45 @@ export class CompanyProfileComponent implements OnInit {
   onSubmit(form: NgForm){
     console.log(form.value);
      this.service.postFlightDetails(form.value, this.id).subscribe(
-       res => {
+       (res : FlightInfo) => {
          this.resetForm(form);
+
+         this.brs=res.seatsNumber;
+
+         for(let bi=0;bi<this.brs;bi++){
+           let sediste2:Seat;
+           let sediste3=new Seat(0,"economy",0,0,false,0);
+           sediste3.number2=Number.parseInt(bi.toString());
+           sediste3.price=Number.parseInt(res.price.toString());
+           sediste3.taken=false;
+           sediste3.id = 0;
+           sediste3.flightInfo2Id=Number.parseInt(this.id.toString());
+           
+          this.seatService.addSeat(sediste3)
+         }
+
+
+
+
       },
       err => {
         console.log(err);
       }
      )
-   // this.insertFlight(form);
+   //izgleda da on tu josuvek nema informaciju koji je id
+      // this.bbb=form.value.flightID;
+      //  this.brs=form.value.seatsNumber;
+  
+      // for(let bi=1;bi<this.brs;bi++){
+      //   let sediste2:Seat;
+      //   let sediste3=new Seat("0","economy",0,0,false,0);
+      //   sediste3.number2=bi.toString();
+      //   sediste3.price=form.value.price;
+      //   sediste3.taken=false;
+      //   sediste3.flightInfo2FlightId=this.id;
+      //   form.value.seatList= new Array<Seat>();
+      //  this.seatService.addSeat(sediste3);
+      // }
 
   }
   onClear() {
@@ -120,7 +161,8 @@ export class CompanyProfileComponent implements OnInit {
         seatsNumber:0,
         rateFlight:0,
         userDetailUserId:0,
-        companyAboutAvioCompID:0
+        companyAboutAvioCompID:0,
+        seatsList:null
         
       }
 }

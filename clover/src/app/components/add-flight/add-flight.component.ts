@@ -53,7 +53,8 @@ export class AddFlightComponent implements OnInit {
         seatsNumber:0,
         rateFlight:0,
         userDetailUserId:0,
-        companyAboutAvioCompID:0
+        companyAboutAvioCompID:0,
+        seatsList:null
         
         
       }

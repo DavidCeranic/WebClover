@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApiClover.Migrations
 {
-    public partial class initionalMigration : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,23 @@ namespace WebApiClover.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FlightsInfo", x => x.FlightID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Friends",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Accepted = table.Column<bool>(nullable: false),
+                    Removed = table.Column<bool>(nullable: false),
+                    Added = table.Column<bool>(nullable: false),
+                    UserEmail1 = table.Column<string>(nullable: false),
+                    UserEmail2 = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Friends", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -268,6 +285,30 @@ namespace WebApiClover.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Seat",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Number2 = table.Column<string>(nullable: false),
+                    Class2 = table.Column<string>(nullable: false),
+                    Price = table.Column<int>(nullable: false),
+                    Discount = table.Column<int>(nullable: false),
+                    Taken = table.Column<bool>(nullable: false),
+                    FlightInfo2FlightId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Seat", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Seat_FlightInfo2_FlightInfo2FlightId",
+                        column: x => x.FlightInfo2FlightId,
+                        principalTable: "FlightInfo2",
+                        principalColumn: "FlightID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CarInfo_RentServiceServiceId",
                 table: "CarInfo",
@@ -332,6 +373,11 @@ namespace WebApiClover.Migrations
                 name: "IX_ReservationDetails_UserId",
                 table: "ReservationDetails",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seat_FlightInfo2FlightId",
+                table: "Seat",
+                column: "FlightInfo2FlightId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -340,13 +386,16 @@ namespace WebApiClover.Migrations
                 name: "FlightsInfo");
 
             migrationBuilder.DropTable(
+                name: "Friends");
+
+            migrationBuilder.DropTable(
                 name: "Rate");
 
             migrationBuilder.DropTable(
                 name: "ReservationDetails");
 
             migrationBuilder.DropTable(
-                name: "FlightInfo2");
+                name: "Seat");
 
             migrationBuilder.DropTable(
                 name: "CarInfo");
@@ -355,13 +404,16 @@ namespace WebApiClover.Migrations
                 name: "OfficeDetail");
 
             migrationBuilder.DropTable(
+                name: "FlightInfo2");
+
+            migrationBuilder.DropTable(
+                name: "RentService");
+
+            migrationBuilder.DropTable(
                 name: "CompanyAbout");
 
             migrationBuilder.DropTable(
                 name: "UserDetails");
-
-            migrationBuilder.DropTable(
-                name: "RentService");
         }
     }
 }

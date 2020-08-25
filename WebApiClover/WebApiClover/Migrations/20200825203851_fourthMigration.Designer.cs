@@ -10,8 +10,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200823160310_initionalMigration")]
-    partial class initionalMigration
+    [Migration("20200825203851_fourthMigration")]
+    partial class fourthMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -239,6 +239,35 @@ namespace WebApiClover.Migrations
                     b.ToTable("FlightInfo2");
                 });
 
+            modelBuilder.Entity("WebApiClover.Models.Friends", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Added")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Removed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserEmail1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserEmail2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Friends");
+                });
+
             modelBuilder.Entity("WebApiClover.Models.OfficeDetail", b =>
                 {
                     b.Property<int>("OfficeId")
@@ -390,6 +419,39 @@ namespace WebApiClover.Migrations
                     b.ToTable("ReservationDetails");
                 });
 
+            modelBuilder.Entity("WebApiClover.Models.Seat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Class2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FlightInfo2Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Number2")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Taken")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FlightInfo2Id");
+
+                    b.ToTable("Seat");
+                });
+
             modelBuilder.Entity("WebApiClover.Models.UserDetail", b =>
                 {
                     b.Property<int>("UserId")
@@ -498,6 +560,15 @@ namespace WebApiClover.Migrations
                     b.HasOne("WebApiClover.Models.UserDetail", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.Seat", b =>
+                {
+                    b.HasOne("WebApiClover.Models.FlightInfo2", "FlightInfo2")
+                        .WithMany("Seats")
+                        .HasForeignKey("FlightInfo2Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
