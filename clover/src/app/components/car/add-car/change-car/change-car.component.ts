@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { FormGroup, NgForm, Form } from '@angular/forms';
 import { Car } from 'src/app/entities/Car/car';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import { ToastrService } from 'ngx-toastr';
@@ -53,7 +53,13 @@ export class ChangeCarComponent implements OnInit {
   }
 
   updateCar(form: NgForm){
-    //this.rentService.serviceCars.push(form.value);
+    var car = form.value as Car;
+
+    for (let i = 0; i < this.rentService.serviceCars.length; i++) {
+      const element = this.rentService.serviceCars[i];
+      if(element.carId == car.carId)
+        this.rentService.serviceCars[i] = car;
+    }
 
     this.rentServiceServis.putRentService(this.rentService, this.rentService.serviceId).subscribe(
       res => {  

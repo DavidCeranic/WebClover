@@ -60,16 +60,15 @@ export class SingInComponent implements OnInit {
       localStorage.setItem("regEmail",res.Email);
       localStorage.setItem("role", JSON.stringify(res.UserType));
       this.user = res as User;
-      //TO DO
-      //console.log(this.user);
-      //console.log(this.user.userId);
-      //this.loggedIn.emit(this.user);
       this.singInForm.reset();
       this.router.navigateByUrl('/register-user');
     }).catch(err=>{
       if(err.status === 400){
         if(err.error === "Not Verified"){
           this.toster.error("Not Verified");
+        }
+        if(err.error === "Wrong email"){
+          this.toster.error("You must register");
         }
       }
       });

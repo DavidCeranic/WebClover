@@ -74,7 +74,7 @@ export class RentCarComponent implements OnInit {
       this.insertReservation(reservation);
     }
     else {
-      alert("Unesite dobar datum");
+      alert("Vec je rezervisano");
     }
 
   }
@@ -91,18 +91,32 @@ export class RentCarComponent implements OnInit {
 
   checkDate(startDate: Date, endDate: Date): boolean {
     if (endDate < startDate) {
-      alert("Los datum");
-      return false
+      alert("End date must be greater than start date");
+      return false;
+    }
+
+    let dateNow = new Date();
+    if(endDate.getFullYear < dateNow.getFullYear && endDate.getMonth < dateNow.getMonth && endDate.getDay < dateNow.getDay  || startDate.getFullYear < dateNow.getFullYear && startDate.getMonth < dateNow.getMonth && startDate.getDay < dateNow.getDay){
+      alert("Ne moze u proslosti");
+      return false;
     }
 
     if (this.reservationService.list != null) {
       for (let i = 0; i < this.reservationService.list.length; i++) {
         const element = this.reservationService.list[i];
-        if (startDate > element.endDate || endDate < element.startDate) {
+
+        let start = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDay());
+        let end = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDay());
+
+        let Estart = new Date(element.startDate.getFullYear(), element.startDate.getMonth(), element.startDate.getDay());
+        let Eend = new Date(element.endDate.getFullYear(), element.endDate.getMonth(), element.endDate.getDay());
+
+
+        if (start.getTime() > Eend.getTime() || end.getTime() < Estart.getTime()) {
           return true;
         }
         else {
-          if(element.startDate != element.endDate){
+          if(element.startDate.toUTCString() != element.endDate.toUTCString()){
             return false;
           }
           else{
