@@ -10,6 +10,7 @@ import { UserDetailsService } from 'src/app/services/userDetails/user-details.se
 import { ReservationDetailsService } from 'src/app/services/reservationDetails/reservation-details.service';
 import { Reservation } from 'src/app/entities/reservation/reservation';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
+import { Office } from 'src/app/entities/office/office';
 
 @Component({
   selector: 'app-fast-rent-car',

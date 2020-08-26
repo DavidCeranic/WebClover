@@ -20,10 +20,17 @@ namespace WebApiClover.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        [Route("GetAllReservation")]
+        public async Task<List<ReservationDetails>> GetAllReservation()
+        {
+            return await _context.ReservationDetails.Include(p => p.User).Include(p => p.Car).Include(p => p.StartOffice).Include(p => p.EndOffice).ToListAsync();
+        }
+
         [HttpGet("GetReservationForCar/{carId}")]
         public async Task<List<ReservationDetails>> GetReservationForCar(int carId)
         {
-            return await _context.ReservationDetails.Where(x => x.Car.CarId == carId).Include(p=>p.User).Include(p=>p.User).ToListAsync();
+            return await _context.ReservationDetails.Where(x => x.Car.CarId == carId).Include(p=>p.User).Include(p=>p.Car).Include(p => p.StartOffice).Include(p => p.EndOffice).ToListAsync();
         }
 
 
@@ -41,8 +48,12 @@ namespace WebApiClover.Controllers
                 reservationDetails.User = user;
 
                 _context.Entry(reservationDetails).State = reservationDetails.ReservationId == 0 ? EntityState.Added : EntityState.Modified;
+                if(reservationDetails.StartOffice != null || reservationDetails.EndOffice != null)
+                {
                 _context.Entry(reservationDetails.StartOffice).State = reservationDetails.StartOffice.OfficeId == 0 ? EntityState.Added : EntityState.Modified;
                 _context.Entry(reservationDetails.EndOffice).State = reservationDetails.EndOffice.OfficeId == 0 ? EntityState.Added : EntityState.Modified;
+
+                }
 
 
 

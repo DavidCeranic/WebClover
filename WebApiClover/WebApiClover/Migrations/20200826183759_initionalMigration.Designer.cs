@@ -10,8 +10,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200826121632_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20200826183759_initionalMigration")]
+    partial class initionalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -614,7 +614,7 @@ namespace WebApiClover.Migrations
 
             modelBuilder.Entity("WebApiClover.Models.Seat", b =>
                 {
-                    b.HasOne("WebApiClover.Models.FlightInfo2", "FlightInfo2")
+                    b.HasOne("WebApiClover.Models.FlightInfo2", null)
                         .WithMany("Seats")
                         .HasForeignKey("FlightInfo2Id")
                         .OnDelete(DeleteBehavior.Cascade)

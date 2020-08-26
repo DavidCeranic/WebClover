@@ -612,7 +612,7 @@ namespace WebApiClover.Migrations
 
             modelBuilder.Entity("WebApiClover.Models.Seat", b =>
                 {
-                    b.HasOne("WebApiClover.Models.FlightInfo2", "FlightInfo2")
+                    b.HasOne("WebApiClover.Models.FlightInfo2", null)
                         .WithMany("Seats")
                         .HasForeignKey("FlightInfo2Id")
                         .OnDelete(DeleteBehavior.Cascade)
