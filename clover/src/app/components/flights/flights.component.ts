@@ -24,7 +24,7 @@ export class FlightsComponent implements OnInit {
   id:number;
   allFlightss = new Array<FlightInfo>();
   searchedFlights = new Array<FlightInfo>();
-
+disable:boolean=false;
 
   constructor(private flightService: AllFlightsService,private avioCompService:AvioCompanyService, private router: Router, private route: ActivatedRoute,private data:AvioCompanyService,public service :AvioCompanyDetailsService, public service2 :AllFligtsDetailsService){
     
@@ -111,7 +111,12 @@ export class FlightsComponent implements OnInit {
     return new StringFilterParam("searchClassFFilter", this.getFilterFieldValue("searchClassFFilter"));
   }
 
-  
+  onButtonClick(event : MouseEvent){
+    this.disable=true;
+  }
+  onButtonClick2(event : MouseEvent){
+    this.disable=false;
+  }
   
   getFilterFieldValue(filterFieldId: string) {
     return (<HTMLInputElement> document.getElementById(filterFieldId)).value;

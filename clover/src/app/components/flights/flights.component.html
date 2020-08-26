@@ -13,11 +13,11 @@
 												<span></span>Roundtrip
 											</label>
 											<label for="one-way">
-												<input type="radio" id="one-way" name="flight-type">
+												<input (click)="onButtonClick($event)" type="radio" id="one-way" name="flight-type">
 												<span></span>One way
 											</label>
 											<label for="multi-city">
-												<input type="radio" id="multi-city" name="flight-type">
+												<input (click)="onButtonClick2($event)" type="radio" id="multi-city" name="flight-type">
 												<span></span>Multi-City
 											</label>
 										</div>
@@ -31,8 +31,8 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<span class="form-label">Flyning to</span>
-												<input class="form-control" type="text" placeholder="City or airport" id="searchToFilter">
+												<span  class="form-label">Flyning to</span>
+												<input [disabled]="disable" class="form-control" type="text" placeholder="City or airport" id="searchToFilter">
 											</div>
 										</div>
 									</div>
@@ -46,7 +46,7 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<span class="form-label">Returning</span>
-												<input class="form-control" type="date" required id="searchReturningFilter" >
+												<input [disabled]="disable" class="form-control" type="date" required id="searchReturningFilter" >
 											</div>
 										</div>
 										<div class="col-md-2">
