@@ -27,6 +27,7 @@ import { ChangeRentACarComponent } from './components/car/add-rent-a-car/change-
 import { ServiceRateComponent } from './components/car/rent-a-car-filter/admin-info/service-rate/service-rate.component';
 import { CarRateComponent } from './components/car/rent-a-car-filter/admin-info/car-rate/car-rate.component';
 import { RentAdminGuard } from './guards/rentAdmin/rent-admin.guard';
+import { FastRentCarComponent } from './components/car/car-filter/FastRentCar/fast-rent-car/fast-rent-car.component';
 
 const routes: Routes = [
   {
@@ -42,9 +43,13 @@ const routes: Routes = [
     //  component:FlightsComponent,
     children: [{ path: "", component: FlightsComponent},
     { path: 'company-profile/:compID', component: CompanyProfileComponent },
-    { path: 'payment/:flightID', component: PaymentComponent }
+    { path: 'payment/:flightID',
+      children: [
+        {path: "", component: PaymentComponent},
+        { path: 'fast-rent-car', component: FastRentCarComponent}
+      ]
+     },
     ]
-
   },
   {
     path: "sing-up",

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FlightInfo } from 'src/app/entities/flightInfo/flight-info';
-import { Params, ActivatedRoute } from '@angular/router';
+import { Params, ActivatedRoute, Router } from '@angular/router';
 import { AllFligtsDetailsService } from 'src/app/services/allFligts/all-flights-details/all-flights-details.service';
 import { Seat } from 'src/app/entities/Seat/seat';
 import { SeatService } from 'src/app/services/seat.service';
@@ -19,7 +19,7 @@ export class PaymentComponent implements OnInit {
   bbb:number;
   sediste:Seat;
   cena:number;
-  constructor(public route: ActivatedRoute,public flightService :AllFligtsDetailsService,public seatService:  SeatService, public userService: UserDetailsService,public reservationServation :FlightReservationService) { }
+  constructor(public route: ActivatedRoute,public flightService :AllFligtsDetailsService,public seatService:  SeatService, public userService: UserDetailsService,public reservationServation :FlightReservationService, public router: Router) { }
   allSeats = new Array<Seat>();
   sortedSeats = new Array<Seat>();
   id:number;
@@ -31,6 +31,7 @@ export class PaymentComponent implements OnInit {
   u:User;
   ui:number;
   res:FlightReservation=new FlightReservation;
+
   dalijeadmin():boolean{
 
     const userRole = JSON.parse(localStorage.getItem('role'));
@@ -105,7 +106,6 @@ export class PaymentComponent implements OnInit {
     })
 
 
-
   }
 
 
@@ -143,7 +143,10 @@ export class PaymentComponent implements OnInit {
      this.res.reservedUser=this.u;
 
     this.reservationServation.addReservation(this.res);
+  }
 
+  rentCar(){
+    this.router.navigateByUrl('flights/payment/'+ this.id + '/fast-rent-car');
   }
 
 }

@@ -56,7 +56,8 @@ import { SingUpRentAdminComponent } from './components/register-user/sing-up-ren
 import { SingUpFlightAdminComponent } from './components/register-user/sing-up-flight-admin/sing-up-flight-admin/sing-up-flight-admin.component';
 import { FlightFilterPipe } from './components/flights/flight-filter.pipe';
 import { RentFilterPipe } from './components/car/rent-a-car-filter/rent-filter.pipe'
-import { RentFilterPipe2 } from './components/car/rent-a-car-filter/rent-filter2.pipe'
+import { RentFilterPipe2 } from './components/car/rent-a-car-filter/rent-filter2.pipe';
+import { FastRentCarComponent } from './components/car/car-filter/FastRentCar/fast-rent-car/fast-rent-car.component'
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { RentFilterPipe2 } from './components/car/rent-a-car-filter/rent-filter2
     SingUpFlightAdminComponent,
     FlightFilterPipe,
     RentFilterPipe,
-    RentFilterPipe2
+    RentFilterPipe2,
+    FastRentCarComponent
   ],
   imports: [
     BrowserModule,

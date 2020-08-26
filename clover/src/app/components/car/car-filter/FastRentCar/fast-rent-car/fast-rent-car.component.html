@@ -1,0 +1,16 @@
+<p>fast-rent-car works!</p>
+
+
+<div *ngFor="let car of this.allCars" class="div1">
+    <div class="image" style="content:url({{car.imgUrl}})"></div>
+    <!-- <div class="divName">{{car.serviceName}}</div> -->
+    <div class="div5To">Brand: {{car.brand}}  Year:{{car.year}}</div>
+    <div class="div6To">Model: {{car.model}} Seats:{{car.numOfSeats}}</div>
+    <div class="div3From">{{car.location}} Type:{{car.typeOfCar}}</div>
+    <div class="rate"> <ngb-rating [rate]="3"></ngb-rating> </div> 
+    
+    
+    <div class="btn">
+    <button class="myButton" (click)="onRent(car)">Rent {{car.pricePerDay}}$</button>
+  </div>
+  </div>
