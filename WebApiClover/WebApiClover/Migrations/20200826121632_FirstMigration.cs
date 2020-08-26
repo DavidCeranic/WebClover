@@ -291,21 +291,54 @@ namespace WebApiClover.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Number2 = table.Column<string>(nullable: false),
+                    Number2 = table.Column<int>(nullable: false),
                     Class2 = table.Column<string>(nullable: false),
                     Price = table.Column<int>(nullable: false),
                     Discount = table.Column<int>(nullable: false),
                     Taken = table.Column<bool>(nullable: false),
-                    FlightInfo2FlightId = table.Column<int>(nullable: false)
+                    FlightInfo2Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Seat", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Seat_FlightInfo2_FlightInfo2FlightId",
-                        column: x => x.FlightInfo2FlightId,
+                        name: "FK_Seat_FlightInfo2_FlightInfo2Id",
+                        column: x => x.FlightInfo2Id,
                         principalTable: "FlightInfo2",
                         principalColumn: "FlightID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FlightReservation",
+                columns: table => new
+                {
+                    ReservationID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReservedUserUserId = table.Column<int>(nullable: false),
+                    ReservedSeatId = table.Column<int>(nullable: false),
+                    ReservedFlightFlightID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FlightReservation", x => x.ReservationID);
+                    table.ForeignKey(
+                        name: "FK_FlightReservation_FlightInfo2_ReservedFlightFlightID",
+                        column: x => x.ReservedFlightFlightID,
+                        principalTable: "FlightInfo2",
+                        principalColumn: "FlightID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FlightReservation_Seat_ReservedSeatId",
+                        column: x => x.ReservedSeatId,
+                        principalTable: "Seat",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_FlightReservation_UserDetails_ReservedUserUserId",
+                        column: x => x.ReservedUserUserId,
+                        principalTable: "UserDetails",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -328,6 +361,21 @@ namespace WebApiClover.Migrations
                 name: "IX_FlightInfo2_UserDetailUserId",
                 table: "FlightInfo2",
                 column: "UserDetailUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FlightReservation_ReservedFlightFlightID",
+                table: "FlightReservation",
+                column: "ReservedFlightFlightID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FlightReservation_ReservedSeatId",
+                table: "FlightReservation",
+                column: "ReservedSeatId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FlightReservation_ReservedUserUserId",
+                table: "FlightReservation",
+                column: "ReservedUserUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OfficeDetail_RentServiceServiceId",
@@ -375,13 +423,16 @@ namespace WebApiClover.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Seat_FlightInfo2FlightId",
+                name: "IX_Seat_FlightInfo2Id",
                 table: "Seat",
-                column: "FlightInfo2FlightId");
+                column: "FlightInfo2Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "FlightReservation");
+
             migrationBuilder.DropTable(
                 name: "FlightsInfo");
 

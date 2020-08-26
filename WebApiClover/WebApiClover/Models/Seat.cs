@@ -22,8 +22,8 @@ namespace WebApiClover.Models
         [Required]
         public bool Taken { get; set; }
 
-        [ForeignKey("FlightInfo2")]
+      //  [ForeignKey("FlightInfo2")]
         public int FlightInfo2Id { get; set; }
-        public FlightInfo2 FlightInfo2 { get; set; }
+        //public FlightInfo2 FlightInfo2 { get; set; }
     }
 }

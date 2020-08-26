@@ -10,8 +10,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200825203851_fourthMigration")]
-    partial class fourthMigration
+    [Migration("20200826121632_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -237,6 +237,33 @@ namespace WebApiClover.Migrations
                     b.HasIndex("UserDetailUserId");
 
                     b.ToTable("FlightInfo2");
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.FlightReservation", b =>
+                {
+                    b.Property<int>("ReservationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ReservedFlightFlightID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReservedSeatId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReservedUserUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReservationID");
+
+                    b.HasIndex("ReservedFlightFlightID");
+
+                    b.HasIndex("ReservedSeatId");
+
+                    b.HasIndex("ReservedUserUserId");
+
+                    b.ToTable("FlightReservation");
                 });
 
             modelBuilder.Entity("WebApiClover.Models.Friends", b =>
@@ -513,6 +540,27 @@ namespace WebApiClover.Migrations
                     b.HasOne("WebApiClover.Models.UserDetail", null)
                         .WithMany("UserFlights")
                         .HasForeignKey("UserDetailUserId");
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.FlightReservation", b =>
+                {
+                    b.HasOne("WebApiClover.Models.FlightInfo2", "ReservedFlight")
+                        .WithMany()
+                        .HasForeignKey("ReservedFlightFlightID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApiClover.Models.Seat", "ReservedSeat")
+                        .WithMany()
+                        .HasForeignKey("ReservedSeatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApiClover.Models.UserDetail", "ReservedUser")
+                        .WithMany()
+                        .HasForeignKey("ReservedUserUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WebApiClover.Models.OfficeDetail", b =>

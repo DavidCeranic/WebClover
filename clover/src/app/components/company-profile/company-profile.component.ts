@@ -89,8 +89,8 @@ export class CompanyProfileComponent implements OnInit {
            sediste3.price=Number.parseInt(res.price.toString());
            sediste3.taken=false;
            sediste3.id = 0;
-           sediste3.flightInfo2Id=Number.parseInt(this.id.toString());
-           
+          // sediste3.flightInfo2Id=Number.parseInt(this.id.toString());
+           sediste3.flightInfo2Id=res.flightID;
           this.seatService.addSeat(sediste3)
          }
 

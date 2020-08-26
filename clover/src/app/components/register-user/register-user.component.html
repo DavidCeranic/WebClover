@@ -76,6 +76,23 @@
                 </div>
                     </div>
                 </div>
+
+                <div class="col-md-9">
+                        <div  >
+                           Ovde ce se prikazivati Reservation, Friend List, Your invites,
+                           <div *ngFor="let rUser of allReservation" class="div1">
+                            <div class="div2"></div>
+                            <div class="div3From">{{rUser.reservedFlight.from}}</div>
+                            
+                   
+                    </div>
+                        </div>
+                    </div>
+
+
+
+
+
                 <div  >
                     Ovde ce se prikazivati frinedreq
                     <div *ngFor="let friend of allFriendsReq" class="div1">

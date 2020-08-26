@@ -4,7 +4,10 @@ import { Params, ActivatedRoute } from '@angular/router';
 import { AllFligtsDetailsService } from 'src/app/services/allFligts/all-flights-details/all-flights-details.service';
 import { Seat } from 'src/app/entities/Seat/seat';
 import { SeatService } from 'src/app/services/seat.service';
-
+import { UserDetailsService } from 'src/app/services/userDetails/user-details.service';
+import { User } from 'src/app/entities/User/user';
+import { FlightReservation } from 'src/app/entities/FlightReservation/flight-reservation';
+import { FlightReservationService } from 'src/app/services/flightReservation/flight-reservation.service';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -16,11 +19,18 @@ export class PaymentComponent implements OnInit {
   bbb:number;
   sediste:Seat;
   cena:number;
-  constructor(public route: ActivatedRoute,public flightService :AllFligtsDetailsService,public seatService:  SeatService) { }
-
+  constructor(public route: ActivatedRoute,public flightService :AllFligtsDetailsService,public seatService:  SeatService, public userService: UserDetailsService,public reservationServation :FlightReservationService) { }
+  allSeats = new Array<Seat>();
+  sortedSeats = new Array<Seat>();
   id:number;
   flightData:FlightInfo;
-
+  seatId:number;
+  seatPrice:number;
+  s:Seat;
+  f:FlightInfo;
+  u:User;
+  ui:number;
+  res:FlightReservation=new FlightReservation;
   dalijeadmin():boolean{
 
     const userRole = JSON.parse(localStorage.getItem('role'));
@@ -71,9 +81,68 @@ export class PaymentComponent implements OnInit {
 
     
    
+    this.seatService.getAllSeats().then(
+      data=>{
+        data.forEach(element => {
+          if(element.flightInfo2Id==this.id){
+            this.allSeats.push(element);
+          }
+        });
+
+        
+      }
+
+    )
+  // this.allSeats.sort();
+    this.sortedSeats = this.allSeats.sort((n1, n2) => {
+      if (n1.number2 > n2.number2)
+        return 1;
+
+      if (n1.number2 < n2.number2)
+        return -1;
+
+        return 0;
+    })
 
 
 
+  }
+
+
+
+  reserve(seat:Seat){
+    this.seatId =seat.id;
+    this.seatPrice=seat.price;
+  }
+
+
+  finalPay(){
+    
+   this.seatService.getSeatById(this.seatId).toPromise().then(
+    dataV=> {
+      this.s=dataV;
+     }
+   )
+   this.ui=JSON.parse(localStorage.getItem("regId"));
+   this.userService.getUserById(this.ui).toPromise().then(
+    dataV=> {
+      this.u=dataV;
+     }
+   )
+
+
+    this.flightService.getFlightById(this.seatId).toPromise().then(
+      dataV=> {
+        this.f=dataV;
+       }
+     )
+
+
+     this.res.reservedSeat=this.s;
+     this.res.reservedFlight=this.f;
+     this.res.reservedUser=this.u;
+
+    this.reservationServation.addReservation(this.res);
 
   }
 
