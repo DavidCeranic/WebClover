@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApiClover.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class initionalMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

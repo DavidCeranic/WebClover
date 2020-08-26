@@ -12,6 +12,9 @@ import { HttpClient } from '@angular/common/http';
 import { FriendsService } from 'src/app/services/friends.service';
 import { FlightReservationService } from 'src/app/services/flightReservation/flight-reservation.service';
 import { FlightReservation } from 'src/app/entities/FlightReservation/flight-reservation';
+import { Car } from 'src/app/entities/Car/car';
+import { ReservationDetailsService } from 'src/app/services/reservationDetails/reservation-details.service';
+import { Reservation } from 'src/app/entities/reservation/reservation';
 
 @Component({
   selector: 'app-register-user',
@@ -34,10 +37,13 @@ export class RegisterUserComponent implements OnInit {
   pom2 = new Array<Friends>();
   allReservation= new Array<FlightReservation>();
   allReservation2= new Array<FlightReservation>();
+  allReservationCars= new Array<Reservation>();
+  filtredReservationCars= new Array<Reservation>();
+  
 
   acceptedFriends = new Array<Friends>();
   list: User[];
-  constructor(public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog,private friendService: FriendsService,public reservationService:FlightReservationService) {
+  constructor(public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog,private friendService: FriendsService,public reservationService:FlightReservationService, public reservationServiceCar: ReservationDetailsService) {
     this.user = null;
   }
 
@@ -77,11 +83,17 @@ export class RegisterUserComponent implements OnInit {
   ispisRezervacija(){
     this.reservationService.getAllReservation().then(res=>{
       this.allReservation=res;
-      //console.log(this.allReservation);
-      // this.allReservation2.forEach(element => {
-      //   if(element.reservedSeat.taken==)
-      // });
+    })
+  }
 
+  ispisRezervacijaCars(){
+    this.reservationServiceCar.getAllReservation().then(res=>{
+      this.allReservationCars = res;
+      // this.allReservationCars.forEach(element => {
+      //   if(element.user.userId == this.user.userId){
+      //     this.filtredReservationCars.push(element);
+      //   }
+      // });
     })
   }
 
@@ -90,7 +102,6 @@ export class RegisterUserComponent implements OnInit {
       height: '520px',
       width: '500px',
     });
-    //poslati string RentAdmin i u singUp postaviti to kao vrednost
   }
   ispisZahteva(){
 

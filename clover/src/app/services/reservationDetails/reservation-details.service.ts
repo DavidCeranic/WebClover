@@ -51,5 +51,9 @@ export class ReservationDetailsService {
   deleteReservation(carId: number){
     return this.http.delete(this.rootUrl + 'ReservationDetails/'+carId);
   }
+
+  getAllReservation(){
+    return this.http.get<Reservation[]>(this.rootUrl + 'ReservationDetails/GetAllReservation').toPromise();
+  }
   
 }
