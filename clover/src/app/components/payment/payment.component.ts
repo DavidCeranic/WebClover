@@ -118,6 +118,7 @@ export class PaymentComponent implements OnInit {
 
   finalPay(){
     
+    
    this.seatService.getSeatById(this.seatId).toPromise().then(
     dataV=> {
       this.s=dataV;
@@ -131,19 +132,22 @@ export class PaymentComponent implements OnInit {
    )
 
 
-    this.flightService.getFlightById(this.seatId).toPromise().then(
+    this.flightService.getFlightById(this.id).toPromise().then(
       dataV=> {
         this.f=dataV;
        }
      )
+if(this.s.taken==false){
 
-
+       this.s.taken=true;
+      this.seatService.putSeat(this.s);
      this.res.reservedSeat=this.s;
      this.res.reservedFlight=this.f;
      this.res.reservedUser=this.u;
 
     this.reservationServation.addReservation(this.res);
   }
+}
 
   rentCar(){
     this.router.navigateByUrl('flights/payment/'+ this.id + '/fast-rent-car');

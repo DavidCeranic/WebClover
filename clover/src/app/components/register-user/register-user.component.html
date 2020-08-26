@@ -25,7 +25,7 @@
                         </div>
                         <div class="profile-usermenu">
                             <ul class="nav">
-                                <li>
+                                <li (click)="ispisRezervacija()">
                                     <a routerLink="/register-user">
                                     <i class="glyphicon glyphicon-list"></i>
                                     Reservation </a>
@@ -82,7 +82,9 @@
                            Ovde ce se prikazivati Reservation, Friend List, Your invites,
                            <div *ngFor="let rUser of allReservation" class="div1">
                             <div class="div2"></div>
-                            <div class="div3From">{{rUser.reservedFlight.from}}</div>
+                            <div class="div3From">FROM:{{rUser.reservedFlight.from}}</div>
+                            <div >BROJ SEDISTA:{{rUser.reservedSeat.number2}}</div>
+
                             
                    
                     </div>

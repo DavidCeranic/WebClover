@@ -33,6 +33,8 @@ export class RegisterUserComponent implements OnInit {
   pom1 = new Array<Friends>();
   pom2 = new Array<Friends>();
   allReservation= new Array<FlightReservation>();
+  allReservation2= new Array<FlightReservation>();
+
   acceptedFriends = new Array<Friends>();
   list: User[];
   constructor(public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog,private friendService: FriendsService,public reservationService:FlightReservationService) {
@@ -58,10 +60,7 @@ export class RegisterUserComponent implements OnInit {
       this.userName=localStorage.getItem("")
     });
 
-    this.reservationService.getAllReservation().then(res=>{
-      this.allReservation=res;
-      console.log(this.allReservation);
-    })
+   
 
 
   }
@@ -73,6 +72,17 @@ export class RegisterUserComponent implements OnInit {
       }
       
       return true;
+  }
+
+  ispisRezervacija(){
+    this.reservationService.getAllReservation().then(res=>{
+      this.allReservation=res;
+      //console.log(this.allReservation);
+      // this.allReservation2.forEach(element => {
+      //   if(element.reservedSeat.taken==)
+      // });
+
+    })
   }
 
   onAddRentService(){

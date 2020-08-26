@@ -21,4 +21,8 @@ export class SeatService {
       
     return this.http.get<Seat[]>(this.rootUrl + 'Seats').toPromise();
    }
+
+   putSeat(formData:Seat){
+    return this.http.put(this.rootUrl + 'Seats/'+formData.id, formData).toPromise();
+  }
 }
