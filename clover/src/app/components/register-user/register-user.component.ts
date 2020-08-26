@@ -10,6 +10,8 @@ import { SingUpFlightAdminComponent } from './sing-up-flight-admin/sing-up-fligh
 import { Friends } from 'src/app/entities/Friends/friends';
 import { HttpClient } from '@angular/common/http';
 import { FriendsService } from 'src/app/services/friends.service';
+import { FlightReservationService } from 'src/app/services/flightReservation/flight-reservation.service';
+import { FlightReservation } from 'src/app/entities/FlightReservation/flight-reservation';
 
 @Component({
   selector: 'app-register-user',
@@ -30,10 +32,10 @@ export class RegisterUserComponent implements OnInit {
   allFriendsReq = new Array<Friends>();
   pom1 = new Array<Friends>();
   pom2 = new Array<Friends>();
-  
+  allReservation= new Array<FlightReservation>();
   acceptedFriends = new Array<Friends>();
   list: User[];
-  constructor(public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog,private friendService: FriendsService) {
+  constructor(public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog,private friendService: FriendsService,public reservationService:FlightReservationService) {
     this.user = null;
   }
 
@@ -55,6 +57,13 @@ export class RegisterUserComponent implements OnInit {
 
       this.userName=localStorage.getItem("")
     });
+
+    this.reservationService.getAllReservation().then(res=>{
+      this.allReservation=res;
+      console.log(this.allReservation);
+    })
+
+
   }
 
   check(){

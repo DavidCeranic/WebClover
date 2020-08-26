@@ -36,5 +36,7 @@ namespace WebApiClover.Models
         public DbSet<WebApiClover.Models.Friends> Friends { get; set; }
 
         public DbSet<WebApiClover.Models.Seat> Seat { get; set; }
+
+        public DbSet<WebApiClover.Models.FlightReservation> FlightReservation { get; set; }
     }
 }

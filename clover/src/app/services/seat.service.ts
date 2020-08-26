@@ -13,4 +13,12 @@ export class SeatService {
   addSeat(seat: Seat): Promise<Seat>{
     return this.http.post<Seat>(this.rootUrl + 'Seats', seat).toPromise();    
   }
+  getSeatById(seatId: number){
+    return this.http.get<Seat>(this.rootUrl + 'Seats/' + seatId.toString());
+  }
+
+  getAllSeats(){
+      
+    return this.http.get<Seat[]>(this.rootUrl + 'Seats').toPromise();
+   }
 }
