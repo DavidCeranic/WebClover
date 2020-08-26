@@ -39,7 +39,7 @@ export class RegisterUserComponent implements OnInit {
   allReservation2= new Array<FlightReservation>();
   allReservationCars= new Array<Reservation>();
   filtredReservationCars= new Array<Reservation>();
-  
+  korisnikID:string;
 
   acceptedFriends = new Array<Friends>();
   list: User[];
@@ -63,7 +63,7 @@ export class RegisterUserComponent implements OnInit {
     this.registerUser.loggedIn.subscribe(res=>{
       this.user=res;
 
-      this.userName=localStorage.getItem("")
+      
     });
 
    
@@ -81,19 +81,27 @@ export class RegisterUserComponent implements OnInit {
   }
 
   ispisRezervacija(){
+    this.Id= JSON.parse(localStorage.getItem("regId"));
     this.reservationService.getAllReservation().then(res=>{
-      this.allReservation=res;
+      this.allReservation2=res;
+      this.allReservation2.forEach(element => {
+        if(element.reservedUser.userId==this.Id){
+          this.allReservation.push(element);
+        }
+        
+      });
     })
   }
 
   ispisRezervacijaCars(){
+    this.Id= JSON.parse(localStorage.getItem("regId"));
     this.reservationServiceCar.getAllReservation().then(res=>{
       this.allReservationCars = res;
-      // this.allReservationCars.forEach(element => {
-      //   if(element.user.userId == this.user.userId){
-      //     this.filtredReservationCars.push(element);
-      //   }
-      // });
+      this.allReservationCars.forEach(element => {
+        if(element.user.userId == this.Id){
+          this.filtredReservationCars.push(element);
+        }
+      });
     })
   }
 
