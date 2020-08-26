@@ -16,8 +16,8 @@
                 </div>
               
 
-                <button *ngIf="dalijeadmin()" class="myButton2" (click)="finalPay()">Payflight </button>
-                <button class="myButton2" (click)="rentCar()">Rent A Car </button>
+                <button *ngIf="dalijeadmin()" (click)="onButtonClick($event)" class="myButton2" (click)="finalPay()">Payflight </button>
+                <button [disabled]="disable" class="myButton2" (click)="rentCar()">Rent A Car </button>
                 
                 <label> You need to pay:{{seatPrice}}</label>
              <!-- <div class="plane">
