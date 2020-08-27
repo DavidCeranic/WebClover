@@ -104,12 +104,13 @@
 
                 <div class="col-md-9">
                     <div>
-                        <div *ngFor="let rUser of filtredReservationCars" class="div1">
+                        <div *ngFor="let reservation of filtredReservationCars" class="div1">
                             <div class="div2"></div>
-                            <div class="div3From">Model:{{rUser.car.model}}</div>
-                            <div class="div3From" style="margin-left: 15%;">Brand:{{rUser.car.brand}}</div>
-                            <div>Pocetni datum:{{rUser.startDate}}</div>
-                            <div>Krajnji datum:{{rUser.endDate}}</div>
+                            <div class="div3From">Model:{{reservation.car.model}}</div>
+                            <div class="div3From" style="margin-left: 15%;">Brand:{{reservation.car.brand}}</div>
+                            <div>Pocetni datum:{{reservation.startDate}}</div>
+                            <div>Krajnji datum:{{reservation.endDate}}</div>
+                            <button style="margin-left: 70%;" (click)="deleteResercation(reservation)" class="myButton2">Delete Reservation</button>
                         </div>
                     </div>
                 </div>
