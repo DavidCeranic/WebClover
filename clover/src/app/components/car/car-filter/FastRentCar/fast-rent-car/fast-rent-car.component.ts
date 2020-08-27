@@ -19,7 +19,7 @@ import { Office } from 'src/app/entities/office/office';
 })
 export class FastRentCarComponent implements OnInit {
   rentService: RentService;
-  allCars: Array<Car>;
+  allCars: Array<Car> = new Array();
   id:number;
   flightData:FlightInfo;
   idRent: number;
@@ -44,18 +44,15 @@ export class FastRentCarComponent implements OnInit {
       }
     )
 
-    this.service.getCarById(1).subscribe(
-      dataV => {
-        this.reservationService.getReservationForCar(1);
+    this.service.refreshList();
+    this.service.messageEvent.subscribe( x=> {
+      for (let i = 0; i < this.service.list.length; i++) {
+        const element = this.service.list[i];
+        if(element.sale === true){
+          this.allCars.push(element);
+        }
       }
-    )
-
-    this.rentServiceDetails.getRentServiceById(1).subscribe(
-      dataV => {
-        this.rentService = dataV;
-        this.allCars = this.rentService.serviceCars;
-      }
-    )
+    });
 
    this.userId=JSON.parse(localStorage.getItem("regId"));
    this.userService.getUserById(this.userId).toPromise().then(

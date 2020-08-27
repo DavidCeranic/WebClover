@@ -41,6 +41,7 @@ export class AddCarComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+      form.value.sale = false;
       this.insertCar(form);
       this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/cars');
   }
@@ -91,7 +92,8 @@ export class AddCarComponent implements OnInit {
         endLocation: "",
         typeOfCar: "",
         rate: "",
-        RentServiceServiceId: 0
+        RentServiceServiceId: 0,
+        sale: false
       }
   }
 
