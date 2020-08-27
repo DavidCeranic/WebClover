@@ -28,6 +28,7 @@ import { ServiceRateComponent } from './components/car/rent-a-car-filter/admin-i
 import { CarRateComponent } from './components/car/rent-a-car-filter/admin-info/car-rate/car-rate.component';
 import { RentAdminGuard } from './guards/rentAdmin/rent-admin.guard';
 import { FastRentCarComponent } from './components/car/car-filter/FastRentCar/fast-rent-car/fast-rent-car.component';
+import { ChangePasswordComponent } from './components/register-user/change-password/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -86,9 +87,14 @@ const routes: Routes = [
       { path: "add-rent-a-car", component: AddRentACarComponent, canActivate: [RentAdminGuard] },
     ]
   },
+
   {
     path: "register-user",
-    component: RegisterUserComponent
+    children: [
+      {path: "", component: RegisterUserComponent},
+      { path: "change-password", component: ChangePasswordComponent, canActivate: [RentAdminGuard]}
+    ]
+    
 
   },
 

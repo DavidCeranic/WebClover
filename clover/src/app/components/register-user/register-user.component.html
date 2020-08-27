@@ -67,6 +67,11 @@
                                         <i class="glyphicon glyphicon-wrench"></i>
                                         Account Settings </a>
                                 </li>
+                                <li [hidden]="checkAdmin()">
+                                    <a routerLink="/register-user/change-password">
+                                        <i class="glyphicon glyphicon-wrench"></i>
+                                        Admin Settings </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

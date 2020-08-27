@@ -87,6 +87,15 @@ export class RegisterUserComponent implements OnInit {
       return true;
   }
 
+  checkAdmin(){
+    const userRole = JSON.parse(localStorage.getItem('role'));
+      if (userRole === 'RentAdmin') {
+        return false;
+      }
+      
+      return true;
+  }
+
   ispisRezervacija(){
     if(!this.clicked4){
     this.Id= JSON.parse(localStorage.getItem("regId"));
