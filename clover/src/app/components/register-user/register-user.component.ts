@@ -146,6 +146,10 @@ this.reservationService.deleteFlightReservation(rUser.reservationID);
 //ovde treba promeniti bool zauzeto;
 }
 
+deleteResercation(reservation: Reservation){
+  this.reservationServiceCar.deleteReservation(reservation.reservationId);
+}
+
   onAddRentService(){
     this.dialog.open(SingUpRentAdminComponent, {
       height: '520px',

@@ -86,5 +86,28 @@ namespace WebApiClover.Controllers
                 return await Task.FromResult<IActionResult>(BadRequest());
             }
         }
+
+
+        [HttpDelete("DeleteReservation/{reservationId}")]
+        public async Task<IActionResult> DeleteReservation(int reservationId)
+        {
+            try
+            {
+                var reservation = await _context.ReservationDetails.FindAsync(reservationId);
+                if (reservation == null)
+                {
+                    return NotFound();
+                }
+
+                _context.ReservationDetails.Remove(reservation);
+                await _context.SaveChangesAsync();
+                return await Task.FromResult<IActionResult>(Ok());
+            }
+            catch (Exception)
+            {
+                return await Task.FromResult<IActionResult>(BadRequest());
+            }
+
+        }
     }
 }

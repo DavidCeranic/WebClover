@@ -20,15 +20,15 @@ import { Office } from 'src/app/entities/office/office';
 export class FastRentCarComponent implements OnInit {
   rentService: RentService;
   allCars: Array<Car> = new Array();
-  id:number;
-  flightData:FlightInfo;
+  id: number;
+  flightData: FlightInfo;
   idRent: number;
   userId: number;
   user: User;
   totalPrice: number;
   days: number;
 
-  constructor(private rentServiceDetails: RentServiceDetailsService, public router: Router, public route: ActivatedRoute,public flightService :AllFligtsDetailsService, public userService: UserDetailsService, public reservationService: ReservationDetailsService, public service: CarDetailsService) { }
+  constructor(private rentServiceDetails: RentServiceDetailsService, public router: Router, public route: ActivatedRoute, public flightService: AllFligtsDetailsService, public userService: UserDetailsService, public reservationService: ReservationDetailsService, public service: CarDetailsService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -38,44 +38,44 @@ export class FastRentCarComponent implements OnInit {
         //this.data.refreshList();
         this.flightService.getFlightById(this.id).toPromise().then(
           dataV => {
-          this.flightData = dataV;
+            this.flightData = dataV;
           }
         )
       }
     )
 
     this.service.refreshList();
-    this.service.messageEvent.subscribe( x=> {
+    this.service.messageEvent.subscribe(x => {
       for (let i = 0; i < this.service.list.length; i++) {
         const element = this.service.list[i];
-        if(element.sale === true){
+        if (element.sale === true) {
           this.allCars.push(element);
         }
       }
     });
 
-   this.userId=JSON.parse(localStorage.getItem("regId"));
-   this.userService.getUserById(this.userId).toPromise().then(
-    dataV=> {
-      this.user=dataV;
-     }
-   )
+    this.userId = JSON.parse(localStorage.getItem("regId"));
+    this.userService.getUserById(this.userId).toPromise().then(
+      dataV => {
+        this.user = dataV;
+      }
+    )
   }
 
 
-  onRent(car: Car){
+  onRent(car: Car) {
     var startDate = new Date(this.flightData.departing);
     var endDate = new Date(this.flightData.returning);
 
-    
+
 
     if (this.checkDate(startDate, endDate)) {
       var reservation = new Reservation(startDate, endDate, car, this.user, null, null);
       this.insertReservation(reservation);
-      
+
       this.days = this.calculatePrice(startDate, endDate);
       this.totalPrice = car.pricePerDay * this.days;
-      alert("Uspesno ste rezervisali. Ukupna cena je: "+this.totalPrice);
+      alert("Uspesno ste rezervisali. Ukupna cena je: " + this.totalPrice);
       this.router.navigateByUrl('/register-user');
     }
   }
@@ -100,39 +100,44 @@ export class FastRentCarComponent implements OnInit {
       return false;
     }
 
-    for (let i = 0; i < this.reservationService.list.length; i++) {
-      var element = this.reservationService.list[i];
-      console.log(this.reservationService.list);
+    if (this.reservationService.list != null) {
+      for (let i = 0; i < this.reservationService.list.length; i++) {
+        var element = this.reservationService.list[i];
+        console.log(this.reservationService.list);
 
-      var start2 = new Date(element.startDate);
-      var end2 = new Date(element.endDate);
+        var start2 = new Date(element.startDate);
+        var end2 = new Date(element.endDate);
 
-      var start1 = new Date(startDate);
-      var end1 = new Date(endDate);
+        var start1 = new Date(startDate);
+        var end1 = new Date(endDate);
 
-      var r1 = end1.setHours(0, 0) - start2.setHours(0, 0);
-      var r2 = end2.setHours(0, 0) - start1.setHours(0, 0);
+        var r1 = end1.setHours(0, 0) - start2.setHours(0, 0);
+        var r2 = end2.setHours(0, 0) - start1.setHours(0, 0);
 
-      if (r1 >= 0 && r2 >= 0) {
-        alert('Selected span of dates is already taken.');
-        return false;
+        if (r1 >= 0 && r2 >= 0) {
+          alert('Selected span of dates is already taken.');
+          return false;
+        }
       }
+      return true;
     }
-    return true;
+    else {
+      return true;
+    }
   }
 
-  calculatePrice(startDate, endDate) : number{
+  calculatePrice(startDate, endDate): number {
     let days = new Array<Date>();
     let start = new Date(startDate);
     let end = new Date(endDate);
-    let daysNum = (end.setHours(0, 0).valueOf() - start.setHours(0,0).valueOf())/86400000;
+    let daysNum = (end.setHours(0, 0).valueOf() - start.setHours(0, 0).valueOf()) / 86400000;
 
     for (let i = 0; i < daysNum; i++) {
       let date = new Date();
       date.setDate(start.getDate() + i);
       days.push(date);
     }
-    
+
     return days.length;
   }
 }
