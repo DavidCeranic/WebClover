@@ -23,4 +23,7 @@ export class FlightReservationService {
     return this.http.get<FlightReservation[]>(this.rootUrl + 'FlightReservations').toPromise();
    }
 
+   deleteFlightReservation(reservation: number){
+    return this.http.delete(this.rootUrl + 'FlightReservations/'+reservation).toPromise();
+  }
 }

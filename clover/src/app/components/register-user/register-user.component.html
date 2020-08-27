@@ -2,7 +2,13 @@
 
 <body>
     <div class="bg">
-        <div class="container" style="margin-top: 30px;">
+            <form class="form-inline">
+                    <div class="md-form my-0" style="margin-left: 750px;">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Find Frends" aria-label="Search" [(ngModel)]="searchFriend" >
+                        <button type="button" (click)="seeAllUsers()" class="btn btn-success btn-sm">Find</button>
+                    </div>
+                </form>
+        <!-- <div class="container" style="margin-top: 30px;"> -->
             <div class="row profile">
 
                 <div class="col-md-3">
@@ -66,9 +72,10 @@
                     </div>
                 </div>
 
+
                 <div class="col-md-9">
                     <div>
-                        <div *ngFor="let rUser of allRegistredUsers" class="div1">
+                        <div *ngFor="let rUser of allRegistredUsers | users:searchFriend"  class="div1">
                             <div class="div2"></div>
                             <div class="div3From">{{rUser.email}}</div>
                             <div class="image"></div>
@@ -90,6 +97,7 @@
                             <div class="div2"></div>
                             <div class="div3From">FROM:{{rUser.reservedFlight.from}}</div>
                             <div>BROJ SEDISTA:{{rUser.reservedSeat.number2}}</div>
+                            <button (click)="cancleFlight(rUser)" class="myButton2">cancle flight </button>
                         </div>
                     </div>
                 </div>
@@ -151,7 +159,7 @@
                 </div>
 
             </div>
-        </div>
+        <!-- </div> -->
 
         <div class="admin" [hidden]="check()">
             <div class="s002">
@@ -172,12 +180,7 @@
                 </form>
             </div>
         </div>
-        <form class="form-inline">
-            <div class="md-form my-0" style="margin-left: 750px;">
-                <input class="form-control mr-sm-2" type="text" placeholder="Find Frends" aria-label="Search">
-                <button type="button" class="btn btn-success btn-sm">Find</button>
-            </div>
-        </form>
+
 
     </div>
 </body>
