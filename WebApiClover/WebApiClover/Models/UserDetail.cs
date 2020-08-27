@@ -41,5 +41,6 @@ namespace WebApiClover.Models
 
         //public List<Friends> UserFriends { get; set; } = new List<Friends>();
         public bool IsVerify { get; set; }
+
     }
 }

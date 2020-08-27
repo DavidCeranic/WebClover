@@ -33,7 +33,6 @@ export class CarsRentComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = params['id'];
-        //this.data.refreshList();
         this.rentServiceDetails.getRentServiceById(this.id).subscribe(
           dataV => {
             this.rentService = dataV;
@@ -50,8 +49,6 @@ export class CarsRentComponent implements OnInit {
   constructor(public dialog: MatDialog, private carService: CarService,private rentServiceDetails: RentServiceDetailsService, public route: ActivatedRoute, public service: CarDetailsService, public router: Router) {
     this.service.refreshList();
     this.service.messageEvent.subscribe( x => {
-      //this.allCars = this.rentService.serviceCars;
-      //this.filtredCars = this.allCars;
     })
    }
 
@@ -63,7 +60,6 @@ export class CarsRentComponent implements OnInit {
     // });
 
     // dialogRef.afterClosed().subscribe( result => {
-
     // });
   }
 
@@ -72,7 +68,6 @@ export class CarsRentComponent implements OnInit {
       if (userRole === 'Admin' || userRole === "RentAdmin") {
         return false;
       }
-
       return true;
   }
 
