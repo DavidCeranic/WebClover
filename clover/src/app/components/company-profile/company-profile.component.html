@@ -131,6 +131,9 @@
                  <input type="hidden" name="flightID" [value]="service.formData.flightID">
                  <input type="hidden" name="flightID" [value]="companyData.avioCompID">
 
+
+
+                 
                 <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                        From:
                         <input name="from"   #from="ngModel" [(ngModel)]="service.formData.from"  type="text"  class="form-control" placeholder="City or airport" id="from"  required>
@@ -178,12 +181,21 @@
                         SeatsNumber:
                         <input #seatsNumber="ngModel" [(ngModel)]="service.formData.seatsNumber" name="seatsNumber" type="number"  class="form-control"  id="seatsNumber" required/>
                       </div>
-                
+
+                      <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
+                        Start time:
+                        <input #startTime="ngModel" [(ngModel)]="service.formData.startTime" name="startTime" type="time"  class="form-control"  id="startTime" required/>
+                      </div>
+
+                      <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
+                        End time:
+                        <input #endTime="ngModel" [(ngModel)]="service.formData.endTime" name="endTime" type="time"  class="form-control"  id="endTime" required/>
+                      </div>
                
 
                 <div class="form-group">
                  <input  type="submit" name="submit" id="submit" class="form-submit" value="Add Flight" class="poz"/>
                 </div>
-                </form>>
+                </form>
     </div>
 </body>

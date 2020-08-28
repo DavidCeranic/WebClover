@@ -18,7 +18,8 @@ rateFlight:number;
 companyAboutAvioCompID: number;
 userDetailUserId: number;
 seatsList: Seat[];
-
+startTime:string;
+endTime:string;
 constructor(from:string, to:string,departing:string,returning:string,classf:string,stops:number,duration:string,companyName:string,price:number,seatsNumber:number,
     rateFlight:number){
     this.from=from;

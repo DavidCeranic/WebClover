@@ -233,6 +233,12 @@ top:500px;
   left: 14px;
   top: 14px;
 }
+
+.div56{
+  position: absolute;
+  right:0;
+  top:0;
+}
 .div3From{
   font-family: "Lucida Console";
   font-size: 150%;

@@ -10,8 +10,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200827200627_removeLogOut")]
-    partial class removeLogOut
+    [Migration("20200828144337_firstMmigration")]
+    partial class firstMmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -206,6 +206,10 @@ namespace WebApiClover.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("EndTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("From")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
@@ -221,6 +225,10 @@ namespace WebApiClover.Migrations
                     b.Property<string>("SeatsNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("StartTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Stops")
                         .IsRequired()

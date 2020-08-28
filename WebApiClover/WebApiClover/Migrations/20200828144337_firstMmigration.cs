@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApiClover.Migrations
 {
-    public partial class initionalMigration : Migration
+    public partial class firstMmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -145,6 +145,7 @@ namespace WebApiClover.Migrations
                     EndLocation = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     TypeOfCar = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     IsTaken = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Sale = table.Column<bool>(nullable: false),
                     RentServiceServiceId = table.Column<int>(nullable: true),
                     UserDetailUserId = table.Column<int>(nullable: true)
                 },
@@ -182,6 +183,8 @@ namespace WebApiClover.Migrations
                     CompanyName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Price = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     SeatsNumber = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    StartTime = table.Column<string>(nullable: false),
+                    EndTime = table.Column<string>(nullable: false),
                     CompanyAboutAvioCompID = table.Column<int>(nullable: false),
                     UserDetailUserId = table.Column<int>(nullable: true)
                 },

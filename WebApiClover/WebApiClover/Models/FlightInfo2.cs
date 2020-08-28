@@ -63,8 +63,12 @@ namespace WebApiClover.Models
         [Required]
         [Column(TypeName = "nvarchar(100)")]
         public int SeatsNumber { get; set; }
+        [Required]
+        public string StartTime { get; set; }
+        [Required]
+        public string EndTime { get; set; }
 
-       
+
         public virtual List<Rate> RateFlight{ get; set; }
 
         public virtual List<Seat> Seats { get; set; } = new List<Seat>();

@@ -127,7 +127,9 @@ export class PaymentComponent implements OnInit {
       this.res.reservedUser = this.u;
 
       this.reservationServation.addReservation(this.res);
+      alert('Usepsno ste rezervisali mesto.');
     }
+    alert('Greska pri rezervaciji');
   }
 
   onButtonClick(event : MouseEvent){

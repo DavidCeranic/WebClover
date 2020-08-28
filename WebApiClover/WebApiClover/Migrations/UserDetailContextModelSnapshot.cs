@@ -204,6 +204,10 @@ namespace WebApiClover.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("EndTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("From")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
@@ -219,6 +223,10 @@ namespace WebApiClover.Migrations
                     b.Property<string>("SeatsNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("StartTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Stops")
                         .IsRequired()
