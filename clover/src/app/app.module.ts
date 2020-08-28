@@ -108,7 +108,7 @@ import { ChangePasswordComponent } from './components/register-user/change-passw
     UsersPipe,
     FastRentCarComponent,
 
-    EditCompanyProfileComponent
+    EditCompanyProfileComponent,
 
     ChangePasswordComponent
 
