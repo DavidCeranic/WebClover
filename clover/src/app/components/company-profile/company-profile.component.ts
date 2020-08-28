@@ -15,6 +15,11 @@ import { browser } from 'protractor';
 import { Seat } from 'src/app/entities/Seat/seat';
 import { SeatService } from 'src/app/services/seat.service';
 import { from } from 'rxjs';
+import { all } from 'q';
+import { UserDetailsService } from 'src/app/services/userDetails/user-details.service';
+import { User } from 'src/app/entities/User/user';
+import { FlightReservation } from 'src/app/entities/FlightReservation/flight-reservation';
+import { FlightReservationService } from 'src/app/services/flightReservation/flight-reservation.service';
 
 @Component({
   selector: 'app-company-profile',
@@ -29,11 +34,17 @@ export class CompanyProfileComponent implements OnInit {
   id:number;
   id2:number;
   brs:number;
+  iddd:number;
   i:number;
   bbb:number;
   sediste:Seat;
   cena:number;
-  constructor(private flightService: AllFlightsService,public seatService:  SeatService, private toastr: ToastrService,public route: ActivatedRoute,private data:AvioCompanyService,public service :AllFligtsDetailsService,public companyService: AvioCompanyDetailsService ){
+  allSeats = new Array<Seat>();
+  firstSeat:Seat;
+  ui:number;
+  u:User;
+  res: FlightReservation = new FlightReservation;
+  constructor(private flightService: AllFlightsService,public reservationServation: FlightReservationService, public userService: UserDetailsService , private router: Router,public seatService:  SeatService, private toastr: ToastrService,public route: ActivatedRoute,private data:AvioCompanyService,public service :AllFligtsDetailsService,public companyService: AvioCompanyDetailsService ){
  // this.service.refreshList();
  //this.service.messageEvent.subscribe( x => {
 //})
@@ -49,6 +60,7 @@ export class CompanyProfileComponent implements OnInit {
         this.id2=params['flightID']
         console.log(this.id);
         //this.data.refreshList();
+        this.iddd=this.id;
         this.companyService.getAvioCompanyById(this.id).toPromise().then(
           dataV => {
           this.companyData = dataV;
@@ -73,7 +85,61 @@ export class CompanyProfileComponent implements OnInit {
       //  this.searchedFlights = this.allFlightss;
        }
 ); 
+this.seatService.getAllSeats().then(
+  data => {
+    data.forEach(element => {
+      if (element.flightInfo2Id == this.id) {
+        this.allSeats.push(element);
+      }
+    });
+
+
   }
+
+)
+
+
+  }
+
+  fastRezervation(f:FlightInfo){
+
+    this.seatService.getAllSeats().then(
+      data => {
+        data.forEach(element => {
+          if (element.flightInfo2Id == f.flightID) {
+            this.allSeats.push(element);
+          }
+        });
+      }
+    )
+
+    this.allSeats.forEach(element => {
+      if(element.flightInfo2Id==f.flightID && element.number2==0)
+      this.firstSeat=element;
+    });
+
+    this.ui = JSON.parse(localStorage.getItem("regId"));
+    this.userService.getUserById(this.ui).toPromise().then(
+      dataV => {
+        this.u = dataV;
+      }
+    )
+
+    if (this.firstSeat.taken == false) {
+
+      this.firstSeat.taken = true;
+      this.seatService.putSeat(this.firstSeat);
+      this.res.reservedSeat = this.firstSeat;
+      this.res.reservedFlight =f;
+      this.res.reservedUser = this.u;
+
+      this.reservationServation.addReservation(this.res);
+      alert("Uspesno ste rezervisali");
+    }
+    alert("Vise nema slobodnih mesta na popustu");
+
+  }
+
   onSubmit(form: NgForm){
     console.log(form.value);
      this.service.postFlightDetails(form.value, this.id).subscribe(
@@ -120,6 +186,12 @@ export class CompanyProfileComponent implements OnInit {
   }
   onClear() {
     this.addFlight.reset();
+  }
+
+
+  onSelect2(id:number){
+    this.router.navigateByUrl('/edit-company/'+id);
+
   }
 
   getFieldValue(filterFieldId: string) {
