@@ -6,7 +6,7 @@
         
             
         </div>
-        <div><button  type="button" routerLink="/add-flight" >add-flight</button></div> 
+        <div><button  type="button" class="form-submit" (click)="onSelect2(id)" >change info about company</button></div> 
         <div class="booking-form">
                         <form>
                                 <div class="form-group">
@@ -116,7 +116,7 @@
                                                 <div class="div5To">{{f.to}}</div>
                                                 <div class="divName">{{f.companyName}}</div>
                                                 <div class="btn2">
-                                                <button routerLink="/payment" class="myButton2">BOOK {{f.price}}$</button>
+                                                <button (click)="fastRezervation(f)"  class="myButton2">fast reservation{{f.price/2}}$</button>
                                         </div>
                                         </div>
 
@@ -131,58 +131,58 @@
                  <input type="hidden" name="flightID" [value]="service.formData.flightID">
                  <input type="hidden" name="flightID" [value]="companyData.avioCompID">
 
-                <div class="form-group">
+                <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                        From:
-                        <input name="from"   #from="ngModel" [(ngModel)]="service.formData.from"  type="text"  class="form-control" placeholder="City or airport" id="from" required>
+                        <input name="from"   #from="ngModel" [(ngModel)]="service.formData.from"  type="text"  class="form-control" placeholder="City or airport" id="from"  required>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                       To:
                       <input name="to" class="form-control" #to="ngModel" [(ngModel)]="service.formData.to"  type="text" placeholder="City or airport"  id="to" required>
                 </div>
-                 <div class="form-group">
+                 <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Departing:
                    <input name="departing" class="form-control"  #departing="ngModel" [(ngModel)]="service.formData.departing"  id="departing" type="date" required>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Returning:
                                 <input  name="returning" #returning="ngModel" [(ngModel)]="service.formData.returning" id="returning" class="form-control" type="date" required>
                  </div>
-                 <div class="form-group">
+                 <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Classf:
                                 <input name="classf" #classf="ngModel" [(ngModel)]="service.formData.classf"  id="classf" class="form-control" type="text" placeholder="class" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Baggage:
                                 <input name="baggage" #baggage="ngModel" [(ngModel)]="service.formData.baggage"   id="baggage" class="form-control" type="text" placeholder="baggage" required>
                 </div>   
 
-                <div class="form-group">
+                <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Stops:
                                 <input name="stops" #stops="ngModel" [(ngModel)]="service.formData.stops"  id="stops" class="form-control" type="number" placeholder="stops" required>
                 </div>   
-                  <div class="form-group">
+                  <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Duration:
                                 <input name="duration"  #duration="ngModel" [(ngModel)]="service.formData.duration" id="duration" class="form-control" type="text" placeholder="duration" required>
                 </div> 
-                    <div class="form-group">
+                    <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                                 Company Name:
                                 <input name="companyName" #companyName="ngModel" [(ngModel)]="service.formData.companyName"  id="companyName" class="form-control" type="text" placeholder="companyName" required>
                 </div>   
-                <div class="form-group">
+                <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                                 Price:
                                 <input name="price" #price="ngModel" [(ngModel)]="service.formData.price"  id="price" class="form-control" type="number" placeholder="price" required>
                 </div>   
 
 
-                <div class="form-group">
+                <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         SeatsNumber:
-                        <input #seatsNumber="ngModel" [(ngModel)]="service.formData.seatsNumber" name="seatsNumber" type="number" class="form-input" id="seatsNumber" required/>
+                        <input #seatsNumber="ngModel" [(ngModel)]="service.formData.seatsNumber" name="seatsNumber" type="number"  class="form-control"  id="seatsNumber" required/>
                       </div>
                 
                
 
                 <div class="form-group">
-                 <input  type="submit" name="submit" id="submit" class="form-submit" value="Add Flight"/>
+                 <input  type="submit" name="submit" id="submit" class="form-submit" value="Add Flight" class="poz"/>
                 </div>
                 </form>>
     </div>

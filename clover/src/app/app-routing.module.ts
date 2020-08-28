@@ -28,6 +28,7 @@ import { ServiceRateComponent } from './components/car/rent-a-car-filter/admin-i
 import { CarRateComponent } from './components/car/rent-a-car-filter/admin-info/car-rate/car-rate.component';
 import { RentAdminGuard } from './guards/rentAdmin/rent-admin.guard';
 import { FastRentCarComponent } from './components/car/car-filter/FastRentCar/fast-rent-car/fast-rent-car.component';
+import { EditCompanyProfileComponent } from './components/flights/edit-company-profile/edit-company-profile.component';
 
 const routes: Routes = [
   {
@@ -48,7 +49,7 @@ const routes: Routes = [
         {path: "", component: PaymentComponent},
         { path: 'fast-rent-car', component: FastRentCarComponent}
       ]
-     },
+     },{path:'add-flight/:flightID',component:AddFlightComponent},
     ]
   },
   {
@@ -108,10 +109,16 @@ const routes: Routes = [
   {
     path: "add-about-company",
     component: AddAboutCompanyComponent, canActivate: [AdminGuard]
-  }, {
-    path: "add-flight",
-    component: AddFlightComponent, canActivate: [AdminGuard]
+  }, 
+  // {
+  //   path: "add-flight",
+  //   component: AddFlightComponent, canActivate: [AdminGuard]
+  // },
+  {
+    path: "edit-company/:id",
+    component: EditCompanyProfileComponent
   }
+  
 ];
 
 @NgModule({

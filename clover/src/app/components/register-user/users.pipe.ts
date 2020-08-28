@@ -7,12 +7,12 @@ import { User } from 'src/app/entities/User/user';
     name:'users'
 })
 export class UsersPipe implements PipeTransform{
-    transform(rUser:User[], searchFriend:string):User[] {
+    transform(rUserr:User[], searchFriend:string):User[] {
       
 
-        if(!rUser || !searchFriend ){
-            return rUser;
+        if(!rUserr || !searchFriend ){
+            return rUserr;
         }
-        return rUser.filter(rUser => rUser.name.toLocaleLowerCase().indexOf(searchFriend.toLocaleLowerCase()) !==-1);
+        return rUserr.filter(rUser => rUser.name.toLocaleLowerCase().indexOf(searchFriend.toLocaleLowerCase()) !==-1);
     }
 }

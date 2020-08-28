@@ -54,27 +54,7 @@ export class PaymentComponent implements OnInit {
         this.flightService.getFlightById(this.id).toPromise().then(
           dataV => {
             this.flightData = dataV;
-            // console.log(this.flightData);
-            // this.brs=this.flightData.seatsNumber;
-
-            // for(let bi=0;bi<this.brs;bi++){
-            //   let sediste2:Seat;
-            //   let sediste3=new Seat(0,"economy",0,0,false,0);
-            //   sediste3.number2=Number.parseInt(bi.toString());
-            //   sediste3.price=Number.parseInt(this.flightData.price.toString());
-            //   sediste3.taken=false;
-            //   sediste3.id = 0;
-            //   sediste3.flightInfo2Id=Number.parseInt(this.id.toString());
-
-            //  this.seatService.addSeat(sediste3).then(res=>
-            // {
-            //   console.log("AAAA");
-            // });
-
-
-
-
-            //  }
+           
 
           }
         )
@@ -86,7 +66,7 @@ export class PaymentComponent implements OnInit {
     this.seatService.getAllSeats().then(
       data => {
         data.forEach(element => {
-          if (element.flightInfo2Id == this.id) {
+          if (element.flightInfo2Id == this.id && element.number2!=0)  {
             this.allSeats.push(element);
           }
         });

@@ -31,4 +31,10 @@ export class SearchFlightComponent implements OnInit {
     this.router.navigateByUrl('/flights/payment/'+flightService.flightID);
   
   }
+  onSelect2(flightService:FlightInfo){
+    this.router.navigateByUrl('/flights/add-flight/'+flightService.flightID);
+  
+  }
+
+  
 }

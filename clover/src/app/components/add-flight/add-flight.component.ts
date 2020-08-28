@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { AllFligtsDetailsService } from 'src/app/services/allFligts/all-flights-details/all-flights-details.service'
+import { ActivatedRoute, Params } from '@angular/router';
+import { FlightInfo } from 'src/app/entities/flightInfo/flight-info';
 
 @Component({
   selector: 'app-add-flight',
@@ -9,10 +11,28 @@ import { AllFligtsDetailsService } from 'src/app/services/allFligts/all-flights-
 })
 export class AddFlightComponent implements OnInit {
   addFlight : FormGroup
-  constructor(public service:AllFligtsDetailsService) { }
+  id:number;
+  flightData: FlightInfo;
+  constructor(public service:AllFligtsDetailsService,public route: ActivatedRoute,public flightService :AllFligtsDetailsService) { }
 
   ngOnInit(): void {
-    this.resetForm();
+    
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['flightID'];
+        console.log(this.id);
+        //this.data.refreshList();
+        this.flightService.getFlightById(this.id).toPromise().then(
+          dataV => {
+            this.flightData = dataV;
+           
+
+          }
+        )
+      }
+    )
+   // this.service.formData.price = 999;
+    //this.resetForm();
   }
 
   onSubmit(form: NgForm){
@@ -24,6 +44,7 @@ export class AddFlightComponent implements OnInit {
     //     console.log(err);
     //   }
     // )
+   
     
   }
   onClear() {
