@@ -99,7 +99,8 @@ export class ChangeCarComponent implements OnInit {
         endLocation: "",
         typeOfCar: "",
         rate: "",
-        RentServiceServiceId: 0
+        RentServiceServiceId: 0,
+        sale: false
       }
   }
 

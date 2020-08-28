@@ -61,7 +61,11 @@ import { FastRentCarComponent } from './components/car/car-filter/FastRentCar/fa
 import { FlightFilterPipe2 } from './components/flights/flight-filter2.pipe';
 import { FlightFilterPipe3 } from './components/flights/flight-filter3.pipe';
 import { UsersPipe } from './components/register-user/users.pipe';
+
 import { EditCompanyProfileComponent } from './components/flights/edit-company-profile/edit-company-profile.component';
+
+import { ChangePasswordComponent } from './components/register-user/change-password/change-password/change-password.component';
+
 
 
 @NgModule({
@@ -103,7 +107,11 @@ import { EditCompanyProfileComponent } from './components/flights/edit-company-p
     FlightFilterPipe3,
     UsersPipe,
     FastRentCarComponent,
+
     EditCompanyProfileComponent
+
+    ChangePasswordComponent
+
   ],
   imports: [
     BrowserModule,

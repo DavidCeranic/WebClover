@@ -48,8 +48,8 @@ export class ReservationDetailsService {
     return this.http.put(this.rootUrl + 'ReservationDetails/'+rentService, formData);
   }
 
-  deleteReservation(carId: number){
-    return this.http.delete(this.rootUrl + 'ReservationDetails/'+carId);
+  deleteReservation(reservationId: number){
+    return this.http.delete(this.rootUrl + 'ReservationDetails/DeleteReservation/' + reservationId);
   }
 
   getAllReservation(){

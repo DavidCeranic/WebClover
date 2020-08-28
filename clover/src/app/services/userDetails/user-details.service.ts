@@ -22,6 +22,10 @@ export class UserDetailsService {
     return this.http.post(this.rootUrl + 'UserDetails', formData);
   }
 
+  putUserDetails(user: User, userId: string){
+    return this.http.put(this.rootUrl + 'UserDetails/' + userId, user);
+  }
+
   refreshList(): Promise<User[]>{
    return this.http.get<User[]>(this.rootUrl + 'UserDetails').toPromise();
   }

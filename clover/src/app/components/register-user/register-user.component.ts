@@ -87,6 +87,15 @@ export class RegisterUserComponent implements OnInit {
       return true;
   }
 
+  checkAdmin(){
+    const userRole = JSON.parse(localStorage.getItem('role'));
+      if (userRole === 'RentAdmin') {
+        return false;
+      }
+      
+      return true;
+  }
+
   ispisRezervacija(){
     if(!this.clicked4){
     this.Id= JSON.parse(localStorage.getItem("regId"));
@@ -144,6 +153,10 @@ this.pomSeat.taken=false;
 this.seatService.putSeat(this.pomSeat)
 this.reservationService.deleteFlightReservation(rUser.reservationID);
 //ovde treba promeniti bool zauzeto;
+}
+
+deleteResercation(reservation: Reservation){
+  this.reservationServiceCar.deleteReservation(reservation.reservationId);
 }
 
   onAddRentService(){
