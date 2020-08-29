@@ -49,7 +49,7 @@ export class ReservationDetailsService {
   }
 
   deleteReservation(reservationId: number){
-    return this.http.delete(this.rootUrl + 'ReservationDetails/DeleteReservation/' + reservationId);
+    return this.http.delete(this.rootUrl + 'ReservationDetails/DeleteReservation/' + reservationId).toPromise();
   }
 
   getAllReservation(){

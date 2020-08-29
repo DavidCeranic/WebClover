@@ -10,38 +10,38 @@ import { UserDetailsService } from './services/userDetails/user-details.service'
 })
 export class AppComponent {
   title = 'clover';
-  emaill:string;
+  emaill: string;
   user: User;
   userId: number;
 
   ngOnInit(): void {
-    
+
   }
 
-  constructor(public router: Router, public userService: UserDetailsService){
-    
-  }
-  
+  constructor(public router: Router, public userService: UserDetailsService) {
 
-  IsSignedIn():boolean{
+  }
+
+
+  IsSignedIn(): boolean {
     return !!localStorage.getItem('regId');
   }
-  LogOut(){
+  LogOut() {
     this.userId = JSON.parse(localStorage.getItem("regId"));
     this.userService.getUserById(this.userId).toPromise().then(
       dataV => {
         this.user = dataV;
-        this.userService.refreshList();
+        if (this.user.logOut == false) {
+          alert("Morate prvo promeniti lozinku");
+        }
+        else {
+          localStorage.clear();
+          this.router.navigateByUrl("/");
+        }
       }
-    )
+    );
 
 
-    if(this.user.logOut == false){
-      alert("Morate prvo promeniti lozinku");
-    }
-    else{
-      localStorage.clear();
-      this.router.navigateByUrl("/");
-    }
+
   }
 }

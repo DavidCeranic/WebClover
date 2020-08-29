@@ -19,8 +19,8 @@ import { Office } from 'src/app/entities/office/office';
   styleUrls: ['./cars-rent.component.css']
 })
 export class CarsRentComponent implements OnInit {
-  allCars: Array<Car>;
-  filtredCars: Array<Car>;
+  allCars: Array<Car> = new Array<Car>();
+  filtredCars: Array<Car> = new Array<Car>();
   SearchCarForm: FormGroup;
   id: number;
   display="cars-rent";
