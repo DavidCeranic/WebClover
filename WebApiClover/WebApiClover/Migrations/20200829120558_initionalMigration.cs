@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApiClover.Migrations
 {
-    public partial class firstMmigration : Migration
+    public partial class initionalMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -98,7 +98,8 @@ namespace WebApiClover.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     UserType = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     StringToken = table.Column<string>(nullable: true),
-                    IsVerify = table.Column<bool>(nullable: false)
+                    IsVerify = table.Column<bool>(nullable: false),
+                    LogOut = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

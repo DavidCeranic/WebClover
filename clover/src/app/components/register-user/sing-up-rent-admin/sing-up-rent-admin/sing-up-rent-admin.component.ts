@@ -24,6 +24,7 @@ export class SingUpRentAdminComponent implements OnInit {
   onSubmit(form: NgForm){
     //proveriti da li je dosla neka vrednost(RentAdmin, FlightAdmin) pa onda staviti user ili nesto od ta dva
     form.value.UserType="RentAdmin";
+    form.value.logOut = false;
     this.insertUser(form);
   }
 
@@ -53,7 +54,8 @@ export class SingUpRentAdminComponent implements OnInit {
         phoneNumber: "",
         UserType: "",
         StringToken: "",
-        userFriends:null
+        userFriends:null,
+        logOut: null
       }
   }
 
