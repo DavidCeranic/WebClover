@@ -35,6 +35,10 @@ export class RentServiceDetailsService {
     } );
   }
 
+  refreshList2() : Promise<RentService[]>{
+    return this.http.get<RentService[]>(this.rootUrl + 'RentServices').toPromise();
+  }
+
   putRentService(formData: RentService, serviceId: string){
     var num = parseInt(serviceId);
     formData.serviceId = serviceId;

@@ -25,7 +25,7 @@ namespace WebApiClover.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RentService>>> GetRentService()
         {
-            return await _context.RentService.Include(x=>x.ServiceCars).Include(c => c.ServiceOffice).ToListAsync();
+            return await _context.RentService.Include(x=>x.ServiceCars).ThenInclude(r => r.RateCar).Include(c => c.ServiceOffice).ToListAsync();
         }
 
         // GET: api/RentServices/5
