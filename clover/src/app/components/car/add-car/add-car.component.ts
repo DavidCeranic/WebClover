@@ -92,9 +92,10 @@ export class AddCarComponent implements OnInit {
         location: "",
         endLocation: "",
         typeOfCar: "",
-        rate: null,
+        rateCar: null,
         RentServiceServiceId: 0,
-        sale: false
+        sale: false,
+        averageRate: 0
       }
   }
 
