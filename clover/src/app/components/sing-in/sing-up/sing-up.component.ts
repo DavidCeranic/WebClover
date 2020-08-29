@@ -67,7 +67,7 @@ export class SingUpComponent implements OnInit {
         location.reload();
       },
       err => {
-        this.toastr.error('error');
+        this.toastr.error(err.error.message);
       }
     );
   }

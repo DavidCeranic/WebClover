@@ -144,6 +144,11 @@ namespace WebApiClover.Controllers
 
         public async Task<ActionResult<UserDetail>> PostUserDetail(UserDetail userDetail)
         {
+            if(_context.UserDetails.Any(U => U.Email == userDetail.Email))
+            {
+                return BadRequest(new { message = "email alredy exists" });
+            }
+
             _context.UserDetails.Add(userDetail);
             await _context.SaveChangesAsync();
 

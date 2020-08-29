@@ -16,6 +16,7 @@ export class ChangeCarComponent implements OnInit {
   addCarForm: FormGroup;
   car: Car;
   id: number;
+  carId: number;
   rentService: RentService;
 
   constructor(public service: CarDetailsService, private toastr: ToastrService, public rentServiceServis: RentServiceDetailsService, public router: Router, public route: ActivatedRoute) { }
@@ -38,8 +39,8 @@ export class ChangeCarComponent implements OnInit {
 
     this.route.params.subscribe(
       (params: Params) => {
-        this.id = params['carid'];
-        this.service.getCarById(this.id).subscribe(
+        this.carId = params['carid'];
+        this.service.getCarById(this.carId).subscribe(
           carV => {
             this.car = carV;
           }
@@ -55,13 +56,14 @@ export class ChangeCarComponent implements OnInit {
   updateCar(form: NgForm){
     var car = form.value as Car;
 
-    for (let i = 0; i < this.rentService.serviceCars.length; i++) {
-      const element = this.rentService.serviceCars[i];
-      if(element.carId == car.carId)
-        this.rentService.serviceCars[i] = car;
-    }
+    // for (let i = 0; i < this.rentService.serviceCars.length; i++) {
+    //   const element = this.rentService.serviceCars[i];
+    //   if(element.model == car.model)
+    //     this.rentService.serviceCars[i] = car;
+    // }
 
-    this.rentServiceServis.putRentService(this.rentService, this.rentService.serviceId).subscribe(
+    this.service.putCar(car, this.carId, this.rentService.serviceId).subscribe(
+    // this.rentServiceServis.putRentService(this.rentService, this.rentService.serviceId).subscribe(
       res => {  
         //this.rentService.selectedService.serviceCars.push(form.value);
         //this.rentService.putRentService(this.rentService.selectedService);

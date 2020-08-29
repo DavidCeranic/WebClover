@@ -26,7 +26,7 @@ export class CarComponent implements OnInit {
   display = false;
 
   allRentServices: Array<RentService>;
-  filtredRentServices: Array<RentService>;
+  filtredRentServices: Array<RentService> = new Array<RentService>();
 
   ngOnInit(): void {
     this.service.refreshList();

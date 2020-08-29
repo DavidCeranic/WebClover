@@ -17,7 +17,7 @@ import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.s
 export class LocationsRentComponent implements OnInit {
   rentService: RentService;
   id: number;
-  allOffice: Array<Office>;
+  allOffice: Array<Office> = new Array<Office>();
   display="locations-rent";
 
   constructor(public dialog: MatDialog, private rentServiceDetails: RentServiceDetailsService, public route: ActivatedRoute, public service: CarDetailsService, public router: Router, private toastr: ToastrService, private officeService: OfficeDetailsService) {
