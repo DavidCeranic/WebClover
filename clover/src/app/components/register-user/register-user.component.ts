@@ -151,24 +151,9 @@ export class RegisterUserComponent implements OnInit {
         });
       });
 
-    })
+    }
   }
-  }
-seeAllUsers(){
-  if(!this.clicked3){
- 
-    this.Id= JSON.parse(localStorage.getItem("regId"));
-    this.service.refreshList().then(res => {
-      this.allRegistredUsers2 = res;
-      this.allRegistredUsers2.forEach(element => {
-        if(element.userId!=this.Id){
-          this.allRegistredUsers.push(element);
-          this.clicked3=true;
-        }
-      });
-    });
-}
-}
+
 cancleFlight(rUser:FlightReservation){
 
 //prvo moram da preuzmem sediste;
