@@ -100,7 +100,7 @@ export class ChangeCarComponent implements OnInit {
         location: "",
         endLocation: "",
         typeOfCar: "",
-        rate: "",
+        rate: null,
         RentServiceServiceId: 0,
         sale: false
       }

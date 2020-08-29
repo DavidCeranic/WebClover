@@ -78,7 +78,8 @@ namespace WebApiClover.Migrations
                     PriceTable = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     Contact = table.Column<string>(type: "nvarchar(4000)", nullable: false),
                     Lat = table.Column<decimal>(type: "decimal", nullable: false),
-                    Lng = table.Column<decimal>(type: "decimal", nullable: false)
+                    Lng = table.Column<decimal>(type: "decimal", nullable: false),
+                    Rate = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -256,9 +257,7 @@ namespace WebApiClover.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RateNumber = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     CarInfoCarId = table.Column<int>(nullable: true),
-                    CompanyAboutAvioCompID = table.Column<int>(nullable: true),
-                    FlightInfo2FlightID = table.Column<int>(nullable: true),
-                    RentServiceServiceId = table.Column<int>(nullable: true)
+                    FlightInfo2FlightID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -270,22 +269,10 @@ namespace WebApiClover.Migrations
                         principalColumn: "CarId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Rate_CompanyAbout_CompanyAboutAvioCompID",
-                        column: x => x.CompanyAboutAvioCompID,
-                        principalTable: "CompanyAbout",
-                        principalColumn: "AvioCompID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Rate_FlightInfo2_FlightInfo2FlightID",
                         column: x => x.FlightInfo2FlightID,
                         principalTable: "FlightInfo2",
                         principalColumn: "FlightID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Rate_RentService_RentServiceServiceId",
-                        column: x => x.RentServiceServiceId,
-                        principalTable: "RentService",
-                        principalColumn: "ServiceId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -392,19 +379,9 @@ namespace WebApiClover.Migrations
                 column: "CarInfoCarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rate_CompanyAboutAvioCompID",
-                table: "Rate",
-                column: "CompanyAboutAvioCompID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Rate_FlightInfo2FlightID",
                 table: "Rate",
                 column: "FlightInfo2FlightID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Rate_RentServiceServiceId",
-                table: "Rate",
-                column: "RentServiceServiceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReservationDetails_CarId",

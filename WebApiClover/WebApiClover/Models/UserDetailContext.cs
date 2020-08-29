@@ -38,5 +38,7 @@ namespace WebApiClover.Models
         public DbSet<WebApiClover.Models.Seat> Seat { get; set; }
 
         public DbSet<WebApiClover.Models.FlightReservation> FlightReservation { get; set; }
+
+        public DbSet<WebApiClover.Models.Rate> Rate { get; set; }
     }
 }

@@ -17,6 +17,8 @@ import { ReservationDetailsService } from 'src/app/services/reservationDetails/r
 import { Reservation } from 'src/app/entities/reservation/reservation';
 import { SeatService } from 'src/app/services/seat.service';
 import { Seat } from 'src/app/entities/Seat/seat';
+import { Rate } from 'src/app/entities/rate/rate';
+import { RateService } from 'src/app/services/rate/rate.service';
 
 @Component({
   selector: 'app-register-user',
@@ -60,7 +62,7 @@ export class RegisterUserComponent implements OnInit {
   carRate: FormGroup = new FormGroup({
     rate: new FormControl('', Validators.required)
   });
-  constructor(public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog, private friendService: FriendsService, public reservationService: FlightReservationService, public reservationServiceCar: ReservationDetailsService, public seatService: SeatService) {
+  constructor(private rateService: RateService, public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog, private friendService: FriendsService, public reservationService: FlightReservationService, public reservationServiceCar: ReservationDetailsService, public seatService: SeatService) {
     this.user = null;
   }
 
@@ -134,8 +136,12 @@ export class RegisterUserComponent implements OnInit {
     }
   }
 
-  onSubmit(){
-    
+  onSubmit(reservation: Reservation){
+    var car = reservation.car;
+    var rateValue = Number.parseInt(this.carRate.value.rate);
+    var rate = new Rate(0, rateValue, car.carId);
+
+    this.rateService.postRate(rate);
   }
 
   seeAllUsers() {

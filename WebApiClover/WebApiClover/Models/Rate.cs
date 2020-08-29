@@ -16,5 +16,7 @@ namespace WebApiClover.Models
         [Required]
         [Column(TypeName = "nvarchar(100)")]
         public int RateNumber { get; set; }
+
+        public int CarInfoCarId { get; set; }
     }
 }

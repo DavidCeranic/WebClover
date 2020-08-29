@@ -78,7 +78,8 @@ export class ChangeRentACarComponent implements OnInit {
         contact: "",
         lat: 0,
         lng:0,
-        serviceOffice: null
+        serviceOffice: null,
+        rate: 0
       }
   }
 
