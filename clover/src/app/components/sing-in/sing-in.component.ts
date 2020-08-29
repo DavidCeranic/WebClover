@@ -110,7 +110,8 @@ export class SingInComponent implements OnInit {
         phoneNumber: "",
         UserType: "",
         StringToken: "",
-        userFriends:null
+        userFriends:null,
+        logOut: null
       }
   }
 
@@ -129,7 +130,7 @@ export class SingInComponent implements OnInit {
 
   OnGoogle() : void{
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(res=>{
-      var user=new User(res.firstName,res.email,"","","","User",res.idToken);
+      var user=new User(res.firstName,res.email,"","","","User",res.idToken, true);
       this.http.post<User>('http://localhost:5000/api/UserDetails/'+'Social', user).toPromise().then((res: any) => {
         localStorage.setItem("user_token", res.StringToken);
         localStorage.setItem("role", JSON.stringify(res.UserType));

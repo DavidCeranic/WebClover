@@ -10,8 +10,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200828144337_firstMmigration")]
-    partial class firstMmigration
+    [Migration("20200829120558_initionalMigration")]
+    partial class initionalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -505,6 +505,9 @@ namespace WebApiClover.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("IsVerify")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LogOut")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")

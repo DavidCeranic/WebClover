@@ -10,8 +10,9 @@ export class User {
     UserType: string
     StringToken: string;
     userFriends: Array<Friends>;
+    logOut: boolean;
 
-    constructor(name: string, email: string, password: string, city: string, phoneNumber: string, UserType: string,  token: string) {
+    constructor(name: string, email: string, password: string, city: string, phoneNumber: string, UserType: string,  token: string, logOut: boolean) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -19,5 +20,6 @@ export class User {
         this.phoneNumber = phoneNumber;
         this.UserType = UserType;
         this.StringToken = token;
+        this.logOut = logOut;
     }
 }

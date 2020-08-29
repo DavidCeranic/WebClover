@@ -56,6 +56,7 @@ export class SingUpComponent implements OnInit {
     var user = this.singUpForm.value as User;
     user.UserType = "User";
     user.password = this.singUpForm.value.passwordGroup.password;
+    user.logOut = true;
     this.insertUser(user);
   }
 
@@ -95,7 +96,8 @@ export class SingUpComponent implements OnInit {
       phoneNumber: "",
       UserType: "",
       StringToken: "",
-      userFriends: null
+      userFriends: null,
+      logOut: null
     }
   }
 
