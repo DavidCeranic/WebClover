@@ -31,6 +31,11 @@ export class CarService {
           addCar = false;
           break;
         }
+
+        if (this.checkCarMinSeatsFilterParam(car, filterParam)) {
+          addCar = false;
+          break;
+        }
       }
 
       if (addCar)
@@ -50,5 +55,9 @@ export class CarService {
 
   checkCarMaxPerDayPriceFilter(car: Car, filterParam: AbstractFilterParam): boolean {
     return filterParam instanceof NumberFilterParam && filterParam.getFilterParamName() === 'carMaxPerDayPriceFilter' && (car.pricePerDay > filterParam.getFilterParamValue());
+  }
+
+  checkCarMinSeatsFilterParam(car: Car, filterParam: AbstractFilterParam): boolean {
+    return filterParam instanceof NumberFilterParam && filterParam.getFilterParamName() === 'carMinSeatsFilter' && (car.pricePerDay > filterParam.getFilterParamValue());
   }
 }
