@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiClover.Models;
 
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    partial class UserDetailContextModelSnapshot : ModelSnapshot
+    [Migration("20200829173630_RentService")]
+    partial class RentService
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -345,6 +347,9 @@ namespace WebApiClover.Migrations
                     b.Property<int?>("CarInfoCarId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("FlightInfo2FlightID")
+                        .HasColumnType("int");
+
                     b.Property<string>("RateNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
@@ -352,6 +357,8 @@ namespace WebApiClover.Migrations
                     b.HasKey("RateID");
 
                     b.HasIndex("CarInfoCarId");
+
+                    b.HasIndex("FlightInfo2FlightID");
 
                     b.ToTable("Rate");
                 });
@@ -575,6 +582,10 @@ namespace WebApiClover.Migrations
                     b.HasOne("WebApiClover.Models.CarInfo", null)
                         .WithMany("RateCar")
                         .HasForeignKey("CarInfoCarId");
+
+                    b.HasOne("WebApiClover.Models.FlightInfo2", null)
+                        .WithMany("RateFlight")
+                        .HasForeignKey("FlightInfo2FlightID");
                 });
 
             modelBuilder.Entity("WebApiClover.Models.ReservationDetails", b =>

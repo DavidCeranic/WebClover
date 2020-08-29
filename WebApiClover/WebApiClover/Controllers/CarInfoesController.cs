@@ -24,7 +24,7 @@ namespace WebApiClover.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CarInfo>>> GetCarInfo()
         {
-            return await _context.CarInfo.ToListAsync();
+            return await _context.CarInfo.Include(x=>x.RateCar).ToListAsync();
         }
 
         // GET: api/CarInfoes/5

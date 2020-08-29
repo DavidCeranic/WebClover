@@ -32,6 +32,7 @@ export class AddRentACarComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+    form.value.rate = 0;
     this.insertRentService(form);
   }
 
@@ -69,7 +70,8 @@ export class AddRentACarComponent implements OnInit {
         contact: "",
         lat: 0,
         lng:0,
-        serviceOffice: null
+        serviceOffice: null,
+        rate: 0
       }
   }
 

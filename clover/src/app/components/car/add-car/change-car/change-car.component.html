@@ -70,12 +70,6 @@
         <input #typeOfCar="ngModel" [(ngModel)]="service.formData.typeOfCar" name="typeOfCar" type="text" class="form-input" id="typeOfCar" placeholder="{{car.typeOfCar}}" required/>
         <div class="validation-error" *ngIf="typeOfCar.invalid && typeOfCar.touched">This field is required</div>
       </div>
-  
-      <div class="form-group">
-        Car Rate:
-        <input #rate="ngModel" [(ngModel)]="service.formData.rate" name="rate" type="text" class="form-input" id="rate" placeholder="{{car.rate}}" required/>
-        <div class="validation-error" *ngIf="rate.invalid && rate.touched">This field is required</div>
-      </div>
 
       <div class="form-group">
         Sale:

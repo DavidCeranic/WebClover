@@ -32,7 +32,7 @@ namespace WebApiClover.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RentService>> GetRentService(int id)
         {
-            var rentService = await _context.RentService.Include(car => car.ServiceCars).Include(office => office.ServiceOffice).FirstOrDefaultAsync(car => car.ServiceId == id);
+            var rentService = await _context.RentService.Include(car => car.ServiceCars).ThenInclude(x=>x.RateCar).Include(office => office.ServiceOffice).FirstOrDefaultAsync(car => car.ServiceId == id);
 
             if (rentService == null)
             {

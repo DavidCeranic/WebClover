@@ -48,7 +48,9 @@ namespace WebApiClover.Models
         [Column(TypeName = "decimal")]
         public float Lng { get; set; }
 
-        public virtual List<Rate> RateService { get; set; } = new List<Rate>();
+        public double Rate { get; set; }
+
+        //public virtual List<Rate> RateService { get; set; } = new List<Rate>();
 
         public virtual List<CarInfo> ServiceCars { get; set; } = new List<CarInfo>();
 

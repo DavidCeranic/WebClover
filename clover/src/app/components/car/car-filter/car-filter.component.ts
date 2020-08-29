@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 //import { MatDialogModule } from "@angular/material/dialog";
 import { MatDialog } from "@angular/material/dialog";
 import { RentCarComponent } from './RentCar/rent-car/rent-car.component';
@@ -13,6 +13,16 @@ import { RentServiceDetailsService } from 'src/app/services/rentServices/rentSer
 import { ChangeCarComponent } from '../add-car/change-car/change-car.component';
 import { RentService } from 'src/app/entities/rentService/rent-service';
 
+export function getAverageRate(car: Car): number {
+  var sum = 0;
+  for (let i = 0; i < car.rateCar.length; i++) {
+      const element = car.rateCar[i];
+      sum += element.rateNumber;
+  }
+
+  return sum / car.rateCar.length;
+}
+
 @Component({
   selector: 'app-car-filter',
   templateUrl: './car-filter.component.html',
@@ -26,7 +36,7 @@ export class CarFilterComponent implements OnInit {
   id: number;
   rentService: RentService;
 
-  constructor(public dialog: MatDialog, dataCars: RentServiceDetailsService, private toastr: ToastrService, public service: CarDetailsService, public router: Router, private data: CarDetailsService, config: NgbRatingConfig,  public route: ActivatedRoute)//
+  constructor(private ref: ChangeDetectorRef, public dialog: MatDialog, dataCars: RentServiceDetailsService, private toastr: ToastrService, public service: CarDetailsService, public router: Router, private data: CarDetailsService, config: NgbRatingConfig,  public route: ActivatedRoute)//
   {
     config.max = 5;
     config.readonly = true;
@@ -41,11 +51,17 @@ export class CarFilterComponent implements OnInit {
         this.dataCars.getRentServiceById(this.id).subscribe(
           dataV => {
             this.rentService = dataV;
+
+            for (let i = 0; i < this.rentService.serviceCars.length; i++) {
+              var a = this.rentService.serviceCars[i] as Car;
+              a.averageRate = getAverageRate(this.rentService.serviceCars[i]);
+           }
           }
         )
       }
     )
     this.service.refreshList();
+
   }
 
   onRent(car: Car){
@@ -55,6 +71,10 @@ export class CarFilterComponent implements OnInit {
     // });
     // this.data.changeMessage(car);
     this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/rent/' + car.carId);
+  }
+
+  GetRate(car: Car) : number{
+    return getAverageRate(car);
   }
 
   dalijeadmin():boolean{
