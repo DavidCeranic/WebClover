@@ -28,13 +28,14 @@ export class RegisterUserComponent implements OnInit {
   Id:string;
   cc:string;
   fri:Friends;
+  searchFriend:string;
   parseJwt: string;
   clicked1:boolean=false;
   clicked2:boolean=false;
   clicked3:boolean=false;
   clicked4:boolean=false;
   clicked5:boolean=false;
-  searchFriend:string;
+
   pomSeat:Seat;
 
   userName:string;
@@ -128,16 +129,17 @@ export class RegisterUserComponent implements OnInit {
   }
 seeAllUsers(){
   if(!this.clicked3){
-  this.Id= JSON.parse(localStorage.getItem("regId"));
-  this.service.refreshList().then(res => {
-    this.allRegistredUsers2 = res;
-    this.allRegistredUsers2.forEach(element => {
-      if(element.userId!=this.Id){
-        this.allRegistredUsers.push(element);
-        this.clicked3=true;
-      }
+ 
+    this.Id= JSON.parse(localStorage.getItem("regId"));
+    this.service.refreshList().then(res => {
+      this.allRegistredUsers2 = res;
+      this.allRegistredUsers2.forEach(element => {
+        if(element.userId!=this.Id){
+          this.allRegistredUsers.push(element);
+          this.clicked3=true;
+        }
+      });
     });
-  });
 }
 }
 cancleFlight(rUser:FlightReservation){

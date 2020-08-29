@@ -8,6 +8,8 @@ import { UserDetailsService } from 'src/app/services/userDetails/user-details.se
 import { User } from 'src/app/entities/User/user';
 import { FlightReservation } from 'src/app/entities/FlightReservation/flight-reservation';
 import { FlightReservationService } from 'src/app/services/flightReservation/flight-reservation.service';
+import { Friends } from 'src/app/entities/Friends/friends';
+import { FriendsService } from 'src/app/services/friends.service';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -19,7 +21,7 @@ export class PaymentComponent implements OnInit {
   bbb: number;
   sediste: Seat;
   cena: number;
-  constructor(public route: ActivatedRoute, public flightService: AllFligtsDetailsService, public seatService: SeatService, public userService: UserDetailsService, public reservationServation: FlightReservationService, public router: Router) { }
+  constructor(public route: ActivatedRoute, public service: UserDetailsService, private friendService: FriendsService, public flightService: AllFligtsDetailsService, public seatService: SeatService, public userService: UserDetailsService, public reservationServation: FlightReservationService, public router: Router) { }
   allSeats = new Array<Seat>();
   sortedSeats = new Array<Seat>();
   id: number;
@@ -32,6 +34,12 @@ export class PaymentComponent implements OnInit {
   ui: number;
   res: FlightReservation = new FlightReservation;
   disable: boolean = true;
+  clicked2:boolean=false;
+  allFriends = new Array<Friends>();
+  pom1 = new Array<Friends>();
+  acceptedFriends = new Array<Friends>();
+  allRegistredUsers2 = new Array<User>();
+  prijatelj:User;
 
   dalijeadmin(): boolean {
 
@@ -61,8 +69,15 @@ export class PaymentComponent implements OnInit {
       }
     )
 
+    this.friendService.getAllFriends().then(res=>{
+      this.allFriends=res;
+        });
 
-
+        this.service.refreshList().then(res => {
+          this.allRegistredUsers2 = res;
+         
+        });
+        
     this.seatService.getAllSeats().then(
       data => {
         data.forEach(element => {
@@ -90,12 +105,83 @@ export class PaymentComponent implements OnInit {
   }
 
 
+  invite(frie:Friends){
+
+
+    this.seatService.getSeatById(this.seatId).toPromise().then(
+      dataV => {
+        this.s = dataV;
+      }
+    )
+
+    this.flightService.getFlightById(this.id).toPromise().then(
+      dataV => {
+        this.f = dataV;
+      }
+    )
+
+if(frie.userEmail1==localStorage.getItem("regEmail")){
+
+this.allRegistredUsers2.forEach(element => {
+  if(element.email==frie.userEmail2){
+    this.prijatelj=element;
+  }
+});
+
+}
+
+
+    if (this.s.taken == false) {
+
+      this.s.taken = true;
+      this.seatService.putSeat(this.s);
+      this.res.reservedSeat = this.s;
+      this.res.reservedFlight = this.f;
+      this.res.reservedUser = this.prijatelj;
+
+      this.reservationServation.addReservation(this.res);
+      alert('Usepsno ste pozvali prijatelja.');
+    }
+    alert('Greska pri pozivu prijatelja');
+
+  }
 
   reserve(seat: Seat) {
     this.seatId = seat.id;
     this.seatPrice = seat.price;
   }
 
+  removeSeat(){
+    this.seatService.getSeatById(this.seatId).toPromise().then(
+      dataV => {
+        this.s = dataV;
+      }
+    )
+    if(this.s.taken==false){
+      this.seatService.deleteSeat(this.s.id);
+    alert('Uspesno ste obrisali');
+
+    }
+    
+    alert('Greska pri rezervaciji');
+  }
+
+  inviteFriend(){
+
+    if(!this.clicked2){
+      this.allFriends.forEach(element => {
+        if(element.userEmail1==localStorage.getItem("regEmail") &&element.accepted==true){
+          this.acceptedFriends.push(element);
+          this.clicked2=true;
+        }
+        if(element.userEmail2==localStorage.getItem("regEmail") &&element.accepted==true){
+          this.pom1.push(element);
+          this.clicked2=true;
+        }
+  
+      });
+    }
+  }
 
   finalPay() {
 
