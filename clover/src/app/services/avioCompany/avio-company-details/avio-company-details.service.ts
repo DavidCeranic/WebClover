@@ -35,7 +35,7 @@ selectedServie2:AboutCompany;
   }
 
   putAvioCompany(formData: AboutCompany, avioCompID: number){
-    formData.avioCompID =avioCompID ;
+    formData.avioCompID =Number.parseInt(avioCompID.toString())  ;
     return this.http.put<AboutCompany>(this.rootUrl + 'CompanyAbouts/' + avioCompID, formData);
   }
 

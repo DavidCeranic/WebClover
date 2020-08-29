@@ -51,8 +51,28 @@ namespace WebApiClover.Controllers
             //{
             //    return BadRequest();
             //}
+            var flightInfo = _context.FlightInfo2.FirstOrDefault(x => x.FlightID == flightInfo2.FlightID);
+            flightInfo.Departing = flightInfo2.Departing;
+            flightInfo.Baggage = flightInfo2.Baggage;
+            flightInfo.ClassF = flightInfo2.ClassF;
+            flightInfo.CompanyName = flightInfo2.CompanyName;
+            flightInfo.Duration = flightInfo2.Duration;
+            flightInfo.To = flightInfo2.To;
+            flightInfo.Returning = flightInfo2.Returning;
+            flightInfo.From = flightInfo2.From;
+            flightInfo.Stops = flightInfo2.Stops;
+            flightInfo.Duration = flightInfo2.Duration;
+            flightInfo.Price = flightInfo2.Price;
+            flightInfo.SeatsNumber = flightInfo2.SeatsNumber;
+            flightInfo.StartTime = flightInfo2.StartTime;
+            flightInfo.EndTime = flightInfo2.EndTime;
+           
 
-            _context.Entry(flightInfo2).State = EntityState.Modified;
+
+
+
+            _context.FlightInfo2.Update(flightInfo);
+            //_context.Entry(flightInfo2).State = EntityState.Modified;
 
             try
             {
@@ -70,7 +90,7 @@ namespace WebApiClover.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok();
         }
 
         // POST: api/FlightInfo2

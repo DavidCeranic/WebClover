@@ -15,7 +15,7 @@ export class EditCompanyProfileComponent implements OnInit {
   // addFlight : FormGroup
   id:number;
   id2:number=100;
-  ispis:string="issssspis";
+  ispis:string="srdjaan";
   companyData:AboutCompany;
   constructor(public service: AvioCompanyDetailsService,private router: Router,public route: ActivatedRoute,public companyService: AvioCompanyDetailsService ) { }
 
@@ -31,6 +31,8 @@ export class EditCompanyProfileComponent implements OnInit {
         this.companyService.getAvioCompanyById(this.id).toPromise().then(
           dataV => {
           this.companyData = dataV;
+          this.resetForm();
+
         //    console.log(this.rentService);
           }
         )
@@ -38,11 +40,12 @@ export class EditCompanyProfileComponent implements OnInit {
     )
 
 
-    this.resetForm();
+   
   }
 
   onSubmit(form: NgForm){
-    this.service.postCompanyDetails(form.value).subscribe(
+    form.value.avioCompID=Number.parseInt(form.value.avioCompID);
+    this.service.putAvioCompany(form.value,this.id).subscribe(
       res => {
         this.resetForm(form);
       },
@@ -61,18 +64,22 @@ export class EditCompanyProfileComponent implements OnInit {
   }
 
 
+  editCompanyInfo(){
+
+  }
+
   resetForm(form?: NgForm){
     if(form!=null)
       form.resetForm();
       this.service.formData = {
-        avioCompID:0,
-        avioCompName:"this.companyData.avioCompName",
-        avioCompAddress:"",
-        avioCompAbout:this.ispis,
-        avioCompDestinations:"",
-        avioCompFastReservationDiscount:"",
-        avioCompSeats:"",
-        avioCompPrices:"",
+        avioCompID:this.companyData.avioCompID,
+        avioCompName:this.companyData.avioCompName,
+        avioCompAddress:this.companyData.avioCompAddress,
+        avioCompAbout:this.companyData.avioCompAbout,
+        avioCompDestinations:this.companyData.avioCompDestinations,
+        avioCompFastReservationDiscount:this.companyData.avioCompFastReservationDiscount,
+        avioCompSeats:this.companyData.avioCompSeats,
+        avioCompPrices:this.companyData.avioCompPrices,
         companyFlights:null
         
       }

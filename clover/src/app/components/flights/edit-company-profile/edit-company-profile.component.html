@@ -2,11 +2,11 @@
         <div class="conteiner8">
     <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" id="signup-form" class="signup-form">
     
-        <input type="hidden" name="avioCompID" [value]="service.formData.avioCompID">
+        <input type="hidden" name="avioCompID" [value]="service.formData?.avioCompID">
     
           <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
             Avio Comp Name:
-            <input #avioCompName="ngModel" [(ngModel)]="service.formData.avioCompName" name="avioCompName" type="text" class="form-input" id="avioCompName" class="form-control" value="companyData.avioCompName" required/>
+            <input #avioCompName="ngModel" [(ngModel)]="service.formData.avioCompName" name="avioCompName" type="text" class="form-input" id="avioCompName" class="form-control"   required/>
           </div>
     
           <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
@@ -43,7 +43,7 @@
           
     
           <div class="form-group" class="poz">
-            <input type="submit" name="submit" id="submit" class="form-submit" value="change company info" />
+            <input type="submit" (click)="editCompanyInfo()" name="submit" id="submit" class="form-submit" value="change company info" />
         </div>
     
       </form>
