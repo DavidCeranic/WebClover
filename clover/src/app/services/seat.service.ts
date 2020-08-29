@@ -25,4 +25,7 @@ export class SeatService {
    putSeat(formData:Seat){
     return this.http.put(this.rootUrl + 'Seats/'+formData.id, formData).toPromise();
   }
+  deleteSeat(br: number){
+    return this.http.delete(this.rootUrl + 'Seats/'+br).toPromise();
+  }
 }

@@ -16,7 +16,11 @@
                 </div>
               
 
-                <button *ngIf="dalijeadmin()" (click)="onButtonClick($event)" class="myButton2" (click)="finalPay()">Payflight </button>
+                <button *ngIf="dalijeadmin()" (click)="onButtonClick($event)" class="myButton2" (click)="finalPay()">Pay flight </button>
+                <button *ngIf="dalijeadmin()" class="myButton2" (click)="removeSeat()">Remove seat </button>
+                <button class="myButton2" (click)="inviteFriend()">Invite a friend </button>
+
+
                 <button [disabled]="disable" class="myButton2" (click)="rentCar()">Rent A Car </button>
                 
                 <label> You need to pay:{{seatPrice}}</label>
@@ -48,8 +52,32 @@
     <!-- <button>{{seat.number2}} </button> -->
 </div>
 
+<div>
+    <div *ngFor="let friend of acceptedFriends" class="div51">
+        <div class="div24"></div>
+        <div class="div3From">{{friend.userEmail2}}</div>
+        <!-- <div class="div3From" >{{friend.userEmail1}}</div> -->
+
+        <div class="btn2">
+            <button (click)="invite(friend)" class="myButton2">Invite </button>
+
+        </div>
+
+    </div>
+    <div *ngFor="let friend of pom1" class="div51">
+        <div class="div24"></div>
+        <div class="div3From">{{friend.userEmail1}}</div>
+        <!-- <div class="div3From" >{{friend.userEmail1}}</div> -->
+
+        <div class="btn2">
+            <button (click)="invite(friend)" class="myButton2">Invite </button>
+          
+        </div>
+
+    </div>
+</div>
  
-<form>
+<!-- <form>
     <input type="checkbox" id="fruit1" name="fruit-1" value="Apple">
     <label for="fruit1">Apple</label>
     <input type="checkbox" id="fruit2" name="fruit-2" value="Banana" disabled>
@@ -58,7 +86,7 @@
     <label for="fruit3">Cherry</label>
     <input type="checkbox" id="fruit4" name="fruit-4" value="Strawberry">
     <label for="fruit4">Strawberry</label>
-  </form>
+  </form> -->
 
 
     </div>

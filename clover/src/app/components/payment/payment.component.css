@@ -70,9 +70,25 @@ body, html {
     top:10px;
     border-radius: 10px;
     position: absolute;
-    right: 750px;
+    right: 1050px;
     top:100px;
     
+  }
+  .div51{
+    background-color: rgba(255, 255, 255, 0.795);
+    width: 570px;
+    height: 145px;
+    top:10px;
+    border-radius: 10px;
+    position: absolute;
+    right: 250px;
+    top:100px;
+    
+  }
+  .div24{
+    position: absolute;
+    left: 50px;
+    top: 14px;
   }
   .div2{
     position: absolute;

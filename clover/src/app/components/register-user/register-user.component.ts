@@ -25,19 +25,22 @@ import { Seat } from 'src/app/entities/Seat/seat';
 })
 export class RegisterUserComponent implements OnInit {
   user: User;
-  Id: string;
-  cc: string;
-  fri: Friends;
-  parseJwt: string;
-  clicked1: boolean = false;
-  clicked2: boolean = false;
-  clicked3: boolean = false;
-  clicked4: boolean = false;
-  clicked5: boolean = false;
-  searchFriend: string;
-  pomSeat: Seat;
 
-  userName: string;
+  Id:string;
+  cc:string;
+  fri:Friends;
+  searchFriend:string;
+  parseJwt: string;
+  clicked1:boolean=false;
+  clicked2:boolean=false;
+  clicked3:boolean=false;
+  clicked4:boolean=false;
+  clicked5:boolean=false;
+
+  pomSeat:Seat;
+
+  userName:string;
+
   allRegistredUsers = new Array<User>();
   allRegistredUsers2 = new Array<User>();
 
@@ -147,22 +150,41 @@ export class RegisterUserComponent implements OnInit {
           }
         });
       });
-    }
-  }
-  cancleFlight(rUser: FlightReservation) {
 
-    //prvo moram da preuzmem sediste;
-    //
-    this.seatService.getSeatById(rUser.reservedSeat.id).toPromise().then(
-      dataV => {
-        this.pomSeat = dataV;
-      }
-    )
-    this.pomSeat.taken = false;
-    this.seatService.putSeat(this.pomSeat)
-    this.reservationService.deleteFlightReservation(rUser.reservationID);
-    //ovde treba promeniti bool zauzeto;
+    })
   }
+  }
+seeAllUsers(){
+  if(!this.clicked3){
+ 
+    this.Id= JSON.parse(localStorage.getItem("regId"));
+    this.service.refreshList().then(res => {
+      this.allRegistredUsers2 = res;
+      this.allRegistredUsers2.forEach(element => {
+        if(element.userId!=this.Id){
+          this.allRegistredUsers.push(element);
+          this.clicked3=true;
+        }
+      });
+    });
+}
+}
+cancleFlight(rUser:FlightReservation){
+
+//prvo moram da preuzmem sediste;
+//
+this.seatService.getSeatById(rUser.reservedSeat.id).toPromise().then(
+  dataV => {
+    this.pomSeat = dataV;
+  }
+)
+this.pomSeat.taken=false;
+this.seatService.putSeat(this.pomSeat)
+this.reservationService.deleteFlightReservation(rUser.reservationID);
+//ovde treba promeniti bool zauzeto;
+}
+
+
 
   deleteResercation(reservation: Reservation) {
     this.reservationServiceCar.deleteReservation(reservation.reservationId);
