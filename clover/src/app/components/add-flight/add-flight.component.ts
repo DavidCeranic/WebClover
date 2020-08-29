@@ -25,25 +25,26 @@ export class AddFlightComponent implements OnInit {
         this.flightService.getFlightById(this.id).toPromise().then(
           dataV => {
             this.flightData = dataV;
-           
+            this.resetForm();
 
           }
         )
       }
     )
    // this.service.formData.price = 999;
-    //this.resetForm();
+    //
   }
 
   onSubmit(form: NgForm){
-    // this.service.postFlightDetails(form.value,).subscribe(
-    //   res => {
-    //     this.resetForm(form);
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // )
+    form.value.flightID=Number.parseInt(form.value.flightID);
+    this.service.putFlight(form.value,this.id).subscribe(
+      res => {
+        this.resetForm(form);
+      },
+      err => {
+        console.log(err);
+      }
+    )
    
     
   }
@@ -60,24 +61,24 @@ export class AddFlightComponent implements OnInit {
     if(form!=null)
       form.resetForm();
       this.service.formData = {
-        flightID:0,
-        from:"",
-        to:"",
-        departing:"",
-        returning:"",
-        classf:"",
-        baggage:"",
-        stops:0,
-        duration:"",
-        companyName:"",
-        price:0,
-        seatsNumber:0,
-        rateFlight:0,
-        userDetailUserId:0,
-        companyAboutAvioCompID:0,
-        seatsList:null,
-        startTime:"",
-        endTime:""
+        flightID:this.flightData.flightID,
+        from:this.flightData.from,
+        to:this.flightData.to,
+        departing:this.flightData.departing,
+        returning:this.flightData.returning,
+        classf:this.flightData.classf,
+        baggage:this.flightData.baggage,
+        stops:this.flightData.stops,
+        duration:this.flightData.duration,
+        companyName:this.flightData.companyName,
+        price:this.flightData.price,
+        seatsNumber:this.flightData.seatsNumber,
+        rateFlight:this.flightData.rateFlight,
+        userDetailUserId:this.flightData.userDetailUserId,
+        companyAboutAvioCompID:this.flightData.companyAboutAvioCompID,
+        seatsList:this.flightData.seatsList,
+        startTime:this.flightData.startTime,
+        endTime:this.flightData.endTime
         
         
       }

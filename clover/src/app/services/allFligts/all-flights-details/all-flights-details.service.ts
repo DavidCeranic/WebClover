@@ -33,6 +33,11 @@ export class AllFligtsDetailsService {
       return this.http.get<FlightInfo>(this.rootUrl + 'FlightInfo2/' + serviceId.toString());
     }
 
+    putFlight(formData: FlightInfo, avioCompID: number){
+      formData.flightID =Number.parseInt(avioCompID.toString())  ;
+      return this.http.put<FlightInfo>(this.rootUrl + 'FlightInfo2/' + avioCompID, formData);
+    }
+
   changeMessage(message: FlightInfo){
     this.messageSource.next(message);
   }

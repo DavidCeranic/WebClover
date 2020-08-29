@@ -124,7 +124,7 @@ const routes: Routes = [
   //   component: AddFlightComponent, canActivate: [AdminGuard]
   // },
   {
-    path: "edit-company/:id",
+    path: "edit-company/:compID",
     component: EditCompanyProfileComponent
   }
   
