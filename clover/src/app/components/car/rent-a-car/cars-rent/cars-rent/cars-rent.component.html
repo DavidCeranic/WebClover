@@ -17,8 +17,8 @@
       <div class="row">
         <div class="col-md-3">
           <div class="form-group">
-            <span class="form-label">Start Location</span>
-            <select [(ngModel)]="startOffice" class="form-control">
+            <span class="form-label">Start Office</span>
+            <select style="width: 175px;" [(ngModel)]="startOffice" class="form-control">
               <option *ngFor="let f of this.rentService.serviceOffice" [ngValue]="f">{{f.officeName}}</option>
             </select>
           </div>
@@ -26,40 +26,48 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <span class="form-label">Start Date</span>
-            <input class="form-control" type="date" required>
+            <span style="margin-left: -25%;" class="form-label">Start Location</span>
+            <input style="width: 175px; margin-left: -30%;" class="form-control" type="text" placeholder="Start Location" id="startLocationFilter">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <span style="margin-left: -50%;" class="form-label">Start Date</span>
+            <input style="width: 175px; margin-left: -53%;" class="form-control" type="date" required>
           </div>
         </div>
 
         <div class="col-md-2">
           <div class="form-group">
-            <span class="form-label">Passengers</span>
-            <select class="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-            <span class="select-arrow"></span>
+            <span style="margin-left: -110%;" class="form-label">Passengers</span>
+            <input class="form-control" style="width: 100px; margin-left: -115%;" type="number" placeholder="Price" id="carMinSeatsFilter">
           </div>
         </div>
+
       </div>
       
       <div class="row">
         <div class="col-md-3">
           <div class="form-group">
-            <span class="form-label">End Location</span>
-            <select [(ngModel)]="endOffice" class="form-control">
+            <span class="form-label">End Office</span>
+            <select style="width: 175px;" [(ngModel)]="endOffice" class="form-control">
               <option *ngFor="let f of this.rentService.serviceOffice" [ngValue]="f">{{f.officeName}}</option>
             </select>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <span style="margin-left: -25%;" class="form-label">End Location</span>
+            <input style="width: 175px; margin-left: -30%;" class="form-control" type="text" placeholder="End Location" id="endLocationFilter">
           </div>
         </div>
         
         <div class="col-md-3">
           <div class="form-group">
-            <span class="form-label">End Date</span>
-            <input class="form-control" type="date" required>
+            <span style="margin-left: -50%;" class="form-label">End Date</span>
+            <input style="width: 175px; margin-left: -53%;" class="form-control" type="date" required>
           </div>
         </div>
 

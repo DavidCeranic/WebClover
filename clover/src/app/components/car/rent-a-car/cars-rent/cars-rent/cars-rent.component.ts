@@ -85,6 +85,10 @@ export class CarsRentComponent implements OnInit {
       filterParams.push(this.addCarMaxPerDayPriceFilterParam());
     }
 
+    if (this.getFilterFieldValue("carMinSeatsFilter")) {
+      filterParams.push(this.addCarMinSeatsFilterParam());
+    }
+
     this.filtredCars = this.carService.filterCars(this.allCars, filterParams);
   }
 
@@ -98,6 +102,10 @@ export class CarsRentComponent implements OnInit {
 
   addCarMaxPerDayPriceFilterParam(): ReturnType<any> {
     return new NumberFilterParam("carMaxPerDayPriceFilter", +this.getFilterFieldValue("carMaxPerDayPriceFilter"));
+  }
+
+  addCarMinSeatsFilterParam(): ReturnType<any> {
+    return new NumberFilterParam("carMinSeatsFilter", +this.getFilterFieldValue("carMinSeatsFilter"));
   }
 
   getFilterFieldValue(filterFieldId: string) {

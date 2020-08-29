@@ -31,6 +31,7 @@ export class ChangePasswordComponent implements OnInit {
   onSubmit(){
     const newPassword = this.changePassword.get('password').value;
     this.user.password = newPassword;
+    this.user.logOut = true;
     this.userService.putUserDetails(this.user, this.user.userId).subscribe(
       res => {
         this.toastr.success("Updated Successfully");

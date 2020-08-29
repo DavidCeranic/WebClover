@@ -505,6 +505,9 @@ namespace WebApiClover.Migrations
                     b.Property<bool>("IsVerify")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("LogOut")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
