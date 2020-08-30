@@ -20,6 +20,8 @@ import { Seat } from 'src/app/entities/Seat/seat';
 import { Rate } from 'src/app/entities/rate/rate';
 import { RateService } from 'src/app/services/rate/rate.service';
 import { Router } from '@angular/router';
+import { FlightRateSService } from 'src/app/services/flightRate/flight-rate-s.service';
+import { FlightRate } from 'src/app/entities/flightRate/flight-rate';
 
 @Component({
   selector: 'app-register-user',
@@ -41,7 +43,7 @@ export class RegisterUserComponent implements OnInit {
   clicked5:boolean=false;
 
   pomSeat:Seat;
-
+  fr:FlightRate;
   userName:string;
 
   allRegistredUsers = new Array<User>();
@@ -63,7 +65,11 @@ export class RegisterUserComponent implements OnInit {
   carRate: FormGroup = new FormGroup({
     rate: new FormControl('', Validators.required)
   });
-  constructor(private rateService: RateService, public router: Router, public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog, private friendService: FriendsService, public reservationService: FlightReservationService, public reservationServiceCar: ReservationDetailsService, public seatService: SeatService) {
+  flightRate: FormGroup = new FormGroup({
+    rate: new FormControl('', Validators.required)
+  });
+
+  constructor(private rateService: RateService, public flightRateService: FlightRateSService , public router: Router, public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog, private friendService: FriendsService, public reservationService: FlightReservationService, public reservationServiceCar: ReservationDetailsService, public seatService: SeatService) {
     this.user = null;
   }
 
@@ -104,6 +110,23 @@ export class RegisterUserComponent implements OnInit {
     }
 
     return true;
+  }
+  onSubmit2(reservation:FlightReservation){
+
+    var fl=reservation.reservedFlight.flightID;
+    var ui=Number.parseInt( reservation.reservedUser.userId);
+    var oc = Number.parseInt(this.flightRate.value.rate)
+    var ci = reservation.reservedFlight.companyAboutAvioCompID;
+    var rateF= new FlightRate(0,ui,fl,oc,ci);
+
+    this.flightRateService.postFlightRate(rateF);
+  }
+
+  giveRate(rUser:Reservation){
+
+//this.fr.
+  //  this.flifgtRateService.
+
   }
 
   changeInfo(){

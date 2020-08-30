@@ -109,6 +109,15 @@
                             <div class="div3From">FROM:{{rUser.reservedFlight.from}}</div>
                             <div>BROJ SEDISTA:{{rUser.reservedSeat.number2}}</div>
                             <button (click)="cancleFlight(rUser)" class="myButton2">cancle flight </button>
+
+                            <form style="margin-left: 85%; margin-top: -3%;" #form="ngForm" [formGroup]="flightRate" autocomplete="off" (ngSubmit)="onSubmit2(rUser)" id="signup-form" class="signup-form">
+                            <input type="number" style="width: 60px;" name="rate" id="rate" class="form-input" placeholder="Rate" formControlName="rate"/>
+                            <div class="form-group">
+                                <input type="submit"   name="submit" id="submit" class="form-submit" value="Rate flight"/>
+                            </div>
+
+                            <!-- <button (click)="giveRate(rUser)" class="myButton2" >Give rate </button> -->
+                        </form>
                         </div>
                     </div>
                 </div>

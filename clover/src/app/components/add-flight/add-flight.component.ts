@@ -78,7 +78,8 @@ export class AddFlightComponent implements OnInit {
         companyAboutAvioCompID:this.flightData.companyAboutAvioCompID,
         seatsList:this.flightData.seatsList,
         startTime:this.flightData.startTime,
-        endTime:this.flightData.endTime
+        endTime:this.flightData.endTime,
+        flightRates:this.flightData.flightRates
         
         
       }

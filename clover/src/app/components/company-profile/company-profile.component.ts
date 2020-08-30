@@ -20,6 +20,8 @@ import { UserDetailsService } from 'src/app/services/userDetails/user-details.se
 import { User } from 'src/app/entities/User/user';
 import { FlightReservation } from 'src/app/entities/FlightReservation/flight-reservation';
 import { FlightReservationService } from 'src/app/services/flightReservation/flight-reservation.service';
+import { FlightRateSService } from 'src/app/services/flightRate/flight-rate-s.service';
+import { FlightRate } from 'src/app/entities/flightRate/flight-rate';
 
 @Component({
   selector: 'app-company-profile',
@@ -43,8 +45,12 @@ export class CompanyProfileComponent implements OnInit {
   firstSeat:Seat;
   ui:number;
   u:User;
+  zbir:number=0;
+  kolicina:number=0;
+  prosek:number=0;
   res: FlightReservation = new FlightReservation;
-  constructor(private flightService: AllFlightsService,public reservationServation: FlightReservationService, public userService: UserDetailsService , private router: Router,public seatService:  SeatService, private toastr: ToastrService,public route: ActivatedRoute,private data:AvioCompanyService,public service :AllFligtsDetailsService,public companyService: AvioCompanyDetailsService ){
+  flRate = new Array<FlightRate>();
+  constructor(private flightService: AllFlightsService, public flightRateService:FlightRateSService ,public reservationServation: FlightReservationService, public userService: UserDetailsService , private router: Router,public seatService:  SeatService, private toastr: ToastrService,public route: ActivatedRoute,private data:AvioCompanyService,public service :AllFligtsDetailsService,public companyService: AvioCompanyDetailsService ){
  // this.service.refreshList();
  //this.service.messageEvent.subscribe( x => {
 //})
@@ -96,9 +102,31 @@ this.seatService.getAllSeats().then(
 
   }
 
+
+
 )
 
 
+this.flightRateService.refreshList().toPromise().then(
+  data=>{
+    data.forEach(element => {
+      if(element.companyIdd==this.id){
+        this.flRate.push(element);
+
+      }
+      
+    });
+    this.flRate.forEach(element => {
+      this.kolicina+=1;
+      this.zbir+=element.ocena
+    });
+    this.prosek=this.zbir/this.kolicina;
+  }
+)
+
+this.flRate.forEach(element => {
+  this.zbir+=element.ocena
+});
   }
 
   fastRezervation(f:FlightInfo){
@@ -236,7 +264,8 @@ this.seatService.getAllSeats().then(
         companyAboutAvioCompID:0,
         seatsList:null,
         startTime:"",
-        endTime:""
+        endTime:"",
+        flightRates:null
         
       }
 }
