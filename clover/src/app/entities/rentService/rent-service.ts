@@ -16,8 +16,9 @@ export class RentService {
     serviceCars: Car[];
     serviceOffice: Office[];
     rate: number;
+    revenues: number;
 
-    constructor(serviceName: string, location: string, description: string, img: string, about: string, cars: Array<Car>, contact: string, lat: number, lng: number, rate: number) {
+    constructor(serviceName: string, location: string, description: string, img: string, about: string, cars: Array<Car>, contact: string, lat: number, lng: number, rate: number, revenues: number) {
         this.serviceName = serviceName;
         this.location = location;
         this.img = img;
@@ -27,5 +28,6 @@ export class RentService {
         this.lat = lat;
         this.lng = lng;
         this.rate = rate;
+        this.revenues = revenues;
     }
 }

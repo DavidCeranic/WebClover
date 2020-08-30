@@ -71,7 +71,8 @@ export class AddRentACarComponent implements OnInit {
         lat: 0,
         lng:0,
         serviceOffice: null,
-        rate: 0
+        rate: 0,
+        revenues: 0
       }
   }
 

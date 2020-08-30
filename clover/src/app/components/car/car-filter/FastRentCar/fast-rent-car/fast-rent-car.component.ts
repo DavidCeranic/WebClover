@@ -11,6 +11,17 @@ import { ReservationDetailsService } from 'src/app/services/reservationDetails/r
 import { Reservation } from 'src/app/entities/reservation/reservation';
 import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.service';
 import { Office } from 'src/app/entities/office/office';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+
+export function getAverageRate(car: Car): number {
+  var sum = 0;
+  for (let i = 0; i < car.rateCar.length; i++) {
+      const element = car.rateCar[i];
+      sum += element.rateNumber;
+  }
+
+  return sum / car.rateCar.length;
+}
 
 @Component({
   selector: 'app-fast-rent-car',
@@ -28,7 +39,11 @@ export class FastRentCarComponent implements OnInit {
   totalPrice: number;
   days: number;
 
-  constructor(private rentServiceDetails: RentServiceDetailsService, public router: Router, public route: ActivatedRoute, public flightService: AllFligtsDetailsService, public userService: UserDetailsService, public reservationService: ReservationDetailsService, public service: CarDetailsService) { }
+  constructor(private rentServiceDetails: RentServiceDetailsService, public router: Router, public route: ActivatedRoute, public flightService: AllFligtsDetailsService, public userService: UserDetailsService, public reservationService: ReservationDetailsService, public service: CarDetailsService, config: NgbRatingConfig) 
+  {
+    config.max = 5;
+    config.readonly = true;
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -46,8 +61,10 @@ export class FastRentCarComponent implements OnInit {
 
     this.service.refreshList();
     this.service.messageEvent.subscribe(x => {
+
       for (let i = 0; i < this.service.list.length; i++) {
         const element = this.service.list[i];
+        element.averageRate = getAverageRate(element);
         if (element.sale === true) {
           this.allCars.push(element);
         }
@@ -70,11 +87,12 @@ export class FastRentCarComponent implements OnInit {
 
 
     if (this.checkDate(startDate, endDate)) {
-      var reservation = new Reservation(startDate, endDate, car, this.user, null, null);
-      this.insertReservation(reservation);
-
       this.days = this.calculatePrice(startDate, endDate);
       this.totalPrice = car.pricePerDay * this.days;
+
+      var reservation = new Reservation(startDate, endDate, car, this.user, null, null, this.totalPrice);
+      this.insertReservation(reservation);
+
       alert("Uspesno ste rezervisali. Ukupna cena je: " + this.totalPrice);
       this.router.navigateByUrl('/register-user');
     }

@@ -72,11 +72,13 @@ export class RentCarComponent implements OnInit {
 
   onSubmit() {
     if (this.checkDate(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value)) {
-      var reservation = new Reservation(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value, this.car, this.user, this.startOffice, this.endOffice);
-      this.insertReservation(reservation);
-      
+
       this.days = this.calculatePrice(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value);
       this.totalPrice = this.car.pricePerDay * this.days;
+
+      var reservation = new Reservation(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value, this.car, this.user, this.startOffice, this.endOffice, this.totalPrice);
+      this.insertReservation(reservation);
+      
       alert("Uspesno ste rezervisali. Ukupna cena je: "+this.totalPrice);
       this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/cars');
     }
@@ -146,7 +148,8 @@ export class RentCarComponent implements OnInit {
       car: null,
       user: null,
       startOffice: null,
-      endOffice: null
+      endOffice: null,
+      price: 0
     }
   }
 }
