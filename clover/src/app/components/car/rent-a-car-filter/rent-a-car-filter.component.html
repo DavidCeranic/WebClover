@@ -21,7 +21,7 @@
       <!-- owl-carousel -->
 
       <div
-        *ngFor="let rentService of allRentService | rentFilter: searchRentName | rentFilter2: searchRentLocation"
+        *ngFor="let rentService of filtredRentServices | rentFilter: searchRentName | rentFilter2: searchRentLocation"
         class="list">
         <div class="item">
           <div class="pricing pricing-two">
