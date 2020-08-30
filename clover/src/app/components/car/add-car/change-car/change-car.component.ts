@@ -55,21 +55,19 @@ export class ChangeCarComponent implements OnInit {
 
   updateCar(form: NgForm){
     var car = form.value as Car;
-
-    // for (let i = 0; i < this.rentService.serviceCars.length; i++) {
-    //   const element = this.rentService.serviceCars[i];
-    //   if(element.model == car.model)
-    //     this.rentService.serviceCars[i] = car;
-    // }
+    if(form.value.sale == "True" || form.value.sale == "true"){
+      car.sale = true;
+    }
+    if(form.value.sale == "False" || form.value.sale == "false"){
+      car.sale = false;
+    }
 
     this.service.putCar(car, this.carId, this.rentService.serviceId).subscribe(
-    // this.rentServiceServis.putRentService(this.rentService, this.rentService.serviceId).subscribe(
       res => {  
-        //this.rentService.selectedService.serviceCars.push(form.value);
-        //this.rentService.putRentService(this.rentService.selectedService);
         this.toastr.success("Inserted Successfully");
         this.resetForm(form);
         this.service.refreshList();
+        this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/cars');
       },
       err => {
         this.toastr.error('error');
