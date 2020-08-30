@@ -13,6 +13,16 @@ import { AddCarComponent } from '../../../add-car/add-car.component';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { Office } from 'src/app/entities/office/office';
 
+export function getAverageRate(car: Car): number {
+  var sum = 0;
+  for (let i = 0; i < car.rateCar.length; i++) {
+      const element = car.rateCar[i];
+      sum += element.rateNumber;
+  }
+
+  return sum / car.rateCar.length;
+}
+
 @Component({
   selector: 'app-cars-rent',
   templateUrl: './cars-rent.component.html',
@@ -36,6 +46,11 @@ export class CarsRentComponent implements OnInit {
         this.rentServiceDetails.getRentServiceById(this.id).subscribe(
           dataV => {
             this.rentService = dataV;
+
+            for (let i = 0; i < this.rentService.serviceCars.length; i++) {
+              var a = this.rentService.serviceCars[i] as Car;
+              a.averageRate = getAverageRate(this.rentService.serviceCars[i]);
+           }
             this.allCars = this.rentService.serviceCars;
             this.filtredCars = this.allCars;
           }

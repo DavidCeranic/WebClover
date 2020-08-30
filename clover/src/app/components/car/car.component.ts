@@ -34,11 +34,32 @@ export class CarComponent implements OnInit {
   }
 
   constructor(public dialog: MatDialog, private rentServices: RentServicesService, private router: Router, private route: ActivatedRoute, public service: RentServiceDetailsService) {
-    this.service.refreshList();
-    this.service.messageEvent.subscribe(x => {
+    this.service.refreshList2().then(x => {
+      for (let i = 0; i < x.length; i++) {
+        const element = x[i] as RentService;
+        const e = x[i].serviceCars;
+        var averageService = 0;
+        for (let j = 0; j < e.length; j++) {
+          const car = e[j];
+
+          var averageRate = 0;
+          for (let k = 0; k < car.rateCar.length; k++) {
+            const rate = car.rateCar[k];
+            averageRate += rate.rateNumber;
+          }
+          if (averageRate !== 0) {
+            averageRate /= car.rateCar.length;
+          }
+          averageService += averageRate;
+        }
+        if (averageService !== 0) {
+          averageService /= e.length;
+        }
+        x[i].rate = Number.parseInt(averageService.toFixed(2));
+      }
       this.allRentServices = x;
       this.filtredRentServices = this.allRentServices;
-    });
+    })
   }
 
   filterServices(): void {
