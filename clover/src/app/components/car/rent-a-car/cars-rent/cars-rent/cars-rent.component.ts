@@ -12,12 +12,13 @@ import { CarDetailsService } from 'src/app/services/car/carDetails/car-details.s
 import { AddCarComponent } from '../../../add-car/add-car.component';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { Office } from 'src/app/entities/office/office';
+import { ReservationDetailsService } from 'src/app/services/reservationDetails/reservation-details.service';
 
 export function getAverageRate(car: Car): number {
   var sum = 0;
   for (let i = 0; i < car.rateCar.length; i++) {
-      const element = car.rateCar[i];
-      sum += element.rateNumber;
+    const element = car.rateCar[i];
+    sum += element.rateNumber;
   }
 
   return sum / car.rateCar.length;
@@ -33,7 +34,7 @@ export class CarsRentComponent implements OnInit {
   filtredCars: Array<Car> = new Array<Car>();
   SearchCarForm: FormGroup;
   id: number;
-  display="cars-rent";
+  display = "cars-rent";
 
   rentService: RentService;
   startOffice: Office;
@@ -50,7 +51,7 @@ export class CarsRentComponent implements OnInit {
             for (let i = 0; i < this.rentService.serviceCars.length; i++) {
               var a = this.rentService.serviceCars[i] as Car;
               a.averageRate = getAverageRate(this.rentService.serviceCars[i]);
-           }
+            }
             this.allCars = this.rentService.serviceCars;
             this.filtredCars = this.allCars;
           }
@@ -61,13 +62,13 @@ export class CarsRentComponent implements OnInit {
     this.initForm();
   }
 
-  constructor(public dialog: MatDialog, private carService: CarService,private rentServiceDetails: RentServiceDetailsService, public route: ActivatedRoute, public service: CarDetailsService, public router: Router) {
+  constructor(public dialog: MatDialog, private carService: CarService, private rentServiceDetails: RentServiceDetailsService, public route: ActivatedRoute, public service: CarDetailsService, public router: Router, private reservationService: ReservationDetailsService) {
     this.service.refreshList();
-    this.service.messageEvent.subscribe( x => {
+    this.service.messageEvent.subscribe(x => {
     })
-   }
+  }
 
-  onAddCar(){
+  onAddCar() {
     this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/add-car');
     // const dialogRef = this.dialog.open(AddCarComponent, {
     //   height: '600px',
@@ -78,12 +79,12 @@ export class CarsRentComponent implements OnInit {
     // });
   }
 
-  check(){
+  check() {
     const userRole = JSON.parse(localStorage.getItem('role'));
-      if (userRole === 'Admin' || userRole === "RentAdmin") {
-        return false;
-      }
-      return true;
+    if (userRole === 'Admin' || userRole === "RentAdmin") {
+      return false;
+    }
+    return true;
   }
 
   filterCars(): void {
@@ -107,6 +108,19 @@ export class CarsRentComponent implements OnInit {
     this.filtredCars = this.carService.filterCars(this.allCars, filterParams);
   }
 
+
+  DateForm: FormGroup = new FormGroup({
+    startDate: new FormControl('', Validators.required),
+    endDate: new FormControl('', Validators.required)
+  });
+  filterAvelableCars(): void {
+    var startDate = this.DateForm?.get('startDate').value;
+    var endDate = this.DateForm?.get('endDate').value;
+
+    this.checkDate(startDate, endDate);
+
+  }
+
   addNameServiceFilterParam(): ReturnType<any> {
     return new StringFilterParam("startLocationFilter", this.getFilterFieldValue("startLocationFilter"));
   }
@@ -124,7 +138,7 @@ export class CarsRentComponent implements OnInit {
   }
 
   getFilterFieldValue(filterFieldId: string) {
-    return (<HTMLInputElement> document.getElementById(filterFieldId)).value;
+    return (<HTMLInputElement>document.getElementById(filterFieldId)).value;
   }
 
 
@@ -172,24 +186,59 @@ export class CarsRentComponent implements OnInit {
   }
 
 
-  onHome(){
-    this.display="home";
+  onHome() {
+    this.display = "home";
     this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId);
   }
 
-  onAbout(){
-    this.display="about-rent";
+  onAbout() {
+    this.display = "about-rent";
     this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/about');
   }
 
-  onCars(){
-    this.display="cars-rent";
+  onCars() {
+    this.display = "cars-rent";
     this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/cars');
   }
 
-  onLocations(){
-    this.display="locations-rent";
+  onLocations() {
+    this.display = "locations-rent";
     this.router.navigateByUrl('car/rent-a-car/' + this.rentService.serviceId + '/locations');
   }
+
+
+
+  checkDate(startDate: Date, endDate: Date){
+    if (endDate < startDate) {
+      alert('Starting date must be lower then ending date.');
+    }
+
+    var start1 = new Date(startDate);
+    var end1 = new Date(endDate);
+    var now = new Date();
+    if (start1 < now || end1 < now) {
+      alert("ne moze u proslisti ");
+    }
+
+    // if (this.allCars != null) {
+      for (let i = 0; i < this.allCars.length; i++) {
+        var element = this.allCars[i];
+        this.reservationService.getReservationForCar2(element.carId).then(x => {
+
+          var start2 = new Date(x.startDate);
+          var end2 = new Date(x.endDate);
+
+          var r1 = end1.setHours(0, 0) - start2.setHours(0, 0);
+          var r2 = end2.setHours(0, 0) - start1.setHours(0, 0);
+
+          if (r1 >= 0 && r2 >= 0) {
+            
+          }
+          else{
+            //this.filtredCars.push(element);
+          }
+        })
+      }
+    }
 
 }

@@ -917,7 +917,7 @@ body {
  .admin{
    position: absolute;
    margin-left: 5%;
-   margin-top: 90%;
+   margin-top: -40%;
  }
  
  .adminDiv{
@@ -926,7 +926,6 @@ body {
  }
 
  .radio{
-  position: absolute;
   display: block;
   margin-left: 90.3%;
   margin-top: -16%;

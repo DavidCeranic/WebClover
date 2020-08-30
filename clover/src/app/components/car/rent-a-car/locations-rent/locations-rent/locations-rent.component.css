@@ -407,15 +407,15 @@ body {
  
  .admin{
    position: absolute;
-   margin-left: 5%;
+   margin-left: 90%;
    margin-top: 0%;
  }
  
- .adminDiv{
+ /* .adminDiv{
    position: absolute;
    margin-top: -17%;
    margin-left: 91%;
- }
+ } */
  
  
  agm-map{
@@ -424,7 +424,7 @@ body {
  }
  
  .locations{
-   margin-top: 20%;
+   margin-top: 5%;
    margin-left: 10%;
  }
 
@@ -440,11 +440,13 @@ body {
 
  .div1{
   background-color: rgba(234, 247, 246, 0.808);
-  width: 530px;
-  height: 205px;
+  width: 200px;
+  height: 200px;
   border-radius: 10px;
   position: relative;
   display: inline-block;
+  margin-top: -20%;
+  margin-left: 3%;
 }
 
 div.image {
@@ -460,24 +462,24 @@ div.image {
   font-family: "Impact";
   font-size: 130%;
   position: absolute;
-  left: 210px;
-  
+  left: 25px;
+  top: 30px
 }
 
 .div5To{
   font-family: "Lucida sole";
   font-size: 150%;
   position: absolute;
-  left: 210px;
-  top: 25px;
+  left: 25px;
+  top: 70px;
 }
 
 .div6To{
   font-family: "Lucida sole";
   font-size: 150%;
   position: absolute;
-  left: 210px;
-  top: 51px;
+  left: 25px;
+  top: 70px;
 }
 
 .div3From{
