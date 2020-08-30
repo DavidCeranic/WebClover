@@ -10,8 +10,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200830174021_third")]
-    partial class third
+    [Migration("20200830215725_initionalMigration")]
+    partial class initionalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -423,6 +423,9 @@ namespace WebApiClover.Migrations
                     b.Property<int?>("EndOfficeId")
                         .HasColumnType("int");
 
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -526,6 +529,9 @@ namespace WebApiClover.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyIdd")
+                        .HasColumnType("int");
 
                     b.Property<int>("FlightInfo2FlightID")
                         .HasColumnType("int");

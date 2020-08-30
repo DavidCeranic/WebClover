@@ -208,7 +208,7 @@ export class CarsRentComponent implements OnInit {
 
 
 
-  checkDate(startDate: Date, endDate: Date){
+  checkDate(startDate: Date, endDate: Date) {
     if (endDate < startDate) {
       alert('Starting date must be lower then ending date.');
     }
@@ -220,30 +220,35 @@ export class CarsRentComponent implements OnInit {
       alert("ne moze u proslisti ");
     }
 
-    this.filtredCars=[];
+    this.filtredCars = [];
     // if (this.allCars != null) {
-      for (let i = 0; i < this.allCars.length; i++) {
-        var element = this.allCars[i];
-        this.reservationService.getReservationForCar2(element.carId).then(x => {
+    for (let i = 0; i < this.allCars.length; i++) {
+      var element = this.allCars[i];
+      this.reservationService.getReservationForCar2(element.carId).then(x => {
+        if (x.length != 0) {
+
           for (let i = 0; i < x.length; i++) {
             const reservation = x[i];
-            
+
             var start2 = new Date(reservation.startDate);
             var end2 = new Date(reservation.endDate);
 
             var r1 = end1.setHours(0, 0) - start2.setHours(0, 0);
             var r2 = end2.setHours(0, 0) - start1.setHours(0, 0);
-  
+
             if (r1 >= 0 && r2 >= 0) {
-              
+
             }
-            else{
+            else {
               this.filtredCars.push(element);
             }
           }
-
-        })
-      }
+        }
+        else {
+          this.filtredCars = this.allCars;
+        }
+      })
     }
+  }
 
 }
