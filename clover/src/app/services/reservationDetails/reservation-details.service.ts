@@ -35,8 +35,8 @@ export class ReservationDetailsService {
     })
   }
 
-  getReservationForCar2(carId: number) : Promise<Reservation>{
-    return this.http.get<Reservation>(this.rootUrl + 'ReservationDetails/GetReservationForCar/' + carId).toPromise();
+  getReservationForCar2(carId: number) : Promise<Reservation[]>{
+    return this.http.get<Reservation[]>(this.rootUrl + 'ReservationDetails/GetReservationForCar/' + carId).toPromise();
   }
 
   refreshList(){
