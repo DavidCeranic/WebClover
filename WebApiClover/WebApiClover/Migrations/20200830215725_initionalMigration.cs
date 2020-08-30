@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApiClover.Migrations
 {
-    public partial class firstMigration : Migration
+    public partial class initionalMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -238,7 +238,8 @@ namespace WebApiClover.Migrations
                     StartOfficeId = table.Column<int>(nullable: true),
                     EndOfficeId = table.Column<int>(nullable: true),
                     CarId = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                    UserId = table.Column<int>(nullable: false),
+                    Price = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -266,6 +267,28 @@ namespace WebApiClover.Migrations
                         column: x => x.UserId,
                         principalTable: "UserDetails",
                         principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "flightRate",
+                columns: table => new
+                {
+                    RateIdd = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserIdd = table.Column<int>(nullable: false),
+                    FlightInfo2FlightID = table.Column<int>(nullable: false),
+                    Ocena = table.Column<int>(nullable: false),
+                    CompanyIdd = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_flightRate", x => x.RateIdd);
+                    table.ForeignKey(
+                        name: "FK_flightRate_FlightInfo2_FlightInfo2FlightID",
+                        column: x => x.FlightInfo2FlightID,
+                        principalTable: "FlightInfo2",
+                        principalColumn: "FlightID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -347,6 +370,11 @@ namespace WebApiClover.Migrations
                 column: "UserDetailUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_flightRate_FlightInfo2FlightID",
+                table: "flightRate",
+                column: "FlightInfo2FlightID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FlightReservation_ReservedFlightFlightID",
                 table: "FlightReservation",
                 column: "ReservedFlightFlightID");
@@ -399,6 +427,9 @@ namespace WebApiClover.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "flightRate");
+
             migrationBuilder.DropTable(
                 name: "FlightReservation");
 
