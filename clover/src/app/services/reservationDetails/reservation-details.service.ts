@@ -35,6 +35,10 @@ export class ReservationDetailsService {
     })
   }
 
+  getReservationForCar2(carId: number) : Promise<Reservation>{
+    return this.http.get<Reservation>(this.rootUrl + 'ReservationDetails/GetReservationForCar/' + carId).toPromise();
+  }
+
   refreshList(){
     this.http.get(this.rootUrl + 'ReservationDetails').toPromise().then(res => {
       this.list = res as Reservation[];

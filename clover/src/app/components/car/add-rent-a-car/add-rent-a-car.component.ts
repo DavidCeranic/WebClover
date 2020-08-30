@@ -46,8 +46,8 @@ export class AddRentACarComponent implements OnInit {
       err => {
         this.toastr.error('error');
       }
-    )
-
+    );
+    location.reload();
   }
 
   onClear() {

@@ -12,7 +12,7 @@
 </header>
 
 
-<section id="admin" [hidden]="check()">
+<section style="width: 100px; height: 100px; margin-left: 90%; margin-top: 2%;" id="admin" [hidden]="check()">
   <div class="adminDiv">
     <div class="booking-form">
       <form style="margin-top: 27%;">
@@ -29,11 +29,11 @@
   <hr />
   <h5 style="text-align: center;">Trenutno nema dostupnih offica koja zadovoljavaju zadate parametre.</h5>
 </div>
-<div [hidden]="this.rentService.serviceOffice?.length === 0">
+<div style="margin-left: 10%; margin-top: 10%;" [hidden]="this.rentService.serviceOffice?.length === 0">
   <div *ngFor="let office of this.allOffice" class="div1">
-    <div class="divName">{{office.officeName}}</div>
+    <div class="divName">Office Name:{{office.officeName}}</div>
     <div class="div5To">
-      <Address></Address>: {{office.address}}
+      <Address></Address>Address: {{office.address}}
     </div>
     <div class="btn">
       <button class="myButton" [hidden]="check()" (click)="onDelete(office.officeId)">Delete</button>

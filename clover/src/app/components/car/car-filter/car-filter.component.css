@@ -2,18 +2,20 @@
 
   .div1{
     background-color: rgba(234, 247, 246, 0.808);
-    width: 530px;
+    width: 500px;
     height: 205px;
     border-radius: 10px;
     position: relative;
     display: inline-block;
+    margin-left: 2%;
+    margin-top: 2%;
   }
 
   div.image {
     position: absolute;
-    width: 200px;
+    width: 150px;
     height: 170px;
-    left: 0;
+    left: 10px;
     top: 12px;
    
   }

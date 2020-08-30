@@ -137,7 +137,7 @@ export class CarComponent implements OnInit {
   }
 
   check() {
-    const userRole = JSON.parse(localStorage.getItem('Role'));
+    const userRole = JSON.parse(localStorage.getItem('role'));
     if (userRole === 'Admin' || userRole === "RentAdmin") {
       return false;
     }
