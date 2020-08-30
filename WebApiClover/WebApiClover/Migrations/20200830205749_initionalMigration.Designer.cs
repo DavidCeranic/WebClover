@@ -10,8 +10,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200829175755_rateCar")]
-    partial class rateCar
+    [Migration("20200830205749_initionalMigration")]
+    partial class initionalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -344,7 +344,7 @@ namespace WebApiClover.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CarInfoCarId")
+                    b.Property<int>("CarInfoCarId")
                         .HasColumnType("int");
 
                     b.Property<string>("RateNumber")
@@ -422,6 +422,9 @@ namespace WebApiClover.Migrations
 
                     b.Property<int?>("EndOfficeId")
                         .HasColumnType("int");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -576,7 +579,9 @@ namespace WebApiClover.Migrations
                 {
                     b.HasOne("WebApiClover.Models.CarInfo", null)
                         .WithMany("RateCar")
-                        .HasForeignKey("CarInfoCarId");
+                        .HasForeignKey("CarInfoCarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WebApiClover.Models.ReservationDetails", b =>

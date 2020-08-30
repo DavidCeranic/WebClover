@@ -30,5 +30,7 @@ namespace WebApiClover.Models
 
         [Required]
         public virtual UserDetail User { get; set; }
+
+        public float Price { get; set; }
     }
 }

@@ -61,7 +61,7 @@ export class RegisterUserComponent implements OnInit {
   list: User[];
 
   carRate: FormGroup = new FormGroup({
-    rate: new FormControl('', Validators.required)
+    rate: new FormControl('', [Validators.required, Validators.min(1), Validators.max(5)])
   });
   constructor(private rateService: RateService, public router: Router, public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog, private friendService: FriendsService, public reservationService: FlightReservationService, public reservationServiceCar: ReservationDetailsService, public seatService: SeatService) {
     this.user = null;
@@ -143,11 +143,18 @@ export class RegisterUserComponent implements OnInit {
   }
 
   onSubmit(reservation: Reservation){
-    var car = reservation.car;
-    var rateValue = Number.parseInt(this.carRate.value.rate);
-    var rate = new Rate(0, rateValue, car.carId);
-
-    this.rateService.postRate(rate);
+    // var endDate = new Date(reservation.endDate);
+    // var nowDate = new Date();
+    // if(endDate < nowDate){
+      var car = reservation.car;
+      var rateValue = Number.parseInt(this.carRate.value.rate);
+      var rate = new Rate(0, rateValue, car.carId);
+  
+      this.rateService.postRate(rate);
+    // }
+    // else{
+    //   alert("Mora se prvo zavrsiti rezervacija");
+    // }
   }
 
   seeAllUsers() {
@@ -184,7 +191,14 @@ this.reservationService.deleteFlightReservation(rUser.reservationID);
 
 
   deleteResercation(reservation: Reservation) {
-    this.reservationServiceCar.deleteReservation(reservation.reservationId);
+    // var endDate = new Date(reservation.endDate);
+    // var nowDate = new Date();
+    // if(endDate < nowDate){
+      this.reservationServiceCar.deleteReservation(reservation.reservationId);
+    // }
+    // else{
+    //   alert("Mora se prvo zavrsiti rezervacija");
+    // }
   }
 
   onAddRentService() {

@@ -62,7 +62,7 @@ export class CarRateComponent implements OnInit {
   }
 
   onRevenues(){
-    this.router.navigateByUrl('/car/admin-info/' + this.rentService.serviceId + '/about');
+    this.router.navigateByUrl('/car/admin-info/' + this.rentService.serviceId + '/revenues');
   }
 
 }

@@ -10,8 +10,9 @@ export class Reservation {
     user: User;
     startOffice: Office;
     endOffice: Office;
+    price: number;
 
-    constructor(startDate: Date, endDate: Date, car: Car, user:User, startOffice: Office, endOffice: Office){//, startOffice: Office, endOffice: Office) {
+    constructor(startDate: Date, endDate: Date, car: Car, user:User, startOffice: Office, endOffice: Office, price: number){//, startOffice: Office, endOffice: Office) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.car = car;
@@ -19,5 +20,6 @@ export class Reservation {
         //this.reservationId = reservationId;
         this.startOffice = startOffice;
         this.endOffice = endOffice;
+        this.price = price;
     }
 }

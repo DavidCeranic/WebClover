@@ -125,7 +125,7 @@
 
                             <form style="margin-left: 85%; margin-top: -3%;" #form="ngForm" [formGroup]="carRate" autocomplete="off" (ngSubmit)="onSubmit(reservation)" id="signup-form" class="signup-form">
                                 <div class="form-group">
-                                    <input type="number" style="width: 60px;" name="rate" id="rate" class="form-input" placeholder="Rate" formControlName="rate"/>
+                                    <input type="number" min="1" max="5" style="width: 60px;" name="rate" id="rate" class="form-input" placeholder="Rate" formControlName="rate"/>
                                     <div class="validation-error" *ngIf="(carRate.get('rate').invalid && carRate.get('rate').touched)">This field is required</div>
                                 </div>
                             

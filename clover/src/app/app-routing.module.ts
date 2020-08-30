@@ -33,6 +33,7 @@ import { EditCompanyProfileComponent } from './components/flights/edit-company-p
 
 import { ChangePasswordComponent } from './components/register-user/change-password/change-password/change-password.component';
 import { ChangeInfoComponent } from './components/register-user/change-info/change-info.component';
+import { RevenuesComponent } from './components/car/rent-a-car-filter/admin-info/revenues/revenues/revenues.component';
 
 
 const routes: Routes = [
@@ -73,7 +74,7 @@ const routes: Routes = [
           { path: "service-rate", component: ServiceRateComponent },
           { path: "car-rate", component: CarRateComponent },
           // {path: "graph", component: },
-          // {path: "revenues", component: }
+          {path: "revenues", component: RevenuesComponent}
         ]
       },
       {
