@@ -1,5 +1,6 @@
 import { Time } from '@angular/common';
 import { Seat } from '../Seat/seat';
+import { FlightRate } from '../flightRate/flight-rate';
 
 export class FlightInfo {
 flightID:number;
@@ -20,6 +21,8 @@ userDetailUserId: number;
 seatsList: Seat[];
 startTime:string;
 endTime:string;
+flightRates:FlightRate[];
+
 constructor(from:string, to:string,departing:string,returning:string,classf:string,stops:number,duration:string,companyName:string,price:number,seatsNumber:number,
     rateFlight:number){
     this.from=from;

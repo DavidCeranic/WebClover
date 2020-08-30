@@ -24,7 +24,7 @@ namespace WebApiClover.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FlightInfo2>>> GetFlightInfo2()
         {
-            return await _context.FlightInfo2.ToListAsync();
+            return await _context.FlightInfo2.Include(f=>f.FlightRates).ToListAsync();
         }
 
         // GET: api/FlightInfo2/5

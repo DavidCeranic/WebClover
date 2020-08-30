@@ -10,8 +10,8 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200829170822_firstMigration")]
-    partial class firstMigration
+    [Migration("20200830202825_fourth")]
+    partial class fourth
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -344,31 +344,16 @@ namespace WebApiClover.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CarInfoCarId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CompanyAboutAvioCompID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("FlightInfo2FlightID")
+                    b.Property<int>("CarInfoCarId")
                         .HasColumnType("int");
 
                     b.Property<string>("RateNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("RentServiceServiceId")
-                        .HasColumnType("int");
-
                     b.HasKey("RateID");
 
                     b.HasIndex("CarInfoCarId");
-
-                    b.HasIndex("CompanyAboutAvioCompID");
-
-                    b.HasIndex("FlightInfo2FlightID");
-
-                    b.HasIndex("RentServiceServiceId");
 
                     b.ToTable("Rate");
                 });
@@ -409,6 +394,9 @@ namespace WebApiClover.Migrations
                     b.Property<string>("PriceTable")
                         .IsRequired()
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<double>("Rate")
+                        .HasColumnType("float");
 
                     b.Property<string>("ServiceName")
                         .IsRequired()
@@ -532,6 +520,32 @@ namespace WebApiClover.Migrations
                     b.ToTable("UserDetails");
                 });
 
+            modelBuilder.Entity("WebApiClover.Models.flightRate", b =>
+                {
+                    b.Property<int>("RateIdd")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyIdd")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FlightInfo2FlightID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ocena")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserIdd")
+                        .HasColumnType("int");
+
+                    b.HasKey("RateIdd");
+
+                    b.HasIndex("FlightInfo2FlightID");
+
+                    b.ToTable("flightRate");
+                });
+
             modelBuilder.Entity("WebApiClover.Models.CarInfo", b =>
                 {
                     b.HasOne("WebApiClover.Models.RentService", null)
@@ -588,19 +602,9 @@ namespace WebApiClover.Migrations
                 {
                     b.HasOne("WebApiClover.Models.CarInfo", null)
                         .WithMany("RateCar")
-                        .HasForeignKey("CarInfoCarId");
-
-                    b.HasOne("WebApiClover.Models.CompanyAbout", null)
-                        .WithMany("RateCompany")
-                        .HasForeignKey("CompanyAboutAvioCompID");
-
-                    b.HasOne("WebApiClover.Models.FlightInfo2", null)
-                        .WithMany("RateFlight")
-                        .HasForeignKey("FlightInfo2FlightID");
-
-                    b.HasOne("WebApiClover.Models.RentService", null)
-                        .WithMany("RateService")
-                        .HasForeignKey("RentServiceServiceId");
+                        .HasForeignKey("CarInfoCarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WebApiClover.Models.ReservationDetails", b =>
@@ -631,6 +635,15 @@ namespace WebApiClover.Migrations
                     b.HasOne("WebApiClover.Models.FlightInfo2", null)
                         .WithMany("Seats")
                         .HasForeignKey("FlightInfo2Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApiClover.Models.flightRate", b =>
+                {
+                    b.HasOne("WebApiClover.Models.FlightInfo2", null)
+                        .WithMany("FlightRates")
+                        .HasForeignKey("FlightInfo2FlightID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
