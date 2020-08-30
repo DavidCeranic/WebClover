@@ -32,6 +32,7 @@ import { FastRentCarComponent } from './components/car/car-filter/FastRentCar/fa
 import { EditCompanyProfileComponent } from './components/flights/edit-company-profile/edit-company-profile.component';
 
 import { ChangePasswordComponent } from './components/register-user/change-password/change-password/change-password.component';
+import { ChangeInfoComponent } from './components/register-user/change-info/change-info.component';
 
 
 const routes: Routes = [
@@ -96,7 +97,8 @@ const routes: Routes = [
     path: "register-user",
     children: [
       {path: "", component: RegisterUserComponent},
-      { path: "change-password", component: ChangePasswordComponent, canActivate: [RentAdminGuard]}
+      { path: "change-password", component: ChangePasswordComponent, canActivate: [RentAdminGuard]},
+      {path:"change-info",component:ChangeInfoComponent}
     ]
     
 

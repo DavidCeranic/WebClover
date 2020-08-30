@@ -20,6 +20,15 @@ body, html {
 	height: 100vh;
 }
 
+.avioImage{
+  position: absolute;
+  width: 30px;
+  height: 10px;
+  left: 20px;
+  top: 12px;
+  content:url(../search-flight/avio.png);
+}
+
 .section .section-center {
 	position: absolute;
 	top: 30%;
@@ -250,7 +259,8 @@ div.image {
   position: absolute;
   width: 530px;
   height: 100px;
-
+  left: 220px;
+  content:url(../search-flight/avio.png);
  
 }
 .div4{

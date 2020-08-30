@@ -109,11 +109,20 @@ namespace WebApiClover.Controllers
 
         public async Task<IActionResult> PutUserDetail(int id, UserDetail userDetail)
         {
-            if (id != userDetail.UserId)
-            {
-                return BadRequest();
-            }
+            //if (id != userDetail.UserId)
+            //{
+            //    return BadRequest();
+            //}
 
+            //var userDetails = _context.UserDetails.FirstOrDefault(x => x.UserId == userDetail.UserId);
+            //userDetails.Name = userDetail.Name;
+            //userDetails.Password = userDetail.Password;
+            //userDetails.City = userDetail.City;
+            //userDetails.Email = userDetail.Email;
+            //userDetails.PhoneNumber = userDetail.PhoneNumber;
+
+
+            //_context.UserDetails.Update(userDetails);
             _context.Entry(userDetail).State = EntityState.Modified;
 
             try
@@ -132,7 +141,7 @@ namespace WebApiClover.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(userDetail);
         }
 
         // POST: api/UserDetails
