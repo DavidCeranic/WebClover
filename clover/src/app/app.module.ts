@@ -65,6 +65,7 @@ import { UsersPipe } from './components/register-user/users.pipe';
 import { EditCompanyProfileComponent } from './components/flights/edit-company-profile/edit-company-profile.component';
 
 import { ChangePasswordComponent } from './components/register-user/change-password/change-password/change-password.component';
+import { ChangeInfoComponent } from './components/register-user/change-info/change-info.component';
 
 
 
@@ -110,7 +111,9 @@ import { ChangePasswordComponent } from './components/register-user/change-passw
 
     EditCompanyProfileComponent,
 
-    ChangePasswordComponent
+    ChangePasswordComponent,
+
+    ChangeInfoComponent
 
   ],
   imports: [

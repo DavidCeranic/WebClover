@@ -46,6 +46,11 @@ export class AllFlightsService {
           break;
         }
         
+        if(this.checkFlyingFromR(flight,filterParam) && this.checkFlyingToR(flight,filterParam)){
+          addFlight=false;
+          break;
+        }
+        
         
        
       }
@@ -63,7 +68,16 @@ export class AllFlightsService {
     return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchToFilter' && !flight.to.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
   }
 
-  
+  checkFlyingFromR(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchToFilter' && !flight.from.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+  }
+
+  checkFlyingToR(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
+    return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchFromFilter' && !flight.to.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());
+  }
+
+
+
 
   checkBaggeg(flight: FlightInfo, filterParam: AbstractFilterParam): boolean {
     return filterParam instanceof StringFilterParam && filterParam.getFilterParamName() === 'searchBaggegFilter' && !flight.baggage.toLowerCase().includes(filterParam.getFilterParamValue().toLowerCase());

@@ -19,6 +19,7 @@ import { SeatService } from 'src/app/services/seat.service';
 import { Seat } from 'src/app/entities/Seat/seat';
 import { Rate } from 'src/app/entities/rate/rate';
 import { RateService } from 'src/app/services/rate/rate.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-user',
@@ -62,7 +63,7 @@ export class RegisterUserComponent implements OnInit {
   carRate: FormGroup = new FormGroup({
     rate: new FormControl('', Validators.required)
   });
-  constructor(private rateService: RateService, public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog, private friendService: FriendsService, public reservationService: FlightReservationService, public reservationServiceCar: ReservationDetailsService, public seatService: SeatService) {
+  constructor(private rateService: RateService, public router: Router, public service: UserDetailsService, private registerUser: RegisterUserService, public dialog: MatDialog, private friendService: FriendsService, public reservationService: FlightReservationService, public reservationServiceCar: ReservationDetailsService, public seatService: SeatService) {
     this.user = null;
   }
 
@@ -103,6 +104,11 @@ export class RegisterUserComponent implements OnInit {
     }
 
     return true;
+  }
+
+  changeInfo(){
+    this.router.navigateByUrl('register-user/change-info');
+
   }
 
   ispisRezervacija() {

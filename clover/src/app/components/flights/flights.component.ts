@@ -83,6 +83,14 @@ disable:boolean=false;
     if(this.getFilterFieldValue("searchClassFFilter")){
       filterParams.push(this.addSearchClassFParam());
     }
+    if(this.getFilterFieldValue("searchFromFilter")){
+      filterParams.push(this.addSearchFromFilterParamR());
+    }
+    if(this.getFilterFieldValue("searchToFilter")){
+      filterParams.push(this.addSearchToFilterParamR());
+    }
+
+
     this.searchedFlights = this.flightService.searchFligts(this.allFlightss, filterParams);
   }
 
@@ -97,7 +105,16 @@ disable:boolean=false;
   addSearchToFilterParam(): ReturnType<any> {
     return new StringFilterParam("searchToFilter", this.getFilterFieldValue("searchToFilter"));
   }
+
+  addSearchFromFilterParamR(): ReturnType<any> {
+    return new StringFilterParam("searchFromFilter", this.getFilterFieldValue("searchFromFilter"));
+  }
+  addSearchToFilterParamR(): ReturnType<any> {
+    return new StringFilterParam("searchToFilter", this.getFilterFieldValue("searchToFilter"));
+  }
   
+
+
   addSearchBaggegParam(): ReturnType<any> {
     return new StringFilterParam("searchBaggegFilter", this.getFilterFieldValue("searchBaggegFilter"));
   }
