@@ -4,6 +4,17 @@ import { Car } from 'src/app/entities/Car/car';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { RentServiceDetailsService } from 'src/app/services/rentServices/rentServiceDetails/rent-service-details.service';
 import { RentService } from 'src/app/entities/rentService/rent-service';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+
+export function getAverageRate(car: Car): number {
+  var sum = 0;
+  for (let i = 0; i < car.rateCar.length; i++) {
+    const element = car.rateCar[i];
+    sum += element.rateNumber;
+  }
+
+  return sum / car.rateCar.length;
+}
 
 @Component({
   selector: 'app-car-rate',
@@ -15,11 +26,9 @@ export class CarRateComponent implements OnInit {
   id: number;
   cars: Car[];
 
-  constructor(private serviceCar: CarDetailsService, public route: ActivatedRoute, public service: RentServiceDetailsService, public router: Router) {
-      // this.service.refreshList();
-      // this.service.messageEvent.subscribe( x => {
-      //   this.cars = this.service.list;
-      // })
+  constructor(private serviceCar: CarDetailsService, public route: ActivatedRoute, public service: RentServiceDetailsService, public router: Router, config: NgbRatingConfig) {
+    config.max = 5;
+    config.readonly = true;
    }
 
   ngOnInit(): void {
@@ -29,6 +38,11 @@ export class CarRateComponent implements OnInit {
         this.service.getRentServiceById(this.id).subscribe(
           dataV => {
             this.rentService = dataV;
+
+            for (let i = 0; i < this.rentService.serviceCars.length; i++) {
+              var a = this.rentService.serviceCars[i] as Car;
+              a.averageRate = getAverageRate(this.rentService.serviceCars[i]);
+            }
           }
         )
       }
@@ -37,22 +51,18 @@ export class CarRateComponent implements OnInit {
 
   onServiceRate(){
     this.router.navigateByUrl('/car/admin-info/' + this.rentService.serviceId + '/service-rate');
-    
   }
 
   onCarRate(){
     this.router.navigateByUrl('/car/admin-info/' + this.rentService.serviceId + '/car-rate');
-    
   }
 
   onGraph(){
     this.router.navigateByUrl('/car/admin-info/' + this.rentService.serviceId + '/about');
-    
   }
 
   onRevenues(){
     this.router.navigateByUrl('/car/admin-info/' + this.rentService.serviceId + '/about');
-    
   }
 
 }
