@@ -27,6 +27,17 @@ export class SearchFlightComponent implements OnInit {
     )
   }
 
+  dalijeadmin(): boolean {
+
+    const userRole = JSON.parse(localStorage.getItem('role'));
+    if (userRole === 'Admin' || userRole === "FlightAdmin") {
+      return true;
+    } else {
+
+      return false;
+    }
+
+  }
   onSelect(flightService:FlightInfo){
     this.router.navigateByUrl('/flights/payment/'+flightService.flightID);
   

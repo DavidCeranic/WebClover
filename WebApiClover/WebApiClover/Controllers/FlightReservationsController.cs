@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +17,12 @@ namespace WebApiClover.Controllers
     public class FlightReservationsController : ControllerBase
     {
         private readonly UserDetailContext _context;
+        private IEmailService email;
 
-        public FlightReservationsController(UserDetailContext context)
+        public FlightReservationsController(UserDetailContext context, IEmailService emailService)
         {
             _context = context;
+            this.email = emailService;
         }
 
         // GET: api/FlightReservations
@@ -96,6 +99,11 @@ namespace WebApiClover.Controllers
 
             _context.FlightReservation.Add(flightReservation);
             await _context.SaveChangesAsync();
+
+            const string subject = "Reservation";
+            var body = $"<p>For:{flightReservation.ReservedUser.Email}</p><p> Uspesno ste rezervisai let</a>";
+
+            await email.SendMailAsync(flightReservation.ReservedUser.Email, subject, body);
 
             return CreatedAtAction("GetFlightReservation", new { id = flightReservation.ReservationID }, flightReservation);
         }

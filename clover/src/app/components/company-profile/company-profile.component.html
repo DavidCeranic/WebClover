@@ -1,12 +1,21 @@
 <body>
         <div class="bg"> 
         <div class="conteinter4">
-        <div class="image2"></div>
-        <div class="about"><p style="color:whitesmoke">{{companyData.avioCompName}} prosecna ocena je{{this.prosek}}</p></div>
+        <!-- <div class="image2"></div> -->
+        <div class="about"  ><p style="color:whitesmoke;margin-top:4%; ">COMPANY NAME:{{companyData.avioCompName}} </p></div>
+        <div class="about"><p style="color:whitesmoke;margin-top:7%;">COMPANY ADDRESS:{{companyData.avioCompAddress}} </p></div>
+        <div class="about"><p style="color:whitesmoke;margin-top:10%;">COMPANY ABOUT:{{companyData.avioCompAbout}} </p></div>
+
+        <div class="about"><p style="color:whitesmoke;margin-top:13%;">COMPANY DESTINATIONS:{{companyData.avioCompDestinations}} </p></div>
+
+        <div class="about"><p style="color:whitesmoke;margin-top:16%;">COMPANY SEATS:{{companyData.avioCompSeats}} </p></div>
+        <div class="about"><p style="color:whitesmoke;margin-top:20%;">PROSECNA OCENA:{{this.prosek}} </p></div>
+
+
         
             
         </div>
-        <div><button  type="button" class="form-submit" (click)="onSelect2(id)" >change info about company</button></div> 
+        <div><button   *ngIf="dalijeadmin()"  type="button" class="form-submit" (click)="onSelect2(id)" >change info about company</button></div> 
         <!-- <div class="booking-form">
                         <form>
                                 <div class="form-group">

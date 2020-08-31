@@ -44,7 +44,7 @@ export class PaymentComponent implements OnInit {
   dalijeadmin(): boolean {
 
     const userRole = JSON.parse(localStorage.getItem('role'));
-    if (userRole === 'Admin' || userRole === "FlightAdmin" || userRole === "User") {
+    if (userRole === 'Admin' || userRole === "FlightAdmin" ) {
       return true;
     } else {
 
@@ -161,9 +161,11 @@ this.allRegistredUsers2.forEach(element => {
       this.seatService.deleteSeat(this.s.id);
     alert('Uspesno ste obrisali');
 
+  }else{
+    alert('Greska pri rezervaciji');
+
     }
     
-    alert('Greska pri rezervaciji');
   }
 
   inviteFriend(){
@@ -214,8 +216,10 @@ this.allRegistredUsers2.forEach(element => {
 
       this.reservationServation.addReservation(this.res);
       alert('Usepsno ste rezervisali mesto.');
+    }else{
+
+      alert('Greska pri rezervaciji');
     }
-    alert('Greska pri rezervaciji');
   }
 
   onButtonClick(event : MouseEvent){
