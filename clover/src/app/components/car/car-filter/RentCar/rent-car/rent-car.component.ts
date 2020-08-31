@@ -117,30 +117,25 @@ export class RentCarComponent implements OnInit {
       return false;
     }
 
-    if (this.reservationService.list.length != 0) {
-      for (let i = 0; i < this.reservationService.list.length; i++) {
-        var element = this.reservationService.list[i];
-        console.log(this.reservationService.list);
+    for (let i = 0; i < this.reservationService.list.length; i++) {
+      var element = this.reservationService.list[i];
+      console.log(this.reservationService.list);
 
-        var start2 = new Date(element.startDate);
-        var end2 = new Date(element.endDate);
+      var start2 = new Date(element.startDate);
+      var end2 = new Date(element.endDate);
 
-        var start1 = new Date(startDate);
-        var end1 = new Date(endDate);
+      var start1 = new Date(startDate);
+      var end1 = new Date(endDate);
 
-        var r1 = end1.setHours(0, 0) - start2.setHours(0, 0);
-        var r2 = end2.setHours(0, 0) - start1.setHours(0, 0);
+      var r1 = end1.setHours(0, 0) - start2.setHours(0, 0);
+      var r2 = end2.setHours(0, 0) - start1.setHours(0, 0);
 
-        if (r1 >= 0 && r2 >= 0) {
-          alert('Selected span of dates is already taken.');
-          return false;
-        }
+      if (r1 >= 0 && r2 >= 0) {
+        alert('Selected span of dates is already taken.');
+        return false;
       }
     }
-    else {
-      return true;
-    }
-
+    return true;
   }
 
   resetForm(form?: NgForm) {
