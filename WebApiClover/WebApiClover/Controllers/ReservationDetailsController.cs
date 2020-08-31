@@ -31,6 +31,7 @@ namespace WebApiClover.Controllers
         }
 
         [HttpGet("GetReservationForCar/{carId}")]
+        [AllowAnonymous]
         public async Task<List<ReservationDetails>> GetReservationForCar(int carId)
         {
             return await _context.ReservationDetails.Where(x => x.Car.CarId == carId).Include(p=>p.User).Include(p=>p.Car).Include(p => p.StartOffice).Include(p => p.EndOffice).ToListAsync();
