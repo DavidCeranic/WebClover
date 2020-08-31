@@ -10,7 +10,7 @@ using WebApiClover.Models;
 namespace WebApiClover.Migrations
 {
     [DbContext(typeof(UserDetailContext))]
-    [Migration("20200830215725_initionalMigration")]
+    [Migration("20200831154556_initionalMigration")]
     partial class initionalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -117,7 +117,7 @@ export class RentCarComponent implements OnInit {
       return false;
     }
 
-    if (this.reservationService.list != null) {
+    if (this.reservationService.list.length != 0) {
       for (let i = 0; i < this.reservationService.list.length; i++) {
         var element = this.reservationService.list[i];
         console.log(this.reservationService.list);
