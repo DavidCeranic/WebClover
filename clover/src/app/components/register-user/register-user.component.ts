@@ -41,7 +41,7 @@ export class RegisterUserComponent implements OnInit {
   clicked3:boolean=false;
   clicked4:boolean=false;
   clicked5:boolean=false;
-
+trenutni:User;
   pomSeat:Seat;
   fr:FlightRate;
   userName:string;
@@ -89,8 +89,10 @@ export class RegisterUserComponent implements OnInit {
 
     });
 
-
-
+  //  this.trenutni.userId = JSON.parse(localStorage.getItem("regId"));
+    this.service.getUserById(JSON.parse(localStorage.getItem("regId"))).toPromise().then(res=>{
+      this.trenutni=res;  
+    })
 
   }
 
