@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CompanyAboutsController : ControllerBase
     {
         private readonly UserDetailContext _context;
@@ -22,6 +24,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/CompanyAbouts
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<CompanyAbout>>> GetCompanyAbout()
         {
             return await _context.CompanyAbout.Include(x=>x.CompanyFlights).ToListAsync();
@@ -29,6 +32,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/CompanyAbouts/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<CompanyAbout>> GetCompanyAbout(int id)
         {
             var companyAbout = await _context.CompanyAbout.FindAsync(id);
@@ -45,6 +49,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<IActionResult> PutCompanyAbout(int id,[FromBody] CompanyAbout companyAbout)
         {
             //if (id != companyAbout.AvioCompID)
@@ -85,6 +91,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<CompanyAbout>> PostCompanyAbout(CompanyAbout companyAbout)
         {
             _context.CompanyAbout.Add(companyAbout);
@@ -95,6 +103,8 @@ namespace WebApiClover.Controllers
 
         // DELETE: api/CompanyAbouts/5
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<CompanyAbout>> DeleteCompanyAbout(int id)
         {
             var companyAbout = await _context.CompanyAbout.FindAsync(id);

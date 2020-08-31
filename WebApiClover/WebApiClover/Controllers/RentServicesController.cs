@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RentServicesController : ControllerBase
     {
         private readonly UserDetailContext _context;
@@ -23,6 +25,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/RentServices
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<RentService>>> GetRentService()
         {
             return await _context.RentService.Include(x=>x.ServiceCars).ThenInclude(r => r.RateCar).Include(c => c.ServiceOffice).ToListAsync();
@@ -30,6 +33,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/RentServices/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<RentService>> GetRentService(int id)
         {
             var rentService = await _context.RentService.Include(car => car.ServiceCars).ThenInclude(x=>x.RateCar).Include(office => office.ServiceOffice).FirstOrDefaultAsync(car => car.ServiceId == id);
@@ -46,6 +50,7 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> PutRentService(int id, RentService rentService)
         {
             //if (id != rentService.ServiceId)
@@ -93,6 +98,8 @@ namespace WebApiClover.Controllers
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
         [HttpPost("RentServices")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<RentService>> PostRentService(RentService rentService)
         {
             _context.RentService.Add(rentService);
@@ -103,6 +110,8 @@ namespace WebApiClover.Controllers
 
         // DELETE: api/RentServices/5
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<RentService>> DeleteRentService(int id)
         {
             var rentService = await _context.RentService.FindAsync(id);

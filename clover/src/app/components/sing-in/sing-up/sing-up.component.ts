@@ -24,8 +24,7 @@ export class SingUpComponent implements OnInit {
 
   singUpForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    // email: new FormControl('',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
+    email: new FormControl('',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
     city: new FormControl('', Validators.required),
     phoneNumber: new FormControl('', Validators.required),
     passwordGroup: new FormGroup({

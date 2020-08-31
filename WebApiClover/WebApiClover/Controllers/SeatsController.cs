@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SeatsController : ControllerBase
     {
         private readonly UserDetailContext _context;
@@ -22,6 +24,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/Seats
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Seat>>> GetSeat()
         {
             return await _context.Seat.ToListAsync();
@@ -29,6 +32,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/Seats/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<Seat>> GetSeat(int id)
         {
             var seat = await _context.Seat.FindAsync(id);
@@ -45,6 +49,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<IActionResult> PutSeat(int id, Seat seat)
         {
             if (id != seat.Id)
@@ -77,6 +83,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<Seat>> PostSeat(Seat seat)
         {
             _context.Seat.Add(seat);
@@ -87,6 +95,8 @@ namespace WebApiClover.Controllers
 
         // DELETE: api/Seats/5
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<Seat>> DeleteSeat(int id)
         {
             var seat = await _context.Seat.FindAsync(id);

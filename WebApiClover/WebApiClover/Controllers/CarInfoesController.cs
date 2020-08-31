@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CarInfoesController : ControllerBase
     {
         private readonly UserDetailContext _context;
@@ -22,6 +24,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/CarInfoes
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<CarInfo>>> GetCarInfo()
         {
             return await _context.CarInfo.Include(x=>x.RateCar).ToListAsync();
@@ -29,6 +32,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/CarInfoes/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<CarInfo>> GetCarInfo(int id)
         {
             var carInfo = await _context.CarInfo.FindAsync(id);
@@ -45,6 +49,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<IActionResult> PutCarInfo(int id, CarInfo carInfo)
         {
             //if (id != carInfo.CarId)
@@ -78,6 +84,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<CarInfo>> PostCarInfo(CarInfo carInfo)
         {
             _context.CarInfo.Add(carInfo);
@@ -88,6 +96,8 @@ namespace WebApiClover.Controllers
 
         // DELETE: api/CarInfoes/5
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<CarInfo>> DeleteCarInfo(int id)
         {
             var carInfo = await _context.CarInfo.FindAsync(id);

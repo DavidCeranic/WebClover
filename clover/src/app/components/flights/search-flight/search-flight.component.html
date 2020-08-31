@@ -1,4 +1,4 @@
-<div class="conteiner3" id="style-22">
+<div class="conteiner3" id="style-22" style="margin-top: -10%;width: 840px;">
     <div class="inp1"><input type="text" class="inp" name="min" placeholder="highest price.." [(ngModel)]="searchPrice" ></div>
     <div class="inp2"><input type="text" class="inp" name="max" placeholder="duration" [(ngModel)]="searchDuration"></div>
     <div class="inp3"><input type="text" class="inp" name="cnm" placeholder=" company name.." [(ngModel)]="searchCompanyName"></div>
@@ -9,7 +9,7 @@
             <option value="usa">USA</option>
           </select></div>-->
         
-    <div *ngFor="let flight of searchedFlights | flightFilter: searchCompanyName | flightFilter2: searchDuration | flightFilter3:searchPrice" class="div1">
+    <div style="width: 800px;" *ngFor="let flight of searchedFlights | flightFilter: searchCompanyName | flightFilter2: searchDuration | flightFilter3:searchPrice" class="div1">
             <div class="div2">{{flight.departing.toLocaleString()}}</div>
             <div class="div">{{flight.startTime}}</div>
 

@@ -2,7 +2,7 @@
      <div class="bg">
 
 
-            <div  class="div1">
+            <div  class="div1" style="margin-left: 40%;">
 
                     <div class="div2">{{flightData.departing}}</div>
                     <div class="div3From">{{flightData.from}}</div>
@@ -23,7 +23,7 @@
 
                 <button [disabled]="disable" class="myButton2" (click)="rentCar()">Rent A Car </button>
                 
-                <label> You need to pay:{{seatPrice}}</label>
+                <p> You need to pay:{{seatPrice}}</p> 
              <!-- <div class="plane">
   <div class="cockpit">
     <h1>Please select a seat</h1>
@@ -33,14 +33,14 @@
   </div> -->
 
 
-
-<div class="wrapper" *ngFor="let seat of sortedSeats">
+<div style="margin-top: 15%;">
+<div class="wrapper" style="margin-left: 40%;" *ngFor="let seat of sortedSeats">
     <ol class="cabin fuselage">
   <li class="row row--1">
     <ol class="seats" type="A">
       <li class="seat">
         <input type="checkbox" id="1A" (click)="reserve(seat)" />
-        <label for="1A">{{seat.number2}}</label>
+        <p for="1A">{{seat.number2}}</p>
       </li>
     </ol>
     </li>
@@ -51,7 +51,7 @@
   </form> -->
     <!-- <button>{{seat.number2}} </button> -->
 </div>
-
+</div>
 <div>
     <div *ngFor="let friend of acceptedFriends" class="div51">
         <div class="div24"></div>
