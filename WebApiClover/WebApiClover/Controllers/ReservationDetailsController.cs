@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +17,12 @@ namespace WebApiClover.Controllers
     public class ReservationDetailsController : ControllerBase
     {
         private readonly UserDetailContext _context;
+        private IEmailService email;
 
-        public ReservationDetailsController(UserDetailContext context)
+        public ReservationDetailsController(UserDetailContext context, IEmailService emailService)
         {
             _context = context;
+            this.email = emailService;
         }
 
         [HttpGet]
@@ -62,6 +65,13 @@ namespace WebApiClover.Controllers
 
                 await _context.ReservationDetails.AddAsync(reservationDetails);
                 await _context.SaveChangesAsync();
+
+                const string subject = "Reservation";
+                var body = $"<p>For:{reservationDetails.User.Email}</p><p> Uspesno ste rezervisai let</a>";
+                await email.SendMailAsync(reservationDetails.User.Email, subject, body);
+
+
+
                 return await Task.FromResult<IActionResult>(Ok());
             }
             catch (Exception ex)

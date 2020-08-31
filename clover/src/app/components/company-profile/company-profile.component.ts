@@ -107,6 +107,7 @@ this.seatService.getAllSeats().then(
 )
 
 
+
 this.flightRateService.refreshList().toPromise().then(
   data=>{
     data.forEach(element => {
@@ -129,6 +130,18 @@ this.flRate.forEach(element => {
 });
   }
 
+
+  dalijeadmin(): boolean {
+
+    const userRole = JSON.parse(localStorage.getItem('role'));
+    if (userRole === 'Admin' || userRole === "FlightAdmin" ) {
+      return true;
+    } else {
+
+      return false;
+    }
+
+  }
   fastRezervation(f:FlightInfo){
 
     this.seatService.getAllSeats().then(
@@ -163,8 +176,10 @@ this.flRate.forEach(element => {
 
       this.reservationServation.addReservation(this.res);
       alert("Uspesno ste rezervisali");
+    }else{
+
+      alert("Vise nema slobodnih mesta na popustu");
     }
-    alert("Vise nema slobodnih mesta na popustu");
 
   }
 

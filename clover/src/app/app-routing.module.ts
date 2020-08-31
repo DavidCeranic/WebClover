@@ -34,6 +34,7 @@ import { EditCompanyProfileComponent } from './components/flights/edit-company-p
 import { ChangePasswordComponent } from './components/register-user/change-password/change-password/change-password.component';
 import { ChangeInfoComponent } from './components/register-user/change-info/change-info.component';
 import { RevenuesComponent } from './components/car/rent-a-car-filter/admin-info/revenues/revenues/revenues.component';
+import { FlightAdminGuard } from './guards/flightAdmin/flight-admin.guard';
 
 
 const routes: Routes = [
@@ -55,7 +56,7 @@ const routes: Routes = [
         {path: "", component: PaymentComponent},
         { path: 'fast-rent-car', component: FastRentCarComponent}
       ]
-     },{path:'add-flight/:flightID',component:AddFlightComponent},
+     },{path:'add-flight/:flightID',component:AddFlightComponent,canActivate :[FlightAdminGuard]},
     ]
   },
   {

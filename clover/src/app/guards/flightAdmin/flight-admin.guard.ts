@@ -11,7 +11,7 @@ export class FlightAdminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
     {
       const userRole = JSON.parse(localStorage.getItem('role'));
-      if (userRole === 'FlightAdmin') {
+      if (userRole === 'FlightAdmin' || userRole==='Admin') {
         return true;
       }
   

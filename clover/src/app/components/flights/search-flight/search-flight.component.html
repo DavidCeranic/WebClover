@@ -22,7 +22,7 @@
             <div class="divName">{{flight.companyName}}</div>
             <div class="btn">
             <button (click)="onSelect(flight)" class="myButton">BOOK {{flight.price}}$</button>
-            <button (click)="onSelect2(flight)" class="myButton">Change</button>
+            <button *ngIf="dalijeadmin()" (click)="onSelect2(flight)" class="myButton">Change</button>
 
         </div>
         </div>
