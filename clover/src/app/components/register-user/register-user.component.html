@@ -23,7 +23,7 @@
                             </div>
 
                             <div class="profile-usertitle-job">
-                                Developer
+                                {{this.trenutni.name}}
                             </div>
                         </div>
                         <div class="profile-userbuttons">
@@ -111,7 +111,16 @@
                             <button (click)="cancleFlight(rUser)" class="myButton2">cancle flight </button>
 
                             <form style="margin-left: 85%; margin-top: -3%;" #form="ngForm" [formGroup]="flightRate" autocomplete="off" (ngSubmit)="onSubmit2(rUser)" id="signup-form" class="signup-form">
-                            <input type="number" style="width: 60px;" name="rate" id="rate" class="form-input" placeholder="Rate" formControlName="rate"/>
+                            <!-- <input type="number" style="width: 60px;" name="rate" id="rate" class="form-input" placeholder="Rate" formControlName="rate"/> -->
+                            <select style="width: 60px;" name="rate" id="rate" class="form-input"  formControlName="rate" >
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+
+                                
+                        </select>
                             <div class="form-group">
                                 <input type="submit"   name="submit" id="submit" class="form-submit" value="Rate flight"/>
                             </div>

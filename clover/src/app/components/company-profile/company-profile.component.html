@@ -7,7 +7,7 @@
             
         </div>
         <div><button  type="button" class="form-submit" (click)="onSelect2(id)" >change info about company</button></div> 
-        <div class="booking-form">
+        <!-- <div class="booking-form">
                         <form>
                                 <div class="form-group">
                                         <div class="form-checkbox">
@@ -59,6 +59,7 @@
                                                                 <option>1</option>
                                                                 <option>2</option>
                                                                 <option>3</option>
+                                                                
                                                         </select>
                                                         <span class="select-arrow"></span>
                                                 </div>
@@ -94,7 +95,7 @@
                                         </div>
                                 </div>
                         </form>
-                </div>
+                </div> -->
                 
                
                 <div class="conteiner3" id="style-22" >
@@ -137,64 +138,80 @@
                 <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                        From:
                         <input name="from"   #from="ngModel" [(ngModel)]="service.formData.from"  type="text"  class="form-control" placeholder="City or airport" id="from"  required>
+        <div class="validation-error" *ngIf="from.invalid && from.touched">This field is required</div>
+
                 </div>
                 <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                       To:
                       <input name="to" class="form-control" #to="ngModel" [(ngModel)]="service.formData.to"  type="text" placeholder="City or airport"  id="to" required>
+        <div class="validation-error" *ngIf="to.invalid && to.touched">This field is required</div>
+
                 </div>
                  <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Departing:
                    <input name="departing" class="form-control"  #departing="ngModel" [(ngModel)]="service.formData.departing"  id="departing" type="date" required>
+        <div class="validation-error" *ngIf="departing.invalid && departing.touched">This field is required</div>
+
                   </div>
                   <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Returning:
                                 <input  name="returning" #returning="ngModel" [(ngModel)]="service.formData.returning" id="returning" class="form-control" type="date" required>
-                 </div>
+        <div class="validation-error" *ngIf="returning.invalid && returning.touched">This field is required</div>
+</div>
                  <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Classf:
                                 <input name="classf" #classf="ngModel" [(ngModel)]="service.formData.classf"  id="classf" class="form-control" type="text" placeholder="class" required>
-                </div>
+        <div class="validation-error" *ngIf="classf.invalid && classf.touched">This field is required</div>
+</div>
                 <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Baggage:
                                 <input name="baggage" #baggage="ngModel" [(ngModel)]="service.formData.baggage"   id="baggage" class="form-control" type="text" placeholder="baggage" required>
-                </div>   
+        <div class="validation-error" *ngIf="baggage.invalid && baggage.touched">This field is required</div>
+</div>   
 
                 <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Stops:
                                 <input name="stops" #stops="ngModel" [(ngModel)]="service.formData.stops"  id="stops" class="form-control" type="number" placeholder="stops" required>
-                </div>   
+        <div class="validation-error" *ngIf="stops.invalid && stops.touched">This field is required</div>
+</div>   
                   <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Duration:
                                 <input name="duration"  #duration="ngModel" [(ngModel)]="service.formData.duration" id="duration" class="form-control" type="text" placeholder="duration" required>
-                </div> 
+        <div class="validation-error" *ngIf="duration.invalid && duration.touched">This field is required</div>
+</div> 
                     <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                                 Company Name:
                                 <input name="companyName" #companyName="ngModel" [(ngModel)]="service.formData.companyName"  id="companyName" class="form-control" type="text" placeholder="companyName" required>
-                </div>   
+        <div class="validation-error" *ngIf="companyName.invalid && companyName.touched">This field is required</div>
+</div>   
                 <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                                 Price:
                                 <input name="price" #price="ngModel" [(ngModel)]="service.formData.price"  id="price" class="form-control" type="number" placeholder="price" required>
-                </div>   
+        <div class="validation-error" *ngIf="price.invalid && price.touched">This field is required</div>
+</div>   
 
 
                 <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         SeatsNumber:
                         <input #seatsNumber="ngModel" [(ngModel)]="service.formData.seatsNumber" name="seatsNumber" type="number"  class="form-control"  id="seatsNumber" required/>
-                      </div>
+        <div class="validation-error" *ngIf="seatsNumber.invalid && seatsNumber.touched">This field is required</div>
+</div>
 
                       <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         Start time:
                         <input #startTime="ngModel" [(ngModel)]="service.formData.startTime" name="startTime" type="time"  class="form-control"  id="startTime" required/>
-                      </div>
+        <div class="validation-error" *ngIf="startTime.invalid && startTime.touched">This field is required</div>
+</div>
 
                       <div class="form-group" style="color:rgba(226, 225, 225, 0.966);">
                         End time:
                         <input #endTime="ngModel" [(ngModel)]="service.formData.endTime" name="endTime" type="time"  class="form-control"  id="endTime" required/>
-                      </div>
+        <div class="validation-error" *ngIf="endTime.invalid && endTime.touched">This field is required</div>
+</div>
                
 
                 <div class="form-group">
-                 <input  type="submit" name="submit" id="submit" class="form-submit" value="Add Flight" class="poz"/>
+                 <input  type="submit" [disabled]="form.invalid" name="submit" id="submit" class="form-submit" value="Add Flight" class="poz"/>
                 </div>
                 </form>
     </div>

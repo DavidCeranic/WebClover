@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { FormGroup, NgForm, FormControl, Validators } from '@angular/forms';
 import { AvioCompanyDetailsService } from 'src/app/services/avioCompany/avio-company-details/avio-company-details.service';
+import { AboutCompany } from 'src/app/entities/aboutCompany/about-company';
 
 
 @Component({
@@ -9,9 +10,19 @@ import { AvioCompanyDetailsService } from 'src/app/services/avioCompany/avio-com
   styleUrls: ['./add-about-company.component.css']
 })
 export class AddAboutCompanyComponent implements OnInit {
-  addComapny : FormGroup
+  addComapny : FormGroup;
   
+companyForm:FormGroup=new FormGroup({
+  avioCompName: new FormControl('', Validators.required),
+  avioCompAddress: new FormControl('', Validators.required),
+  avioCompAbout: new FormControl('', Validators.required),
+  avioCompDestinations: new FormControl('', Validators.required),
+  avioCompFastReservationDiscount: new FormControl('', Validators.required),
+  avioCompSeats: new FormControl('', Validators.required),
+  avioCompPrices: new FormControl('', Validators.required),
 
+  
+})
 
   constructor(public service: AvioCompanyDetailsService ) { }
 
@@ -19,6 +30,7 @@ export class AddAboutCompanyComponent implements OnInit {
     this.resetForm();
   }
   onSubmit(form: NgForm){
+   // var cmpa = this.companyForm.value as AboutCompany;
     this.service.postCompanyDetails(form.value).subscribe(
       res => {
         this.resetForm(form);
