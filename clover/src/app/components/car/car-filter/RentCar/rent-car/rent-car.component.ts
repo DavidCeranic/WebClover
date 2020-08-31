@@ -78,24 +78,24 @@ export class RentCarComponent implements OnInit {
 
       var reservation = new Reservation(this.reservationForm.get("startDate").value, this.reservationForm.get("endDate").value, this.car, this.user, this.startOffice, this.endOffice, this.totalPrice);
       this.insertReservation(reservation);
-      
-      alert("Uspesno ste rezervisali. Ukupna cena je: "+this.totalPrice);
+
+      alert("Uspesno ste rezervisali. Ukupna cena je: " + this.totalPrice);
       this.router.navigateByUrl('/car/rent-a-car/' + this.rentService.serviceId + '/cars');
     }
   }
 
-  calculatePrice(startDate, endDate) : number{
+  calculatePrice(startDate, endDate): number {
     let days = new Array<Date>();
     let start = new Date(startDate);
     let end = new Date(endDate);
-    let daysNum = (end.setHours(0, 0).valueOf() - start.setHours(0,0).valueOf())/86400000;
+    let daysNum = (end.setHours(0, 0).valueOf() - start.setHours(0, 0).valueOf()) / 86400000;
 
     for (let i = 0; i < daysNum; i++) {
       let date = new Date();
       date.setDate(start.getDate() + i);
       days.push(date);
     }
-    
+
     return days.length;
   }
 
@@ -117,25 +117,30 @@ export class RentCarComponent implements OnInit {
       return false;
     }
 
-    for (let i = 0; i < this.reservationService.list.length; i++) {
-      var element = this.reservationService.list[i];
-      console.log(this.reservationService.list);
+    if (this.reservationService.list != null) {
+      for (let i = 0; i < this.reservationService.list.length; i++) {
+        var element = this.reservationService.list[i];
+        console.log(this.reservationService.list);
 
-      var start2 = new Date(element.startDate);
-      var end2 = new Date(element.endDate);
+        var start2 = new Date(element.startDate);
+        var end2 = new Date(element.endDate);
 
-      var start1 = new Date(startDate);
-      var end1 = new Date(endDate);
+        var start1 = new Date(startDate);
+        var end1 = new Date(endDate);
 
-      var r1 = end1.setHours(0, 0) - start2.setHours(0, 0);
-      var r2 = end2.setHours(0, 0) - start1.setHours(0, 0);
+        var r1 = end1.setHours(0, 0) - start2.setHours(0, 0);
+        var r2 = end2.setHours(0, 0) - start1.setHours(0, 0);
 
-      if (r1 >= 0 && r2 >= 0) {
-        alert('Selected span of dates is already taken.');
-        return false;
+        if (r1 >= 0 && r2 >= 0) {
+          alert('Selected span of dates is already taken.');
+          return false;
+        }
       }
     }
-    return true;
+    else {
+      return true;
+    }
+
   }
 
   resetForm(form?: NgForm) {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FlightReservationsController : ControllerBase
     {
         private readonly UserDetailContext _context;
@@ -22,6 +24,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/FlightReservations
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<FlightReservation>>> GetFlightReservation()
         {
             return await _context.FlightReservation.Include(i => i.ReservedSeat).Include(i => i.ReservedFlight).Include(i => i.ReservedUser).ToListAsync();
@@ -29,6 +32,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/FlightReservations/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<FlightReservation>> GetFlightReservation(int id)
         {
             var flightReservation = await _context.FlightReservation.FindAsync(id);
@@ -45,6 +49,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<IActionResult> PutFlightReservation(int id, FlightReservation flightReservation)
         {
             if (id != flightReservation.ReservationID)
@@ -77,6 +83,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<FlightReservation>> PostFlightReservation(FlightReservation flightReservation)
         {
             var flight = _context.FlightInfo2.FirstOrDefault(f => f.FlightID == flightReservation.ReservedFlight.FlightID);
@@ -94,6 +102,8 @@ namespace WebApiClover.Controllers
 
         // DELETE: api/FlightReservations/5
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<FlightReservation>> DeleteFlightReservation(int id)
         {
             var flightReservation = await _context.FlightReservation.FindAsync(id);

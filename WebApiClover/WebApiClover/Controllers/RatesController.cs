@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RatesController : ControllerBase
     {
         private readonly UserDetailContext _context;
@@ -23,6 +25,7 @@ namespace WebApiClover.Controllers
 
         [HttpGet]
         [Route("GetAllRate")]
+        [AllowAnonymous]
         public async Task<List<Rate>> GetAllRate()
         {
             return await _context.Rate.ToListAsync();
@@ -30,6 +33,8 @@ namespace WebApiClover.Controllers
 
         [HttpPost]
         [Route("CreateRate")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateRate(Rate rate)
         {
             await _context.Rate.AddAsync(rate);

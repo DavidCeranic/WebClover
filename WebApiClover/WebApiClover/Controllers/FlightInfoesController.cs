@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FlightInfoesController : ControllerBase
     {
         private readonly UserDetailContext _context;
@@ -22,6 +24,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/FlightInfoes
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<FlightInfo>>> GetFlightsInfo()
         {
             return await _context.FlightsInfo.ToListAsync();
@@ -29,6 +32,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/FlightInfoes/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<FlightInfo>> GetFlightInfo(string id)
         {
             var flightInfo = await _context.FlightsInfo.FindAsync(id);
@@ -45,6 +49,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<IActionResult> PutFlightInfo(string id, FlightInfo flightInfo)
         {
             if (id != flightInfo.FlightID)
@@ -77,6 +83,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<FlightInfo>> PostFlightInfo(FlightInfo flightInfo)
         {
             _context.FlightsInfo.Add(flightInfo);
@@ -101,6 +109,8 @@ namespace WebApiClover.Controllers
 
         // DELETE: api/FlightInfoes/5
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<FlightInfo>> DeleteFlightInfo(string id)
         {
             var flightInfo = await _context.FlightsInfo.FindAsync(id);

@@ -9,7 +9,6 @@
                     </div>
                 </form>
         <!-- <div class="container" style="margin-top: 30px;"> -->
-            <div class="row profile">
 
                 <div class="col-md-3">
                     <div class="profile-sidebar">
@@ -25,10 +24,6 @@
                             <div class="profile-usertitle-job">
                                 Developer
                             </div>
-                        </div>
-                        <div class="profile-userbuttons">
-                            <button type="button" class="btn btn-success btn-sm">Points</button>
-                            <button type="button" class="btn btn-danger btn-sm">Message</button>
                         </div>
                         <div class="profile-usermenu">
                             <ul class="nav">
@@ -148,25 +143,7 @@
                 </div>
 
 
-
-
-
-                <div>
-                    <div *ngFor="let friend of allFriendsReq" class="div1">
-                        <div class="div2"></div>
-                        <div class="div3From">{{friend.userEmail1}}</div>
-                        <div class="image"></div>
-                        <div class="div4"></div>
-                        <!-- <div class="div5To">{{friend.userEmail2}}</div> -->
-                        <div class="divName"></div>
-                        <div class="btn2">
-                            <button (click)="acceptFrind(friend)" class="myButton2">Accept </button>
-                            <button (click)="ignoreFfriend(friend)" class="myButton2">Ignore </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
+                <div class="col-md-9">
                     <div *ngFor="let friend of acceptedFriends" class="div1">
                         <div class="div2"></div>
                         <div class="div3From">{{friend.userEmail2}}</div>
@@ -191,6 +168,24 @@
                     </div>
                 </div>
 
+
+                <div class="col-md-9">
+                    <div *ngFor="let friend of allFriendsReq" class="div1">
+                        <div class="div2"></div>
+                        <div class="div3From">{{friend.userEmail1}}</div>
+                        <div class="image"></div>
+                        <div class="div4"></div>
+                        <!-- <div class="div5To">{{friend.userEmail2}}</div> -->
+                        <div class="divName"></div>
+                        <div class="btn2">
+                            <button (click)="acceptFrind(friend)" class="myButton2">Accept </button>
+                            <button (click)="ignoreFfriend(friend)" class="myButton2">Ignore </button>
+                        </div>
+                    </div>
+                </div>
+
+                
+
             </div>
         <!-- </div> -->
 
@@ -199,7 +194,6 @@
                 <form>
                     <div class="inner-form">
                         <div class="input-field fifth-wrap">
-                            <p style="color:lavenderblush; margin-left: 35%;"> Admin Services</p>
                             <div class="input-field fifth-wrap">
                                 <button class="btn-search" style="font-size: small" type="button"
                                     (click)="onAddRentService()">Add Rent Admin</button>
@@ -215,5 +209,4 @@
         </div>
 
 
-    </div>
 </body>

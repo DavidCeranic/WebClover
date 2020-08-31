@@ -21,7 +21,7 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]//zabranjuje ako nema token
+    [Authorize]
     public class UserDetailsController : ControllerBase
     {
         private readonly UserDetailContext _context;
@@ -36,7 +36,6 @@ namespace WebApiClover.Controllers
         // GET: api/UserDetails
         [HttpGet]
         [AllowAnonymous]
-
         public async Task<ActionResult<IEnumerable<UserDetail>>> GetUserDetails()
         {
             return await _context.UserDetails.ToListAsync();
@@ -45,9 +44,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/UserDetails/5
         [HttpGet("{id}")]
-        //[Authorize(Roles = "User")]//ko ima pristup ovde
-        //[Authorize(Roles = "User,Admin")]//ko ima pristup ovde
-        [AllowAnonymous]//svi mogu
+        [AllowAnonymous]
         public async Task<ActionResult<UserDetail>> GetUserDetail(int id)
         {
             var userDetail = await _context.UserDetails.FindAsync(id);
@@ -105,6 +102,7 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
         [AllowAnonymous]
 
         public async Task<IActionResult> PutUserDetail(int id, UserDetail userDetail)
@@ -148,9 +146,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        //[Authorize(Roles = "User,Admin")]//ko ima pristup ovde
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
         [AllowAnonymous]
-
         public async Task<ActionResult<UserDetail>> PostUserDetail(UserDetail userDetail)
         {
             if(_context.UserDetails.Any(U => U.Email == userDetail.Email))
@@ -388,7 +385,7 @@ namespace WebApiClover.Controllers
 
         // DELETE: api/UserDetails/5
         [HttpDelete("{id}")]
-        [AllowAnonymous]
+        [Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
 
         public async Task<ActionResult<UserDetail>> DeleteUserDetail(int id)
         {

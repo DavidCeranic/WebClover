@@ -33,7 +33,7 @@ body, html {
 
 .pretrazi{
   position:absolute;
-  width:720px;
+  width:520px;
   height: 800px;
   left: 20px;
   top:87px;
@@ -367,6 +367,7 @@ background-color: transparent;
             transform-style: preserve-3d;
       -webkit-perspective: 1000px;
               perspective: 1000px;
+           
   }
   
   .front,

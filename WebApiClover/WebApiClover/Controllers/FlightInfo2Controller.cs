@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FlightInfo2Controller : ControllerBase
     {
         private readonly UserDetailContext _context;
@@ -22,6 +24,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/FlightInfo2
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<FlightInfo2>>> GetFlightInfo2()
         {
             return await _context.FlightInfo2.Include(f=>f.FlightRates).ToListAsync();
@@ -29,6 +32,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/FlightInfo2/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<FlightInfo2>> GetFlightInfo2(int id)
         {
             var flightInfo2 = await _context.FlightInfo2.FindAsync(id);
@@ -45,6 +49,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<IActionResult> PutFlightInfo2(int id, FlightInfo2 flightInfo2)
         {
             //if (id != flightInfo2.FlightID)
@@ -97,6 +103,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<FlightInfo2>> PostFlightInfo2(FlightInfo2 flightInfo2, [FromQuery] int companyId)
         {
             var flight = _context.FlightInfo2.Add(flightInfo2);
@@ -108,6 +116,8 @@ namespace WebApiClover.Controllers
 
         // DELETE: api/FlightInfo2/5
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<FlightInfo2>> DeleteFlightInfo2(int id)
         {
             var flightInfo2 = await _context.FlightInfo2.FindAsync(id);

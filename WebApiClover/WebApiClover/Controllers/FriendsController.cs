@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FriendsController : ControllerBase
     {
         private readonly UserDetailContext _context;
@@ -22,6 +24,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/Friends
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Friends>>> GetFriends()
         {
             return await _context.Friends.ToListAsync();
@@ -29,6 +32,7 @@ namespace WebApiClover.Controllers
 
         // GET: api/Friends/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<Friends>> GetFriends(int id)
         {
             var friends = await _context.Friends.FindAsync(id);
@@ -45,6 +49,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<IActionResult> PutFriends(int id,[FromBody] Friends friends)
         {
             if (id != friends.Id)
@@ -77,6 +83,8 @@ namespace WebApiClover.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<Friends>> PostFriends(Friends friends)
         {
             var friend = _context.Friends.Add(friends);
@@ -90,6 +98,7 @@ namespace WebApiClover.Controllers
         }
 
         [HttpGet("GetFriend/{email}")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<Friends>>> GetFriend(string email)
         {
             // nadjes sve iz baze koji imaju taj email za prvog usera ili drugog
@@ -99,6 +108,8 @@ namespace WebApiClover.Controllers
 
         // DELETE: api/Friends/5
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<ActionResult<Friends>> DeleteFriends(int id)
         {
             var friends = await _context.Friends.FindAsync(id);

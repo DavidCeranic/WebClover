@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace WebApiClover.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ReservationDetailsController : ControllerBase
     {
         private readonly UserDetailContext _context;
@@ -22,6 +24,7 @@ namespace WebApiClover.Controllers
 
         [HttpGet]
         [Route("GetAllReservation")]
+        [AllowAnonymous]
         public async Task<List<ReservationDetails>> GetAllReservation()
         {
             return await _context.ReservationDetails.Include(p => p.User).Include(p => p.Car).Include(p => p.StartOffice).Include(p => p.EndOffice).ToListAsync();
@@ -69,6 +72,8 @@ namespace WebApiClover.Controllers
 
         [HttpDelete]
         [Route("DeleteReservationForCar")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<IActionResult> DeleteReservationForCar(int reservationId)
         {
             try
@@ -89,6 +94,8 @@ namespace WebApiClover.Controllers
 
 
         [HttpDelete("DeleteReservation/{reservationId}")]
+        //[Authorize(Roles = "User,Admin,FlightAdmin,RentAdmin")]
+        [AllowAnonymous]
         public async Task<IActionResult> DeleteReservation(int reservationId)
         {
             try
