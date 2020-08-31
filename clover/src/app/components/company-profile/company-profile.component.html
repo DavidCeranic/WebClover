@@ -1,15 +1,15 @@
 <body>
         <div class="bg"> 
         <div class="conteinter4">
-        <!-- <div class="image2"></div> -->
-        <div class="about"  ><p style="color:whitesmoke;margin-top:4%; ">COMPANY NAME:{{companyData.avioCompName}} </p></div>
-        <div class="about"><p style="color:whitesmoke;margin-top:7%;">COMPANY ADDRESS:{{companyData.avioCompAddress}} </p></div>
-        <div class="about"><p style="color:whitesmoke;margin-top:10%;">COMPANY ABOUT:{{companyData.avioCompAbout}} </p></div>
+        <div class="image2"></div>
+        <div class="about"  ><h4 style="color:whitesmoke;margin-top:1%; ">COMPANY NAME:{{companyData.avioCompName}} </h4></div>
+        <div class="about"><p style="color:whitesmoke;margin-top:3%;">COMPANY ADDRESS:{{companyData.avioCompAddress}} </p></div>
+        <div class="about"><p style="color:whitesmoke;margin-top:5%;">COMPANY ABOUT:{{companyData.avioCompAbout}} </p></div>
 
-        <div class="about"><p style="color:whitesmoke;margin-top:13%;">COMPANY DESTINATIONS:{{companyData.avioCompDestinations}} </p></div>
+        <div class="about"><p style="color:whitesmoke;margin-top:7%;">COMPANY DESTINATIONS:{{companyData.avioCompDestinations}} </p></div>
 
-        <div class="about"><p style="color:whitesmoke;margin-top:16%;">COMPANY SEATS:{{companyData.avioCompSeats}} </p></div>
-        <div class="about"><p style="color:whitesmoke;margin-top:20%;">PROSECNA OCENA:{{this.prosek}} </p></div>
+        <div class="about"><p style="color:whitesmoke;margin-top:10%;">COMPANY SEATS:{{companyData.avioCompSeats}} </p></div>
+        <div class="about"><p style="color:whitesmoke;margin-top:13%;">PROSECNA OCENA:{{this.prosek}} </p></div>
 
 
         
@@ -135,7 +135,7 @@
     </div>
 
 
-    <div class="conteiner8">
+    <div class="conteiner8"  *ngIf="dalijeadmin()">
                 <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)" >
 
                  <input type="hidden" name="flightID" [value]="service.formData.flightID">
